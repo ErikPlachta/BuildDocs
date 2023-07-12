@@ -1,7 +1,7 @@
 {
     "name" : "BuildDocs",
     "author" : "Erik Plachta",
-    "type" : "commonjs",
+    "type" : "module",
     "main" : "index.js",
     "scripts" : {
         test : "ts-node ./src/index.js"
