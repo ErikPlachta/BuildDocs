@@ -1,13 +1,13 @@
-
 import fs from 'fs';
 import path from 'path';
-import GetDocs from './GetDocs';  // Assuming GetDocs class is in the same directory.
+import { GetDocs } from './GetDocs';  // Assuming GetDocs class is in the same directory.
 
 interface DocResult {
     filePath: string;
     doc: { [key: string]: string[] };
-    modifiedDate: Date; 
+    modifiedDate: Date;
     createdDate: Date;
+    allComments: string[];
 }
 
 export class BuildDocs {
@@ -30,11 +30,13 @@ export class BuildDocs {
         return this.fileTypes.includes(extension);
     }
 
-    private extractDocsFromFile(filePath: string) {
+    private extractCommentsFromFile(filePath: string) {
         const fileContent = fs.readFileSync(filePath, 'utf-8');
         const stats = fs.statSync(filePath);
         const commentPattern = /\/\*\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g;
+        const allCommentPattern = /\/\*[^*]*(\*[^/][^*]*)*\*\/|\/\/.*/g;
         const comments = fileContent.match(commentPattern);
+        const allComments = fileContent.match(allCommentPattern);
         
         if (comments) {
             comments.forEach(comment => {
@@ -43,7 +45,8 @@ export class BuildDocs {
                     filePath,
                     doc: doc.getTags(),
                     createdDate: stats.birthtime,
-                    modifiedDate: stats.mtime
+                    modifiedDate: stats.mtime,
+                    allComments: allComments || []
                 });
             });
         }
@@ -59,7 +62,7 @@ export class BuildDocs {
                 if (fs.statSync(filePath).isDirectory()) {
                     this.searchDir(filePath);
                 } else if (this.isFileType(filePath)) {
-                    this.extractDocsFromFile(filePath);
+                    this.extractCommentsFromFile(filePath);
                 }
             }
         });
@@ -79,5 +82,3 @@ export class BuildDocs {
         fs.writeFileSync(filePath, JSON.stringify(this.results, null, 2));
     }
 }
-
-module.exports = BuildDocs

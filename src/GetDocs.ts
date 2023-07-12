@@ -1,4 +1,4 @@
-class GetDocs {
+export class GetDocs {
     private comment: string;
     private tags: { [key: string]: string[] };
     private description: string;
@@ -28,7 +28,7 @@ class GetDocs {
                 if (descriptionMatch) {
                     this.description += descriptionMatch[1] + '\n';
                 }
-            } 
+            }
         });
 
         this.tags = tags;
@@ -49,6 +49,5 @@ class GetDocs {
     public getTags(): { [key: string]: string[] } {
         return this.tags;
     }
-}
-
-module.exports = GetDocs
+} 
+ 
