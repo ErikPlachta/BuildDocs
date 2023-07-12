@@ -1,7 +1,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { JSDoc } from './JSDoc';  // Assuming JSDoc class is in the same directory.
+import GetDocs from './GetDocs';  // Assuming GetDocs class is in the same directory.
 
 interface DocResult {
     filePath: string;
@@ -38,7 +38,7 @@ export class BuildDocs {
         
         if (comments) {
             comments.forEach(comment => {
-                const doc = new JSDoc(comment);
+                const doc = new GetDocs(comment);
                 this.results.push({
                     filePath,
                     doc: doc.getTags(),
