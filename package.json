@@ -1,0 +1,13 @@
+{
+    "name" : "BuildDocs",
+    "author" : "Erik Plachta",
+    "type" : "commonjs",
+    "main" : "index.js",
+    "scripts" : {
+        test : "ts-node ./src/index.js"
+    },
+    "devDepdencies": {
+        "ts-node": "^10.9.1",
+        "typescript" : "^5.1.6"
+    }
+}
