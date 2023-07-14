@@ -1,4 +1,28 @@
-[
+/**
+ * @file index.js
+ * @namespace JsonToDocs
+ * @module JsonToDocs.Test
+ * @memberof namespace:build-docs.JsonToDocs
+ * 
+ */
+
+
+const convertJsonToDocs = require('./JsonToDoc.js');
+const fs = require('fs');
+const data = require('./data.json');
+
+let { markdown, html } = convertJsonToDocs(data)
+
+fs.writeFileSync('test.md', markdown);
+fs.writeFileSync('test.html', html);
+
+
+/**
+ * Sample data to test integrity of JsonToDocs utility.
+ * @type {Array.<Object>}
+ * @memberof namespace:build-docs.JsonToDocs
+ */
+const data = [
   {
     "id": "dc5a59f5-3873-453c-ad47-f7a6ed4b7d36",
     "fileName": "index.js",

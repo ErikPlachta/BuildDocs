@@ -1,3 +1,8 @@
+/**
+ * @version 0.0.1
+ * @param {array} data - Json payload to build from.
+ * @returns 
+ */
 function convertJsonToDocs(data) {
   let markdown = '';
   let html = `

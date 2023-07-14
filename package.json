@@ -1,13 +1,40 @@
 {
-    "name" : "BuildDocs",
-    "author" : "Erik Plachta",
-    "type" : "module",
-    "main" : "index.js",
-    "scripts" : {
-        test : "ts-node ./src/index.js"
+    "name": "build-docs",
+    "version": "0.1.0",
+    "description": "A tool to generate documentation from JSDoc style comments in your codebase.",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"no test\"",
+        "BuildDocsTest": "ts-node ./src/index.js targetPath=\"./utils/build-docs/test\"",
+        "BuildDocsUserValues": "ts-node ./utils/build-docs/index.js targetPath=\"./Applications/RiskRating/1 UserValues\"",
+        "BuildDocsUserEventSubscriptions": "ts-node ./utils/build-docs/index.js targetPath=\"./Applications/RiskRating/2 EventSubscriptions\""
     },
-    "devDepdencies": {
+    "keywords": [
+        "automation",
+        "comments",
+        "jsdoc",
+        "doc",
+        "documentation",
+        "javascript",
+        "js",
+        "wiki",
+        "typescript",
+        "ts",
+        "markdown",
+        "md",
+        "html"
+    ],
+    "devDependencies": {
+        "@types/node": "^20.4.1",
+        "@types/typescript": "^2.0.0",
+        "eslint": "^8.43.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "jsdoc": "^4.0.2",
+        "prettier": "^2.8.8",
         "ts-node": "^10.9.1",
-        "typescript" : "^5.1.6"
+        "typescript": "^5.1.6"
     }
 }

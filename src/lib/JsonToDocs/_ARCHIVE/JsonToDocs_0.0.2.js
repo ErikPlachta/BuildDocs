@@ -1,3 +1,9 @@
+/**
+ * @version 0.0.2
+ * @description Converts JSON data to markdown or HTML
+ * @param {Object} data - JSON data
+ * @returns {Object} - Object with toMarkdown and toHtml methods
+ */
 class ConvertJsonToDocs {
     constructor(data) {
         this.data = data;

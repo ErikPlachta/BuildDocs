@@ -1,0 +1,136 @@
+{
+  "title": "config.json",
+  "memberof": "BuildDocs",
+  "description": "BuildDocs default configuration",
+  "version": "0.1.2",
+  "author": "Erik Plachta",
+  "settings": {
+      "summary": "Default parameters for controlling run behavior of BuildDocs.",
+      "description": "Config options for Initialization `init[]` and Output `out[]` used by BuildDocs to manage generation.",
+      "out": {
+          "summary": "Config options BuildDocs output behavior.",
+          "description": "Options for where BuildDocs will generate the results, the filename, and what format to generate them in.",
+          "options": [
+              {
+                  "title": "outputPath",
+                  "description": "Output options to be used BuildDocs. Default is the root of where it was executed from `./out`.",
+                  "type": "string",
+                  "required": true,
+                  "enabled": true,
+                  "value": null,
+                  "default": "./out"
+              },
+              {
+                  "title": "outputName",
+                  "description": "Output name to be used for BuildDocs.",
+                  "type": "string",
+                  "required": true,
+                  "enabled": true,
+                  "value": null,
+                  "default": "docs"
+              },
+              {
+                  "title": "outputFormat",
+                  "description": "Output format to be used for BuildDocs.",
+                  "type": "string[]",
+                  "required": true,
+                  "enabled": true,
+                  "value": null,
+                  "default": ["json"],
+                  "supported": ["json", "html"]
+              },
+              {
+                  "title": "writeMode",
+                  "description": "If a file already exists behavior, and option to make unique.",
+                  "type": "string",
+                  "required": false,
+                  "enabled": true,
+                  "value": null,
+                  "default": "overwrite",
+                  "reference": "https://nodejs.dev/en/api/v20/fs/#file-system-flags",
+                  "usedBy": "BuildDocs.generateDocs",
+                  "supported": [
+                      {
+                          "title": "overwrite",
+                          "description": "Opens file for overwrite. The file is created if it does not exist.",
+                          "isDefault": true
+                      },
+                      {
+                          "title": "new",
+                          "description": "Always builds a a new file with a unique id of date-time.",
+                          "isDefault": false
+                      }
+                  ]
+              }
+          ]
+      },
+      "init": {
+          "summary": "Initialization options for BuildDocs.",
+          "description": "Options to determine how the BuildDocs defaults set by BuildDocs constructor.",
+          "options": [
+              {
+                  "title": "targetPath",
+                  "description": "The root directory to search for documentation within by BuildDocs.",
+                  "type": "string",
+                  "required": true,
+                  "enabled": true,
+                  "value": null,
+                  "default": ".",
+                  "usedBy": "BuildDocs.generateDocs"
+              },
+              {
+                  "title": "targetPaths",
+                  "description": "Optional Paths to be used for BuildDocs.",
+                  "type": "string[]",
+                  "required": false,
+                  "enabled": false,
+                  "value": null,
+                  "default": []
+              },
+              {
+                  "title": "targetFileTypes",
+                  "description": "The file types to extract build documentation from.",
+                  "type": "string[]",
+                  "required": true,
+                  "enabled": true,
+                  "value": null,
+                  "default": ["ts", "js"],
+                  "supported": ["ts", "js"]
+              },
+              {
+                  "title": "ignoreFiles",
+                  "description": "Files to ignore when building documentation.",
+                  "type": "string[]",
+                  "required": false,
+                  "enabled": false,
+                  "value": null,
+                  "default": []
+              },
+              {
+                  "title": "targetFiles",
+                  "description": "Array of specific files to target",
+                  "type": "string[]",
+                  "required": false,
+                  "enabled": false,
+                  "value": null,
+                  "default": []
+              },
+              {
+                  "title": "ignorePaths",
+                  "description": "Paths to ignore when building documentation.",
+                  "type": "string[]",
+                  "required": false,
+                  "enabled": true,
+                  "value": null,
+                  "default": [
+                      "node_modules",
+                      "_ARCHIVE",
+                      "_thunder-client",
+                      ".vscode",
+                      "build-docs_v1"
+                  ]
+              }
+          ]
+      }
+  }
+}
