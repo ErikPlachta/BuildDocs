@@ -16,18 +16,18 @@
                     A mockup of the design to build around.
                 </p>
             </div>
-            <nav class="max-w-4xl mx-auto w-full px-4 pt-4">
-                <ul class="flex flex-row gap-6 mt-auto h-full">
+            <nav class="max-w-4xl mx-auto w-full px-4 pt-4" data-role="nav-header">
+                <ul class="flex flex-row gap-6 mt-auto h-full" data-role="nav-header">
                     <li
                         class="py-2 px-4 border-solid border-b-4 border-blue-500 hover:border-blue-500/80"
-                        data-role="nav-main"
+                        data-role="nav-header"
                         data-group="overview"
                     >
                         <a href="#overview">Overview</a>
                     </li>
                     <li
                         class="py-2 px-4 border-solid border-b-4 border-transparent hover:border-blue-500/80"
-                        data-role="nav-main"
+                        data-role="nav-header"
                         data-group="mn1"
                     >
                         <a href="#mn1">mn1</a>
@@ -55,7 +55,7 @@
                     id="overview-tabs"
                     class="w-full flex flex-row gap-2 bg-gray-100"
                     data-group="overview"
-                    data-role="tabstrip"
+                    data-role="tab-strip"
                 >
                     <ul
                         class="flex w-full flex-row w-full gap-2 w-full"
@@ -65,9 +65,9 @@
                             id="overview-summary-tab"
                             class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid border-b-blue-500 hover:bg-opacity-90 hover:border-b-blue-500/50"
                             data-group="overview"
-                            data-category="summary"
+                            data-subGroup="summary"
                             data-id="overview-summary"
-                            data-role="nav-module"
+                            data-role="tab-strip-nav"
                             data-type="file"
                         >
                             Summary
@@ -76,10 +76,10 @@
                         <li
                             id="overview-stats-tab"
                             class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid bg-opacity-30 hover:bg-opacity-60 hover:border-b-blue-500/50"
+                            data-role="tab-strip-nav"
                             data-group="overview"
-                            data-category="stats"
+                            data-subGroup="stats"
                             data-id="overview-stats"
-                            data-role="nav-module"
                             data-type="file"
                         >
                             Stats
@@ -97,10 +97,10 @@
                     <div
                         id="overview-summary"
                         class=""
-                        data-group="overview"
-                        data-category="summary"
-                        data-id="overview-summary"
                         data-role="content"
+                        data-group="overview"
+                        data-subGroup="summary"
+                        data-id="overview-summary"
                         data-active="true"
                     >
                         <h3>Execution Summary</h3>
@@ -119,7 +119,7 @@
                         id="overview-stats"
                         class="hidden"
                         data-group="overview"
-                        data-category="stats"
+                        data-subGroup="stats"
                         data-id="overview-stats"
                         data-role="content"
                         data-active="false"
@@ -150,7 +150,7 @@
                     id="mn1-tabs"
                     class="w-full flex flex-row gap-2 bg-gray-100"
                     data-group="mn1"
-                    data-role="tabstrip"
+                    data-role="tab-strip-nav"
                     data-active="false"
                 >
                     <ul
@@ -161,7 +161,7 @@
                             id="mn1-file-tab"
                             class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid border-b-blue-500 hover:bg-opacity-90 hover:border-b-blue-500/50"
                             data-group="mn1"
-                            data-role="nav-module"
+                            data-role="tab-strip-nav"
                             data-type="file"
                         >
                             mn1_File
@@ -170,7 +170,7 @@
                             id="'mn1-function1-tab"
                             class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid bg-opacity-30 hover:bg-opacity-60 hover:border-b-blue-500/50"
                             data-group="mn1"
-                            data-role="nav-module"
+                            data-role="tab-strip-nav"
                             data-type="function"
                         >
                             mn1_Function1
@@ -179,7 +179,7 @@
                             id="mn1-function2-tab"
                             class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid bg-opacity-30 hover:bg-opacity-60 hover:border-b-blue-500/50"
                             data-group="mn1"
-                            data-role="nav-module"
+                            data-role="tab-strip-nav"
                             data-type="function"
                         >
                             mn1_Function2
@@ -190,14 +190,14 @@
                 <section
                     id="content-mn1"
                     class="border-solid border-2 rounded-b-xl h-full p-4"
-                    data-group="mn1"
                     data-role="content-wrapper"
+                    data-group="mn1"
                 >
                     <div
                         id="mn1"
                         class="hidden"
                         data-group="mn1"
-                        data-category="file"
+                        data-subGroup="file"
                         data-role="content"
                         data-id="'mn1-file"
                         data-active="false"
@@ -271,12 +271,12 @@
         } // end of handleMainNav.
 
         /**
-         * Get all tabs for role nav-module and toggle active tab and content based on selected tab ID.
+         * Get all tabs for role tab-strip-nav and toggle active tab and content based on selected tab ID.
          */
-        function handleTabStrip(tabId, dataset) {
+        function handletab-strip(tabId, dataset) {
             // 1. Updating the Tab Strip's active tab.
             document
-                .querySelectorAll("[data-role='nav-module']")
+                .querySelectorAll("[data-role='tab-strip-nav']")
                 .forEach((tab) => {
                     if (tabId == tab.id) {
                         tab?.classList.remove('bg-opacity-30');
@@ -304,7 +304,7 @@
                         content.classList.add('hidden');
                     }
                 });
-        }// end of handleTabStrip.
+        }// end of handletab-strip.
 
 
         /**
@@ -322,10 +322,10 @@
 
             // Listeners for when tab in tab-strip is selected to toggle content visibility.
             document
-                .querySelectorAll("[data-role='nav-module']")
+                .querySelectorAll("[data-role='tab-strip-nav']")
                 .forEach((tab) => {
                     tab.addEventListener('click', (e) => {
-                        handleTabStrip(e.target.id, e.target.dataset);
+                        handletab-strip(e.target.id, e.target.dataset);
                     });
                 });
         }

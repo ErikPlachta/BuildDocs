@@ -6,7 +6,7 @@
  * @memberof namespace:build-docs
  */
 
-import { DataItem, ProcessedDataItem } from '../types';
+import { DataItem, ProcessedDataItem } from "../types";
 
 /**
  * @access private
@@ -18,71 +18,87 @@ import { DataItem, ProcessedDataItem } from '../types';
  * Class to convert JSON data to Markdown and HTML
  */
 export class JsonToUi {
-    data: DataItem[];
-    processedData: ProcessedDataItem[];
-    // processedData: (data:DataItem[]) => ProcessedDataItem[];
+	data: DataItem[];
+	processedData: ProcessedDataItem[];
+	// processedData: (data:DataItem[]) => ProcessedDataItem[];
 
-    /**
-     * @param {DataItem[]} data - The JSON data to convert
-     */
-    constructor(data: DataItem[]) {
-        this.data = data;
-        this.processedData = this.processData(data);
-        // this.processedData = ( data:DataItem[]  )=> this.processData(data);
-    } // end constructor
+	/**
+	 * @param {DataItem[]} data - The JSON data to convert
+	 */
+	constructor(data: DataItem[]) {
+		this.data = data;
+		this.processedData = this.processData(data);
+		// this.processedData = ( data:DataItem[]  )=> this.processData(data);
+	} // end constructor
 
-    /**
-     * Process data for easier use
-     * @param {DataItem[]} data - The data to process
-     * @return {ProcessedDataItem[]} The processed data
-     */
-    processData(data: DataItem[]): ProcessedDataItem[] {
+	/**
+	 * Process data for easier use
+	 * @param {DataItem[]} data - The data to process
+	 * @return {ProcessedDataItem[]} The processed data
+	 */
+	processData(data: DataItem[]): ProcessedDataItem[] {
 
-        try {
-            return data.map((item) => {
-                const newItem: ProcessedDataItem = {
-                    id: item.id,
-                    fileName: item.fileName,
-                    filePath: item.filePath,
+        let processedData:ProcessedDataItem[] = [];
+        
+        // 1. First pass through all items to extract individual doc info.
+        data.map((item:DataItem)=>{
+
+            // Extract the data we need from the item
+            // const { id, fileName, filePath, createdDate, modifiedDate, relatedComments } = item;
+            processedData.push({
+                id : item.id,
+                fileDetails : {
+                    fileName : item.fileName,
+                    filePath : item.filePath,
                     createdDate: item.createdDate,
                     modifiedDate: item.modifiedDate,
-                    relatedComments: item.relatedComments,
-                    doc: {},
-                };
-
-                Object.entries(item.doc).forEach(([key, valArray]) => {
-                    newItem.doc[key] = valArray.map((val) => val.description);
-                });
-
-                return newItem;
+                },
+                
+                isFile: item?.doc?.file?.[0] ? true : false,
+                isNamespace: item?.doc?.namespace?.[0] ? true : false,
+                isClass: item?.doc?.class ? true : false,
+                isModule: item?.doc?.module ? true : false,
+                memberOf: item?.doc?.memberof?.[0] ? item?.doc?.memberof : [],
+                
+                // doc: item?.doc
             });
-        } catch (err) {
-            console.error(err);
-            return [];
-        }
+        })
+
+        // 2. Second pass through to add associations
+        processedData.map(  (item:ProcessedDataItem) => {
+            // 2.1. Add associations
+            console.log(item)
+        });
+
+        // 3. Third pass through, Generate information to build UI.
+        processedData.map(  (item:ProcessedDataItem) => {
+            // 3.1. Add associations
+            console.log(item)
+        });
+
+        return processedData;
     }
 
-    /**
-     * Convert the data to Markdown
-     * @return {string} The Markdown string
-     * @todo Implement the method
-     */
-    toMarkdown(): string {
-        // Implement the method as before...
-        return '';
-    }
+	/**
+	 * Convert the data to Markdown
+	 * @return {string} The Markdown string
+	 * @todo Implement the method
+	 */
+	toMarkdown(): string {
+		// Implement the method as before...
+		return "";
+	}
 
-    /**
-     * Convert the data to HTML
-     * @return {string} The HTML string
-     * @todo Implement the method
-     */
-    toHtml(
-        title = 'Placeholder Title',
-        subTitle='Placeholder subtitle for html.'
-    ): string {
-        
-        const bodyStart = `
+	/**
+	 * Convert the data to HTML
+	 * @return {string} The HTML string
+	 * @todo Implement the method
+	 */
+	toHtml(
+		title = "Placeholder Title",
+		subTitle = "Placeholder subtitle for html."
+	): string {
+		const bodyStart = `
         <html>
             <head>
                 <title>${title}</title>
@@ -92,10 +108,8 @@ export class JsonToUi {
             </head>
             <body class="bg-gray-100 flex flex-col gap-8">`;
 
-        
-
-        const buildHeader = () => {
-            `<header class="w-full p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto">
+		const buildHeader = () => {
+			`<header class="w-full p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto">
                 <div class="max-w-4xl mx-auto w-full">
                     <h1 class="text-blue-500 text-4xl">
                         ${title}
@@ -111,22 +125,17 @@ export class JsonToUi {
                             data-group="overview"
                         >
                             <a href="#overview">Overview</a>
-                    </li>`
-                    + (() => {
-                      'test'  
-                    })
-                + `</ul>
+                    </li>` +
+				(() => {
+					"test";
+				}) +
+				`</ul>
                 </nav>
             </header>`;
-                
-            
-
-
-
-        };
-        //TODO: update this to return the correct html
-        return '';
-    }
+		};
+		//TODO: update this to return the correct html
+		return "";
+	}
 }
 
 module.exports = JsonToUi;
