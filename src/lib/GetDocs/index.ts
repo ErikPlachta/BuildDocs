@@ -235,3 +235,4 @@ class GetDocs {
 }
 
 module.exports = GetDocs
+export default GetDocs

@@ -19,7 +19,7 @@
 import { randomUUID } from 'crypto'
 import fs from 'fs'
 import path from 'path'
-const GetDocs = require('./GetDocs') // Assuming GetDocs class is in the same directory.
+import GetDocs from '../GetDocs' // Assuming GetDocs class is in the same directory.
 
 /**
  * @type {interface} DocResult
@@ -41,7 +41,7 @@ interface DocResult {
     id: string
     fileName: string
     filePath: string
-    doc: { [key: string]: string[] }
+    doc: any
     modifiedDate: Date
     createdDate: Date
     //-- All related comments and their full comment blocks within the file.

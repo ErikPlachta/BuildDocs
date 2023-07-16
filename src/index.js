@@ -29,13 +29,29 @@
  * 
  */
 
+
+// import foo = require('foo');
+// require('foo');
+// import foo from 'foo';
+
+
+
 // Node/Javascript Utilities
-const { spawn } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+const { spawn } = require('child_process'); // used for args
+const { resolve } = require('path'); // used for building results
+const { readFileSync } = require('fs'); // used for reading config file
+
 
 // Custom Utilities.
-const BuildDocs = require('./BuildDocs.ts');
+const BuildDocs = require('./lib/BuildDocs/index.ts');
+
+
+/*
+const { spawn } = require('child_process');
+
+// Custom Utilities.
+const BuildDocs = require('./lib/BuildDocs/index.ts');
+*/
 
 /**
  * @type {function} getArgs
@@ -78,6 +94,10 @@ async function getArgs() {
  * @todo Add validation of args.
  */
 async function getConfig(args) {
+  
+  //TODO: 20230713 #EP || Add validation of args.
+  console.log('args: ', args)
+
   try {
     //-- The configuration option to be returned
     const config = {
@@ -86,22 +106,22 @@ async function getConfig(args) {
     };
 
     // 1. Get the config.json file path based on this files location.
-    const configPath = path.resolve(__dirname, 'config.json');
+    const configPath = resolve(__dirname, 'config.json');
 
     // 2. Get the configuration, convert to JSON
-    let defaults = fs.readFileSync(configPath, 'utf8')
+    let defaults = readFileSync(configPath, 'utf8')
     defaults = JSON.parse(defaults);
 
     // 3. Get default options to prepare to be evaluated.
     defaults.settings.init.options.forEach((item) => {
-      if (!item.title || !item.default) throw new Error(`Error getting config init options. Make sure config is setup with proper 'item' and 'default' configurations. Error: ${error.message}`);
+      if (!item.title || !item.default) throw new Error(`Error getting config init options. Make sure config is setup with proper 'item' and 'default' configurations.`);
       config.init[item.title] = {
         ...item,
         value: item.default
       };
     });
     defaults.settings.out.options.forEach((item) => {
-      if (!item.title || !item.default) throw new Error(`Error getting config output options. Make sure config is setup with proper 'item' and 'default' configurations. Error: ${error.message}`);
+      if (!item.title || !item.default) throw new Error(`Error getting config output options. Make sure config is setup with proper 'item' and 'default' configurations.`);
       config.out[item.title] = {
         ...item,
         value: item.default

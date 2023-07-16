@@ -13,12 +13,12 @@
           "options": [
               {
                   "title": "outputPath",
-                  "description": "Output options to be used BuildDocs. Default is the root of where it was executed from `./out`.",
+                  "description": "Output options to be used BuildDocs. Default is the root of where it was executed from `.dist`.",
                   "type": "string",
                   "required": true,
                   "enabled": true,
                   "value": null,
-                  "default": "./out"
+                  "default": "./.dist"
               },
               {
                   "title": "outputName",

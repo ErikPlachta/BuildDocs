@@ -1,0 +1,2390 @@
+[
+  {
+    "id": "0047d9bb-7dab-42a0-9f62-225136f54f96",
+    "fileName": "index.js",
+    "filePath": "src/index.js",
+    "doc": {
+      "file": [
+        {
+          "line": "@file index.js",
+          "type": "file",
+          "description": "index.js"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace {build-docs | utils\\build-docs | index.js | BuildDocs}",
+          "type": "namespace",
+          "description": "{build-docs | utils\\build-docs | index.js | BuildDocs}"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module build-docs",
+          "type": "module",
+          "description": "build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Entry point for the BuildDocs utility.",
+          "type": "summary",
+          "description": "Entry point for the BuildDocs utility."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Executes the BuildDocs utility for target files types within a target path. The BuildDocs utility generates documentation for the target files and paths and saves the documentation to the target path.",
+          "type": "description",
+          "description": "Executes the BuildDocs utility for target files types within a target path. The BuildDocs utility generates documentation for the target files and paths and saves the documentation to the target path."
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.1.1",
+          "type": "version",
+          "description": "0.1.1"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.1.0",
+          "type": "since",
+          "description": "0.1.0"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "license": [
+        {
+          "line": "@license MIT {@link https://opensource.org/licenses/MIT | License}",
+          "type": "license",
+          "description": "MIT {@link https://opensource.org/licenses/MIT | License}"
+        }
+      ],
+      "argument": [
+        {
+          "line": "@argument {string} [rootDirectory] - `Required` Path to be parsed.",
+          "type": "argument",
+          "description": "{string} [rootDirectory] - `Required` Path to be parsed."
+        },
+        {
+          "line": "@argument {string} [targetFileTypes] - `Optional` File types to be parsed.",
+          "type": "argument",
+          "description": "{string} [targetFileTypes] - `Optional` File types to be parsed."
+        },
+        {
+          "line": "@argument {string[]} [targetPaths] -  `Optional` Paths within the targetPath to be parsed.",
+          "type": "argument",
+          "description": "{string[]} [targetPaths] -  `Optional` Paths within the targetPath to be parsed."
+        },
+        {
+          "line": "@argument {string[]} [ignoreFiles] - `Optional` Files to be ignored.",
+          "type": "argument",
+          "description": "{string[]} [ignoreFiles] - `Optional` Files to be ignored."
+        },
+        {
+          "line": "@argument {string[]} [targetFiles] - `Optional` Files to be parsed.",
+          "type": "argument",
+          "description": "{string[]} [targetFiles] - `Optional` Files to be parsed."
+        },
+        {
+          "line": "@argument {string[]} [ignorePaths] - `Optional` Paths to be ignored.",
+          "type": "argument",
+          "description": "{string[]} [ignorePaths] - `Optional` Paths to be ignored."
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:BuildDocs - {@link module:BuildDocs | ./BuildDocs.ts}",
+          "type": "requires",
+          "description": "module:BuildDocs - {@link module:BuildDocs | ./BuildDocs.ts}"
+        },
+        {
+          "line": "@requires module:JsonToDocs - {@link module:JsonToDocs | ./JsonToDocs.ts}",
+          "type": "requires",
+          "description": "module:JsonToDocs - {@link module:JsonToDocs | ./JsonToDocs.ts}"
+        },
+        {
+          "line": "@requires {@link https://nodejs.org/api/fs.html#fs_file_system | fs}",
+          "type": "requires",
+          "description": "{@link https://nodejs.org/api/fs.html#fs_file_system | fs}"
+        },
+        {
+          "line": "@requires {@link https://nodejs.org/api/path.html#path_path | path}",
+          "type": "requires",
+          "description": "{@link https://nodejs.org/api/path.html#path_path | path}"
+        },
+        {
+          "line": "@requires {@link https://nodejs.org/api/child_process.html#child_process_child_process | child_process}",
+          "type": "requires",
+          "description": "{@link https://nodejs.org/api/child_process.html#child_process_child_process | child_process}"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T14:15:33.241Z",
+    "modifiedDate": "2023-07-16T20:31:46.451Z",
+    "relatedComments": []
+  },
+  {
+    "id": "279e22d2-35f7-4138-a244-a60644d73298",
+    "fileName": "index.js",
+    "filePath": "src/index.js",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} getArgs",
+          "type": "type",
+          "description": "{function} getArgs"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getArgs",
+          "type": "function",
+          "description": "getArgs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get cli args passed to the BuildDocs utility.",
+          "type": "summary",
+          "description": "Get cli args passed to the BuildDocs utility."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Used by the BuildDocs utility to parse args passed to the BuildDocs utility to customize run configuration via cli.",
+          "type": "description",
+          "description": "Used by the BuildDocs utility to parse args passed to the BuildDocs utility to customize run configuration via cli."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - Args object",
+          "type": "returns",
+          "description": "{object} - Args object"
+        }
+      ],
+      "throws": [
+        {
+          "line": "@throws {error} - Error if args cannot be parsed.",
+          "type": "throws",
+          "description": "{error} - Error if args cannot be parsed."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T14:15:33.241Z",
+    "modifiedDate": "2023-07-16T20:31:46.451Z",
+    "relatedComments": []
+  },
+  {
+    "id": "f8d1aec0-9180-4d61-bb06-2f0aa5a8af31",
+    "fileName": "index.js",
+    "filePath": "src/index.js",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} getConfig",
+          "type": "type",
+          "description": "{function} getConfig"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getConfig",
+          "type": "function",
+          "description": "getConfig"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get BuildDocs default configuration.",
+          "type": "summary",
+          "description": "Get BuildDocs default configuration."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Used by the BuildDocs utility to feed default configuration values. Args passed to the BuildDocs class will override these if valid.",
+          "type": "description",
+          "description": "Used by the BuildDocs utility to feed default configuration values. Args passed to the BuildDocs class will override these if valid."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.",
+          "type": "param",
+          "description": "{object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - Config with updated values sent in as cli args, if any.",
+          "type": "returns",
+          "description": "{object} - Config with updated values sent in as cli args, if any."
+        }
+      ],
+      "throws": [
+        {
+          "line": "@throws {error} - Error if config cannot be parsed.",
+          "type": "throws",
+          "description": "{error} - Error if config cannot be parsed."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo Add validation of args.",
+          "type": "todo",
+          "description": "Add validation of args."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T14:15:33.241Z",
+    "modifiedDate": "2023-07-16T20:31:46.451Z",
+    "relatedComments": []
+  },
+  {
+    "id": "c5c8574c-d542-478c-93eb-58beec8e7885",
+    "fileName": "index.js",
+    "filePath": "src/index.js",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} getUpdatedConfig",
+          "type": "type",
+          "description": "{function} getUpdatedConfig"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getUpdatedConfig",
+          "type": "function",
+          "description": "getUpdatedConfig"
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.",
+          "type": "param",
+          "description": "{object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config."
+        },
+        {
+          "line": "@param {object} config - Config is the default configuration for the BuildDocs utility.",
+          "type": "param",
+          "description": "{object} config - Config is the default configuration for the BuildDocs utility."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - Updated config with args passed in.",
+          "type": "returns",
+          "description": "{object} - Updated config with args passed in."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T14:15:33.241Z",
+    "modifiedDate": "2023-07-16T20:31:46.451Z",
+    "relatedComments": []
+  },
+  {
+    "id": "7037c76c-4aa3-46d1-a890-2700368c27a7",
+    "fileName": "index.js",
+    "filePath": "src/index.js",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} run",
+          "type": "type",
+          "description": "{function} run"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function run",
+          "type": "function",
+          "description": "run"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Run the BuildDocs utility.",
+          "type": "summary",
+          "description": "Run the BuildDocs utility."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Run the BuildDocs utility.",
+          "type": "description",
+          "description": "Run the BuildDocs utility."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {object} [updatedConfig] - BuildDocs Configuration object with possible updates from cli args. Contains `init` and `out` objects.",
+          "type": "param",
+          "description": "{object} [updatedConfig] - BuildDocs Configuration object with possible updates from cli args. Contains `init` and `out` objects."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.",
+          "type": "returns",
+          "description": "{object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T14:15:33.241Z",
+    "modifiedDate": "2023-07-16T20:31:46.451Z",
+    "relatedComments": []
+  },
+  {
+    "id": "4e935b3c-cdbc-41ab-b7f1-5e0f390b2dfc",
+    "fileName": "index.js",
+    "filePath": "src/index.js",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} main",
+          "type": "type",
+          "description": "{function} main"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function main",
+          "type": "function",
+          "description": "main"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Entry point for the BuildDocs utility.",
+          "type": "summary",
+          "description": "Entry point for the BuildDocs utility."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Executes the BuildDocs utility for target files types within a target path. The BuildDocs utility generates documentation for the target files and paths and saves the documentation to the target path.",
+          "type": "description",
+          "description": "Executes the BuildDocs utility for target files types within a target path. The BuildDocs utility generates documentation for the target files and paths and saves the documentation to the target path."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.",
+          "type": "returns",
+          "description": "{object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`."
+        }
+      ],
+      "throws": [
+        {
+          "line": "@throws {error} - Error if BuildDocs fails.",
+          "type": "throws",
+          "description": "{error} - Error if BuildDocs fails."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T14:15:33.241Z",
+    "modifiedDate": "2023-07-16T20:31:46.451Z",
+    "relatedComments": []
+  },
+  {
+    "id": "c6acded5-fd5a-44fe-a1f6-f626f149b14c",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {file} BuildDocs.ts",
+          "type": "type",
+          "description": "{file} BuildDocs.ts"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module BuildDocs",
+          "type": "module",
+          "description": "BuildDocs"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof namespace:build-docs",
+          "type": "memberof",
+          "description": "namespace:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "file": [
+        {
+          "line": "@file BuildDocs.ts",
+          "type": "file",
+          "description": "BuildDocs.ts"
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.1.51",
+          "type": "version",
+          "description": "0.1.51"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.0.1",
+          "type": "since",
+          "description": "0.0.1"
+        }
+      ],
+      "license": [
+        {
+          "line": "@license MIT",
+          "type": "license",
+          "description": "MIT"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "created": [
+        {
+          "line": "@created 2023-07-12",
+          "type": "created",
+          "description": "2023-07-12"
+        }
+      ],
+      "updated": [
+        {
+          "line": "@updated 2023-07-13",
+          "type": "updated",
+          "description": "2023-07-13"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires fs",
+          "type": "requires",
+          "description": "fs"
+        },
+        {
+          "line": "@requires path",
+          "type": "requires",
+          "description": "path"
+        },
+        {
+          "line": "@requires crypto",
+          "type": "requires",
+          "description": "crypto"
+        },
+        {
+          "line": "@requires module:GetDocs",
+          "type": "requires",
+          "description": "module:GetDocs"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "16a439c3-0b43-4459-b200-072f9f02dc59",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {interface} DocResult",
+          "type": "type",
+          "description": "{interface} DocResult"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        },
+        {
+          "line": "@memberof module:BuildDocs_BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs_BuildDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "interface": [
+        {
+          "line": "@interface DocResult",
+          "type": "interface",
+          "description": "DocResult"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary The result of extracting documentation from a file.",
+          "type": "summary",
+          "description": "The result of extracting documentation from a file."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description The result of extracting documentation from a file.",
+          "type": "description",
+          "description": "The result of extracting documentation from a file."
+        }
+      ],
+      "property": [
+        {
+          "line": "@property {string} id - The unique identifier for the file.",
+          "type": "property",
+          "description": "{string} id - The unique identifier for the file."
+        },
+        {
+          "line": "@property {string} fileName - The name of the file itself.",
+          "type": "property",
+          "description": "{string} fileName - The name of the file itself."
+        },
+        {
+          "line": "@property {string} filePath - The path to the file.",
+          "type": "property",
+          "description": "{string} filePath - The path to the file."
+        },
+        {
+          "line": "@property {object} doc - The documentation extracted from the file.",
+          "type": "property",
+          "description": "{object} doc - The documentation extracted from the file."
+        },
+        {
+          "line": "@property {Date} modifiedDate - The date the file was last modified.",
+          "type": "property",
+          "description": "{Date} modifiedDate - The date the file was last modified."
+        },
+        {
+          "line": "@property {Date} createdDate - The date the file was created.",
+          "type": "property",
+          "description": "{Date} createdDate - The date the file was created."
+        },
+        {
+          "line": "@property {object[]} relatedComments - All comments extracted from the file.",
+          "type": "property",
+          "description": "{object[]} relatedComments - All comments extracted from the file."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "c5d12e64-2239-473b-8221-0af6407e35b1",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {class} BuildDocs",
+          "type": "type",
+          "description": "{class} BuildDocs"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "class": [
+        {
+          "line": "@class BuildDocs",
+          "type": "class",
+          "description": "BuildDocs"
+        }
+      ],
+      "classdesc": [
+        {
+          "line": "@classdesc Extract Documentation for target files types in target directory.",
+          "type": "classdesc",
+          "description": "Extract Documentation for target files types in target directory."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "2dbf8e4d-3d28-499b-9857-96b249f7785e",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} constructor",
+          "type": "type",
+          "description": "{function} constructor"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Constructor for the BuildDocs class.",
+          "type": "summary",
+          "description": "Constructor for the BuildDocs class."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Initializes a new instance of the BuildDocs class.",
+          "type": "description",
+          "description": "Initializes a new instance of the BuildDocs class."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The location to search within.",
+          "type": "param",
+          "description": "{string} targetPath - The location to search within."
+        },
+        {
+          "line": "@param {string[]} targetPaths - The paths to generate documentation for.",
+          "type": "param",
+          "description": "{string[]} targetPaths - The paths to generate documentation for."
+        },
+        {
+          "line": "@param {string[]} ignorePaths - The paths to ignore while searching for files.",
+          "type": "param",
+          "description": "{string[]} ignorePaths - The paths to ignore while searching for files."
+        },
+        {
+          "line": "@param {string[]} targetFiles - The files to generate documentation for.",
+          "type": "param",
+          "description": "{string[]} targetFiles - The files to generate documentation for."
+        },
+        {
+          "line": "@param {string[]} ignoreFiles - The files to ignore while searching for files.",
+          "type": "param",
+          "description": "{string[]} ignoreFiles - The files to ignore while searching for files."
+        },
+        {
+          "line": "@param {string[]} targetFileTypes - The file types to generate documentation for.",
+          "type": "param",
+          "description": "{string[]} targetFileTypes - The file types to generate documentation for."
+        },
+        {
+          "line": "@param {string} outputPath - The location to output the documentation to.",
+          "type": "param",
+          "description": "{string} outputPath - The location to output the documentation to."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {BuildDocs} - A new instance of the BuildDocs class.",
+          "type": "returns",
+          "description": "{BuildDocs} - A new instance of the BuildDocs class."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "169e83c6-f39b-4b73-ad17-b84e93469cc8",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} build",
+          "type": "type",
+          "description": "{function} build"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        },
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:GetDocs",
+          "type": "requires",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function shouldIgnore",
+          "type": "function",
+          "description": "shouldIgnore"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Check if a file path should be ignored.",
+          "type": "summary",
+          "description": "Check if a file path should be ignored."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Checks if a file path should be ignored based on the ignorePaths property.",
+          "type": "description",
+          "description": "Checks if a file path should be ignored based on the ignorePaths property."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} filePath - The file path to check.",
+          "type": "param",
+          "description": "{string} filePath - The file path to check."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Whether the file path should be ignored.",
+          "type": "returns",
+          "description": "{boolean} - Whether the file path should be ignored."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "dc807b6b-2bbc-40a2-98e4-471c782536c9",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "function": [
+        {
+          "line": "@function isFileType",
+          "type": "function",
+          "description": "isFileType"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Check if a file is of one of the specified file types.",
+          "type": "summary",
+          "description": "Check if a file is of one of the specified file types."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Checks if a file is of one of the specified file types based on the targetFileTypes property.",
+          "type": "description",
+          "description": "Checks if a file is of one of the specified file types based on the targetFileTypes property."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} filePath - The file path to check.",
+          "type": "param",
+          "description": "{string} filePath - The file path to check."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Whether the file is of one of the specified file types.",
+          "type": "returns",
+          "description": "{boolean} - Whether the file is of one of the specified file types."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "f5c56ea3-215f-4375-b484-76c5464abeb1",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function setTargetPath",
+          "type": "function",
+          "description": "setTargetPath"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} setTargetPath",
+          "type": "type",
+          "description": "{function} setTargetPath"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Utility for updating the targetPath property of BuildDocs.",
+          "type": "summary",
+          "description": "Utility for updating the targetPath property of BuildDocs."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The directory to search within.",
+          "type": "param",
+          "description": "{string} targetPath - The directory to search within."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Whether the targetPath was successfully updated",
+          "type": "returns",
+          "description": "{boolean} - Whether the targetPath was successfully updated"
+        }
+      ],
+      "throws": [
+        {
+          "line": "@throws {Error} - If the targetPath does not exist.",
+          "type": "throws",
+          "description": "{Error} - If the targetPath does not exist."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo onboard this.",
+          "type": "todo",
+          "description": "onboard this."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "4071e795-3d26-49ba-bd6c-2fd06457f010",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function setOutputPath",
+          "type": "function",
+          "description": "setOutputPath"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} setOutputPath",
+          "type": "type",
+          "description": "{function} setOutputPath"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Evaluating results and building relationships between accordingly.",
+          "type": "summary",
+          "description": "Evaluating results and building relationships between accordingly."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo 20230713 #EP | Build this out once everything else is verified.",
+          "type": "todo",
+          "description": "20230713 #EP | Build this out once everything else is verified."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "20e3dc05-2231-4dfa-bfbe-35cde8b195ba",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} build",
+          "type": "type",
+          "description": "{function} build"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function extractCommentsFromFile",
+          "type": "function",
+          "description": "extractCommentsFromFile"
+        }
+      ],
+      "augments": [
+        {
+          "line": "@augments GetDocs constructor",
+          "type": "augments",
+          "description": "GetDocs constructor"
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires GetDocs.constructor(comment)",
+          "type": "fires",
+          "description": "GetDocs.constructor(comment)"
+        },
+        {
+          "line": "@fires GetDocs.getTags",
+          "type": "fires",
+          "description": "GetDocs.getTags"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Extract comments from a file and add them to the results.",
+          "type": "summary",
+          "description": "Extract comments from a file and add them to the results."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Extracts comments from a file and adds them to the results property.",
+          "type": "description",
+          "description": "Extracts comments from a file and adds them to the results property."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} filePath - The path of the file to extract comments from.",
+          "type": "param",
+          "description": "{string} filePath - The path of the file to extract comments from."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Whether the comments were successfully extracted.",
+          "type": "returns",
+          "description": "{boolean} - Whether the comments were successfully extracted."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "839e614a-2f69-48f5-b593-de74c957bc87",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} build",
+          "type": "type",
+          "description": "{function} build"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires BuildDocs.extractCommentsFromFile",
+          "type": "fires",
+          "description": "BuildDocs.extractCommentsFromFile"
+        },
+        {
+          "line": "@fires BuildDocs.isFileType",
+          "type": "fires",
+          "description": "BuildDocs.isFileType"
+        },
+        {
+          "line": "@fires BuildDocs.shouldIgnore",
+          "type": "fires",
+          "description": "BuildDocs.shouldIgnore"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function searchDir",
+          "type": "function",
+          "description": "searchDir"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Search a directory for files of the specified types and extract their comments.",
+          "type": "summary",
+          "description": "Search a directory for files of the specified types and extract their comments."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Searches a directory for files of the specified types and extracts their comments.",
+          "type": "description",
+          "description": "Searches a directory for files of the specified types and extracts their comments."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The path of the directory to search.",
+          "type": "param",
+          "description": "{string} targetPath - The path of the directory to search."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "9cb2a8d8-406c-418b-b149-27cd2df6c070",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "function": [
+        {
+          "line": "@function generateDocs",
+          "type": "function",
+          "description": "generateDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} generateDocs",
+          "type": "type",
+          "description": "{function} generateDocs"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Generate documentation for files in a directory.",
+          "type": "summary",
+          "description": "Generate documentation for files in a directory."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Generates documentation for files in a directory and stores the results in the results property.",
+          "type": "description",
+          "description": "Generates documentation for files in a directory and stores the results in the results property."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The path of the directory to generate documentation for.",
+          "type": "param",
+          "description": "{string} targetPath - The path of the directory to generate documentation for."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {DocResult[]} - The generated documentation.",
+          "type": "returns",
+          "description": "{DocResult[]} - The generated documentation."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "7bb62997-18a6-4ccd-94a7-c4c91a6db7f9",
+    "fileName": "index.ts",
+    "filePath": "src/lib/BuildDocs/index.ts",
+    "doc": {
+      "function": [
+        {
+          "line": "@function saveDocs",
+          "type": "function",
+          "description": "saveDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:BuildDocs",
+          "type": "memberof",
+          "description": "module:BuildDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Save the generated documentation to a file.",
+          "type": "summary",
+          "description": "Save the generated documentation to a file."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Saves the generated documentation to a file in a specified directory.",
+          "type": "description",
+          "description": "Saves the generated documentation to a file in a specified directory."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The path of the directory to save the documentation to.",
+          "type": "param",
+          "description": "{string} targetPath - The path of the directory to save the documentation to."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {SaveResult} - The result of the save operation.",
+          "type": "returns",
+          "description": "{SaveResult} - The result of the save operation."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo add param for docs name",
+          "type": "todo",
+          "description": "add param for docs name"
+        },
+        {
+          "line": "@todo add param for file type(s)",
+          "type": "todo",
+          "description": "add param for file type(s)"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:29:57.756Z",
+    "relatedComments": []
+  },
+  {
+    "id": "7bf2b2ae-7d6d-40dd-88f3-54f7e639f6be",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {file} GetDocData.ts",
+          "type": "type",
+          "description": "{file} GetDocData.ts"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof namespace:build-docs",
+          "type": "memberof",
+          "description": "namespace:build-docs"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module GetDocs",
+          "type": "module",
+          "description": "GetDocs"
+        }
+      ],
+      "file": [
+        {
+          "line": "@file GetDocData.ts",
+          "type": "file",
+          "description": "GetDocData.ts"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace BuildDocs_GetDocData",
+          "type": "namespace",
+          "description": "BuildDocs_GetDocData"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary This Utility is used by BuildDocs to extract JSDoc data from file.",
+          "type": "summary",
+          "description": "This Utility is used by BuildDocs to extract JSDoc data from file."
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.2.2",
+          "type": "version",
+          "description": "0.2.2"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.0.1",
+          "type": "since",
+          "description": "0.0.1"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "license": [
+        {
+          "line": "@license MIT",
+          "type": "license",
+          "description": "MIT"
+        }
+      ],
+      "created": [
+        {
+          "line": "@created 2023-07-12",
+          "type": "created",
+          "description": "2023-07-12"
+        }
+      ],
+      "updated": [
+        {
+          "line": "@updated 2023-07-13",
+          "type": "updated",
+          "description": "2023-07-13"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "91b8e42f-6c34-433a-9d27-c830089a4b86",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {interface} Tags",
+          "type": "type",
+          "description": "{interface} Tags"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Type definitions for the Tags object.",
+          "type": "summary",
+          "description": "Type definitions for the Tags object."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description An array of tag objects for each comment block, which is used to populate the 'doc' object within results.",
+          "type": "description",
+          "description": "An array of tag objects for each comment block, which is used to populate the 'doc' object within results."
+        }
+      ],
+      "property": [
+        {
+          "line": "@property {string} key - The key of the tag.",
+          "type": "property",
+          "description": "{string} key - The key of the tag."
+        },
+        {
+          "line": "@property {Array<Tag>} value - The value of the tag.",
+          "type": "property",
+          "description": "{Array<Tag>} value - The value of the tag."
+        },
+        {
+          "line": "@property {string} value.line - The entire line of the tag.",
+          "type": "property",
+          "description": "{string} value.line - The entire line of the tag."
+        },
+        {
+          "line": "@property {string} value.type - The type of the tag.",
+          "type": "property",
+          "description": "{string} value.type - The type of the tag."
+        },
+        {
+          "line": "@property {string} value.description - The description of the tag.",
+          "type": "property",
+          "description": "{string} value.description - The description of the tag."
+        },
+        {
+          "line": "@property {string} value.index - The index of the tag.",
+          "type": "property",
+          "description": "{string} value.index - The index of the tag."
+        },
+        {
+          "line": "@property {string} value.raw - The raw input of the tag.",
+          "type": "property",
+          "description": "{string} value.raw - The raw input of the tag."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "60efd764-c465-4fdd-8e26-1d09c82aa6d2",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {interface} Tag",
+          "type": "type",
+          "description": "{interface} Tag"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Type definitions for the Tag object.",
+          "type": "summary",
+          "description": "Type definitions for the Tag object."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description An object for each tag within a comment block.",
+          "type": "description",
+          "description": "An object for each tag within a comment block."
+        }
+      ],
+      "property": [
+        {
+          "line": "@property {string} line - The entire line of the tag.",
+          "type": "property",
+          "description": "{string} line - The entire line of the tag."
+        },
+        {
+          "line": "@property {string} type - The type of the tag.",
+          "type": "property",
+          "description": "{string} type - The type of the tag."
+        },
+        {
+          "line": "@property {string} description - The description of the tag.",
+          "type": "property",
+          "description": "{string} description - The description of the tag."
+        },
+        {
+          "line": "@property {string} index - The index of the tag.",
+          "type": "property",
+          "description": "{string} index - The index of the tag."
+        },
+        {
+          "line": "@property {string} raw - The raw input of the tag.",
+          "type": "property",
+          "description": "{string} raw - The raw input of the tag."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "12733e87-6658-4587-b025-8b6e3025c04e",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "class": [
+        {
+          "line": "@class GetDocs",
+          "type": "class",
+          "description": "GetDocs"
+        }
+      ],
+      "classdesc": [
+        {
+          "line": "@classdesc A class for extracting JSDoc comments from a string.",
+          "type": "classdesc",
+          "description": "A class for extracting JSDoc comments from a string."
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "0e446fa0-0562-4629-8eb0-cc4de09cf46b",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Constructor for the GetDocs class.",
+          "type": "summary",
+          "description": "Constructor for the GetDocs class."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Initializes a new instance of the GetDocs class.",
+          "type": "description",
+          "description": "Initializes a new instance of the GetDocs class."
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires GetDocs#parseComment",
+          "type": "fires",
+          "description": "GetDocs#parseComment"
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} comment - The comment string to extract JSDoc comments from.",
+          "type": "param",
+          "description": "{string} comment - The comment string to extract JSDoc comments from."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "27dc07ae-95d7-495f-ac0c-770e888d09f6",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "function": [
+        {
+          "line": "@function parseComment",
+          "type": "function",
+          "description": "parseComment"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} parseComment",
+          "type": "type",
+          "description": "{function} parseComment"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Parse the comment string and extract JSDoc comments.",
+          "type": "summary",
+          "description": "Parse the comment string and extract JSDoc comments."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Parses the comment string and extracts JSDoc comments.",
+          "type": "description",
+          "description": "Parses the comment string and extracts JSDoc comments."
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.2.0 - Added support for multiple lines of description.",
+          "type": "version",
+          "description": "0.2.0 - Added support for multiple lines of description."
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.0.1",
+          "type": "since",
+          "description": "0.0.1"
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Returns true if successful, otherwise false.",
+          "type": "returns",
+          "description": "{boolean} - Returns true if successful, otherwise false."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "8c468b53-263e-4401-af8f-2ee864cde819",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} getDescription",
+          "type": "type",
+          "description": "{function} getDescription"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getTag",
+          "type": "function",
+          "description": "getTag"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get the descriptions for a specific JSDoc tag.",
+          "type": "summary",
+          "description": "Get the descriptions for a specific JSDoc tag."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Gets the descriptions for a specific JSDoc within the comment-block.",
+          "type": "description",
+          "description": "Gets the descriptions for a specific JSDoc within the comment-block."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} tag - The JSDoc tag to get the descriptions for.",
+          "type": "param",
+          "description": "{string} tag - The JSDoc tag to get the descriptions for."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {Tag | {}} - The descriptions for the specified JSDoc tag, or an empty object if the tag does not exist.",
+          "type": "returns",
+          "description": "{Tag | {}} - The descriptions for the specified JSDoc tag, or an empty object if the tag does not exist."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "667f050c-b597-431e-8d99-9a63cfb027cd",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} getTag",
+          "type": "type",
+          "description": "{function} getTag"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getTag",
+          "type": "function",
+          "description": "getTag"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get the descriptions for a specific JSDoc tag.",
+          "type": "summary",
+          "description": "Get the descriptions for a specific JSDoc tag."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Gets the descriptions for a specific JSDoc tag.",
+          "type": "description",
+          "description": "Gets the descriptions for a specific JSDoc tag."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} tag - The JSDoc tag to get the descriptions for.",
+          "type": "param",
+          "description": "{string} tag - The JSDoc tag to get the descriptions for."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {string[] | undefined} - The descriptions for the specified JSDoc tag, or undefined if the tag does not exist.",
+          "type": "returns",
+          "description": "{string[] | undefined} - The descriptions for the specified JSDoc tag, or undefined if the tag does not exist."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "80b2f288-5579-4bd0-9ecb-09aeeec21811",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} getTags",
+          "type": "type",
+          "description": "{function} getTags"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getTags",
+          "type": "function",
+          "description": "getTags"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get all JSDoc tags and their descriptions.",
+          "type": "summary",
+          "description": "Get all JSDoc tags and their descriptions."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Gets all JSDoc tags and their descriptions.",
+          "type": "description",
+          "description": "Gets all JSDoc tags and their descriptions."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {Tags} - An object where the keys are JSDoc tags and the values are arrays of descriptions for each tag.",
+          "type": "returns",
+          "description": "{Tags} - An object where the keys are JSDoc tags and the values are arrays of descriptions for each tag."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "be8ccc8a-40b0-4927-9faa-5e56858f8d20",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} getDescription",
+          "type": "type",
+          "description": "{function} getDescription"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getDescription",
+          "type": "function",
+          "description": "getDescription"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get the top line description and any other lines that are not part of a JSDoc tag.",
+          "type": "summary",
+          "description": "Get the top line description and any other lines that are not part of a JSDoc tag."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Gets the top line description and any other lines that are not part of a JSDoc tag.",
+          "type": "description",
+          "description": "Gets the top line description and any other lines that are not part of a JSDoc tag."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {string} - The description.",
+          "type": "returns",
+          "description": "{string} - The description."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "3cf4aa72-a38b-431b-b100-c85e5a9e83ac",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "doc": {
+      "type": [
+        {
+          "line": "@type {function} getComment",
+          "type": "type",
+          "description": "{function} getComment"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getComment",
+          "type": "function",
+          "description": "getComment"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get the comment string.",
+          "type": "summary",
+          "description": "Get the comment string."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Gets the comment string.",
+          "type": "description",
+          "description": "Gets the comment string."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {string} - The comment string.",
+          "type": "returns",
+          "description": "{string} - The comment string."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:19:34.393Z",
+    "modifiedDate": "2023-07-16T20:08:40.792Z",
+    "relatedComments": []
+  },
+  {
+    "id": "e74256bd-a53e-4df2-a06f-8f0c7c04e3ac",
+    "fileName": "JsonToDocs.test.js",
+    "filePath": "src/lib/JsonToDocs/JsonToDocs.test.js",
+    "doc": {
+      "file": [
+        {
+          "line": "@file index.js",
+          "type": "file",
+          "description": "index.js"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace JsonToDocs",
+          "type": "namespace",
+          "description": "JsonToDocs"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module JsonToDocs.Test",
+          "type": "module",
+          "description": "JsonToDocs.Test"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof namespace:build-docs.JsonToDocs",
+          "type": "memberof",
+          "description": "namespace:build-docs.JsonToDocs"
+        }
+      ]
+    },
+    "createdDate": "2023-07-16T19:36:18.387Z",
+    "modifiedDate": "2023-07-16T19:43:07.069Z",
+    "relatedComments": []
+  },
+  {
+    "id": "9f20e124-7bdf-4d18-bd92-04463f8298fd",
+    "fileName": "index.ts",
+    "filePath": "src/lib/JsonToDocs/index.ts",
+    "doc": {
+      "file": [
+        {
+          "line": "@file index.ts - Contains class for converting JSON data generated by BuildDocs module into markdown and/or HTML.",
+          "type": "file",
+          "description": "index.ts - Contains class for converting JSON data generated by BuildDocs module into markdown and/or HTML."
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace {JsonToDocs | build-docs.JsonToDocs}",
+          "type": "namespace",
+          "description": "{JsonToDocs | build-docs.JsonToDocs}"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module JsonToDocs",
+          "type": "module",
+          "description": "JsonToDocs"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof namespace:build-docs",
+          "type": "memberof",
+          "description": "namespace:build-docs"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:21:59.143Z",
+    "modifiedDate": "2023-07-16T19:44:43.210Z",
+    "relatedComments": []
+  },
+  {
+    "id": "cbab4561-141c-4de3-be1d-b0510c7bb368",
+    "fileName": "index.ts",
+    "filePath": "src/lib/JsonToDocs/index.ts",
+    "doc": {
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:JsonToDocs",
+          "type": "memberof",
+          "description": "module:JsonToDocs"
+        },
+        {
+          "line": "@memberof namespace:build-docs.JsonToDocs",
+          "type": "memberof",
+          "description": "namespace:build-docs.JsonToDocs"
+        }
+      ],
+      "classdesc": [
+        {
+          "line": "@classdesc Converting JSON data generated by BuildDocs module into markdown and/or HTML.",
+          "type": "classdesc",
+          "description": "Converting JSON data generated by BuildDocs module into markdown and/or HTML."
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:21:59.143Z",
+    "modifiedDate": "2023-07-16T19:44:43.210Z",
+    "relatedComments": []
+  },
+  {
+    "id": "c26ebef7-636d-4c99-b3ae-7bfa12891c87",
+    "fileName": "index.ts",
+    "filePath": "src/lib/JsonToDocs/index.ts",
+    "doc": {},
+    "createdDate": "2023-07-14T13:21:59.143Z",
+    "modifiedDate": "2023-07-16T19:44:43.210Z",
+    "relatedComments": []
+  },
+  {
+    "id": "e581c5a1-394a-4a65-8292-d2c9aef1bf72",
+    "fileName": "index.ts",
+    "filePath": "src/lib/JsonToDocs/index.ts",
+    "doc": {
+      "param": [
+        {
+          "line": "@param {DataItem[]} data - The JSON data to convert",
+          "type": "param",
+          "description": "{DataItem[]} data - The JSON data to convert"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:21:59.143Z",
+    "modifiedDate": "2023-07-16T19:44:43.210Z",
+    "relatedComments": []
+  },
+  {
+    "id": "ba8c7b68-5274-48a0-95ac-5ec34a2c5f48",
+    "fileName": "index.ts",
+    "filePath": "src/lib/JsonToDocs/index.ts",
+    "doc": {
+      "param": [
+        {
+          "line": "@param {DataItem[]} data - The data to process",
+          "type": "param",
+          "description": "{DataItem[]} data - The data to process"
+        }
+      ],
+      "return": [
+        {
+          "line": "@return {ProcessedDataItem[]} The processed data",
+          "type": "return",
+          "description": "{ProcessedDataItem[]} The processed data"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:21:59.143Z",
+    "modifiedDate": "2023-07-16T19:44:43.210Z",
+    "relatedComments": []
+  },
+  {
+    "id": "99208854-a422-4eb8-89f3-febf7ddb0062",
+    "fileName": "index.ts",
+    "filePath": "src/lib/JsonToDocs/index.ts",
+    "doc": {
+      "return": [
+        {
+          "line": "@return {string} The Markdown string",
+          "type": "return",
+          "description": "{string} The Markdown string"
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo Implement the method",
+          "type": "todo",
+          "description": "Implement the method"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:21:59.143Z",
+    "modifiedDate": "2023-07-16T19:44:43.210Z",
+    "relatedComments": []
+  },
+  {
+    "id": "b1aafa1a-0211-4d5c-af8c-5e4799825d83",
+    "fileName": "index.ts",
+    "filePath": "src/lib/JsonToDocs/index.ts",
+    "doc": {
+      "return": [
+        {
+          "line": "@return {string} The HTML string",
+          "type": "return",
+          "description": "{string} The HTML string"
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo Implement the method",
+          "type": "todo",
+          "description": "Implement the method"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:21:59.143Z",
+    "modifiedDate": "2023-07-16T19:44:43.210Z",
+    "relatedComments": []
+  },
+  {
+    "id": "fc69b652-7294-4b32-80ea-c46f68aca90c",
+    "fileName": "index.ts",
+    "filePath": "src/lib/types/index.ts",
+    "doc": {
+      "file": [
+        {
+          "line": "@file index.ts",
+          "type": "file",
+          "description": "index.ts"
+        }
+      ],
+      "path": [
+        {
+          "line": "@path build-docs/types/index.ts",
+          "type": "path",
+          "description": "build-docs/types/index.ts"
+        }
+      ],
+      "fileoverview": [
+        {
+          "line": "@fileoverview Types for the library.",
+          "type": "fileoverview",
+          "description": "Types for the library."
+        }
+      ],
+      "package": [
+        {
+          "line": "@package build-docs",
+          "type": "package",
+          "description": "build-docs"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module build-docs",
+          "type": "module",
+          "description": "build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace {Types | build-docs.Types}",
+          "type": "namespace",
+          "description": "{Types | build-docs.Types}"
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.0.1",
+          "type": "version",
+          "description": "0.0.1"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 2021-07-14",
+          "type": "since",
+          "description": "2021-07-14"
+        }
+      ],
+      "license": [
+        {
+          "line": "@license MIT",
+          "type": "license",
+          "description": "MIT"
+        }
+      ]
+    },
+    "createdDate": "2023-07-14T13:31:21.773Z",
+    "modifiedDate": "2023-07-14T14:31:36.866Z",
+    "relatedComments": []
+  }
+]

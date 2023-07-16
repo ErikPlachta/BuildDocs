@@ -35,7 +35,7 @@ class JsonToDocs {
      * @return {ProcessedDataItem[]} The processed data
      */
     processData(data: DataItem[]): ProcessedDataItem[] {
-        return data.map(item => {
+        return data.map((item) => {
             const newItem: ProcessedDataItem = {
                 id: item.id,
                 fileName: item.fileName,
@@ -43,11 +43,11 @@ class JsonToDocs {
                 createdDate: item.createdDate,
                 modifiedDate: item.modifiedDate,
                 relatedComments: item.relatedComments,
-                doc: {}
+                doc: {},
             };
 
             Object.entries(item.doc).forEach(([key, valArray]) => {
-                newItem.doc[key] = valArray.map(val => val.description);
+                newItem.doc[key] = valArray.map((val) => val.description);
             });
 
             return newItem;
@@ -69,11 +69,56 @@ class JsonToDocs {
      * @return {string} The HTML string
      * @todo Implement the method
      */
-    toHtml(): string {
-        // Implement the method as before...
+    toHtml(
+        title = 'Placeholder Title',
+        subTitle='Placeholder subtitle for html.'
+    ): string {
+        
+        const bodyStart = `
+        <html>
+            <head>
+                <title>${title}</title>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <script src="https://cdn.tailwindcss.com"></script>
+            </head>
+            <body class="bg-gray-100 flex flex-col gap-8">`;
+
+        
+
+        const buildHeader = () => {
+            `<header class="w-full p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto">
+                <div class="max-w-4xl mx-auto w-full">
+                    <h1 class="text-blue-500 text-4xl">
+                        ${title}
+                    </h1>
+                    <p class="text-gray-400">
+                        ${subTitle}
+                    </p>
+                </div>
+                <nav>
+                    <ul class="flex flex-row gap-6 mt-auto h-full">
+                        <li class="py-2 px-4 border-solid border-b-4 border-blue-500 hover:border-blue-500/80"
+                            data-role="nav-main"
+                            data-group="overview"
+                        >
+                            <a href="#overview">Overview</a>
+                    </li>`
+                    + (() => {
+                      'test'  
+                    })
+                + `</ul>
+                </nav>
+            </header>`;
+                
+            
+
+
+
+        };
+        //TODO: update this to return the correct html
         return '';
     }
 }
 
-
-module.exports = JsonToDocs
+module.exports = JsonToDocs;
