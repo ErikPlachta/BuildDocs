@@ -4,8 +4,8 @@
 	"description": "A tool to generate documentation from JSDoc style comments in your codebase.",
 	"scripts": {
 		"test": "echo \"no test\"",
-		"JsonToDocsTest": "ts-node './src/lib/JsonToDocs/JsonToDocs.test.js'",
-		"DocsToJsonTest": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js --targetPath=\"./src/\""
+		"DocsToJsonTest": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js --targetPath=\"./src/\"",
+		"JsonToUiTest": "ts-node './src/lib/JsonToUi/JsonToUi.test.ts'"
 	},
 	"keywords": [
 		"automation",

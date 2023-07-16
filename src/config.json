@@ -18,7 +18,7 @@
                   "required": true,
                   "enabled": true,
                   "value": null,
-                  "default": "./.dist/json"
+                  "default": "./.dist"
               },
               {
                   "title": "outputName",
@@ -37,7 +37,7 @@
                   "enabled": true,
                   "value": null,
                   "default": ["json"],
-                  "supported": ["json", "html"]
+                  "supported": ["json", "html", "markdown"]
               },
               {
                   "title": "writeMode",

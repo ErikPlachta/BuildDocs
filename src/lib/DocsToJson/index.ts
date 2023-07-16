@@ -1,7 +1,7 @@
 /**
  * @type {file} BuildDocs.ts
- * @module DocsToJson
  * @memberof namespace:build-docs
+ * @module DocsToJson
  * @access private
  * @file BuildDocs.ts
  * @version 0.1.51

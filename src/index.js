@@ -43,7 +43,7 @@ const { readFileSync } = require('fs'); // used for reading config file
 
 
 // Custom Utilities.
-const BuildDocsJson = require('./lib/DocsToJson/index.js');
+const BuildDocsJson = require('./lib/DocsToJson/index.ts');
 
 /**
  * @type {function} getArgs
