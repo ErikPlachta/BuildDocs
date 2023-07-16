@@ -290,8 +290,7 @@
          * Get all tabs for role nav-module and toggle active tab and content based on selected tab ID.
          */
         function handleTabStrip(tabId, dataset) {
-            
-            //-- Updating the Tab Strip's active tab.
+            // 1. Updating the Tab Strip's active tab.
             document
                 .querySelectorAll("[data-role='nav-module']")
                 .forEach((tab) => {
@@ -305,31 +304,23 @@
                         tab?.classList.remove('border-b-blue-500');
                     }
                 });
-            console.log('tabId: ', tabId);
-            console.log('dataset: ', dataset);
-            console.log('dataset.id', dataset.id);
 
+            // 2. Show / Hide content based on selected tab.
+            document
+                .querySelectorAll(
+                    `[data-group="${dataset.group}"] [data-role="content"]`
+                )
+                .forEach((content) => {
+                    if (content.dataset.id == dataset.id) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
 
-            document.querySelectorAll(`[data-id="${dataset.id}"]`).forEach((content) => {
-                  content.classList.remove('hidden');
-              });
-
-            // Get the content from the Group id and then Category Id
-            document.querySelectorAll(`[data-group="${dataset.group}"] [data-role="content"]`).forEach((content) => {
-              console.log('content: ', content);
-              if(content.dataset.id == dataset.id) {
-                content.classList.remove('hidden');
-              } else {
-                content.classList.add('hidden');
-              }
-
-              // document.querySelectorAll(`[data-id="${dataset.id}"]`).forEach((content) => {
-              //     content.classList.remove('hidden');
-              // });
-
-            });
-
-            
+                    // document.querySelectorAll(`[data-id="${dataset.id}"]`).forEach((content) => {
+                    //     content.classList.remove('hidden');
+                    // });
+                });
 
             /**
              * Updating the content based on the selected tab.
@@ -338,7 +329,7 @@
             //     .querySelectorAll(`[data-role='content']`)
             //     .forEach((section) => {
             //         if (tabGroupId == section.dataset.group && tabId == section.id) {
-                        
+
             //             section?.classList.remove('hidden');
             //         } else {
             //             section?.classList.add('hidden');
