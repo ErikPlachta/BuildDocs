@@ -47,6 +47,7 @@ export class JsonToUi {
             // const { id, fileName, filePath, createdDate, modifiedDate, relatedComments } = item;
             processedData.push({
                 id : item.id,
+                
                 fileDetails : {
                     fileName : item.fileName,
                     filePath : item.filePath,
@@ -59,6 +60,13 @@ export class JsonToUi {
                 isClass: item?.doc?.class ? true : false,
                 isModule: item?.doc?.module ? true : false,
                 memberOf: item?.doc?.memberof?.[0] ? item?.doc?.memberof : [],
+
+                dataSets : {
+                    role : '',
+                    group: '',
+                    subGroup: '', 
+                    id: ''
+                }
                 
                 // doc: item?.doc
             });

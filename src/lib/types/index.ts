@@ -79,9 +79,14 @@ export interface ProcessedDataItem {
 
 	//-- HTML Data Attribute Values for grouping content.
 	dataSets?: {
-		role: string | 'nav-header' | 'content'  | 'container' | 'tab-strip'  | 'tab-strip-nav'
-		group: string | 'overview' | 'changelog' | 'about'  
-		subGroup: string; // 'stats'
-		id: string;
+		
+    //-- Role of content
+    role: string | 'nav-header' | 'content'  | 'container' | 'tab-strip'  | 'tab-strip-nav'
+		//-- Tagging and association of content in nav-header to the main container.
+    group: string | 'overview' | 'changelog' | 'about'  
+		//-- Category of content. ( to get all stats for all module could query this.)
+    subGroup: string; // 'stats'
+		//-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+    id: string;
 	};
 }
