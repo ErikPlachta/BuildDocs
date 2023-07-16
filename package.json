@@ -5,7 +5,7 @@
 	"scripts": {
 		"test": "echo \"no test\"",
 		"JsonToDocsTest": "ts-node './src/lib/JsonToDocs/JsonToDocs.test.js'",
-		"BuildDocsTest": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js --targetPath=\"./src/lib/BuildDocs/\"",
+		"BuildDocsTest": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js --targetPath=\"./src/\"",
 		"BuildDocsTestOld": "node ./src/index.mjs targetPath=\"./src/lib/build-docs/\""
 	},
 	"keywords": [

@@ -1,10 +1,10 @@
 /**
  * @file index.js
- * @namespace {build-docs | utils\build-docs | index.js | BuildDocs}
+ * @namespace {build-docs | utils\build-docs | index.js | BuildDocsJson}
  * @module build-docs
  * @access public
- * @summary Entry point for the BuildDocs utility.
- * @description Executes the BuildDocs utility for target files types within a target path. The BuildDocs utility generates documentation for the target files and paths and saves the documentation to the target path.
+ * @summary Entry point for the BuildDocsJson utility.
+ * @description Executes the BuildDocsJson utility for target files types within a target path. The BuildDocsJson utility generates documentation for the target files and paths and saves the documentation to the target path.
  * @version 0.1.1
  * @since 0.1.0
  * @author Erik Plachta
@@ -18,7 +18,7 @@
  *
  * ## Custom Dependencies
  * 
- * @requires module:BuildDocs - {@link module:BuildDocs | ./BuildDocs.ts}
+ * @requires module:BuildDocsJson - {@link module:BuildDocsJson | ./BuildDocsJson.ts}
  * @requires module:JsonToDocs - {@link module:JsonToDocs | ./JsonToDocs.ts}
  * 
  * ### External Dependencies
@@ -43,15 +43,7 @@ const { readFileSync } = require('fs'); // used for reading config file
 
 
 // Custom Utilities.
-const BuildDocs = require('./lib/BuildDocs/index.ts');
-
-
-/*
-const { spawn } = require('child_process');
-
-// Custom Utilities.
-const BuildDocs = require('./lib/BuildDocs/index.ts');
-*/
+const BuildDocsJson = require('./lib/BuildDocsJson/index.ts');
 
 /**
  * @type {function} getArgs
@@ -59,8 +51,8 @@ const BuildDocs = require('./lib/BuildDocs/index.ts');
  * @access private
  * @async
  * @function getArgs
- * @summary Get cli args passed to the BuildDocs utility.
- * @description Used by the BuildDocs utility to parse args passed to the BuildDocs utility to customize run configuration via cli.
+ * @summary Get cli args passed to the BuildDocsJson utility.
+ * @description Used by the BuildDocsJson utility to parse args passed to the BuildDocsJson utility to customize run configuration via cli.
  * @returns {object} - Args object
  * @throws {error} - Error if args cannot be parsed.
  */
@@ -86,8 +78,8 @@ async function getArgs() {
  * @memberof module:build-docs
  * @access private
  * @function getConfig
- * @summary Get BuildDocs default configuration.
- * @description Used by the BuildDocs utility to feed default configuration values. Args passed to the BuildDocs class will override these if valid.
+ * @summary Get BuildDocsJson default configuration.
+ * @description Used by the BuildDocsJson utility to feed default configuration values. Args passed to the BuildDocsJson class will override these if valid.
  * @param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.
  * @returns {object} - Config with updated values sent in as cli args, if any.
  * @throws {error} - Error if config cannot be parsed.
@@ -144,7 +136,7 @@ async function getConfig(args) {
  * @async
  * @function getUpdatedConfig
  * @param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.
- * @param {object} config - Config is the default configuration for the BuildDocs utility.
+ * @param {object} config - Config is the default configuration for the BuildDocsJson utility.
  * @returns {object} - Updated config with args passed in.
  */
 async function getUpdatedConfig(args, config) {
@@ -178,9 +170,9 @@ async function getUpdatedConfig(args, config) {
  * @access private
  * @async
  * @function run
- * @summary Run the BuildDocs utility.
- * @description Run the BuildDocs utility.
- * @param {object} [updatedConfig] - BuildDocs Configuration object with possible updates from cli args. Contains `init` and `out` objects.
+ * @summary Run the BuildDocsJson utility.
+ * @description Run the BuildDocsJson utility.
+ * @param {object} [updatedConfig] - BuildDocsJson Configuration object with possible updates from cli args. Contains `init` and `out` objects.
  * @returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.
  */
 async function run(updatedConfig) {
@@ -191,8 +183,8 @@ async function run(updatedConfig) {
     const { targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths } = init;
     const { outputPath } = out;
 
-    // 2. Create instance of BuildDocs class with configuration options.
-    const Build = new BuildDocs(
+    // 2. Create instance of BuildDocsJson class with configuration options.
+    const Build = new BuildDocsJson(
       targetPath.value,
       targetPaths.value,
       ignorePaths.value,
@@ -202,13 +194,13 @@ async function run(updatedConfig) {
       outputPath.value,
     );
 
-    // 3. Run the BuildDocs utility to generate docs for the rootPath.
+    // 3. Run the BuildDocsJson utility to generate docs for the rootPath.
     const docs = Build.generateDocs(targetPath.value);
     const saveDocs = Build.saveDocs(outputPath.value, docs);
 
     return {
       success: true,
-      message: 'BuildDocs ran successfully.',
+      message: 'BuildDocsJson ran successfully.',
       Build,
       // docs: docs,
       saveResults: saveDocs,
@@ -218,7 +210,7 @@ async function run(updatedConfig) {
     // console.log(error);
     return {
       success: false,
-      message: `Error running BuildDocs. Error: ${error.message}`,
+      message: `Error running BuildDocsJson. Error: ${error.message}`,
       error: error
     };
   }
@@ -230,11 +222,11 @@ async function run(updatedConfig) {
  * @access public
  * @async
  * @function main
- * @memberof module:BuildDocs
- * @summary Entry point for the BuildDocs utility.
- * @description Executes the BuildDocs utility for target files types within a target path. The BuildDocs utility generates documentation for the target files and paths and saves the documentation to the target path.
+ * @memberof module:BuildDocsJson
+ * @summary Entry point for the BuildDocsJson utility.
+ * @description Executes the BuildDocsJson utility for target files types within a target path. The BuildDocsJson utility generates documentation for the target files and paths and saves the documentation to the target path.
  * @returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.
- * @throws {error} - Error if BuildDocs fails.
+ * @throws {error} - Error if BuildDocsJson fails.
  */
 async function main() {
   try {
@@ -252,7 +244,7 @@ async function main() {
     // console.log('updatedConfig: ', updatedConfig)
 
 
-    // 4. Run BuildDocs
+    // 4. Run BuildDocsJson
     const runResults = await run(updatedConfig);
     console.log('results: ')
     console.log(runResults)
@@ -265,7 +257,7 @@ async function main() {
     console.error(error);
     return {
       success: false,
-      message: `Error running BuildDocs. Error: ${error.message}`,
+      message: `Error running BuildDocsJson. Error: ${error.message}`,
     };
   }
 }

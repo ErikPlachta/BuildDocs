@@ -18,7 +18,7 @@
                   "required": true,
                   "enabled": true,
                   "value": null,
-                  "default": "./.dist"
+                  "default": "./.dist/DocData"
               },
               {
                   "title": "outputName",
