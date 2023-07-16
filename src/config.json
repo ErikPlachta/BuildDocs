@@ -1,28 +1,28 @@
 {
   "title": "config.json",
-  "memberof": "BuildDocs",
-  "description": "BuildDocs default configuration",
+  "namespace": "build-docs",
+  "description": "build-docs default configuration",
   "version": "0.1.2",
   "author": "Erik Plachta",
   "settings": {
-      "summary": "Default parameters for controlling run behavior of BuildDocs.",
-      "description": "Config options for Initialization `init[]` and Output `out[]` used by BuildDocs to manage generation.",
+      "summary": "Default parameters for controlling run behavior of build-docs.",
+      "description": "Config options for Initialization `init[]` and Output `out[]` used by build-docs to manage generation.",
       "out": {
-          "summary": "Config options BuildDocs output behavior.",
-          "description": "Options for where BuildDocs will generate the results, the filename, and what format to generate them in.",
+          "summary": "Config options build-docs output behavior.",
+          "description": "Options for where build-docs will generate the results, the filename, and what format to generate them in.",
           "options": [
               {
                   "title": "outputPath",
-                  "description": "Output options to be used BuildDocs. Default is the root of where it was executed from `.dist`.",
+                  "description": "Output options to be used build-docs. Default is the root of where it was executed from `.dist`.",
                   "type": "string",
                   "required": true,
                   "enabled": true,
                   "value": null,
-                  "default": "./.dist/DocData"
+                  "default": "./.dist/json"
               },
               {
                   "title": "outputName",
-                  "description": "Output name to be used for BuildDocs.",
+                  "description": "Output name to be used for build-docs.",
                   "type": "string",
                   "required": true,
                   "enabled": true,
@@ -31,7 +31,7 @@
               },
               {
                   "title": "outputFormat",
-                  "description": "Output format to be used for BuildDocs.",
+                  "description": "Output format to be used for build-docs.",
                   "type": "string[]",
                   "required": true,
                   "enabled": true,
@@ -48,7 +48,7 @@
                   "value": null,
                   "default": "overwrite",
                   "reference": "https://nodejs.dev/en/api/v20/fs/#file-system-flags",
-                  "usedBy": "BuildDocs.generateDocs",
+                  "usedBy": "build-docs.generateDocs",
                   "supported": [
                       {
                           "title": "overwrite",
@@ -65,22 +65,22 @@
           ]
       },
       "init": {
-          "summary": "Initialization options for BuildDocs.",
-          "description": "Options to determine how the BuildDocs defaults set by BuildDocs constructor.",
+          "summary": "Initialization options for build-docs.",
+          "description": "Options to determine how the build-docs defaults set by build-docs constructor.",
           "options": [
               {
                   "title": "targetPath",
-                  "description": "The root directory to search for documentation within by BuildDocs.",
+                  "description": "The root directory to search for documentation within by build-docs.",
                   "type": "string",
                   "required": true,
                   "enabled": true,
                   "value": null,
                   "default": ".",
-                  "usedBy": "BuildDocs.generateDocs"
+                  "usedBy": "build-docs.generateDocs"
               },
               {
                   "title": "targetPaths",
-                  "description": "Optional Paths to be used for BuildDocs.",
+                  "description": "Optional Paths to be used for build-docs.",
                   "type": "string[]",
                   "required": false,
                   "enabled": false,
