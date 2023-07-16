@@ -32,13 +32,6 @@
                     >
                         <a href="#mn1">mn1</a>
                     </li>
-                    <li
-                        class="py-2 px-4 border-solid border-b-4 border-transparent hover:border-blue-500/80"
-                        data-role="nav-main"
-                        data-group="mn2"
-                    >
-                        <a href="#mn2">mn2</a>
-                    </li>
                 </ul>
             </nav>
         </header>
@@ -49,17 +42,20 @@
             data-role="main"
             class="'mx-4 min-h-[80%] overflow-hidden"
         >
+            <!-- Overview of Execution -->
             <div
                 id="overview-container"
                 class="relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full"
                 data-group="overview"
                 data-role="container"
+                data-active="true"
             >
+                <!-- Tab Strip for Overview -->
                 <nav
                     id="overview-tabs"
                     class="w-full flex flex-row gap-2 bg-gray-100"
                     data-group="overview"
-                    data-role="module"
+                    data-role="tabstrip"
                 >
                     <ul
                         class="flex w-full flex-row w-full gap-2 w-full"
@@ -69,6 +65,8 @@
                             id="overview-summary-tab"
                             class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid border-b-blue-500 hover:bg-opacity-90 hover:border-b-blue-500/50"
                             data-group="overview"
+                            data-category="summary"
+                            data-id="overview-summary"
                             data-role="nav-module"
                             data-type="file"
                         >
@@ -79,6 +77,8 @@
                             id="overview-stats-tab"
                             class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid bg-opacity-30 hover:bg-opacity-60 hover:border-b-blue-500/50"
                             data-group="overview"
+                            data-category="stats"
+                            data-id="overview-stats"
                             data-role="nav-module"
                             data-type="file"
                         >
@@ -87,61 +87,71 @@
                     </ul>
                 </nav>
 
-                <div
-                    id="content"
+                <section
+                    id="content-overview"
                     class="border-solid border-2 rounded-b-xl h-full p-4"
                     data-group="overview"
-                    data-role="content"
+                    data-role="content-wrapper"
+                    data-active="true"
                 >
-                    <div id="ofn1" class="hidden" data-group="overview">
-                        <h3>Function_Name_1</h3>
-                        <p>Summary Overview</p>
-                        <div>
-                            <h4>Parameters</h4>
-                            <ul>
-                                <li>param1</li>
-                                <li>param2</li>
-                                <li>param3</li>
-                            </ul>
-                        </div>
+                    <div
+                        id="overview-summary"
+                        class=""
+                        data-group="overview"
+                        data-category="summary"
+                        data-id="overview-summary"
+                        data-role="content"
+                        data-active="true"
+                    >
+                        <h3>Execution Summary</h3>
+                        <p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing
+                            elit. Rerum, culpa? Earum provident iure unde
+                            perferendis commodi, sequi hic! Qui possimus ut
+                            esse? Animi repellat libero aut cupiditate eveniet,
+                            quam placeat, veritatis optio officia architecto
+                            odit eos natus omnis rerum iure tempore mollitia
+                            eligendi aperiam, quaerat temporibus recusandae
+                            quasi. Veniam, quis?
+                        </p>
                     </div>
                     <div
-                        id="o_function1"
+                        id="overview-stats"
                         class="hidden"
                         data-group="overview"
-                        data-type=""
+                        data-category="stats"
+                        data-id="overview-stats"
+                        data-role="content"
+                        data-active="false"
                     >
-                        <h3>Summary</h3>
+                        <h3>Execution Stats</h3>
                         <p>Overview summary placeholder text.</p>
-                        <div
-                            id="overview-meta"
-                            data-group="overview"
-                            data-type="meta"
-                        >
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Deleniti consectetur repudiandae nesciunt
-                            perferendis quaerat reiciendis asperiores nostrum
-                            rerum, dolorum minus, voluptas fugiat error in enim
-                            totam qui molestiae architecto eaque facilis id
-                            consequatur, suscipit dicta. Saepe totam voluptate,
-                            earum amet ad minus unde, quibusdam magni enim
-                            molestias dolores fugiat laborum.
-                        </div>
+
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Deleniti consectetur repudiandae nesciunt perferendis
+                        quaerat reiciendis asperiores nostrum rerum, dolorum
+                        minus, voluptas fugiat error in enim totam qui molestiae
+                        architecto eaque facilis id consequatur, suscipit dicta.
+                        Saepe totam voluptate, earum amet ad minus unde,
+                        quibusdam magni enim molestias dolores fugiat laborum.
                     </div>
-                </div>
+                </section>
             </div>
 
+            <!-- Module 1 -->
             <div
                 id="mn1-container"
                 class="relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full hidden"
                 data-group="mn1"
                 data-role="container"
+                data-active="false"
             >
                 <nav
                     id="mn1-tabs"
                     class="w-full flex flex-row gap-2 bg-gray-100"
                     data-group="mn1"
-                    data-role="module"
+                    data-role="tabstrip"
+                    data-active="false"
                 >
                     <ul
                         class="flex w-full flex-row w-full gap-2 w-full"
@@ -178,12 +188,20 @@
                 </nav>
 
                 <section
-                    id="content"
+                    id="content-mn1"
                     class="border-solid border-2 rounded-b-xl h-full p-4"
                     data-group="mn1"
-                    data-role="content"
+                    data-role="content-wrapper"
                 >
-                    <div id="mn1" class="hidden" data-group="mn1">
+                    <div
+                        id="mn1"
+                        class="hidden"
+                        data-group="mn1"
+                        data-category="file"
+                        data-role="content"
+                        data-id="'mn1-file"
+                        data-active="false"
+                    >
                         <h3>Function_Name_1</h3>
                         <p>Summary_mn1</p>
                         <div>
@@ -200,7 +218,9 @@
                         id="mn1_function1"
                         class="hidden"
                         data-group="mn1"
-                        data-type=""
+                        data-role="content"
+                        data-id="'mn1-function1"
+                        data-active="false"
                     >
                         <h3>Function_Name_1</h3>
                         <p>Summary_mn1</p>
@@ -209,81 +229,6 @@
                         </div>
                     </div>
                 </section>
-            </div>
-            <div
-                id="mn2-container"
-                class="relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full hidden"
-                data-group="mn2"
-                data-role="container"
-            >
-                <nav
-                    id="mn2-tabs"
-                    class="w-full flex flex-row gap-2 bg-gray-100"
-                >
-                    <ul
-                        class="flex w-full flex-row w-full gap-2 w-full"
-                        data-group="mn2"
-                    >
-                        <li
-                            id="mn2-file-tab"
-                            class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid border-b-blue-500 hover:bg-opacity-90 hover:border-b-blue-500/50"
-                            data-group="mn2"
-                            data-role="nav-module"
-                            data-type="file"
-                        >
-                            mn2_File
-                        </li>
-                        <li
-                            id="mn2-function1-tab"
-                            class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid bg-opacity-30 hover:bg-opacity-60 hover:border-b-blue-500/50"
-                            data-group="mn2"
-                            data-role="nav-module"
-                            data-type="function"
-                        >
-                            mn2_Function1
-                        </li>
-                        <li
-                            id="mn2-function2-tab"
-                            class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid bg-opacity-30 hover:bg-opacity-60 hover:border-b-blue-500/50"
-                            data-group="mn2"
-                            data-role="nav-module"
-                            data-type="function"
-                        >
-                            mn2_Function2
-                        </li>
-                    </ul>
-                </nav>
-
-                <div
-                    id="content"
-                    class="border-solid border-2 rounded-b-xl h-full p-4"
-                    data-group="mn2"
-                    data-role="content"
-                >
-                    <div id="mn2-tabs" class="hidden">
-                        <h3>mn2_Function_Name_1</h3>
-                        <p>mn2_Summary</p>
-                        <div>
-                            <h4>Parameters</h4>
-                            <ul>
-                                <li>mn2_param1</li>
-                                <li>mn2_param2</li>
-                                <li>mn2_param3</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="mn2_function1" class="hidden">
-                        <h3>Function_Name_1</h3>
-                        <p>Summary_mn1</p>
-                        <div>
-                            Meta_mn1
-                            <ul>
-                                <li>mn1_meta1</li>
-                                <li>mn1_meta2</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Example of a second file / module  mn2 -->
@@ -309,22 +254,34 @@
                     }
                 });
 
-            console.log('\n\n\n');
             // Showing / hiding the main nav's based on the selected group from nav-main li.
             document
-                .querySelectorAll('#main div')
+                .querySelectorAll("[data-role='container']")
                 // .querySelectorAll('[data-role="content"]')
-                .forEach((section) => {
-                    //TODO: update above so more explicit
-                    console.log(
-                        'handleMain, groupId/section: ',
-                        groupId,
-                        section
-                    );
-                    if (section.dataset.group == groupId) {
-                        section?.classList.remove('hidden');
+                .forEach((container) => {
+                    // If the container's group matches the selected group, show it.
+                    if (container.dataset.group == groupId) {
+                        container?.classList.remove('hidden');
+
+                        // let isFirstTab = true;
+                        // //-- Updating the Tab Strip's active tab and make sure first tab is visible.
+                        // document
+                        //     .querySelectorAll("[data-role='nav-module']")
+                        //     .forEach((tab) => {
+                        //         if (tab.dataset.group == groupId) {
+                        //             tab?.classList.remove('hidden');
+                        //             tab?.classList.remove('bg-opacity-30');
+                        //             tab?.classList.add('bg-opacity-100');
+                        //             tab?.classList.add('border-b-blue-500');
+                        //         } else {
+                        //             tab?.classList.add('hidden');
+                        //             tab?.classList.remove('bg-opacity-100');
+                        //             tab?.classList.add('bg-opacity-30');
+                        //             tab?.classList.remove('border-b-blue-500');
+                        //         }
+                        //     });
                     } else {
-                        section?.classList.add('hidden');
+                        container?.classList.add('hidden');
                     }
                 });
         }
@@ -332,7 +289,8 @@
         /**
          * Get all tabs for role nav-module and toggle active tab and content based on selected tab ID.
          */
-        function handleTabStrip(tabId, tabGroupId) {
+        function handleTabStrip(tabId, dataset) {
+            
             //-- Updating the Tab Strip's active tab.
             document
                 .querySelectorAll("[data-role='nav-module']")
@@ -347,23 +305,45 @@
                         tab?.classList.remove('border-b-blue-500');
                     }
                 });
-
             console.log('tabId: ', tabId);
-            console.log('tabGroupId: ', tabGroupId);
+            console.log('dataset: ', dataset);
+            console.log('dataset.id', dataset.id);
+
+
+            document.querySelectorAll(`[data-id="${dataset.id}"]`).forEach((content) => {
+                  content.classList.remove('hidden');
+              });
+
+            // Get the content from the Group id and then Category Id
+            document.querySelectorAll(`[data-group="${dataset.group}"] [data-role="content"]`).forEach((content) => {
+              console.log('content: ', content);
+              if(content.dataset.id == dataset.id) {
+                content.classList.remove('hidden');
+              } else {
+                content.classList.add('hidden');
+              }
+
+              // document.querySelectorAll(`[data-id="${dataset.id}"]`).forEach((content) => {
+              //     content.classList.remove('hidden');
+              // });
+
+            });
+
+            
 
             /**
              * Updating the content based on the selected tab.
              */
-            document
-                .querySelectorAll(`[data-role='content']`)
-                .forEach((section) => {
-                    if (tabGroupId == section.dataset.group) {
-                        console.log('active section: ', section);
-                        section?.classList.remove('hidden');
-                    } else {
-                        section?.classList.add('hidden');
-                    }
-                });
+            // document
+            //     .querySelectorAll(`[data-role='content']`)
+            //     .forEach((section) => {
+            //         if (tabGroupId == section.dataset.group && tabId == section.id) {
+                        
+            //             section?.classList.remove('hidden');
+            //         } else {
+            //             section?.classList.add('hidden');
+            //         }
+            //     });
         }
 
         /**
@@ -379,12 +359,12 @@
                     });
                 });
 
-            // Listeners for when tab in tab-strip is selected to toggle content visibility.
+            // Listeners for when tab in tabstrip is selected to toggle content visibility.
             document
                 .querySelectorAll("[data-role='nav-module']")
                 .forEach((tab) => {
                     tab.addEventListener('click', (e) => {
-                        handleTabStrip(e.target.id, e.target.dataset.group);
+                        handleTabStrip(e.target.id, e.target.dataset);
                     });
                 });
         }
