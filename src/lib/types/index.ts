@@ -47,17 +47,70 @@ export type Module = {
  */
 export interface ProcessedDataItem {
 	id: string;
-  // doc: Doc;
+	access ?: string | 'public' | 'private' | 'protected';
+	description ?: string;	
+	summary ?: string;
+	version ?: string;
+	author ?: string[];
+	license ?: string;
+	changelog ?: string[];
+	
+	type ?: {
+		type: string; // between `{}`
+		description: string; // after `}` and sometimes `-`	
+	}
+
+	returns ?: {
+		type: string; // between `{}`
+		description: string; // after `-`	
+	};
+
+	throws ?: {
+		type: string; // between `{}`
+		description: string; // after `-`
+	}
+
+	examples ?: string[];
+	
+	related ?: string[];
+	
+	see ?: string[];
+	
+	todo ?: {
+		description: string; // between `{}`
+	}[];
+	bugs ?: string[];
+	
+	
+	argument ?: {
+		dataType: string; // between `{}`
+		name : string; // between `[]`
+		description : string; // after `-`
+	}[];
+
+	requires ?: {
+		type: string | 'module' | 'namespace' | 'function' ; //-- before `:`
+		name: string; // after `:` and before `-`
+		description: string; // after `-`
+	}[];
+
+
+	param ?: string[];
+	
+	isFile ?: boolean;
+
+	
 	fileDetails: {
 		fileName: string;
 		filePath: string;
 		createdDate: string;
 		modifiedDate: string;
 	};
-
+  
   namespaces : string[];
-  modules : string[];
-  memberOf: {
+	modules : string[];
+  
+	memberOf ?: {
     type : string,
     value : string
   }[]
@@ -66,13 +119,17 @@ export interface ProcessedDataItem {
 	// isModule: boolean;
   parentId: this['id'][]
   childrenId: this['id'][]
-  dataToRender : ContentToRender
+  dataToRender : dataToRender
+	
+
+
+	doc : Doc
 }
 
 
 /**
  * @export
- * @interface ContentToRender
+ * @interface dataToRender
  * @since 2021-07-14
  * @version 0.0.1
  * @access public
@@ -83,9 +140,9 @@ export interface ProcessedDataItem {
  * @property {string | 'overview' | 'details' | 'changelog'} dataSets.subGroup - The subGroup of the item.
  * @property {string} dataSets.id - The id is the unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
  */
-export type ContentToRender ={
+export type dataToRender ={
 
-  type : string |  "title" | 'sub-title',
+  type : string | "function" | "const" | "class" | "file" ,
   value : string,
   
   //-- HTML Data Attribute Values for grouping content.

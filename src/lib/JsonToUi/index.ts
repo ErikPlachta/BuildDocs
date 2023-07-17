@@ -99,8 +99,9 @@ class JsonToUi {
 				//-- HTML data to be rendered.
 				//TODO: build this into it once ready. ATM just a placeholder
 				dataToRender: {
-					type: "",
+					type: "unknown",
 					value: "", //-- The description from the comment.
+					
 					dataSets: {
 						role: "",
 						group: "",
@@ -109,12 +110,20 @@ class JsonToUi {
 						id: "",
 					},
 				},
+
+				doc: item.doc,
+				
 			});
 		});
+		
 
 		//-- Second  pass to add associations between items, recording files, etc
 		processedData.map((item: ProcessedDataItem) => {
+
+			// item.dataToRender.type = 'test123';
 			
+			
+			//-----------------------------
 			//-- If the item has a memberOf, then it is a child of another item.
 			if (item.memberOf.length > 0) {
 				item.memberOf.map((memberOf) => {
@@ -147,17 +156,12 @@ class JsonToUi {
 							}
 						});
 					} 
+					
+					//-- Assign relationships for modules when relevant
 					if (memberOf.type === "module") {
 						
 						//-- Loop through all modules, check to see if the item is a member of the module.
 						this.modules.map((thisModule) => {
-						
-							if(item.fileDetails.filePath == 'src/index.js' && memberOf.value == 'BuildDocsJson') {
-								// console.log('thisModule: ', thisModule)
-								console.log('thisModule.value === memberOf.value: ', thisModule.value === memberOf.value)
-								console.log(`\t- thisModule.value:\t\t${thisModule.value}\n\t-memberOf.value:\t\t${memberOf.value}`)
-							}
-
 							if (thisModule.value === memberOf.value) {
 								//-- Add the parent id as the parent to the children
 								item.parentId.push(thisModule.id);
@@ -168,12 +172,12 @@ class JsonToUi {
 										parentItem.childrenId.push(item.id);
 									}
 								});
-							}
-						});
-					}
-				});
-			}
-		});
+							} 
+						}); // end of checking match for module names
+					} //-- end of checking if memberOf.type === 'module'
+				}); //-- end of looping through all memberOf
+			} //-- end of checking if item.memberOf.length > 0
+		});	//-- end of looping through all processedData
 		return processedData;
 	}
 	//----------------------------------------------------------------------------
