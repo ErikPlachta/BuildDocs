@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * @file index.js
- * @namespace {build-docs | utils\build-docs | index.js | BuildDocsJson}
+ * @namespace {build-docs}
  * @module build-docs
  * @access public
  * @summary Entry point for the BuildDocsJson utility.
@@ -16,7 +17,6 @@
  * @argument {string[]} [targetFiles] - `Optional` Files to be parsed.
  * @argument {string[]} [ignorePaths] - `Optional` Paths to be ignored.
  *
- * ## Custom Dependencies
  * 
  * @requires module:BuildDocsJson - {@link module:BuildDocsJson | ./BuildDocsJson.ts}
  * @requires module:JsonToDocs - {@link module:JsonToDocs | ./JsonToDocs.ts}
@@ -37,8 +37,9 @@
 
 
 // Node/Javascript Utilities
-const { spawn } = require('child_process'); // used for args
-const { resolve } = require('path'); // used for building results
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { process } = require('child_process'); // used for args
+const { resolve, __dirname } = require('path'); // used for building results
 const { readFileSync } = require('fs'); // used for reading config file
 
 

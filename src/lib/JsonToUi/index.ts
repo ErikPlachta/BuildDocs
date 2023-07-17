@@ -19,10 +19,11 @@ import { DataItem, ProcessedDataItem, Namespace, Module } from "../types";
  */
 class JsonToUi {
 	data: DataItem[];
-	files: string[];
+	files: string[]; //TODO: Add files or remove this.
 	namespaces: Namespace[];
 	modules: Module[];
 	processedData: ProcessedDataItem[] | undefined;
+	rootItems: ProcessedDataItem[] | undefined | boolean;
 
 	/**
 	 * @param {DataItem[]} data - The JSON data to convert
@@ -33,12 +34,10 @@ class JsonToUi {
 		this.namespaces = [];
 		this.modules = [];
 		this.processedData = this.processData(data);
+		this.rootItems = this.getRootItems();
 	}
 
-	addNamespace(namespace: { id: string; value: string }): void {
-		this.namespaces.push(namespace);
-	}
-
+	//----------------------------------------------------------------------------
 	/**
 	 * Process data for easier use
 	 * @param {DataItem[]} data - The data to process
@@ -50,6 +49,7 @@ class JsonToUi {
 		//-----------------------------
 		// 1. First pass through all items to extract individual doc info.
 		data.map((item: DataItem) => {
+
 			processedData.push({
 				id: item.id,
 				fileDetails: {
@@ -58,6 +58,11 @@ class JsonToUi {
 					createdDate: item.createdDate,
 					modifiedDate: item.modifiedDate,
 				},
+				//-----------------------------
+				//-- Creating empty values for the below, which will be populated on next pass.
+				parentId: [],
+				childrenId: [],
+				//-----------------------------
 				//-- Extract description from comment for namespace(s)
 				namespaces:
 					item.doc?.namespace?.length > 0
@@ -88,10 +93,7 @@ class JsonToUi {
 								};
 						  })
 						: [],
-				//-----------------------------
-				//-- Creating empty values for the below, which will be populated on next pass.
-				parentId: [],
-				childrenId: [],
+				
 
 				//-----------------------------
 				//-- HTML data to be rendered.
@@ -110,35 +112,47 @@ class JsonToUi {
 			});
 		});
 
-		//-- Add all parents
+		//-- Second  pass to add associations between items, recording files, etc
 		processedData.map((item: ProcessedDataItem) => {
+			
 			//-- If the item has a memberOf, then it is a child of another item.
 			if (item.memberOf.length > 0) {
 				item.memberOf.map((memberOf) => {
 					//-- Assign relationships for namespaces
 					if (memberOf.type === "namespace") {
-						this.namespaces.map((namespace) => {
-							if (namespace.value === memberOf.value) {
+						this.namespaces.map((thisNamespace) => {
+							if (thisNamespace.value === memberOf.value) {
+								
 								//-- Add the parent id as the parent to the children
-								item.parentId.push(namespace.id);
+								item.parentId.push(thisNamespace.id);
 
 								//-- Find the parent and assign the child id to it
 								processedData.map((parentItem: ProcessedDataItem) => {
-									if (parentItem.id === namespace.id) {
+									if (parentItem.id === thisNamespace.id) {
 										parentItem.childrenId.push(item.id);
 									}
 								});
 							}
+							else {
+								// console.log('thisNamespace.value, memberOf.value', thisNamespace.value, memberOf.value)
+								const allMemberValues = memberOf?.value.split(" | ") || [];
+								// const match = allMemberValues.filter((value) => { value === thisNamespace.value })
+								const allNamespaceValues = thisNamespace.value.split(" | ") || [];
+								// const match = allNamespaceValues.filter((value) => { value === memberOf.value })
+								console.log("allMemberValues: ", allMemberValues)
+								console.log("allNamespaceValues: ", allNamespaceValues)
+								// console.log("match: ", match)
+							}
 						});
 					} else if (memberOf.type === "module") {
-						this.modules.map((module) => {
-							if (module.value === memberOf.value) {
+						this.modules.map((thisModule) => {
+							if (thisModule.value === memberOf.value) {
 								//-- Add the parent id as the parent to the children
-								item.parentId.push(module.id);
+								item.parentId.push(thisModule.id);
 
 								//-- Find the parent and assign the child id to it
 								processedData.map((parentItem: ProcessedDataItem) => {
-									if (parentItem.id === module.id) {
+									if (parentItem.id === thisModule.id) {
 										parentItem.childrenId.push(item.id);
 									}
 								});
@@ -150,7 +164,29 @@ class JsonToUi {
 		});
 		return processedData;
 	}
+	//----------------------------------------------------------------------------
+	
+	/**
+	 * Evaluate all processed data, and generate file hierarchy.
+	 * 
+	 * @returns {boolean} True if successful, false if not.
+	 */
+	getRootItems():ProcessedDataItem[] | undefined | boolean {
+		try {
+			//-- Get the root items	
+			const rootItems = this.processedData?.filter((item) => {
+				return item.parentId.length === 0;
+			});
+			return rootItems;
+		}
+		catch (error) {
+			console.error(error);
+			return false;
+		}
+	}
 
+
+	//----------------------------------------------------------------------------
 	/**
 	 * Convert the data to Markdown
 	 * @return {string} The Markdown string

@@ -1,7 +1,8 @@
 /**
  * @type {file} BuildDocs.ts
- * @memberof namespace:build-docs
  * @module DocsToJson
+ * @namespace {build-docs.DocsToJson}
+ * @memberof namespace:build-docs
  * @access private
  * @file BuildDocs.ts
  * @version 0.1.51
@@ -20,6 +21,7 @@ import { randomUUID } from 'crypto'
 import fs from 'fs'
 import path from 'path'
 import GetDocs from '../GetDocs' // Assuming GetDocs class is in the same directory.
+import { Doc } from '../types'
 
 /**
  * @type {interface} DocResult
@@ -41,7 +43,7 @@ interface DocResult {
     id: string
     fileName: string
     filePath: string
-    doc: any
+    doc: Doc
     modifiedDate: Date
     createdDate: Date
     //-- All related comments and their full comment blocks within the file.
@@ -59,8 +61,8 @@ interface DocResult {
  * @class BuildDocs
  * @classdesc Extract Documentation for target files types in target directory.
  */
-private targetPath: string
 class DocsToJson {
+    private targetPath: string
     private targetPaths: string[]
     private ignorePaths: string[]
     private targetFiles: string[]

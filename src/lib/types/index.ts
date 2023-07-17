@@ -76,7 +76,7 @@ export interface ProcessedDataItem {
  * @since 2021-07-14
  * @version 0.0.1
  * @access public
- * @memberof build-docs.Types
+ * @memberof module:build-docs.Types
  * @property {object} dataSets - HTML data attribute values, dataSets, for the item.
  * @property {string | 'nav-header' | 'content'  | 'container' | 'tab-strip'  | 'tab-strip-nav'} dataSets.role - The role of the item within the page.
  * @property {string | 'overview' | 'about'  } dataSets.group - The group of the content within the rendered content. Some defaults that always generated. Dynamic for all modules after that.
