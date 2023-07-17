@@ -21,7 +21,7 @@ export interface Doc {
 	[key: string]: Comment[];
 }
 
-export interface DataItem {
+export type DataItem = {
 	id: string;
 	fileName: string;
 	filePath: string;
@@ -29,6 +29,17 @@ export interface DataItem {
 	createdDate: string;
 	modifiedDate: string;
 	relatedComments: string[];
+}
+
+
+export type Namespace = {
+	id: string;
+	value: string;
+}
+
+export type Module = {
+	id: string;
+	value: string;
 }
 
 /**
@@ -45,7 +56,9 @@ export interface DataItem {
  * @property {string} fileDetails.filePath - The path of the file.
  * @property {string} fileDetails.createdDate - The date the file was created.
  * @property {string} fileDetails.modifiedDate - The date the file was last modified.
- * @property {[]} memberOf - All Namespaces and modules comment block is a member of.
+ * @property {string[]} namespaces - The namespaces related to this item.
+ * @property {string[]} modules - The modules related to this item.
+ * @property {object[]} memberOf - The memberOf related to this item.
  * @property {string[]} parentId - The parent id to this item.
  * @property {string[]} siblingIds - The sibling IDs related tot his item.
  * @property {string[]} childrenIds - The children IDs related to this item.
@@ -63,7 +76,10 @@ export interface ProcessedDataItem {
 
   namespaces : string[];
   modules : string[];
-	memberOf: [];
+  memberOf: {
+    type : string,
+    value : string
+  }[]
 
 	// isClass: boolean;
 	// isModule: boolean;
@@ -87,7 +103,7 @@ export interface ProcessedDataItem {
  * @property {string | 'overview' | 'details' | 'changelog'} dataSets.subGroup - The subGroup of the item.
  * @property {string} dataSets.id - The id is the unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
  */
-export interface ContentToRender {
+export type ContentToRender ={
 
   type : string |  "title" | 'sub-title',
   value : string,
@@ -104,3 +120,4 @@ export interface ContentToRender {
     id: string;
 	};
 }
+

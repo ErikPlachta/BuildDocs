@@ -6,7 +6,7 @@
  * @memberof namespace:build-docs
  */
 
-import { DataItem, ProcessedDataItem } from "../types";
+import { DataItem, ProcessedDataItem, Namespace, Module } from "../types";
 
 /**
  * @access private
@@ -17,19 +17,30 @@ import { DataItem, ProcessedDataItem } from "../types";
 /**
  * Class to convert JSON data to Markdown and HTML
  */
-export class JsonToUi {
+class JsonToUi {
 	data: DataItem[];
-	processedData: ProcessedDataItem[];
-	// processedData: (data:DataItem[]) => ProcessedDataItem[];
+	files: string[];
+	namespaces: Namespace[];
+	modules: Module[];
+	processedData: ProcessedDataItem[] | undefined;
 
 	/**
 	 * @param {DataItem[]} data - The JSON data to convert
 	 */
 	constructor(data: DataItem[]) {
-		this.data = data;
-		this.processedData = this.processData(data);
-		// this.processedData = ( data:DataItem[]  )=> this.processData(data);
-	} // end constructor
+		this.data = data
+		this.files = [];
+		this.namespaces = [];
+		this.modules = [];
+		this.processedData = this.processData(data)
+	}
+
+	addNamespace(namespace: {
+		id: string;
+		value: string;
+	}):void {
+		this.namespaces.push(namespace);
+	};
 
 	/**
 	 * Process data for easier use
@@ -37,88 +48,97 @@ export class JsonToUi {
 	 * @return {ProcessedDataItem[]} The processed data
 	 */
 	processData(data: DataItem[]): ProcessedDataItem[] {
+		const processedData: ProcessedDataItem[] = [];
 
-        let processedData:ProcessedDataItem[] = [];
-        
-        //-----------------------------
-        // 1. First pass through all items to extract individual doc info.
-        data.map((item:DataItem)=>{
-            processedData.push({
-                id : item.id,
-                fileDetails : {
-                    fileName : item.fileName,
-                    filePath : item.filePath,
-                    createdDate: item.createdDate,
-                    modifiedDate: item.modifiedDate,
-                },
-                
-                
-                namespaces : item.doc?.namespace?.length > 0 
-                    ? (item.doc?.namespace.map(
-                        namespace =>  {
-                            return namespace?.description.replace("{", "").replace("}","") 
-                    }))
-                    : [],
-                modules : item.doc?.module?.length > 0 
-                    ? (item.doc?.module.map(
-                        namespace => {
-                            return namespace?.description
-                    })) 
-                    : [],
-                memberOf: [],
-                
-                //-----------------------------
-                //-- Creating empty values for the below, which will be populated on next pass.
-                parentId: [],
-                siblingIds : [],
-                childrenIds: [],
-                dataToRender : {
-                    type : '',
-                    value : '', //-- The description from the comment.
-                    dataSets : {
-                        role : '',
-                        group: '',
-                        subGroup: '', 
-                        //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
-                        id: '' 
-                    }
-                },
-                
-            });
-        })
+		//-----------------------------
+		// 1. First pass through all items to extract individual doc info.
+		data.map((item: DataItem) => {
+			processedData.push({
+				id: item.id,
+				fileDetails: {
+					fileName: item.fileName,
+					filePath: item.filePath,
+					createdDate: item.createdDate,
+					modifiedDate: item.modifiedDate,
+				},
+				//-- Extract description from comment for namespace(s)
+				namespaces:
+					item.doc?.namespace?.length > 0
+						? item.doc?.namespace.map((namespace) => {
+								const value = namespace?.description.replace("{", "").replace("}", "");	
+								this.namespaces.push({ id: item.id, value: value, })
+								return value;
+						  })
+						: [],
+				//-- Extract description from comment for module(s)
+				modules:
+					item.doc?.module?.length > 0
+						? item.doc?.module.map((thisModule) => {
+							const value = thisModule.description; 
+							this.modules.push({ id: item.id, value: value, })
+								return value;
+						  })
+						: [],
+				memberOf:
+					item.doc?.memberof?.length > 0
+						? item.doc?.memberof.map((memberof) => {
+								const value = memberof?.description.split(":");
+								return {
+									type: value[0],
+									value: value[1],
+								};
 
-        //-----------------------------
-        // 2. All base content added, now add associations.
-        processedData.map(  (item:ProcessedDataItem) => {
-            // 2.1. Map through all docs
-            data.map( (doc:DataItem) => {
+								// return memberof?.description
+						  })
+						: [],
 
-                
-                console.log('doc: ', doc);
-                
-                
+				//-----------------------------
+				//-- Creating empty values for the below, which will be populated on next pass.
+				parentId: [],
+				siblingIds: [],
+				childrenIds: [],
 
+				//-----------------------------
+				//-- HTML data to be rendered.
+				//TODO: build this into it once ready. ATM just a placeholder
+				dataToRender: {
+					type: "",
+					value: "", //-- The description from the comment.
+					dataSets: {
+						role: "",
+						group: "",
+						subGroup: "",
+						//-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+						id: "",
+					},
+				},
+			});
+		});
 
+		//-- Get all parent Namespace info
+		// processedData.map((item: ProcessedDataItem) => {
 
-                // // 2.1.2 Add children and sibling associations based on memberof namespace: and module:
-                // if( doc.doc.memberof.includes(item.memberOf[0]) ){
-                //     item.childrenIds.push(doc.id);
-                // }
-                
-                // if( doc.doc.memberof.includes(item.memberOf[0]) && doc.id !== item.id ){
-                //     item.siblingIds.push(doc.id);
-                // }
-            })
-        });
+		// 	if (item?.namespaces?.length > 0) {
+		// 		console.log("item.namespaces", item.namespaces);
+		// 		this.namespaces?.push({
+		// 			id: item.id,
+		// 			value: item.namespaces,
+		// 		});
+		// 	}
+		// });
 
-        // 3. Third pass through, Generate information to build UI.
-        processedData.map(  (item:ProcessedDataItem) => {
-            // 3.1. Add associations
-            console.log(item)
-        });
+		//-- Get all parent module info.
+		// processedData.map((item: ProcessedDataItem) => {
+		// 	if (item?.modules?.length > 0) {
+		// this.modules.push({
+		// 	id: item.id,
+		// 	value: item.modules,
+		// });
+		// 	}
+		// })
 
-        return processedData;
-    }
+		return processedData;
+	}
 
 	/**
 	 * Convert the data to Markdown
@@ -139,43 +159,44 @@ export class JsonToUi {
 		title = "Placeholder Title",
 		subTitle = "Placeholder subtitle for html."
 	): string {
-		const bodyStart = `
-        <html>
-            <head>
-                <title>${title}</title>
-                <meta charset="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <script src="https://cdn.tailwindcss.com"></script>
-            </head>
-            <body class="bg-gray-100 flex flex-col gap-8">`;
+		
+		
+		// const bodyStart = `<html>
+    //         <head>
+    //             <title>${title}</title>
+    //             <meta charset="utf-8" />
+    //             <meta name="viewport" content="width=device-width, initial-scale=1" />
+    //             <script src="https://cdn.tailwindcss.com"></script>
+    //         </head>
+    //         <body class="bg-gray-100 flex flex-col gap-8">`;
 
-		const buildHeader = () => {
-			`<header class="w-full p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto">
-                <div class="max-w-4xl mx-auto w-full">
-                    <h1 class="text-blue-500 text-4xl">
-                        ${title}
-                    </h1>
-                    <p class="text-gray-400">
-                        ${subTitle}
-                    </p>
-                </div>
-                <nav>
-                    <ul class="flex flex-row gap-6 mt-auto h-full">
-                        <li class="py-2 px-4 border-solid border-b-4 border-blue-500 hover:border-blue-500/80"
-                            data-role="nav-main"
-                            data-group="overview"
-                        >
-                            <a href="#overview">Overview</a>
-                    </li>` +
-				(() => {
-					"test";
-				}) +
-				`</ul>
-                </nav>
-            </header>`;
-		};
-		//TODO: update this to return the correct html
-		return "";
+		// const getMainNav = ""; //todo: build this out
+		
+
+		// const buildHeader = `<header class="w-full p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto">
+		// 		<div class="max-w-4xl mx-auto w-full">
+		// 				<h1 class="text-blue-500 text-4xl">
+		// 						${title}
+		// 				</h1>
+		// 				<p class="text-gray-400">
+		// 						${subTitle}
+		// 				</p>
+		// 		</div>
+		// 		<nav>
+		// 			<ul class="flex flex-row gap-6 mt-auto h-full">
+		// 					<li class="py-2 px-4 border-solid border-b-4 border-blue-500 hover:border-blue-500/80"
+		// 							data-role="nav-main"
+		// 							data-group="overview"
+		// 					>
+		// 							<a href="#overview">Overview</a>
+		// 				</li>` +
+		// 		getMainNav() +
+		// 		`</ul>
+		// 		</nav>
+		// 	</header>`
+		// ;
+		
+		return `${title}-${subTitle}`;
 	}
 }
 

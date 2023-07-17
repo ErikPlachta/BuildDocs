@@ -2,10 +2,12 @@
 	"name": "build-docs",
 	"version": "0.1.0",
 	"description": "A tool to generate documentation from JSDoc style comments in your codebase.",
+	"type": "commonjs",
 	"scripts": {
 		"test": "echo \"no test\"",
 		"DocsToJsonTest": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js --targetPath=\"./src/\"",
-		"JsonToUiTest": "ts-node './src/lib/JsonToUi/JsonToUi.test.ts'"
+		"JsonToUiTest": "ts-node -O '{\"module\": \"commonjs\"}' './src/lib/JsonToUi/JsonToUi.test.ts'",
+		"JsonToUiTestOld": "ts-node './src/lib/JsonToUi/JsonToUi.test.ts'"
 	},
 	"keywords": [
 		"automation",
@@ -23,6 +25,10 @@
 		"html"
 	],
 	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.0.0",
+		"@typescript-eslint/parser": "^6.0.0",
+		"eslint": "^8.45.0",
+		"eslint-config-prettier": "^8.8.0",
 		"ts-node": "^10.9.1",
 		"typescript": "^5.1.6"
 	}

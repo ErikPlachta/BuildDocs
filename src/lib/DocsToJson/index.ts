@@ -59,8 +59,8 @@ interface DocResult {
  * @class BuildDocs
  * @classdesc Extract Documentation for target files types in target directory.
  */
-export class DocsToJson {
-    private targetPath: string
+private targetPath: string
+class DocsToJson {
     private targetPaths: string[]
     private ignorePaths: string[]
     private targetFiles: string[]

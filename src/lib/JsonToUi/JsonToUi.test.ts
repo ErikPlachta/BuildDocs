@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * @file index.js
  * @namespace JsonToUi
@@ -9,14 +10,18 @@
 import { DataItem } from '../types';
 const JsonToUi = require('./index.ts');
 const { writeFileSync } = require('fs');
-const data = require('./TestData.json');
+const data = require('../../../.dist/docs.json');
+// const data = require('./TestData.json');
 
 function  main( data:DataItem[] ){
   try {
-    let run = new JsonToUi(data as any);
-    console.log('ProcessData', run.processedData)
+    const run = new JsonToUi(data);
+    
     writeFileSync('./.dist/JsonToUi/sourceData.json', JSON.stringify(run.data, null, 2));
     writeFileSync('./.dist/JsonToUi/processedData.json', JSON.stringify(run.processedData, null, 2));
+    writeFileSync('./.dist/JsonToUi/modules.json', JSON.stringify(run.modules, null, 2));
+    writeFileSync('./.dist/JsonToUi/namespaces.json', JSON.stringify(run.namespaces, null, 2));
+    console.log('namespaces: ', run.namespaces)
     
     // writeFileSync('test.md', markdown);
     // writeFileSync('test.html', html);
@@ -28,4 +33,4 @@ function  main( data:DataItem[] ){
   }
 }
 
-main( data )
+main(data)

@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": true, //-- When set, TypeScript will check that the built-in methods of functions call, bind, and apply are invoked with correct argument for the underlying function
+      "forceConsistentCasingInFileNames": true,
+      "noEmit": true,
+      "esModuleInterop": true,
+      "module": "ESNext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "jsx": "preserve",
+      "incremental": true,
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"],
+    },
+      "plugins": [{ "name": "next"}]
+    },
+    "include": [
+      ".next/types/**/*.ts",
+      "**/*.ts",
+      "**/*.tsx",
+      "next.config.js",
+      "next-env.d.ts",
+      
+    ],
+    "exclude": [
+      "node_modules",
+      "_ARCHIVE",
+      ".DS_Store",
+      
+    ],
+    // "resolutions": {
+    //   "@types/react": "^18.0.0"
+    // },
+    
+  }
+  
