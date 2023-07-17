@@ -43,26 +43,7 @@ export type Module = {
 }
 
 /**
- * @export
- * @interface ProcessedDataItem
- * @since 2021-07-14
- * @version 0.0.1
- * @access public
- * @namespace {ProcessedDataItem | build-docs.Types.ProcessedDataItem}
- * @memberof namespace:build-docs.Types
- * @property {string} id - Unique ID to bed used in DOM.
- * @property {object} fileDetails - The details of the file.
- * @property {string} fileDetails.fileName - The name of the file.
- * @property {string} fileDetails.filePath - The path of the file.
- * @property {string} fileDetails.createdDate - The date the file was created.
- * @property {string} fileDetails.modifiedDate - The date the file was last modified.
- * @property {string[]} namespaces - The namespaces related to this item.
- * @property {string[]} modules - The modules related to this item.
- * @property {object[]} memberOf - The memberOf related to this item.
- * @property {string[]} parentId - The parent id to this item.
- * @property {string[]} siblingId - The sibling IDs related tot his item.
- * @property {string[]} childrenId - The children IDs related to this item.
- * @property {ContentToRender} dataToRender - The data to render within UI.
+ * @typedef {Object} ProcessedDataItem
  */
 export interface ProcessedDataItem {
 	id: string;
@@ -84,7 +65,6 @@ export interface ProcessedDataItem {
 	// isClass: boolean;
 	// isModule: boolean;
   parentId: this['id'][]
-  siblingId: this['id'][]
   childrenId: this['id'][]
   dataToRender : ContentToRender
 }

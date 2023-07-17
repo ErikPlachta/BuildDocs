@@ -91,7 +91,6 @@ class JsonToUi {
 				//-----------------------------
 				//-- Creating empty values for the below, which will be populated on next pass.
 				parentId: [],
-				siblingId: [],
 				childrenId: [],
 
 				//-----------------------------
@@ -126,7 +125,7 @@ class JsonToUi {
 								//-- Find the parent and assign the child id to it
 								processedData.map((parentItem: ProcessedDataItem) => {
 									if (parentItem.id === namespace.id) {
-										parentItem.childrenIds.push(item.id);
+										parentItem.childrenId.push(item.id);
 									}
 								});
 							}
@@ -140,7 +139,7 @@ class JsonToUi {
 								//-- Find the parent and assign the child id to it
 								processedData.map((parentItem: ProcessedDataItem) => {
 									if (parentItem.id === module.id) {
-										parentItem.childrenIds.push(item.id);
+										parentItem.childrenId.push(item.id);
 									}
 								});
 							}
