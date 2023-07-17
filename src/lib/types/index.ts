@@ -60,8 +60,8 @@ export type Module = {
  * @property {string[]} modules - The modules related to this item.
  * @property {object[]} memberOf - The memberOf related to this item.
  * @property {string[]} parentId - The parent id to this item.
- * @property {string[]} siblingIds - The sibling IDs related tot his item.
- * @property {string[]} childrenIds - The children IDs related to this item.
+ * @property {string[]} siblingId - The sibling IDs related tot his item.
+ * @property {string[]} childrenId - The children IDs related to this item.
  * @property {ContentToRender} dataToRender - The data to render within UI.
  */
 export interface ProcessedDataItem {
@@ -84,8 +84,8 @@ export interface ProcessedDataItem {
 	// isClass: boolean;
 	// isModule: boolean;
   parentId: this['id'][]
-  siblingIds: this['id'][]
-  childrenIds: this['id'][]
+  siblingId: this['id'][]
+  childrenId: this['id'][]
   dataToRender : ContentToRender
 }
 

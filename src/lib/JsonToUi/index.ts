@@ -28,19 +28,16 @@ class JsonToUi {
 	 * @param {DataItem[]} data - The JSON data to convert
 	 */
 	constructor(data: DataItem[]) {
-		this.data = data
+		this.data = data;
 		this.files = [];
 		this.namespaces = [];
 		this.modules = [];
-		this.processedData = this.processData(data)
+		this.processedData = this.processData(data);
 	}
 
-	addNamespace(namespace: {
-		id: string;
-		value: string;
-	}):void {
+	addNamespace(namespace: { id: string; value: string }): void {
 		this.namespaces.push(namespace);
-	};
+	}
 
 	/**
 	 * Process data for easier use
@@ -65,8 +62,10 @@ class JsonToUi {
 				namespaces:
 					item.doc?.namespace?.length > 0
 						? item.doc?.namespace.map((namespace) => {
-								const value = namespace?.description.replace("{", "").replace("}", "");	
-								this.namespaces.push({ id: item.id, value: value, })
+								const value = namespace?.description
+									.replace("{", "")
+									.replace("}", "");
+								this.namespaces.push({ id: item.id, value: value });
 								return value;
 						  })
 						: [],
@@ -74,8 +73,8 @@ class JsonToUi {
 				modules:
 					item.doc?.module?.length > 0
 						? item.doc?.module.map((thisModule) => {
-							const value = thisModule.description; 
-							this.modules.push({ id: item.id, value: value, })
+								const value = thisModule.description;
+								this.modules.push({ id: item.id, value: value });
 								return value;
 						  })
 						: [],
@@ -87,16 +86,13 @@ class JsonToUi {
 									type: value[0],
 									value: value[1],
 								};
-
-								// return memberof?.description
 						  })
 						: [],
-
 				//-----------------------------
 				//-- Creating empty values for the below, which will be populated on next pass.
 				parentId: [],
-				siblingIds: [],
-				childrenIds: [],
+				siblingId: [],
+				childrenId: [],
 
 				//-----------------------------
 				//-- HTML data to be rendered.
@@ -115,28 +111,44 @@ class JsonToUi {
 			});
 		});
 
-		//-- Get all parent Namespace info
-		// processedData.map((item: ProcessedDataItem) => {
+		//-- Add all parents
+		processedData.map((item: ProcessedDataItem) => {
+			//-- If the item has a memberOf, then it is a child of another item.
+			if (item.memberOf.length > 0) {
+				item.memberOf.map((memberOf) => {
+					//-- Assign relationships for namespaces
+					if (memberOf.type === "namespace") {
+						this.namespaces.map((namespace) => {
+							if (namespace.value === memberOf.value) {
+								//-- Add the parent id as the parent to the children
+								item.parentId.push(namespace.id);
 
-		// 	if (item?.namespaces?.length > 0) {
-		// 		console.log("item.namespaces", item.namespaces);
-		// 		this.namespaces?.push({
-		// 			id: item.id,
-		// 			value: item.namespaces,
-		// 		});
-		// 	}
-		// });
+								//-- Find the parent and assign the child id to it
+								processedData.map((parentItem: ProcessedDataItem) => {
+									if (parentItem.id === namespace.id) {
+										parentItem.childrenIds.push(item.id);
+									}
+								});
+							}
+						});
+					} else if (memberOf.type === "module") {
+						this.modules.map((module) => {
+							if (module.value === memberOf.value) {
+								//-- Add the parent id as the parent to the children
+								item.parentId.push(module.id);
 
-		//-- Get all parent module info.
-		// processedData.map((item: ProcessedDataItem) => {
-		// 	if (item?.modules?.length > 0) {
-		// this.modules.push({
-		// 	id: item.id,
-		// 	value: item.modules,
-		// });
-		// 	}
-		// })
-
+								//-- Find the parent and assign the child id to it
+								processedData.map((parentItem: ProcessedDataItem) => {
+									if (parentItem.id === module.id) {
+										parentItem.childrenIds.push(item.id);
+									}
+								});
+							}
+						});
+					}
+				});
+			}
+		});
 		return processedData;
 	}
 
@@ -159,19 +171,17 @@ class JsonToUi {
 		title = "Placeholder Title",
 		subTitle = "Placeholder subtitle for html."
 	): string {
-		
-		
+		return `${title} ${subTitle}`;
 		// const bodyStart = `<html>
-    //         <head>
-    //             <title>${title}</title>
-    //             <meta charset="utf-8" />
-    //             <meta name="viewport" content="width=device-width, initial-scale=1" />
-    //             <script src="https://cdn.tailwindcss.com"></script>
-    //         </head>
-    //         <body class="bg-gray-100 flex flex-col gap-8">`;
+		//         <head>
+		//             <title>${title}</title>
+		//             <meta charset="utf-8" />
+		//             <meta name="viewport" content="width=device-width, initial-scale=1" />
+		//             <script src="https://cdn.tailwindcss.com"></script>
+		//         </head>
+		//         <body class="bg-gray-100 flex flex-col gap-8">`;
 
 		// const getMainNav = ""; //todo: build this out
-		
 
 		// const buildHeader = `<header class="w-full p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto">
 		// 		<div class="max-w-4xl mx-auto w-full">
@@ -195,8 +205,6 @@ class JsonToUi {
 		// 		</nav>
 		// 	</header>`
 		// ;
-		
-		return `${title}-${subTitle}`;
 	}
 }
 

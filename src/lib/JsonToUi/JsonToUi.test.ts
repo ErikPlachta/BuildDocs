@@ -21,7 +21,7 @@ function  main( data:DataItem[] ){
     writeFileSync('./.dist/JsonToUi/processedData.json', JSON.stringify(run.processedData, null, 2));
     writeFileSync('./.dist/JsonToUi/modules.json', JSON.stringify(run.modules, null, 2));
     writeFileSync('./.dist/JsonToUi/namespaces.json', JSON.stringify(run.namespaces, null, 2));
-    console.log('namespaces: ', run.namespaces)
+    // console.log('namespaces: ', run.namespaces)
     
     // writeFileSync('test.md', markdown);
     // writeFileSync('test.html', html);
