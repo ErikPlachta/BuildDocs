@@ -88,8 +88,8 @@ export interface ProcessedDataItem {
 
 	requires:
 		| {
-				type: string | "module" | "namespace" | "function"; //-- before `:`
-				name: string; // after `:` and before `-`
+				// type: string | "module" | "namespace" | "function"; //-- before `:`
+				// name: string; // after `:` and before `-`
 				description: string; // after `-`
 		  }[]
 		| void;
@@ -123,7 +123,7 @@ export interface ProcessedDataItem {
 	// isModule: boolean;
 	parentId: this["id"][];
 	childrenId: this["id"][];
-	dataToRender: dataToRender;
+	// dataToRender: dataToRender;
 
 	// Optionally add the original doc object for debugging.
 	doc?: Doc;
@@ -131,7 +131,7 @@ export interface ProcessedDataItem {
 
 /**
  * @export
- * @interface dataToRender
+ * @interface DataToRender
  * @since 2021-07-14
  * @version 0.0.1
  * @access public
@@ -142,7 +142,7 @@ export interface ProcessedDataItem {
  * @property {string | 'overview' | 'details' | 'changelog'} dataSets.subGroup - The subGroup of the item.
  * @property {string} dataSets.id - The id is the unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
  */
-export type dataToRender = {
+export type DataToRender = {
 	type: null | string | "function" | "const" | "class" | "file";
 	value: null | string;
 

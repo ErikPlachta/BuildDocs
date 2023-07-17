@@ -7,7 +7,8 @@
  * @changelog 0.0.2 | 2023-07-14 | Erik Plachta | Built out more complete data extraction
  */
 
-import { DataItem, ProcessedDataItem, Namespace, Module } from "../types";
+import { DataItem, ProcessedDataItem, Namespace, Module, DataToRender} from "../types";
+import { randomUUID } from 'crypto'
 
 /**
  * @access private
@@ -25,6 +26,11 @@ class JsonToUi {
 	modules: Module[];
 	processedData: ProcessedDataItem[] | undefined;
 	rootItems: ProcessedDataItem[] | undefined | boolean;
+	elements: {
+		id: string,
+		processedItemId: ProcessedDataItem['id'],
+		dataToRender: DataToRender
+	}[];
 
 	/**
 	 * @param {DataItem[]} data - The JSON data to convert
@@ -36,6 +42,7 @@ class JsonToUi {
 		this.modules = [];
 		this.processedData = this.processData(data);
 		this.rootItems = this.getRootItems();
+		this.elements = this.buildElements();
 	}
 
 	//----------------------------------------------------------------------------
@@ -44,7 +51,8 @@ class JsonToUi {
 	 * @param {DataItem[]} data - The data to process
 	 * @return {ProcessedDataItem[]} The processed data
 	 */
-	processData(data: DataItem[]): ProcessedDataItem[] {
+	processData(data: DataItem[]): ProcessedDataItem[] 
+	{
 		const processedData: ProcessedDataItem[] = [];
 
 		//-----------------------------
@@ -185,27 +193,16 @@ class JsonToUi {
 						  })
 						: [],
 
-				//-----------------------------
-				//-- HTML data to be rendered.
-				//TODO: build this into it once ready. ATM just a placeholder
-				dataToRender: {
-					type: null,
-					value: null,
-
-					dataSets: {
-						role: null,
-						group: null,
-						subGroup: null,
-						id: null,
-					},
-				},
-				requires: [],
+				requires: item.doc?.requires?.length > 0
+				 ? item.doc?.requires.map((requires) => {
+						return { description: requires?.description || ''}
+					})
+				 : [],
 			});
 		});
 
 		//-- Second  pass to add associations between items, recording files, etc
 		processedData.map((item: ProcessedDataItem) => {
-			// item.dataToRender.type = 'test123';
 
 			//-----------------------------
 			//-- If the item has a memberOf, then it is a child of another item.
@@ -280,6 +277,33 @@ class JsonToUi {
 			console.error(error);
 			return false;
 		}
+	}
+
+	//----------------------------------------------------------------------------
+	//-- 
+	
+	/**
+	 * 
+	 * @return {array[object]} - An array of objects, each containing the id of the element, the id of the processed item it relates to, and the data to render.
+	 */
+	buildElements(): { id: string, processedItemId: string, dataToRender: DataToRender}[] {
+		
+		return [
+			{
+				id: randomUUID(),
+				processedItemId: 'id-value',
+				dataToRender: {
+					type: 'type-value',
+					value: 'value-value',
+					dataSets: {
+						role: 'role-value',
+						group: 'group-value',
+						subGroup: 'subGroup-value',
+						id: 'id-value',
+					}	
+				}
+			}
+		]
 	}
 
 	//----------------------------------------------------------------------------

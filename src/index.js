@@ -28,13 +28,6 @@
  * @changelog 0.1.1 | 2023-07-14 | Erik Plachta | Updated data-extraction to include more complete data.
  */
 
-
-// import foo = require('foo');
-// require('foo');
-// import foo from 'foo';
-
-
-
 // Node/Javascript Utilities
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { spawn } = require('child_process'); // used for args
