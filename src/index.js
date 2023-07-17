@@ -4,8 +4,8 @@
  * @namespace {build-docs}
  * @module build-docs
  * @access public
- * @summary Entry point for the BuildDocsJson utility.
- * @description Executes the BuildDocsJson utility for target files types within a target path. The BuildDocsJson utility generates documentation for the target files and paths and saves the documentation to the target path.
+ * @summary Entry point for the build-docs utility.
+ * @description Executes the build-docs utility for target files types within a target path. The DocsTojson utility generates documentation for the target files and paths and saves the documentation to the target path.
  * @version 0.1.1
  * @since 0.1.0
  * @author Erik Plachta
@@ -17,8 +17,7 @@
  * @argument {string[]} [targetFiles] - `Optional` Files to be parsed.
  * @argument {string[]} [ignorePaths] - `Optional` Paths to be ignored.
  *
- * 
- * @requires module:BuildDocsJson - {@link module:BuildDocsJson | ./BuildDocsJson.ts}
+ * @requires module:DocsToJson - {@link module:DocsToJson | ./DocsToJson.ts}
  * @requires module:JsonToDocs - {@link module:JsonToDocs | ./JsonToDocs.ts}
  * 
  * ### External Dependencies
@@ -38,13 +37,13 @@
 
 // Node/Javascript Utilities
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { process } = require('child_process'); // used for args
-const { resolve, __dirname } = require('path'); // used for building results
+const { spawn } = require('child_process'); // used for args
+const { resolve } = require('path'); // used for building results
 const { readFileSync } = require('fs'); // used for reading config file
 
 
 // Custom Utilities.
-const BuildDocsJson = require('./lib/DocsToJson/index.ts');
+const DocsTojson = require('./lib/DocsToJson/index.ts');
 
 /**
  * @type {function} getArgs
@@ -52,13 +51,14 @@ const BuildDocsJson = require('./lib/DocsToJson/index.ts');
  * @access private
  * @async
  * @function getArgs
- * @summary Get cli args passed to the BuildDocsJson utility.
- * @description Used by the BuildDocsJson utility to parse args passed to the BuildDocsJson utility to customize run configuration via cli.
+ * @summary Get cli args passed to the DocsTojson utility.
+ * @description Used by the DocsTojson utility to parse args passed to the DocsTojson utility to customize run configuration via cli.
  * @returns {object} - Args object
  * @throws {error} - Error if args cannot be parsed.
  */
 async function getArgs() {
   try {
+    // eslint-disable-next-line no-undef
     const args = process.argv.slice(2);
     const argsMap = {};
     args.forEach((arg) => {
@@ -79,8 +79,8 @@ async function getArgs() {
  * @memberof module:build-docs
  * @access private
  * @function getConfig
- * @summary Get BuildDocsJson default configuration.
- * @description Used by the BuildDocsJson utility to feed default configuration values. Args passed to the BuildDocsJson class will override these if valid.
+ * @summary Get DocsTojson default configuration.
+ * @description Used by the DocsTojson utility to feed default configuration values. Args passed to the DocsTojson class will override these if valid.
  * @param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.
  * @returns {object} - Config with updated values sent in as cli args, if any.
  * @throws {error} - Error if config cannot be parsed.
@@ -99,6 +99,7 @@ async function getConfig(args) {
     };
 
     // 1. Get the config.json file path based on this files location.
+    // eslint-disable-next-line no-undef
     const configPath = resolve(__dirname, 'config.json');
 
     // 2. Get the configuration, convert to JSON
@@ -137,7 +138,7 @@ async function getConfig(args) {
  * @async
  * @function getUpdatedConfig
  * @param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.
- * @param {object} config - Config is the default configuration for the BuildDocsJson utility.
+ * @param {object} config - Config is the default configuration for the DocsTojson utility.
  * @returns {object} - Updated config with args passed in.
  */
 async function getUpdatedConfig(args, config) {
@@ -171,9 +172,9 @@ async function getUpdatedConfig(args, config) {
  * @access private
  * @async
  * @function run
- * @summary Run the BuildDocsJson utility.
- * @description Run the BuildDocsJson utility.
- * @param {object} [updatedConfig] - BuildDocsJson Configuration object with possible updates from cli args. Contains `init` and `out` objects.
+ * @summary Run the DocsTojson utility.
+ * @description Run the DocsTojson utility.
+ * @param {object} [updatedConfig] - DocsTojson Configuration object with possible updates from cli args. Contains `init` and `out` objects.
  * @returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.
  */
 async function run(updatedConfig) {
@@ -184,8 +185,8 @@ async function run(updatedConfig) {
     const { targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths } = init;
     const { outputPath } = out;
 
-    // 2. Create instance of BuildDocsJson class with configuration options.
-    const Build = new BuildDocsJson(
+    // 2. Create instance of DocsTojson class with configuration options.
+    const Build = new DocsTojson(
       targetPath.value,
       targetPaths.value,
       ignorePaths.value,
@@ -195,13 +196,13 @@ async function run(updatedConfig) {
       outputPath.value,
     );
 
-    // 3. Run the BuildDocsJson utility to generate docs for the rootPath.
+    // 3. Run the DocsTojson utility to generate docs for the rootPath.
     const docs = Build.generateDocs(targetPath.value);
     const saveDocs = Build.saveDocs(outputPath.value, docs);
 
     return {
       success: true,
-      message: 'BuildDocsJson ran successfully.',
+      message: 'DocsTojson ran successfully.',
       Build,
       // docs: docs,
       saveResults: saveDocs,
@@ -211,7 +212,7 @@ async function run(updatedConfig) {
     // console.log(error);
     return {
       success: false,
-      message: `Error running BuildDocsJson. Error: ${error.message}`,
+      message: `Error running DocsTojson. Error: ${error.message}`,
       error: error
     };
   }
@@ -219,15 +220,14 @@ async function run(updatedConfig) {
 
 
 /**
- * @type {function} main
  * @access public
  * @async
  * @function main
- * @memberof module:BuildDocsJson
- * @summary Entry point for the BuildDocsJson utility.
- * @description Executes the BuildDocsJson utility for target files types within a target path. The BuildDocsJson utility generates documentation for the target files and paths and saves the documentation to the target path.
+ * @memberof module:build-docs
+ * @summary Entry point for the DocsTojson utility.
+ * @description Executes the DocsTojson utility for target files types within a target path. The DocsTojson utility generates documentation for the target files and paths and saves the documentation to the target path.
  * @returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.
- * @throws {error} - Error if BuildDocsJson fails.
+ * @throws {error} - Error if DocsTojson fails.
  */
 async function main() {
   try {
@@ -245,7 +245,7 @@ async function main() {
     // console.log('updatedConfig: ', updatedConfig)
 
 
-    // 4. Run BuildDocsJson
+    // 4. Run DocsTojson
     const runResults = await run(updatedConfig);
     console.log('results: ')
     console.log(runResults)
@@ -258,7 +258,7 @@ async function main() {
     console.error(error);
     return {
       success: false,
-      message: `Error running BuildDocsJson. Error: ${error.message}`,
+      message: `Error running DocsTojson. Error: ${error.message}`,
     };
   }
 }

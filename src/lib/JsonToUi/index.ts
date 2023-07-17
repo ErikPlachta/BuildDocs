@@ -139,13 +139,25 @@ class JsonToUi {
 								// const match = allMemberValues.filter((value) => { value === thisNamespace.value })
 								const allNamespaceValues = thisNamespace.value.split(" | ") || [];
 								// const match = allNamespaceValues.filter((value) => { value === memberOf.value })
-								console.log("allMemberValues: ", allMemberValues)
-								console.log("allNamespaceValues: ", allNamespaceValues)
-								// console.log("match: ", match)
+								if(item.fileDetails.filePath == 'src/index.js') {
+									console.log("allMemberValues: ", allMemberValues)
+									console.log("allNamespaceValues: ", allNamespaceValues)
+									// console.log("match: ", match)
+								}
 							}
 						});
-					} else if (memberOf.type === "module") {
+					} 
+					if (memberOf.type === "module") {
+						
+						//-- Loop through all modules, check to see if the item is a member of the module.
 						this.modules.map((thisModule) => {
+						
+							if(item.fileDetails.filePath == 'src/index.js' && memberOf.value == 'BuildDocsJson') {
+								// console.log('thisModule: ', thisModule)
+								console.log('thisModule.value === memberOf.value: ', thisModule.value === memberOf.value)
+								console.log(`\t- thisModule.value:\t\t${thisModule.value}\n\t-memberOf.value:\t\t${memberOf.value}`)
+							}
+
 							if (thisModule.value === memberOf.value) {
 								//-- Add the parent id as the parent to the children
 								item.parentId.push(thisModule.id);
