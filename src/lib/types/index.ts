@@ -47,18 +47,19 @@ export type Module = {
  */
 export interface ProcessedDataItem {
 	id: string;
-	access ?: string | 'public' | 'private' | 'protected';
-	description ?: string;	
-	summary ?: string;
-	version ?: string;
-	author ?: string[];
-	license ?: string;
-	changelog ?: string[];
-	
+	access : null | string  | 'public' | 'private' | 'protected';
+	summary : string | null;
+	description : string | null;
 	type ?: {
 		type: string; // between `{}`
 		description: string; // after `}` and sometimes `-`	
-	}
+	} | null;
+	
+	author ?: string[] | [];
+	license ?: string | null;
+	version ?: string | null;
+	changelog ?: string[] | [];
+	
 
 	returns ?: {
 		type: string; // between `{}`
@@ -69,11 +70,8 @@ export interface ProcessedDataItem {
 		type: string; // between `{}`
 		description: string; // after `-`
 	}
-
 	examples ?: string[];
-	
 	related ?: string[];
-	
 	see ?: string[];
 	
 	todo ?: {
@@ -121,9 +119,8 @@ export interface ProcessedDataItem {
   childrenId: this['id'][]
   dataToRender : dataToRender
 	
-
-
-	doc : Doc
+	// Optionally add the original doc object for debugging.
+	doc ?: Doc
 }
 
 
@@ -142,19 +139,19 @@ export interface ProcessedDataItem {
  */
 export type dataToRender ={
 
-  type : string | "function" | "const" | "class" | "file" ,
-  value : string,
+  type : null | string | "function" | "const" | "class" | "file" ,
+  value : null | string,
   
   //-- HTML Data Attribute Values for grouping content.
 	dataSets: {
     //-- Role of content
-    role: string | 'nav-header' | 'content'  | 'container' | 'tab-strip'  | 'tab-strip-nav'
+    role: null | string | 'nav-header' | 'content'  | 'container' | 'tab-strip'  | 'tab-strip-nav'
 		//-- Tagging and association of content in nav-header to the main container.
-    group: string | 'overview' | 'changelog' | 'about'  
+    group: null | string | 'overview' | 'changelog' | 'about'  
 		//-- Category of content. ( to get all stats for all module could query this.)
-    subGroup: string; // 'stats'
+    subGroup: null | string; // 'stats'
 		//-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
-    id: string;
+    id: null | string;
 	};
 }
 

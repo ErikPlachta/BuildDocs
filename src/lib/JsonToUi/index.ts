@@ -49,19 +49,38 @@ class JsonToUi {
 		//-----------------------------
 		// 1. First pass through all items to extract individual doc info.
 		data.map((item: DataItem) => {
-
 			processedData.push({
 				id: item.id,
+
 				fileDetails: {
 					fileName: item.fileName,
 					filePath: item.filePath,
 					createdDate: item.createdDate,
 					modifiedDate: item.modifiedDate,
 				},
+
+				type: item.doc?.type?.[0]?.description
+					? {
+							type: item.doc?.type?.[0]?.description.split("}")[0].replace("{",""),
+							description: item.doc?.type?.[0]?.description.split("}")[1].trim()
+					}
+					: null,
+
+				access: item.doc?.access?.[0]?.description
+					? item.doc?.access?.[0]?.description
+					: null,
+				description: item.doc?.description?.[0]?.description
+					? item.doc?.description?.[0]?.description
+					: null,
+				summary: item.doc?.summary?.[0]?.description
+					? item.doc?.summary?.[0]?.description
+					: null,
+
 				//-----------------------------
 				//-- Creating empty values for the below, which will be populated on next pass.
 				parentId: [],
 				childrenId: [],
+
 				//-----------------------------
 				//-- Extract description from comment for namespace(s)
 				namespaces:
@@ -74,6 +93,8 @@ class JsonToUi {
 								return value;
 						  })
 						: [],
+
+				//-----------------------------
 				//-- Extract description from comment for module(s)
 				modules:
 					item.doc?.module?.length > 0
@@ -83,6 +104,8 @@ class JsonToUi {
 								return value;
 						  })
 						: [],
+
+				//-----------------------------
 				memberOf:
 					item.doc?.memberof?.length > 0
 						? item.doc?.memberof.map((memberof) => {
@@ -93,45 +116,38 @@ class JsonToUi {
 								};
 						  })
 						: [],
-				
 
 				//-----------------------------
 				//-- HTML data to be rendered.
 				//TODO: build this into it once ready. ATM just a placeholder
 				dataToRender: {
-					type: "unknown",
-					value: "", //-- The description from the comment.
-					
+					type: null,
+					value: null, //-- The description from the comment.
+
 					dataSets: {
-						role: "",
-						group: "",
-						subGroup: "",
-						//-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
-						id: "",
+						role: null,
+						group: null,
+						subGroup: null,
+						id: null, //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
 					},
 				},
 
-				doc: item.doc,
-				
+				// doc: item.doc,
 			});
 		});
-		
 
 		//-- Second  pass to add associations between items, recording files, etc
 		processedData.map((item: ProcessedDataItem) => {
-
 			// item.dataToRender.type = 'test123';
-			
-			
+
 			//-----------------------------
 			//-- If the item has a memberOf, then it is a child of another item.
-			if (item.memberOf.length > 0) {
+			if (item?.memberOf && item?.memberOf?.length > 0) {
 				item.memberOf.map((memberOf) => {
 					//-- Assign relationships for namespaces
 					if (memberOf.type === "namespace") {
 						this.namespaces.map((thisNamespace) => {
 							if (thisNamespace.value === memberOf.value) {
-								
 								//-- Add the parent id as the parent to the children
 								item.parentId.push(thisNamespace.id);
 
@@ -141,25 +157,24 @@ class JsonToUi {
 										parentItem.childrenId.push(item.id);
 									}
 								});
-							}
-							else {
+							} else {
 								// console.log('thisNamespace.value, memberOf.value', thisNamespace.value, memberOf.value)
 								const allMemberValues = memberOf?.value.split(" | ") || [];
 								// const match = allMemberValues.filter((value) => { value === thisNamespace.value })
-								const allNamespaceValues = thisNamespace.value.split(" | ") || [];
+								const allNamespaceValues =
+									thisNamespace.value.split(" | ") || [];
 								// const match = allNamespaceValues.filter((value) => { value === memberOf.value })
-								if(item.fileDetails.filePath == 'src/index.js') {
-									console.log("allMemberValues: ", allMemberValues)
-									console.log("allNamespaceValues: ", allNamespaceValues)
+								if (item.fileDetails.filePath == "src/index.js") {
+									console.log("allMemberValues: ", allMemberValues);
+									console.log("allNamespaceValues: ", allNamespaceValues);
 									// console.log("match: ", match)
 								}
 							}
 						});
-					} 
-					
+					}
+
 					//-- Assign relationships for modules when relevant
 					if (memberOf.type === "module") {
-						
 						//-- Loop through all modules, check to see if the item is a member of the module.
 						this.modules.map((thisModule) => {
 							if (thisModule.value === memberOf.value) {
@@ -172,35 +187,33 @@ class JsonToUi {
 										parentItem.childrenId.push(item.id);
 									}
 								});
-							} 
+							}
 						}); // end of checking match for module names
 					} //-- end of checking if memberOf.type === 'module'
 				}); //-- end of looping through all memberOf
 			} //-- end of checking if item.memberOf.length > 0
-		});	//-- end of looping through all processedData
+		}); //-- end of looping through all processedData
 		return processedData;
 	}
 	//----------------------------------------------------------------------------
-	
+
 	/**
 	 * Evaluate all processed data, and generate file hierarchy.
-	 * 
+	 *
 	 * @returns {boolean} True if successful, false if not.
 	 */
-	getRootItems():ProcessedDataItem[] | undefined | boolean {
+	getRootItems(): ProcessedDataItem[] | undefined | boolean {
 		try {
-			//-- Get the root items	
+			//-- Get the root items
 			const rootItems = this.processedData?.filter((item) => {
 				return item.parentId.length === 0;
 			});
 			return rootItems;
-		}
-		catch (error) {
+		} catch (error) {
 			console.error(error);
 			return false;
 		}
 	}
-
 
 	//----------------------------------------------------------------------------
 	/**
