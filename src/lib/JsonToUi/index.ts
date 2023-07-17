@@ -4,6 +4,7 @@
  * @namespace {build-docs.JsonToUi}
  * @module JsonToUi
  * @memberof namespace:build-docs
+ * @changelog 0.0.2 | 2023-07-14 | Erik Plachta | Built out more complete data extraction
  */
 
 import { DataItem, ProcessedDataItem, Namespace, Module } from "../types";
@@ -61,20 +62,87 @@ class JsonToUi {
 
 				type: item.doc?.type?.[0]?.description
 					? {
-							type: item.doc?.type?.[0]?.description.split("}")[0].replace("{",""),
-							description: item.doc?.type?.[0]?.description.split("}")[1].trim()
-					}
+							type: item.doc?.type?.[0]?.description
+								.split("}")[0]
+								.replace("{", ""),
+							description: item.doc?.type?.[0]?.description
+								.split("}")[1]
+								.trim(),
+					  }
+					: null,
+
+				version: item.doc?.version?.[0]?.description
+					? item.doc?.version?.[0]?.description
+					: null,
+
+				author: item.doc?.author?.[0]?.description
+					? item.doc?.author?.[0]?.description
 					: null,
 
 				access: item.doc?.access?.[0]?.description
 					? item.doc?.access?.[0]?.description
 					: null,
+
 				description: item.doc?.description?.[0]?.description
 					? item.doc?.description?.[0]?.description
 					: null,
+
 				summary: item.doc?.summary?.[0]?.description
 					? item.doc?.summary?.[0]?.description
 					: null,
+
+				param:
+					item.doc?.param?.length > 0
+						? item.doc.param.forEach((param) => {
+								return {
+									type: "",
+									name: param?.description || "",
+									description: param?.description || "",
+								};
+						  })
+						: [],
+
+				argument:
+					item.doc?.argument?.length > 0
+						? item.doc?.argument.map((argument) => {
+								const args = argument.description.match(/(\{[^}]*\}|\[[^\]]*\]|`[^`]*`|[^ ]+)/g);
+								const [type, name, ...description] = args || [];
+
+								return {
+									type: type?.replace("{", "").replace("}", "") || '',
+									name: name?.replace("[", "").replace("]", "") || '',
+									description: description?.join(" ").replace("-","") || ''
+								};
+						  })
+						: [],
+
+				changelog:
+					item.doc?.changelog?.length > 0
+						? item.doc?.changelog.map((changelog) => {
+								return changelog?.description;
+						  })
+						: [],
+
+				todo:
+					item.doc?.todo?.length > 0
+						? item.doc?.todo.map((todo) => {
+								return todo?.description;
+						  })
+						: [],
+
+				bug:
+					item.doc?.bug?.length > 0
+						? item.doc?.bug.map((bug) => {
+								return bug?.description;
+						  })
+						: [],
+
+				example:
+					item.doc?.example?.length > 0
+						? item.doc?.example.map((example) => {
+								return example?.description;
+						  })
+						: [],
 
 				//-----------------------------
 				//-- Creating empty values for the below, which will be populated on next pass.
@@ -122,17 +190,16 @@ class JsonToUi {
 				//TODO: build this into it once ready. ATM just a placeholder
 				dataToRender: {
 					type: null,
-					value: null, //-- The description from the comment.
+					value: null,
 
 					dataSets: {
 						role: null,
 						group: null,
 						subGroup: null,
-						id: null, //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+						id: null,
 					},
 				},
-
-				// doc: item.doc,
+				requires: [],
 			});
 		});
 

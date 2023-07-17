@@ -10,6 +10,7 @@
  * @since 0.1.0
  * @author Erik Plachta
  * @license MIT {@link https://opensource.org/licenses/MIT | License}
+ * 
  * @argument {string} [rootDirectory] - `Required` Path to be parsed.
  * @argument {string} [targetFileTypes] - `Optional` File types to be parsed.
  * @argument {string[]} [targetPaths] -  `Optional` Paths within the targetPath to be parsed.
@@ -17,15 +18,14 @@
  * @argument {string[]} [targetFiles] - `Optional` Files to be parsed.
  * @argument {string[]} [ignorePaths] - `Optional` Paths to be ignored.
  *
+ * 
  * @requires module:DocsToJson - {@link module:DocsToJson | ./DocsToJson.ts}
  * @requires module:JsonToDocs - {@link module:JsonToDocs | ./JsonToDocs.ts}
- * 
- * ### External Dependencies
- * 
  * @requires {@link https://nodejs.org/api/fs.html#fs_file_system | fs}
  * @requires {@link https://nodejs.org/api/path.html#path_path | path}
  * @requires {@link https://nodejs.org/api/child_process.html#child_process_child_process | child_process}
  * 
+ * @changelog 0.1.1 | 2023-07-14 | Erik Plachta | Updated data-extraction to include more complete data.
  */
 
 
