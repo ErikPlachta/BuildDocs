@@ -6,16 +6,55 @@
  * @changelog 2023-07-18 | Erik Plachta | chore: Update JSDocs, and extracted from index now that role is clear.
  */
 
+//------------------------------------------------------------------------------
+//-- GetDocs
+
 /**
- * @type {Type} Comment
+ * @type {interface} CommentRaw
+ * @access private
+ * @memberof module:GetDocs
+ * @summary Type definitions for the Tag object.
+ * @description An object for each tag within a comment block.
+ * @prop {string} line - The entire line of the tag.
+ * @prop {string} type - The type of the tag.
+ * @prop {string} description - The description of the tag.
+ * @prop {string} index - The index of the tag.
+ * @prop {string} raw - The raw input of the tag.
+ */
+type CommentRaw = {
+  line: string
+  type: string
+  description: string
+  index: string
+  raw: string
+}
+
+/**
+ * @type {interface} CommentsRaw
+ * @memberof module:GetDocs
+ * @access private
+ * @summary Type definitions for the Tags object.
+ * @description An array of tag objects for each comment block, which is used to populate the 'doc' object within results.
+ * @prop {string} key - The key of the tag.
+ * @prop {Array<Tag>} value - The value of the tag.
+ */
+type CommentsRaw = {
+  [key: string]: Array<CommentRaw>
+}
+
+//------------------------------------------------------------------------------
+//-- DocsToJson
+
+/**
+ * @type {Type} CommentParsed
  * @memberof module:build-docs.types.comments
- * @typedef Comment
+ * @typedef CommentParsed
  * @summary The result of extracting documentation from a file.
  * @description Comment block default structure when extracted from source file.
  * @prop {CommentsProcessed['id']} id - The unique identifier for the file.
  * @prop {string} line - The line number the comment block starts on.
  */
-type Comment = {
+type CommentParsed = {
   id: string
   line: string
   type: string
@@ -23,38 +62,42 @@ type Comment = {
 }
 
 /**
- * @type {Type} Comments
+ * @type {Type} CommentsParsed
  * @memberof module:build-docs.types.comments
- * @typedef Comments
+ * @typedef CommentsParsed
  * @summary The result of extracting documentation from the comment block.
  * @prop {string} id - The unique identifier for the file.
  * @prop {string} line - The line number the comment block starts on.
  */
-type Comments = {
+type CommentsParsed = {
   [key: string]: Comment[]
 }
 
 /**
- * @type {Type} CommentsRaw
+ * @type {Type} Comments
  * @memberof module:build-docs.types.comments
  * @memberof module:build-docs.DocsToJson
- * @typedef CommentsRaw
+ * @typedef Comments
  * @summary The result of extracting documentation from a file.
  * @description The result of extracting documentation from a file.
  *
  */
-type CommentsRaw = {
+type CommentsProcessed = {
   id: string
   fileName: string
   filePath: string
-  comments: Comments
+  comments: CommentsRaw
   modifiedDate: Date
   createdDate: Date
 }
 
+
+//------------------------------------------------------------------------------
+//-- JsonToUi
+
 /**
- * @type {Type} CommentsProcessed
- * @typedef CommentsProcessed
+ * @type {Type} Comments
+ * @typedef Comments
  * @memberof module:build-docs.types.comments
  * @memberof module:build-docs.DocsToJson
  * @summary Used by JsonToUi to render the documentation.
@@ -68,7 +111,7 @@ type CommentsRaw = {
  *
  * @todo  2023-07-18 | Erik Plachta | Add Summary, Description, and params.
  */
-type CommentsProcessed = {
+type Comments = {
   id: string
   access: 'public' | 'private' | 'protected' | null | string
   summary: string | null
@@ -174,4 +217,11 @@ type CommentsProcessed = {
   comments?: Comments
 }
 
-export { Comment, Comments, CommentsRaw, CommentsProcessed }
+export {
+  CommentRaw,
+  CommentsRaw,
+  CommentParsed,
+  CommentsParsed,
+  CommentsProcessed,
+  Comments
+}

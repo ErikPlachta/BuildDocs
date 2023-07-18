@@ -11,9 +11,15 @@
  *
  */
 
-import { Element, Elements, ElementsProcessed } from "./Elements";
-import { Comment, Comments, CommentsRaw, CommentsProcessed } from "./Comments";
-
+import { Element, Elements, ElementsProcessed } from './Elements'
+import {
+  CommentRaw,
+  CommentsRaw,
+  CommentParsed,
+  CommentsParsed,
+  CommentsProcessed,
+  Comments,
+} from './Comments'
 
 /**
  * @type {Type}
@@ -51,28 +57,25 @@ type JsonToUiConfig = {
   convertToHtml: boolean
 }
 
-
-
-
 //-- Export all types
 export {
   File,
   Namespace,
   Module,
-  
 
-  //-- Building comments from source
-  Comment,
-  Comments,
+  //-- GetDocs
+  CommentRaw,
   CommentsRaw,
+  
+  //-- DocsToJson:
+  CommentParsed,
+  CommentsParsed,
   CommentsProcessed,
-
-  //-- Content to Render to UI Types
+  
+  //-- JsonToUi
+  Comments,
+  JsonToUiConfig,
   Element,
   Elements,
   ElementsProcessed,
-
-
-  //-- Configurations
-  JsonToUiConfig
 }

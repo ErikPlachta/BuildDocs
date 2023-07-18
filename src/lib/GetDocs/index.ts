@@ -18,45 +18,10 @@
  * @changelog 0.2.2 - Add showing tag connectivity via `@memberof`, `@augments`, `@namespace`, `@fires`, and `@requires`.
  */
 
-/**
- * @type {interface} Tags
- * @memberof module:GetDocs
- * @access private
- * @summary Type definitions for the Tags object.
- * @description An array of tag objects for each comment block, which is used to populate the 'doc' object within results.
- * @property {string} key - The key of the tag.
- * @property {Array<Tag>} value - The value of the tag.
- * @property {string} value.line - The entire line of the tag.
- * @property {string} value.type - The type of the tag.
- * @property {string} value.description - The description of the tag.
- * @property {string} value.index - The index of the tag.
- * @property {string} value.raw - The raw input of the tag.
- */
-type Tags = {
-    [key: string]: Array<Tag>
-}
-
-/**
- * @type {interface} Tag
- * @access private
- * @memberof module:GetDocs
- * @summary Type definitions for the Tag object.
- * @description An object for each tag within a comment block.
- * @property {string} line - The entire line of the tag.
- * @property {string} type - The type of the tag.
- * @property {string} description - The description of the tag.
- * @property {string} index - The index of the tag.
- * @property {string} raw - The raw input of the tag.
- */
-type Tag = {
-    line: string
-    type: string
-    description: string
-    index: string
-    raw: string
-}
-
-type TagsOld = { [key: string]: string[] }
+import {
+    CommentRaw,
+    CommentsRaw,    
+ } from '../types'
 
 /**
  * @class GetDocs
@@ -65,8 +30,7 @@ type TagsOld = { [key: string]: string[] }
  */
 class GetDocs {
     private comment: string
-    private tags: Tags
-    private tagsOld: TagsOld
+    private CommentsRaw: CommentsRaw
     private description: string
 
     /**
@@ -80,8 +44,7 @@ class GetDocs {
      */
     constructor(comment: string) {
         this.comment = comment
-        this.tags = {}
-        this.tagsOld = {}
+        this.CommentsRaw = {}
         this.description = ''
         this.parseComment()
     }
@@ -100,8 +63,7 @@ class GetDocs {
      */
     private parseComment(): boolean {
         // Holds all tag results
-        const tagsOld: TagsOld = {}
-        const tags: Tags = {}
+        const CommentsRaw: CommentsRaw = {}
         try {
             // Get all lines from the comment-block.
             const lines: string[] = this.comment.split('\n')
@@ -128,15 +90,10 @@ class GetDocs {
                     const raw = tagMatch[4]
 
                     // Tag has not yet been, create an array for it to hold results.
-                    if (!tags[type]) tags[type] = []
-                    if (!tagsOld[type]) tagsOld[type] = []
-
-                    //-- Add the description to the tag array.
-                    //TODO: remove these old tags.
-                    tagsOld[type].push(description.trim())
+                    if (!CommentsRaw[type]) CommentsRaw[type] = []
 
                     //-- Append the tag to the tags array.
-                    tags[type].push({
+                    CommentsRaw[type].push({
                         line,
                         type,
                         description,
@@ -152,8 +109,7 @@ class GetDocs {
                     }
                 }
             })
-            this.tagsOld = tagsOld
-            this.tags = tags
+            this.CommentsRaw = CommentsRaw
 
             return true
         } catch (error) {
@@ -163,44 +119,16 @@ class GetDocs {
     }
 
     /**
-     * @type {function} getDescription
+     * @type {function} getCommentsRaw
      * @memberof module:GetDocs
      * @access public
-     * @function getTag
-     * @summary Get the descriptions for a specific JSDoc tag.
-     * @description Gets the descriptions for a specific JSDoc within the comment-block.
-     * @param {string} tag - The JSDoc tag to get the descriptions for.
-     * @returns {Tag | {}} - The descriptions for the specified JSDoc tag, or an empty object if the tag does not exist.
-     */
-    public getTag(tag: string): Tag[] {
-        return this.tags[tag]
-    }
-
-    /**
-     * @type {function} getTag
-     * @memberof module:GetDocs
-     * @access public
-     * @function getTag
-     * @summary Get the descriptions for a specific JSDoc tag.
-     * @description Gets the descriptions for a specific JSDoc tag.
-     * @param {string} tag - The JSDoc tag to get the descriptions for.
-     * @returns {string[] | undefined} - The descriptions for the specified JSDoc tag, or undefined if the tag does not exist.
-     */
-    public getTagOld(tag: string): string[] | undefined {
-        return this.tagsOld[tag]
-    }
-
-    /**
-     * @type {function} getTags
-     * @memberof module:GetDocs
-     * @access public
-     * @function getTags
+     * @function getCommentsRaw
      * @summary Get all JSDoc tags and their descriptions.
      * @description Gets all JSDoc tags and their descriptions.
-     * @returns {Tags} - An object where the keys are JSDoc tags and the values are arrays of descriptions for each tag.
+     * @returns {CommentsRaw} - An object where the keys are JSDoc tags and the values are arrays of descriptions for each tag.
      */
-    public getTags(): Tags {
-        return this.tags
+    public getCommentsRaw(): CommentsRaw {
+        return this.CommentsRaw
     }
 
     /**
