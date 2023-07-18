@@ -16,7 +16,6 @@ import {
   ProcessedDataItem,
   Namespace,
   Module,
-  ContentToRender,
   File,
   JsonToUiConfig,
   Elements,
@@ -61,7 +60,7 @@ class JsonToUi {
     config: {
       convertToMarkdown: boolean
       convertToHtml: boolean
-    }
+    },
   ) {
     this.data = data
     this.config = config
@@ -142,7 +141,7 @@ class JsonToUi {
           item.doc?.param?.length > 0
             ? item.doc.param.map(param => {
                 const args = param.description.match(
-                  /(\{[^}]*\}|\[[^\]]*\]|`[^`]*`|[^ ]+)/g
+                  /(\{[^}]*\}|\[[^\]]*\]|`[^`]*`|[^ ]+)/g,
                 )
                 const [type, name, ...description] = args || []
 
@@ -159,7 +158,7 @@ class JsonToUi {
           item.doc?.argument?.length > 0
             ? item.doc?.argument.map(argument => {
                 const args = argument.description.match(
-                  /(\{[^}]*\}|\[[^\]]*\]|`[^`]*`|[^ ]+)/g
+                  /(\{[^}]*\}|\[[^\]]*\]|`[^`]*`|[^ ]+)/g,
                 )
                 const [type, name, ...description] = args || []
 
@@ -218,7 +217,7 @@ class JsonToUi {
                 // ( Should never create duplicates either way, but just in case. )
                 if (
                   this.namespaces.filter(
-                    item => description !== item.description
+                    item => description !== item.description,
                   ).length === 0
                 ) {
                   this.namespaces.push({
@@ -263,7 +262,7 @@ class JsonToUi {
             ? item.doc?.requires.map(require => {
                 const rootDesc = require.description
                 const { type, name, description } = rootDesc.includes(
-                  'https://nodejs.org/api'
+                  'https://nodejs.org/api',
                 )
                   ? //-- Node Module
                     {
@@ -443,7 +442,7 @@ class JsonToUi {
   getItemsByParent(parent: string): ProcessedDataItem[] | undefined | boolean {
     try {
       //-- Get the root items
-      const items = this.processedData?.filter(item => {
+      const items = this.processedData?.filter((item: ProcessedDataItem) => {
         if (item.parent.length > 0) {
           item.parent.map(parent => {
             if (parent.id === item.id) {
@@ -494,7 +493,7 @@ class JsonToUi {
           // item: item,
           //-- data to reference when building content.
           changelog: item.changelog,
-          params: item.params,
+          props: item.props,
           arguments: item.arguments,
           returns: item.returns,
           requires: item.requires,
@@ -612,7 +611,7 @@ class JsonToUi {
 
                   item.children.map(child => {
                     const thisElement = this.processedData.filter(
-                      entry => entry.id == child.id
+                      entry => entry.id == child.id,
                     )[0]
 
                     if (thisElement) {
@@ -692,7 +691,7 @@ class JsonToUi {
 
                     return contentElements
                   },
-                }
+                },
               )
               return [...tabStripNavElements, ...contentWrapper]
             },
@@ -714,7 +713,7 @@ class JsonToUi {
       // Recursively call populateChildren for each child.
       if (element.children) {
         element.children.forEach((child: ContentToRender) =>
-          populateChildren(child)
+          populateChildren(child),
         )
       }
     }
@@ -722,7 +721,7 @@ class JsonToUi {
     // Call populateChildren for each ContentToRender in elements.data.
     elements.data.forEach((dataItem: Element) => {
       dataItem.ContentToRender.forEach((contentToRender: ContentToRender) =>
-        populateChildren(contentToRender)
+        populateChildren(contentToRender),
       )
     })
 
@@ -748,7 +747,7 @@ class JsonToUi {
    */
   toHtml(
     title = 'Placeholder Title',
-    subTitle = 'Placeholder subtitle for html.'
+    subTitle = 'Placeholder subtitle for html.',
   ): string {
     return `${title} ${subTitle}`
     // const bodyStart = `<html>

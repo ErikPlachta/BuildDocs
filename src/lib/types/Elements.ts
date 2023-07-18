@@ -1,5 +1,8 @@
 /**
  * @module build-docs.types.Content
+ * @export Elements
+ * @export Element
+ * @version 0.0.1
  */
 
 import {ProcessedDataItem } from './index'
