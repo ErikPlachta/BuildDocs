@@ -36,7 +36,7 @@ const configPath = `${rootPath}/.dist/JsonToUi`
 function main(comments: Comments[]) {
     try {
         const run = new JsonToUi(comments)
-        console.log('run: ', run)
+        // console.log('run: ', run)
 
         // run.getItemsByParentId
 

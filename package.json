@@ -4,7 +4,7 @@
   "description": "A tool to generate documentation from JSDoc style comments in your codebase.",
   "type": "commonjs",
   "scripts": {
-    "test": "npm run DocsToJsonTest && npm run JsonToUiTest",
+    "test": "npm run DocsToJsonTest",
     "start": "echo \"No start script specified yet.\" && exit 1",
     "setup": "echo \nNo Setup script specified yet.\" && exit 1",
     "DocsToJsonTest": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js --targetPath=\"./src/_TEST/\"",

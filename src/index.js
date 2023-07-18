@@ -43,8 +43,9 @@ const JsonToUi = require('./lib/JsonToUi/index.ts');
 
 
 //-- Custom Utilities
-const DataManager = require('./utils/DataManager.ts')
-console.log('DataManager:', DataManager)
+const { DataManager } = require('./utils/DataManager.ts');
+console.log('DataManager: ', DataManager)
+const dm = new DataManager();
 
 /**
  * @type {function} getArgs
@@ -197,15 +198,14 @@ async function run(updatedConfig) {
     }
 
     // 2. Create instance of DocsToJson class with configuration options.
+    //
+    //  - Executing `DataManager.getObjectValues` to spread config_DocsToJson
+    //    object into the DocsToJson. Keeping like this because will be getting
+    //    the config info differently in the near future.
     const Build = new DocsToJson(
-      targetPath.value,
-      targetPaths.value,
-      ignorePaths.value,
-      ignoreFiles.value,
-      targetFiles.value,
-      targetFileTypes.value,
-      outputPath.value
-    );
+      ...dm.getObjectValues(config_DocsToJson)
+    )
+
 
     // 3. Run the DocsToJson utility to generate docs for the rootPath, then save them to the outputPath.
     const docs = Build.generateDocs(targetPath.value);
@@ -218,9 +218,9 @@ async function run(updatedConfig) {
     }
 
     // 4. Generate UI from generated docs
-    const generateUiResults = await JsonToUi.run(docs, config_JsonToUi);
+    const generateUiResults = new JsonToUi(docs, config_JsonToUi);
 
-    console.log('generateUiResults: ', generateUiResults)
+    // console.log('generateUiResults: ', generateUiResults)
 
     return {
       success: true,

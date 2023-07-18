@@ -10,7 +10,11 @@
  */
 class DataManager {
   // Constructor
-  constructor() {}
+  constructor() {
+    // this.data = data
+    // this.configPath = configPath
+    this.getObjectValues = this.getObjectValues.bind(this)
+  }
 
   // Expects key-value paired object, return all values for all K/V pair at the first level.
   getObjectValues(obj: { [key: string]: unknown }): unknown[] {
@@ -54,6 +58,7 @@ class DataManager {
   }
 }
 
+
 /**
  * @function MangeDataTest
  * @access public
@@ -78,7 +83,10 @@ function MangeDataTest(): void {
 }
 
 //-- Export the class object instantiated.
-export default new DataManager()
+
 
 //-- Optionally export the class itself and the test.
-export { DataManager, MangeDataTest }
+export { 
+  DataManager,
+   MangeDataTest 
+}
