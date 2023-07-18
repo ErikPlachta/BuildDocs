@@ -20,8 +20,9 @@ import {
   Module,
   File,
   JsonToUiConfig,
-  Elements,
   Element,
+  Elements,
+  ElementsProcessed
 } from '../types'
 import { randomUUID } from 'crypto'
 
@@ -46,7 +47,7 @@ class JsonToUi {
   modules: Module[]
   processedData: CommentsProcessed[] | []
   rootItems: CommentsProcessed[] | []
-  elements: Elements
+  elements: ElementsProcessed
   config: JsonToUiConfig
 
   /**
@@ -469,11 +470,13 @@ class JsonToUi {
    *
    * @return {array[object]} - An array of objects, each containing the id of the element, the id of the processed item it relates to, and the data to render.
    */
-  buildElements(): Elements {
-    // 1. Create an array to hold the elements
-    let elements: Elements = {
-      created: new Date(),
-      comments: [],
+  buildElements(): ElementsProcessed {
+    
+    // 1. Create an array to hold the Element and all related info to be generated.
+    const ElementsProcessed:ElementsProcessed = {
+      id: randomUUID(),
+      createdDate: new Date(),
+      data: [],
     }
 
     //TODO: 2023-07-17 | Erik Plachta | Onboard this below once decide to use like this or remove.
@@ -488,24 +491,26 @@ class JsonToUi {
       let tabStripNavId = randomUUID()
       let contentWrapperId = randomUUID()
 
-      elements.data.push({
+      // 2.0 - Add the root item to the elements.data array.
+      ElementsProcessed.data.push({
         id: item.id, //-- The ID of the raw json data all content is being rendered from.
+        createdDate: new Date(),
         //-----------------
         // 2.1 - Get all root data for reference.
         data: {
           // item: item,
           //-- data to reference when building content.
-          changelog: item.changelog,
-          props: item.props,
-          arguments: item.arguments,
-          returns: item.returns,
-          requires: item.requires,
-          parent: item.parent,
-          children: item.children,
+          changelog: item.changelog || [],
+          props: item.props || [],
+          arguments: item.arguments || [],
+          returns: item.returns || [],
+          requires: item.requires || [],
+          parent: item.parent || null,
+          children: item.children || []
         },
         //-----------------
         //-- 2.2 Array of all content to be rendered
-        ContentToRender: [
+        Elements: [
           //-------------
           // 2.2.1 - header-nav-link
           {
@@ -514,9 +519,10 @@ class JsonToUi {
             description:
               'Container that holds navigation to toggle what is visible within the main section.',
             //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
-
+            type: 'li',
             attributes: {
               value: item.namespaces[0],
+              type : null,
               role: 'nav-header-link', //-- Role of content when rendered to the UI.
               group: item.namespaces[0], //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
               subGroup: item.modules[0], //-- Primary module that's running the show.
@@ -524,16 +530,16 @@ class JsonToUi {
             },
             children: [],
             getChildren: () => {
-              let navHeaderLinks: ContentToRender[] = []
+              let navHeaderLinks: Element[] = []
 
               //!! TODO: Pick up here, by getting all child elements and managing accordingly. Then to go through each.
               this.rootItems.forEach(rootItem => {
-                let relatedChildren: ContentToRender[] = []
-                let relatedRequires: ContentToRender[] = []
-                // rootItem.children.forEach(child => {})
+                let relatedChildren: Element[] = []
+                let relatedRequires: Element[] = []
+                
                 rootItem.requires &&
                   rootItem.requires.forEach(entry => {
-                    this.processedData.map(each => {
+                    this.processedData.map((each:CommentsProcessed) => {
                       if (entry.id == each.id) {
                         relatedRequires.push({
                           id: randomUUID(),
@@ -554,152 +560,157 @@ class JsonToUi {
                     })
                   })
 
-                navHeaderLinks.push({
-                  id: randomUUID(),
-                  parent: tabStripNavId,
-                  type: 'li',
-                  attributes: {
-                    value: rootItem.modules[0],
-                    type: rootItem?.type?.type,
-                    role: 'tab-strip-nav-link',
-                    group: rootItem.namespaces[0],
-                    subGroup: rootItem.modules[0],
-                    id: `${rootItem.modules[0]}-tab`,
-                  },
-                  children: [],
-                  getChildren: () => [],
-                })
+                // navHeaderLinks.push({
+                //   id: randomUUID(),
+                //   parent: tabStripNavId,
+                  
+                //   type: 'li',
+                //   attributes: {
+                //     value: rootItem.modules[0],
+                //     type: rootItem?.type?.type,
+                //     role: 'tab-strip-nav-link',
+                //     group: rootItem.namespaces[0],
+                //     subGroup: rootItem.modules[0],
+                //     id: `${rootItem.modules[0]}-tab`,
+                //   },
+                //   children: [],
+                //   getChildren: () => [],
+                // })
               })
 
               return [...navHeaderLinks]
             },
           },
-          //-------------
-          // 2.2.2 - container - Each Root Item has a container element. Is visible when selected via main navigation.
-          {
-            id: containerId,
-            parent: 'main',
-            description:
-              'Container that holds ALL content for all Root Items to be displayed, based on the selection within nav-header.',
-            type: 'div',
-            attributes: {
-              value: null,
-              role: 'container',
-              group: item.namespaces[0],
-              subGroup: null,
-              id: `container-${item.namespaces[0]}`,
-            },
 
-            children: [],
-            //-- Populate Children and Children's children for TabStrip
-            getChildren: () => {
-              //TODO: build elements dynamically
-              //-- TabStrip Wrapper and then tabs.
-              const tabStripNavElements: ContentToRender[] = []
-              tabStripNavElements.push({
-                id: tabStripNavId,
-                parent: containerId,
-                type: 'nav',
-                attributes: {
-                  value: null,
-                  role: 'tab-strip-nav',
-                  group: item.namespaces[0],
-                  subGroup: null,
-                  id: `tab-strip-${item.namespaces[0]}`,
-                },
-                children: [],
-                getChildren: () => {
-                  //-- Map thru all child elements
-                  const childrenElements: ContentToRender[] = []
+          //!! TODO: Pick up from here next.
+        //   //-------------
+        //   // 2.2.2 - container - Each Root Item has a container element. Is visible when selected via main navigation.
+        //   {
+        //     id: containerId,
+        //     parent: 'main',
+        //     description:
+        //       'Container that holds ALL content for all Root Items to be displayed, based on the selection within nav-header.',
+        //     type: 'div',
+        //     attributes: {
+        //       value: null,
+        //       role: 'container',
+        //       group: item.namespaces[0],
+        //       subGroup: null,
+        //       id: `container-${item.namespaces[0]}`,
+        //     },
 
-                  item.children.map(child => {
-                    const thisElement = this.processedData.filter(
-                      entry => entry.id == child.id,
-                    )[0]
+        //     children: [],
+        //     //-- Populate Children and Children's children for TabStrip
+        //     getChildren: () => {
+        //       //TODO: build elements dynamically
+        //       //-- TabStrip Wrapper and then tabs.
+        //       const tabStripNavElements: ContentToRender[] = []
+        //       tabStripNavElements.push({
+        //         id: tabStripNavId,
+        //         parent: containerId,
+        //         type: 'nav',
+        //         attributes: {
+        //           value: null,
+        //           role: 'tab-strip-nav',
+        //           group: item.namespaces[0],
+        //           subGroup: null,
+        //           id: `tab-strip-${item.namespaces[0]}`,
+        //         },
+        //         children: [],
+        //         getChildren: () => {
+        //           //-- Map thru all child elements
+        //           const childrenElements: ContentToRender[] = []
 
-                    if (thisElement) {
-                      childrenElements.push({
-                        id: randomUUID(),
-                        parent: tabStripNavId,
-                        type: thisElement?.type?.type,
-                        attributes: {
-                          value: null,
-                          role: 'tab-strip-nav-link',
-                          group: item.namespaces[0],
-                          subGroup: item.modules[0],
-                          id: `${item.modules[0]}-tab`,
-                        },
-                        children: [],
-                        getChildren: () => [],
-                      })
-                    }
-                  })
+        //           item.children.map(child => {
+        //             const thisElement = this.processedData.filter(
+        //               entry => entry.id == child.id,
+        //             )[0]
 
-                  const childNavElements: ContentToRender[] = [
-                    {
-                      id: randomUUID(),
-                      parent: tabStripNavId,
-                      attributes: {
-                        value: null,
-                        role: 'tab-strip-nav-link',
-                        group: item.namespaces[0],
-                        subGroup: item.modules[0],
-                        id: `${item.modules[0]}-tab`,
-                      },
-                      children: [],
-                      getChildren: () => [],
-                    },
-                  ]
+        //             if (thisElement) {
+        //               childrenElements.push({
+        //                 id: randomUUID(),
+        //                 parent: tabStripNavId,
+        //                 type: thisElement?.type?.type,
+        //                 attributes: {
+        //                   value: null,
+        //                   role: 'tab-strip-nav-link',
+        //                   group: item.namespaces[0],
+        //                   subGroup: item.modules[0],
+        //                   id: `${item.modules[0]}-tab`,
+        //                 },
+        //                 children: [],
+        //                 getChildren: () => [],
+        //               })
+        //             }
+        //           })
 
-                  return [...childrenElements]
-                },
-              })
+        //           const childNavElements: ContentToRender[] = [
+        //             {
+        //               id: randomUUID(),
+        //               parent: tabStripNavId,
+        //               attributes: {
+        //                 value: null,
+        //                 role: 'tab-strip-nav-link',
+        //                 group: item.namespaces[0],
+        //                 subGroup: item.modules[0],
+        //                 id: `${item.modules[0]}-tab`,
+        //               },
+        //               children: [],
+        //               getChildren: () => [],
+        //             },
+        //           ]
 
-              //-- Populate CHildren Content
-              const contentWrapper: ContentToRender[] = []
-              contentWrapper.push(
-                // 2.2.4 - Content Wrapper (element after tab-strip-nav that  holds all content)
-                {
-                  id: randomUUID(),
-                  parent: containerId,
-                  attributes: {
-                    value: null,
-                    role: 'content-wrapper',
-                    group: item.namespaces[0],
-                    subGroup: null,
-                    id: `content-${item.namespaces[0]}`,
-                  },
-                  children: [],
-                  getChildren: () => {
-                    const contentElements: ContentToRender[] = []
+        //           return [...childrenElements]
+        //         },
+        //       })
 
-                    // 2.2.5 - Content (Element that holds all content related.)
-                    //TODO: Update so builds all, not just the one.
-                    contentElements.push({
-                      id: randomUUID(),
-                      parent: contentWrapperId,
-                      attributes: {
-                        value: null,
-                        role: 'content',
-                        group: item.namespaces[0],
-                        subGroup: null,
-                        id: `content-${item.namespaces[0]}`,
-                      },
-                      children: [],
-                      getChildren: () => {
-                        const elementsInContent: ContentToRender[] = []
-                        return elementsInContent
-                      },
-                    })
+        //       //-- Populate CHildren Content
+        //       const contentWrapper: ContentToRender[] = []
+        //       contentWrapper.push(
+        //         // 2.2.4 - Content Wrapper (element after tab-strip-nav that  holds all content)
+        //         {
+        //           id: randomUUID(),
+        //           parent: containerId,
+        //           attributes: {
+        //             value: null,
+        //             role: 'content-wrapper',
+        //             group: item.namespaces[0],
+        //             subGroup: null,
+        //             id: `content-${item.namespaces[0]}`,
+        //           },
+        //           children: [],
+        //           getChildren: () => {
+        //             const contentElements: ContentToRender[] = []
 
-                    return contentElements
-                  },
-                },
-              )
-              return [...tabStripNavElements, ...contentWrapper]
-            },
-          },
-        ],
+        //             // 2.2.5 - Content (Element that holds all content related.)
+        //             //TODO: Update so builds all, not just the one.
+        //             contentElements.push({
+        //               id: randomUUID(),
+        //               parent: contentWrapperId,
+        //               attributes: {
+        //                 value: null,
+        //                 role: 'content',
+        //                 group: item.namespaces[0],
+        //                 subGroup: null,
+        //                 id: `content-${item.namespaces[0]}`,
+        //               },
+        //               children: [],
+        //               getChildren: () => {
+        //                 const elementsInContent: ContentToRender[] = []
+        //                 return elementsInContent
+        //               },
+        //             })
+
+        //             return contentElements
+        //           },
+        //         },
+        //       )
+        //       return [...tabStripNavElements, ...contentWrapper]
+        //     },
+        //   },
+        
+      
+        ], //--  END of creating elements for each Root Item.
       })
     })
 
@@ -707,7 +718,8 @@ class JsonToUi {
     // 3. Map through ALL Content to Render and make sure children are populated.
 
     // Recursively populate children of each ContentToRender element.
-    function populateChildren(element: ContentToRender) {
+    function populateChildren(element: Element) {
+      
       // Call getChildren method to populate children.
       if (element.hasOwnProperty('getChildren')) {
         element.children = element.getChildren()
@@ -715,21 +727,14 @@ class JsonToUi {
 
       // Recursively call populateChildren for each child.
       if (element.children) {
-        element.children.forEach((child: ContentToRender) =>
+        element.children.forEach((child: Element) =>
           populateChildren(child),
         )
       }
     }
 
-    // Call populateChildren for each ContentToRender in elements.data.
-    elements.data.forEach((dataItem: Element) => {
-      dataItem.ContentToRender.forEach((contentToRender: ContentToRender) =>
-        populateChildren(contentToRender),
-      )
-    })
-
     // 4. Finally, return the elements array.
-    return elements
+    return ElementsProcessed;
   }
 
   //--------------------------------------------------------------------------

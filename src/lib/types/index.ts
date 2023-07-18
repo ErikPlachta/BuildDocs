@@ -11,14 +11,25 @@
  *
  */
 
-import { Elements, Element } from "./Elements";
+import { Element, Elements, ElementsProcessed } from "./Elements";
 import { Comment, Comments, CommentsRaw, CommentsProcessed } from "./Comments";
 
 
 /**
- * @type {Type} Namespace
+ * @type {Type}
  * @memberof module:Types
- * @typedf {Type} Namespace
+ * @typedef File
+ */
+type File = {
+  id: string //-- randomUUID
+  description: string //-- file name for reference
+  filePath: string //-- for connecting all items to their file.
+}
+
+/**
+ * @type {Type}
+ * @memberof module:Types
+ * @typedef Namespace
  */
 type Namespace = {
   id: string
@@ -26,26 +37,20 @@ type Namespace = {
 }
 
 /**
- * @type {Type} Module
- * @typedf {Type} Module
- * @memberof module:Types
+ * @type {Type}
+ * @typedef Module
+ * @memberof module:types
  */
 type Module = {
   id: string
   description: string
 }
 
-
 type JsonToUiConfig = {
   convertToMarkdown: boolean
   convertToHtml: boolean
 }
 
-type File = {
-  id: string //-- randomUUID
-  description: string //-- file name for reference
-  filePath: string //-- for connecting all items to their file.
-}
 
 
 
@@ -63,8 +68,9 @@ export {
   CommentsProcessed,
 
   //-- Content to Render to UI Types
-  Elements,
   Element,
+  Elements,
+  ElementsProcessed,
 
 
   //-- Configurations

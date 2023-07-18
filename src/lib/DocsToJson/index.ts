@@ -30,7 +30,7 @@ import {
 
 /**
  * @type {class} BuildDocs
- * @memberof module:DocsToJson
+ * @memberof module:build-docs.DocsToJson
  * @access private
  * @class BuildDocs
  * @classdesc Extract Documentation for target files types in target directory.
@@ -48,7 +48,7 @@ class DocsToJson {
 	/**
 	 * @constructor
 	 * @access public
-	 * @memberof module:DocsToJson
+	 * @memberof module:build-docs.DocsToJson
 	 * @type {function} constructor
 	 * @summary Constructor for the BuildDocs class.
 	 * @description Initializes a new instance of the BuildDocs class.
@@ -84,7 +84,7 @@ class DocsToJson {
 	 * @type {function} build
 	 * @memberof namespace:build-docs
 	 * @memberof module:build-docs
-	 * @memberof module:DocsToJson
+	 * @memberof module:build-docs.DocsToJson
 	 * @requires module:GetDocs
 	 * @access private
 	 * @function shouldIgnore
@@ -100,7 +100,7 @@ class DocsToJson {
 	/**
 	 * @function isFileType
 	 * @access private
-	 * @memberof module:DocsToJson
+	 * @memberof module:build-docs.DocsToJson
 	 * @summary Check if a file is of one of the specified file types.
 	 * @description Checks if a file is of one of the specified file types based on the targetFileTypes property.
 	 * @param {string} filePath - The file path to check.
@@ -120,7 +120,7 @@ class DocsToJson {
 	 * @access public
 	 * @function setTargetPath
 	 * @type {function} setTargetPath
-	 * @memberof module:DocsToJson
+	 * @memberof module:build-docs.DocsToJson
 	 * @summary Utility for updating the targetPath property of BuildDocs.
 	 * @param {string} targetPath - The directory to search within.
 	 * @returns {boolean} - Whether the targetPath was successfully updated
@@ -145,7 +145,7 @@ class DocsToJson {
 	 * @access public
 	 * @function setOutputPath
 	 * @type {function} setOutputPath
-	 * @memberof module:DocsToJson
+	 * @memberof module:build-docs.DocsToJson
 	 * @summary Evaluating results and building relationships between accordingly.
 	 *
 	 * @todo 20230713 #EP | Build this out once everything else is verified.
@@ -158,7 +158,7 @@ class DocsToJson {
 
 	/**
 	 * @type {function} build
-	 * @memberof module:DocsToJson
+	 * @memberof module:build-docs.DocsToJson
 	 * @access private
 	 * @function extractCommentsFromFile
 	 * @augments GetDocs constructor
@@ -204,7 +204,7 @@ class DocsToJson {
 
 	/**
 	 * @type {function} build
-	 * @memberof module:DocsToJson
+	 * @memberof module:build-docs.DocsToJson
 	 * @access private
 	 * @fires BuildDocs.extractCommentsFromFile
 	 * @fires BuildDocs.isFileType
@@ -236,7 +236,7 @@ class DocsToJson {
 	 * @function generateDocs
 	 * @access public
 	 * @type {function} generateDocs
-	 * @memberof module:DocsToJson
+	 * @memberof module:build-docs.DocsToJson
 	 * @summary Generate documentation for files in a directory.
 	 * @description Generates documentation for files in a directory and stores the results in the results property.
 	 * @param {string} targetPath - The path of the directory to generate documentation for.
@@ -251,7 +251,7 @@ class DocsToJson {
 	/**
 	 * @function saveDocs
 	 * @access public
-	 * @memberof module:DocsToJson
+	 * @memberof module:build-docs.DocsToJson
 	 * @summary Save the generated documentation to a file.
 	 * @description Saves the generated documentation to a file in a specified directory.
 	 * @param {string} targetPath - The path of the directory to save the documentation to.
