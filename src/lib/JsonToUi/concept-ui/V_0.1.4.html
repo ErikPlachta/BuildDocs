@@ -1,0 +1,328 @@
+<html>
+  <head>
+    <title>JsonToDoc - Concept</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 flex flex-col gap-8">
+    <header
+      class="w-full p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto"
+    >
+      <div class="max-w-4xl mx-auto w-full">
+        <h1 class="text-blue-500 text-4xl">JsonToDoc - Concept</h1>
+        <p class="text-gray-400">A mockup of the design to build around.</p>
+      </div>
+      <nav
+        class="max-w-4xl mx-auto w-full px-4 pt-4"
+        data-role="nav-header"
+        data-id="nav-header"
+      >
+        <ul
+          class="flex flex-row gap-6 mt-auto h-full"
+          data-role="nav-header-list"
+        >
+          <li
+            class="py-2 px-4 border-solid border-b-4 border-blue-500 hover:border-blue-500/80"
+            data-role="nav-header-link"
+            data-group="overview"
+          >
+            <a href="#overview">Overview</a>
+          </li>
+          <li
+            class="py-2 px-4 border-solid border-b-4 border-transparent hover:border-blue-500/80"
+            data-role="nav-header-link"
+            data-group="mn1"
+          >
+            <a href="#mn1">mn1</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main container holding all tabs -->
+    <section
+      id="main"
+      data-role="container-wrapper"
+      class="'mx-4 min-h-[80%] overflow-hidden"
+    >
+      <!-- Overview of Execution -->
+      <div
+        id="overview-container"
+        class="relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full"
+        data-group="overview"
+        data-role="container"
+        data-active="true"
+      >
+        <!-- Tab Strip for Overview -->
+        <nav
+          id="tab-strip-overview"
+          class="w-full flex flex-row gap-2 bg-gray-100"
+          data-group="overview"
+          data-role="tab-strip-nav"
+        >
+          <ul
+            class="flex w-full flex-row w-full gap-2 w-full"
+            data-group="overview"
+          >
+            <li
+              id="overview-summary-tab"
+              class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid border-b-blue-500 hover:bg-opacity-90 hover:border-b-blue-500/50"
+              data-group="overview"
+              data-subGroup="summary"
+              data-id="overview-summary"
+              data-role="tab-strip-nav-link"
+              data-type="file"
+            >
+              Summary
+            </li>
+
+            <li
+              id="overview-stats-tab"
+              class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid bg-opacity-30 hover:bg-opacity-60 hover:border-b-blue-500/50"
+              data-role="tab-strip-nav-link"
+              data-group="overview"
+              data-subGroup="stats"
+              data-id="overview-stats"
+              data-type="file"
+            >
+              Stats
+            </li>
+          </ul>
+        </nav>
+
+        <section
+          id="content-overview"
+          class="border-solid border-2 rounded-b-xl h-full p-4"
+          data-group="overview"
+          data-role="content-wrapper"
+          data-active="true"
+        >
+          <div
+            id="overview-summary"
+            class=""
+            data-role="content"
+            data-group="overview"
+            data-subGroup="summary"
+            data-id="overview-summary"
+            data-active="true"
+          >
+            <h3>Execution Summary</h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum,
+              culpa? Earum provident iure unde perferendis commodi, sequi hic!
+              Qui possimus ut esse? Animi repellat libero aut cupiditate
+              eveniet, quam placeat, veritatis optio officia architecto odit eos
+              natus omnis rerum iure tempore mollitia eligendi aperiam, quaerat
+              temporibus recusandae quasi. Veniam, quis?
+            </p>
+          </div>
+          <div
+            id="overview-stats"
+            class="hidden"
+            data-group="overview"
+            data-subGroup="stats"
+            data-id="overview-stats"
+            data-role="content"
+            data-active="false"
+          >
+            <h3>Execution Stats</h3>
+            <p>Overview summary placeholder text.</p>
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+            consectetur repudiandae nesciunt perferendis quaerat reiciendis
+            asperiores nostrum rerum, dolorum minus, voluptas fugiat error in
+            enim totam qui molestiae architecto eaque facilis id consequatur,
+            suscipit dicta. Saepe totam voluptate, earum amet ad minus unde,
+            quibusdam magni enim molestias dolores fugiat laborum.
+          </div>
+        </section>
+      </div>
+
+      <!-- Module 1 -->
+      <div
+        id="mn1-container"
+        class="relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full hidden"
+        data-group="mn1"
+        data-role="container"
+        data-active="false"
+      >
+        <nav
+          id="tab-strip-mn1"
+          class="w-full flex flex-row gap-2 bg-gray-100"
+          data-group="mn1"
+          data-role="tab-strip-nav"
+          data-active="false"
+        >
+          <ul class="flex w-full flex-row w-full gap-2 w-full" data-group="mn1">
+            <li
+              id="mn1-file-tab"
+              class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid border-b-blue-500 hover:bg-opacity-90 hover:border-b-blue-500/50"
+              data-group="mn1"
+              data-role="tab-strip-nav-link"
+              data-type="file"
+            >
+              mn1_File
+            </li>
+            <li
+              id="'mn1-function1-tab"
+              class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid bg-opacity-30 hover:bg-opacity-60 hover:border-b-blue-500/50"
+              data-group="mn1"
+              data-role="tab-strip-nav-link"
+              data-type="function"
+            >
+              mn1_Function1
+            </li>
+            <li
+              id="mn1-function2-tab"
+              class="bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid bg-opacity-30 hover:bg-opacity-60 hover:border-b-blue-500/50"
+              data-group="mn1"
+              data-role="tab-strip-nav-link"
+              data-type="function"
+            >
+              mn1_Function2
+            </li>
+          </ul>
+        </nav>
+
+        <section
+          id="content-mn1"
+          class="border-solid border-2 rounded-b-xl h-full p-4"
+          data-role="content-wrapper"
+          data-group="mn1"
+        >
+          <div
+            id="mn1"
+            class="hidden"
+            data-group="mn1"
+            data-subGroup="file"
+            data-role="content"
+            data-id="'mn1-file"
+            data-active="false"
+          >
+            <h3>Function_Name_1</h3>
+            <p>Summary_mn1</p>
+            <div>
+              <h4>Parameters</h4>
+              <ul>
+                <li>param1</li>
+                <li>param2</li>
+                <li>param3</li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            id="mn1_function1"
+            class="hidden"
+            data-group="mn1"
+            data-role="content"
+            data-id="'mn1-function1"
+            data-active="false"
+          >
+            <h3>Function_Name_1</h3>
+            <p>Summary_mn1</p>
+            <div id="mn1-meta" data-group="mn1" data-type="meta">Meta_mn1</div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Example of a second file / module  mn2 -->
+    </section>
+  </body>
+
+  <!-- Adding logic to buttons. -->
+  <script defer>
+    /**
+     * Managing when a main navigational element is selected.
+     *
+     * 1. Update the main nav's active tab.
+     * 2. Show / hide the main nav's content based on the selected group from nav-main li.
+     */
+    function handleMainNav(groupId) {
+      // 1. Update the main nav's active tab.
+      document
+        .querySelectorAll("[data-role='nav-header-link']")
+        .forEach(navMainLink => {
+          if (navMainLink.dataset.group == groupId) {
+            navMainLink?.classList.remove('border-transparent')
+            navMainLink?.classList.add('border-b-blue-500')
+          } else {
+            navMainLink?.classList.remove('border-b-blue-500')
+            navMainLink?.classList.add('border-transparent')
+          }
+        })
+
+      // 2. Show / hide the main nav's content within their containers based on the selected group from nav-main li.
+      document
+        .querySelectorAll("[data-role='container']")
+        .forEach(container => {
+          // If the container's group matches the selected group, show it.
+          if (container.dataset.group == groupId) {
+            container?.classList.remove('hidden')
+          } else {
+            container?.classList.add('hidden')
+          }
+        })
+    } // end of handleMainNav.
+
+    /**
+     * Get all tabs for role tab-strip-nav and toggle active tab and content based on selected tab ID.
+     */
+    function handleTabStrip(tabId, dataset) {
+      // 1. Updating the Tab Strip's active tab.
+      document
+        .querySelectorAll("[data-role='tab-strip-nav-link']")
+        .forEach(tab => {
+          if (tabId == tab.id) {
+            tab?.classList.remove('bg-opacity-30')
+            tab?.classList.add('bg-opacity-100')
+            tab?.classList.add('border-b-blue-500')
+          } else {
+            tab?.classList.remove('bg-opacity-100')
+            tab?.classList.add('bg-opacity-30')
+            tab?.classList.remove('border-b-blue-500')
+          }
+        })
+
+      // 2. Show / Hide content based on selected tab.
+      document
+        .querySelectorAll(
+          `[data-group="${dataset.group}"] [data-role="content"]`
+        )
+        .forEach(content => {
+          // The selected tab's data-id value matches the content's data-id value, show it.
+          if (content.dataset.id == dataset.id) {
+            content.classList.remove('hidden')
+          }
+          // Otherwise hide it.
+          else {
+            content.classList.add('hidden')
+          }
+        })
+    } // end of handleTabStrip.
+
+    /**
+     * Adding navigational event listeners for main nav and tab strips.
+     */
+    function addEventListeners() {
+      // Listen for main navigation elements to be selected and active state.
+      document
+        .querySelectorAll("[data-role='nav-header-link']")
+        .forEach(navLink => {
+          navLink.addEventListener('click', e => {
+            handleMainNav(navLink.dataset.group)
+          })
+        })
+
+      // Listeners for when tab in tab-strip is selected to toggle content visibility.
+      document.querySelectorAll("[data-role='tab-strip-nav']").forEach(tab => {
+        tab.addEventListener('click', e => {
+          handleTabStrip(e.target.id, e.target.dataset)
+        })
+      })
+    }
+    addEventListeners()
+  </script>
+</html>

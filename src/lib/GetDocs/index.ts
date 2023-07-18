@@ -1,11 +1,10 @@
 /**
  * This Utility is used by BuildDocs to extract JSDoc data from file.
- * @type {file} GetDocData.ts
- * @memberof namespace:build-docs
+ * @type {file} GetDocs\index.ts
+ * @namespace {build-docs.GetDocs}
  * @module GetDocs
- * @file GetDocData.ts
+ * @file GetDocs\index.ts
  * @access private
- * @namespace BuildDocs_GetDocData
  * @summary This Utility is used by BuildDocs to extract JSDoc data from file.
  * @description
  * @version 0.2.2
@@ -14,12 +13,9 @@
  * @license MIT
  * @created 2023-07-12
  * @updated 2023-07-13
- *
- * @changelog
- *
- *  0.1.x - MVP Concept of building comments properly. 100% verified getting tags and descriptions.
- *  0.2.1 - Add more complex comment and tag extraction.
- *  0.2.2 - Add showing tag connectivity via `@memberof`, `@augments`, `@namespace`, `@fires`, and `@requires`.
+ * @changelog 0.1.x - MVP Concept of building comments properly. 100% verified getting tags and descriptions.
+ * @changelog 0.2.1 - Add more complex comment and tag extraction.
+ * @changelog 0.2.2 - Add showing tag connectivity via `@memberof`, `@augments`, `@namespace`, `@fires`, and `@requires`.
  */
 
 /**
@@ -110,7 +106,7 @@ class GetDocs {
             // Get all lines from the comment-block.
             const lines: string[] = this.comment.split('\n')
 
-            lines.forEach((line) => {
+            lines.forEach(line => {
                 // Does line have an `@` tag.
                 const tagMatch = line.match(/@(\w+)\s+(.+)/)
                 // example tagMatch:

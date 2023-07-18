@@ -16,18 +16,24 @@
                     A mockup of the design to build around.
                 </p>
             </div>
-            <nav class="max-w-4xl mx-auto w-full px-4 pt-4" data-role="nav-header">
-                <ul class="flex flex-row gap-6 mt-auto h-full" data-role="nav-header">
+            <nav
+                class="max-w-4xl mx-auto w-full px-4 pt-4"
+                data-role="nav-header"
+            >
+                <ul
+                    class="flex flex-row gap-6 mt-auto h-full"
+                    data-role="nav-header-list"
+                >
                     <li
                         class="py-2 px-4 border-solid border-b-4 border-blue-500 hover:border-blue-500/80"
-                        data-role="nav-header"
+                        data-role="nav-header-link"
                         data-group="overview"
                     >
                         <a href="#overview">Overview</a>
                     </li>
                     <li
                         class="py-2 px-4 border-solid border-b-4 border-transparent hover:border-blue-500/80"
-                        data-role="nav-header"
+                        data-role="nav-header-link"
                         data-group="mn1"
                     >
                         <a href="#mn1">mn1</a>
@@ -246,16 +252,16 @@
         function handleMainNav(groupId) {
             // 1. Update the main nav's active tab.
             document
-                .querySelectorAll("[data-role='nav-main']")
+                .querySelectorAll("[data-role='nav-header-link']")
                 .forEach((navMainLink) => {
                     if (navMainLink.dataset.group == groupId) {
-                        navMainLink?.classList.remove('border-transparent');
-                        navMainLink?.classList.add('border-b-blue-500');
+                        navMainLink?.classList.remove('border-transparent')
+                        navMainLink?.classList.add('border-b-blue-500')
                     } else {
-                        navMainLink?.classList.remove('border-b-blue-500');
-                        navMainLink?.classList.add('border-transparent');
+                        navMainLink?.classList.remove('border-b-blue-500')
+                        navMainLink?.classList.add('border-transparent')
                     }
-                });
+                })
 
             // 2. Show / hide the main nav's content within their containers based on the selected group from nav-main li.
             document
@@ -263,31 +269,31 @@
                 .forEach((container) => {
                     // If the container's group matches the selected group, show it.
                     if (container.dataset.group == groupId) {
-                        container?.classList.remove('hidden');
+                        container?.classList.remove('hidden')
                     } else {
-                        container?.classList.add('hidden');
+                        container?.classList.add('hidden')
                     }
-                });
+                })
         } // end of handleMainNav.
 
         /**
          * Get all tabs for role tab-strip-nav and toggle active tab and content based on selected tab ID.
          */
-        function handletab-strip(tabId, dataset) {
+        function handleTabStrip(tabId, dataset) {
             // 1. Updating the Tab Strip's active tab.
             document
                 .querySelectorAll("[data-role='tab-strip-nav']")
                 .forEach((tab) => {
                     if (tabId == tab.id) {
-                        tab?.classList.remove('bg-opacity-30');
-                        tab?.classList.add('bg-opacity-100');
-                        tab?.classList.add('border-b-blue-500');
+                        tab?.classList.remove('bg-opacity-30')
+                        tab?.classList.add('bg-opacity-100')
+                        tab?.classList.add('border-b-blue-500')
                     } else {
-                        tab?.classList.remove('bg-opacity-100');
-                        tab?.classList.add('bg-opacity-30');
-                        tab?.classList.remove('border-b-blue-500');
+                        tab?.classList.remove('bg-opacity-100')
+                        tab?.classList.add('bg-opacity-30')
+                        tab?.classList.remove('border-b-blue-500')
                     }
-                });
+                })
 
             // 2. Show / Hide content based on selected tab.
             document
@@ -297,15 +303,14 @@
                 .forEach((content) => {
                     // The selected tab's data-id value matches the content's data-id value, show it.
                     if (content.dataset.id == dataset.id) {
-                        content.classList.remove('hidden');
+                        content.classList.remove('hidden')
                     }
                     // Otherwise hide it.
                     else {
-                        content.classList.add('hidden');
+                        content.classList.add('hidden')
                     }
-                });
-        }// end of handletab-strip.
-
+                })
+        } // end of handleTabStrip.
 
         /**
          * Adding navigational event listeners for main nav and tab strips.
@@ -313,22 +318,22 @@
         function addEventListeners() {
             // Listen for main navigation elements to be selected and active state.
             document
-                .querySelectorAll("[data-role='nav-main']")
+                .querySelectorAll("[data-role='nav-header-link']")
                 .forEach((navLink) => {
                     navLink.addEventListener('click', (e) => {
-                        handleMainNav(navLink.dataset.group);
-                    });
-                });
+                        handleMainNav(navLink.dataset.group)
+                    })
+                })
 
             // Listeners for when tab in tab-strip is selected to toggle content visibility.
             document
                 .querySelectorAll("[data-role='tab-strip-nav']")
                 .forEach((tab) => {
                     tab.addEventListener('click', (e) => {
-                        handletab-strip(e.target.id, e.target.dataset);
-                    });
-                });
+                        handleTabStrip(e.target.id, e.target.dataset)
+                    })
+                })
         }
-        addEventListeners();
+        addEventListeners()
     </script>
 </html>

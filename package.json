@@ -1,6 +1,6 @@
 {
 	"name": "build-docs",
-	"version": "0.1.0",
+	"version": "0.1.4",
 	"description": "A tool to generate documentation from JSDoc style comments in your codebase.",
 	"type": "commonjs",
 	"scripts": {
