@@ -538,7 +538,7 @@ class JsonToUi {
                           parent: tabStripNavId,
                           type: 'li',
                           attributes: {
-                            type: rootItem?.type?.type,
+                            // type: rootItem?.type?.type, //
                             value: rootItem.modules[0],
                             role: 'tab-strip-nav-link',
                             group: rootItem.namespaces[0],
@@ -593,7 +593,7 @@ class JsonToUi {
             getChildren: () => {
               //TODO: build elements dynamically
               //-- TabStrip Wrapper and then tabs.
-              let tabStripNavElements: ContentToRender[] = []
+              const tabStripNavElements: ContentToRender[] = []
               tabStripNavElements.push({
                 id: tabStripNavId,
                 parent: containerId,
@@ -608,10 +608,10 @@ class JsonToUi {
                 children: [],
                 getChildren: () => {
                   //-- Map thru all child elements
-                  let childrenElements: ContentToRender[] = []
+                  const childrenElements: ContentToRender[] = []
 
                   item.children.map(child => {
-                    let thisElement = this.processedData.filter(
+                    const thisElement = this.processedData.filter(
                       entry => entry.id == child.id
                     )[0]
 
@@ -633,7 +633,7 @@ class JsonToUi {
                     }
                   })
 
-                  let childNavElements: ContentToRender[] = [
+                  const childNavElements: ContentToRender[] = [
                     {
                       id: randomUUID(),
                       parent: tabStripNavId,
@@ -654,7 +654,7 @@ class JsonToUi {
               })
 
               //-- Populate CHildren Content
-              let contentWrapper: ContentToRender[] = []
+              const contentWrapper: ContentToRender[] = []
               contentWrapper.push(
                 // 2.2.4 - Content Wrapper (element after tab-strip-nav that  holds all content)
                 {
@@ -669,7 +669,7 @@ class JsonToUi {
                   },
                   children: [],
                   getChildren: () => {
-                    let contentElements: ContentToRender[] = []
+                    const contentElements: ContentToRender[] = []
 
                     // 2.2.5 - Content (Element that holds all content related.)
                     //TODO: Update so builds all, not just the one.
@@ -685,7 +685,7 @@ class JsonToUi {
                       },
                       children: [],
                       getChildren: () => {
-                        let elementsInContent: ContentToRender[] = []
+                        const elementsInContent: ContentToRender[] = []
                         return elementsInContent
                       },
                     })

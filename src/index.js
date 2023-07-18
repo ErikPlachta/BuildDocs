@@ -181,40 +181,52 @@ async function run(updatedConfig) {
     const { targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths } = init;
     const { outputPath } = out;
 
+    const config_DocsToJson = {
+      targetPath : targetPath.value,
+      targetPaths : targetPaths.value,
+      ignorePaths : ignorePaths.value,
+      ignoreFiles : ignoreFiles.value,
+      targetFiles : targetFiles.value,
+      targetFileTypes : targetFileTypes.value,
+      outputPath : outputPath.value,
+    }
+
     // 2. Create instance of DocsToJson class with configuration options.
     const Build = new DocsToJson(
-      targetPath.value,
-      targetPaths.value,
-      ignorePaths.value,
-      ignoreFiles.value,
-      targetFiles.value,
-      targetFileTypes.value,
-      outputPath.value,
+      config_DocsToJson.values()
     );
 
     // 3. Run the DocsToJson utility to generate docs for the rootPath, then save them to the outputPath.
     const docs = Build.generateDocs(targetPath.value);
     const saveDocsToJsonResults = Build.saveDocs(outputPath.value, docs);
-
-
+   
+    //TODO: Update to extract from updatedConfig once added to it and verified built in JsonToUi properly.
+    const config_JsonToUi = {
+      convertToMarkdown: true,
+      convertToHtml: true,
+    }
+    
     // 4. Generate UI from generated docs
     const generateUiResults = await JsonToUi
       .run(
         docs,
-        //TODO: Update to extract from updatedConfig once added to it and verified built in JsonToUi properly.
-        config = {
-          convertToMarkdown: true,
-          convertToHtml: true,
-        }
+        config_JsonToUi
       );
 
+      console.log('generateUiResults: ', generateUiResults)
 
     return {
       success: true,
       message: 'DocsToJson ran successfully.',
       Build,
-      // docs: docs,
-      saveDocsToJsonResults,
+      config: {
+        DocsToJson : '',
+        JsonToUi: config_JsonToUi
+      },
+      results : {
+        DocsToJson : saveDocsToJsonResults,
+        JsonToUi: generateUiResults
+      }
     };
   }
   catch (error) {
