@@ -2,7 +2,7 @@
   "title": "config.json",
   "namespace": "build-docs",
   "description": "build-docs default configuration",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "author": "Erik Plachta",
   "settings": {
       "summary": "Default parameters for controlling run behavior of build-docs.",

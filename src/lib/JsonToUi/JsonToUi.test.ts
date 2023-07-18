@@ -11,31 +11,38 @@
  */
 
 import { resolve } from 'path'
-import { DataItem } from '../types'
+import { Comments } from '../types'
 const JsonToUi = require('./index.ts')
 const { writeFileSync } = require('fs')
-const data = require('../../../../.dist/docs.json')
 
-const testPath = '../../../../.dist/JsonToUi'
-const configPath = resolve(__dirname, testPath)
+
+
+const rootPath  = process.cwd();
+
+console.log('rootPath: ', rootPath)
+const old = resolve(__dirname)
+// const data = require('../../../../.dist/docs.json')
+const data = require(`${rootPath}/.dist/docs.json`)
+const configPath = `${rootPath}/.dist/JsonToUi`
 
 /**
  * @type {function} main
  * @function main
  * @memberof module:JsonToUi.Test
  * @summary Executed on run. Engages testing on JsonToUi class with some hard-coded params.
- * @param {DataItem[]} data - Array of comment blocks converted to object.
+ * @param {Comments[]} comments - Array of comment blocks converted to object.
  * @returns {boolean} - Returns true if successful, otherwise false.
  */
-function main(data: DataItem[]) {
+function main(comments: Comments[]) {
     try {
-        const run = new JsonToUi(data)
+        const run = new JsonToUi(comments)
+        console.log('run: ', run)
 
         // run.getItemsByParentId
 
         writeFileSync(
             `${configPath}/sourceData.json`,
-            JSON.stringify(run.data, null, 2)
+            JSON.stringify(run.elements, null, 2)
         )
         writeFileSync(
             `${configPath}/processedData.json`,

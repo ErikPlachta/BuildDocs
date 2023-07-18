@@ -37,9 +37,14 @@ const { resolve } = require('path'); // used for building results
 const { readFileSync } = require('fs'); // used for reading config file
 
 
-// Custom Utilities.
+// Custom Libraries
 const DocsToJson = require('./lib/DocsToJson/index.ts');
 const JsonToUi = require('./lib/JsonToUi/index.ts');
+
+
+//-- Custom Utilities
+const DataManager = require('./utils/DataManager.ts')
+console.log('DataManager:', DataManager)
 
 /**
  * @type {function} getArgs
@@ -182,49 +187,51 @@ async function run(updatedConfig) {
     const { outputPath } = out;
 
     const config_DocsToJson = {
-      targetPath : targetPath.value,
-      targetPaths : targetPaths.value,
-      ignorePaths : ignorePaths.value,
-      ignoreFiles : ignoreFiles.value,
-      targetFiles : targetFiles.value,
-      targetFileTypes : targetFileTypes.value,
-      outputPath : outputPath.value,
+      targetPath: targetPath.value,
+      targetPaths: targetPaths.value,
+      ignorePaths: ignorePaths.value,
+      ignoreFiles: ignoreFiles.value,
+      targetFiles: targetFiles.value,
+      targetFileTypes: targetFileTypes.value,
+      outputPath: outputPath.value,
     }
 
     // 2. Create instance of DocsToJson class with configuration options.
     const Build = new DocsToJson(
-      config_DocsToJson.values()
+      targetPath.value,
+      targetPaths.value,
+      ignorePaths.value,
+      ignoreFiles.value,
+      targetFiles.value,
+      targetFileTypes.value,
+      outputPath.value
     );
 
     // 3. Run the DocsToJson utility to generate docs for the rootPath, then save them to the outputPath.
     const docs = Build.generateDocs(targetPath.value);
     const saveDocsToJsonResults = Build.saveDocs(outputPath.value, docs);
-   
+
     //TODO: Update to extract from updatedConfig once added to it and verified built in JsonToUi properly.
     const config_JsonToUi = {
       convertToMarkdown: true,
       convertToHtml: true,
     }
-    
-    // 4. Generate UI from generated docs
-    const generateUiResults = await JsonToUi
-      .run(
-        docs,
-        config_JsonToUi
-      );
 
-      console.log('generateUiResults: ', generateUiResults)
+    // 4. Generate UI from generated docs
+    const generateUiResults = await JsonToUi.run(docs, config_JsonToUi);
+
+    console.log('generateUiResults: ', generateUiResults)
 
     return {
       success: true,
       message: 'DocsToJson ran successfully.',
       Build,
       config: {
-        DocsToJson : '',
+        DocsToJson: '',
         JsonToUi: config_JsonToUi
       },
-      results : {
-        DocsToJson : saveDocsToJsonResults,
+      results: {
+        DocsToJson: saveDocsToJsonResults,
         JsonToUi: generateUiResults
       }
     };
@@ -271,17 +278,19 @@ async function main() {
     const runResults = await run(updatedConfig);
     // console.log('results: ')
     // console.log(runResults)
-    console.log('successfully ran build-docs/index.js');
+    // console.log('build-docs/index.main() passed: ', runResults.success);
+    if (runResults.success == false) {
+      throw new Error(runResults.message);
+    }
 
     // 4. Returns runResults
     return runResults;
   }
   catch (error) {
-    console.error(error.message);
     console.error(error);
     return {
       success: false,
-      message: `Error running DocsToJson. Error: ${error.message}`,
+      message: `ERROR: ${error}`,
     };
   }
 }

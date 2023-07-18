@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm run DocsToJsonTest && npm run JsonToUiTest",
     "start": "echo \"No start script specified yet.\" && exit 1",
-    "setup": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js",
-    "DocsToJsonTest": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js --targetPath=\"./src/\"",
+    "setup": "echo \nNo Setup script specified yet.\" && exit 1",
+    "DocsToJsonTest": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js --targetPath=\"./src/_TEST/\"",
     "JsonToUiTest": "ts-node -O '{\"module\": \"commonjs\"}' './src/lib/JsonToUi/JsonToUi.test.ts'",
     "JsonToUiTestOld": "ts-node './src/lib/JsonToUi/JsonToUi.test.ts'",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts, ."

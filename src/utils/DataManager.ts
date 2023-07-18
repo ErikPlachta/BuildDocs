@@ -1,7 +1,7 @@
 /**
- * @file ManageData.ts
- * @path build-docs\src\utils\ManageData.ts
- * @class ManageData
+ * @file DataManager.ts
+ * @path build-docs\src\utils\DataManager.ts
+ * @class DataManager
  * @access public
  * @exports ManageData
  * @exports DataManager() default

@@ -81,7 +81,7 @@ class DocsToJson {
     this.outputPath = outputPath
     this.results = []
     this.patterns = {
-      jsdoc: /\/\*\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g,
+      'jsdoc': /\/\*\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g,
     }
   }
 
@@ -158,13 +158,13 @@ class DocsToJson {
    * @param {string} filePath - The path of the file to extract comments from.
    * @returns {boolean} - True if the comments were successfully extracted. False if no comments or issue.
    */
-  private handleGetDocs(filePath: string, pattern: string = 'jsdoc'): boolean {
+  private handleGetDocs(filePath: string, pattern = this.patterns.jsdoc): boolean {
     try {
       const fileContent = fs.readFileSync(filePath, 'utf-8')
       const fileName = path.basename(filePath)
       const stats = fs.statSync(filePath)
 
-      const comments = fileContent.match(this.patterns[pattern])
+      const comments = fileContent.match( pattern )
 
       // If there is a comment block following format, extract the comment block.
       if (comments) {
@@ -206,7 +206,7 @@ class DocsToJson {
    * @description Searches a directory for files of the specified types and extracts their comments.
    * @param {string} targetPath - The path of the directory to search.
    */
-  private searchDir(targetPath: string, pattern:string = 'jsdoc') {
+  private searchDir(targetPath: string, pattern = this.patterns.jsdoc) {
     //-- Don't search within if to be ignored
     if (this.shouldIgnore(targetPath)) return false
     // console.log('searchDir(targetPath: string): ', targetPath)
