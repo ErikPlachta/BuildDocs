@@ -12,9 +12,7 @@
  */
 
 import {
-  Comment,
-  Comments,
-  CommentsRaw,
+  Comments, //-- Comments built by DocsToJson, ready to be processed.
   CommentsProcessed,
   Namespace,
   Module,
@@ -41,7 +39,7 @@ import { randomUUID } from 'crypto'
  * Class to convert JSON data to Markdown and HTML
  */
 class JsonToUi {
-  commentsRaw: CommentsRaw[]
+  comments: Comments[]
   files: File[]
   namespaces: Namespace[]
   modules: Module[]
@@ -58,19 +56,19 @@ class JsonToUi {
    * @param {Config} config - The configuration for the conversion.
    */
   constructor(
-    commentsRaw: CommentsRaw[],
+    comments: Comments[],
     //TODO: onboard this.
     config: {
       convertToMarkdown: boolean
       convertToHtml: boolean
     },
   ) {
-    this.commentsRaw = commentsRaw
+    this.comments = comments
     this.config = config
     this.files = []
     this.namespaces = []
     this.modules = []
-    this.processedData = this.processComments(commentsRaw)
+    this.processedData = this.processComments(comments)
 
     //-- All top-level items that represent a group of info. (Ex, the file that contains a class, functions, etc)
     this.rootItems = this.getRootItems()
@@ -83,13 +81,14 @@ class JsonToUi {
    * Process data for easier use
    * @param {Comments[]} comments - The data to process
    * @return {CommentsProcessed[]} The processed data
+   * @todo 2013-07-18 | Erik Plachta | Move into DocsToJson module from here.
    */
-  processComments(comments: CommentsRaw[]): CommentsProcessed[] {
+  processComments(comments: Comments[]): CommentsProcessed[] {
     const processedData: CommentsProcessed[] = []
 
     //-----------------------------
     // 1. First pass through all items to extract individual doc info.
-    comments.map((item: CommentsRaw) => {
+    comments.map((item: Comments) => {
       processedData.push({
         id: item.id,
 
@@ -420,8 +419,11 @@ class JsonToUi {
   //-- Building Content associations based on processed results:
 
   /**
-   * @summary Take `this.rootItems` and build `ContentToRender` object.
+   * @access private
+   * @type {function} getRootItems
+   * @function getRootItems
    * @memberof module:JsonToUi
+   * @summary Take `this.rootItems` and build `ContentToRender` object.
    * @returns {boolean} True if successful, false if not.
    */
   getRootItems(): CommentsProcessed[] | [] {

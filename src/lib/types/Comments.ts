@@ -46,43 +46,14 @@ type CommentsRaw = {
 //-- DocsToJson
 
 /**
- * @type {Type} CommentParsed
- * @memberof module:build-docs.types.comments
- * @typedef CommentParsed
- * @summary The result of extracting documentation from a file.
- * @description Comment block default structure when extracted from source file.
- * @prop {CommentsProcessed['id']} id - The unique identifier for the file.
- * @prop {string} line - The line number the comment block starts on.
- */
-type CommentParsed = {
-  id: string
-  line: string
-  type: string
-  description: string
-}
-
-/**
- * @type {Type} CommentsParsed
- * @memberof module:build-docs.types.comments
- * @typedef CommentsParsed
- * @summary The result of extracting documentation from the comment block.
- * @prop {string} id - The unique identifier for the file.
- * @prop {string} line - The line number the comment block starts on.
- */
-type CommentsParsed = {
-  [key: string]: Comment[]
-}
-
-/**
  * @type {Type} Comments
  * @memberof module:build-docs.types.comments
  * @memberof module:build-docs.DocsToJson
  * @typedef Comments
  * @summary The result of extracting documentation from a file.
- * @description The result of extracting documentation from a file.
- *
+ * @description Used by module `DocsToJson` to store comments and related info within `DocsToJson.results`. Comments are used for each comment block within the filepath. All comments within a file will have different `comments`, but the same `fileName`, `filePath`, `createdDate`, and `modifiedDate` values. 
  */
-type CommentsProcessed = {
+type Comments = {
   id: string
   fileName: string
   filePath: string
@@ -96,8 +67,8 @@ type CommentsProcessed = {
 //-- JsonToUi
 
 /**
- * @type {Type} Comments
- * @typedef Comments
+ * @type {Type} CommentsProcessed
+ * @typedef CommentsProcessed
  * @memberof module:build-docs.types.comments
  * @memberof module:build-docs.DocsToJson
  * @summary Used by JsonToUi to render the documentation.
@@ -111,7 +82,7 @@ type CommentsProcessed = {
  *
  * @todo  2023-07-18 | Erik Plachta | Add Summary, Description, and params.
  */
-type Comments = {
+type CommentsProcessed = {
   id: string
   access: 'public' | 'private' | 'protected' | null | string
   summary: string | null
@@ -214,14 +185,12 @@ type Comments = {
   // dataToRender: dataToRender;
 
   // Optionally add the original doc object for debugging.
-  comments?: Comments
+  comments?: CommentsRaw
 }
 
 export {
   CommentRaw,
   CommentsRaw,
-  CommentParsed,
-  CommentsParsed,
   CommentsProcessed,
-  Comments
+  Comments,
 }

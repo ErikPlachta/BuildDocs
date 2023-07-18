@@ -15,8 +15,6 @@ import { Element, Elements, ElementsProcessed } from './Elements'
 import {
   CommentRaw,
   CommentsRaw,
-  CommentParsed,
-  CommentsParsed,
   CommentsProcessed,
   Comments,
 } from './Comments'
@@ -67,9 +65,7 @@ export {
   CommentRaw,
   CommentsRaw,
   
-  //-- DocsToJson:
-  CommentParsed,
-  CommentsParsed,
+  //-- DocsToJson && JsonToUi:
   CommentsProcessed,
   
   //-- JsonToUi

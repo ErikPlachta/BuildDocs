@@ -23,7 +23,7 @@ import { randomUUID } from 'crypto'
 import fs from 'fs'
 import path from 'path'
 import GetDocs from '../GetDocs' // Assuming GetDocs class is in the same directory.
-import { CommentsProcessed } from '../types'
+import { Comments, CommentsProcessed } from '../types'
 
 /**
  * @type {class} BuildDocs
@@ -40,7 +40,7 @@ class DocsToJson {
   private ignoreFiles: string[]
   private targetFileTypes: string[]
   private outputPath: string
-  private results: CommentsProcessed[]
+  private results: Comments[]
   public patterns: {
     jsdoc: RegExp
   }
