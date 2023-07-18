@@ -22,6 +22,42 @@ export interface Doc {
   [key: string]: Comment[]
 }
 
+
+
+
+/**
+ * @type {interface} DocResult
+ * @memberof module:DocsToJson
+ * @interface DocResult
+ * @summary The result of extracting documentation from a file.
+ * @description The result of extracting documentation from a file.
+ * @property {string} id - The unique identifier for the file.
+ * @property {string} fileName - The name of the file itself.
+ * @property {string} filePath - The path to the file.
+ * @property {object} doc - The documentation extracted from the file.
+ * @property {Date} modifiedDate - The date the file was last modified.
+ * @property {Date} createdDate - The date the file was created.
+ * @property {object[]} relatedComments - All comments extracted from the file.
+ */
+export interface DocResult {
+  id: string
+  fileName: string
+  filePath: string
+  doc: Doc
+  modifiedDate: Date
+  createdDate: Date
+  //-- All related comments and their full comment blocks within the file.
+  //TODO: 20230713 #EP || Convert from getting all comments to showing relation by IDs, children, parent, etc.
+  relatedComments: {
+    commentBlock: string
+  }[]
+  // relatedComments: { comment: string }[]
+}
+
+
+
+
+
 export type DataItem = {
   id: string
   fileName: string

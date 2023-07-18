@@ -1,4 +1,4 @@
-{
+module.exports ={
   "env": {
       "browser": true,
       "commonjs": true,
@@ -29,9 +29,10 @@
       "sourceType": "module"
   },
   "plugins": [
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "prettier"
   ],
   "rules": {
-      "indent" :"off"       
+    "indent" :"off" 
   }
 }

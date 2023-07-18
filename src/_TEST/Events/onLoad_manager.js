@@ -6,7 +6,8 @@
  */
 
 
-const OnLoad_GetData = requires('../OnLoad_GetData')
+import OnLoad_GetData from '../OnLoad_GetData';
+// const OnLoad_GetData = requires('../OnLoad_GetData')
 
 /**
  * @function main
