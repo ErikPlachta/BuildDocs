@@ -2254,9 +2254,9 @@
       ],
       "return": [
         {
-          "line": "@return {ProcessedDataItem[]} The processed data",
+          "line": "@return {CommentsProcessed[]} The processed data",
           "type": "return",
-          "description": "{ProcessedDataItem[]} The processed data"
+          "description": "{CommentsProcessed[]} The processed data"
         }
       ]
     },
@@ -2392,9 +2392,9 @@
     "doc": {
       "interface": [
         {
-          "line": "@interface ProcessedDataItem",
+          "line": "@interface CommentsProcessed",
           "type": "interface",
-          "description": "ProcessedDataItem"
+          "description": "CommentsProcessed"
         }
       ],
       "since": [
@@ -2420,9 +2420,9 @@
       ],
       "namespace": [
         {
-          "line": "@namespace {ProcessedDataItem | build-docs.Types.ProcessedDataItem}",
+          "line": "@namespace {CommentsProcessed | build-docs.Types.CommentsProcessed}",
           "type": "namespace",
-          "description": "{ProcessedDataItem | build-docs.Types.ProcessedDataItem}"
+          "description": "{CommentsProcessed | build-docs.Types.CommentsProcessed}"
         }
       ],
       "memberof": [

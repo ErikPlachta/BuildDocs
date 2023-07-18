@@ -5,7 +5,7 @@
  * @version 0.0.1
  */
 
-import {ProcessedDataItem } from './index'
+import {CommentsProcessed } from './index'
 
 /**
  * @export
@@ -18,20 +18,20 @@ import {ProcessedDataItem } from './index'
  * @description For each code-block, this Type is used for the collection of elements generated.
  */
 export type Elements = {
-  id: ProcessedDataItem['id']
+  id: CommentsProcessed['id']
   date: Date
-  // parent: ProcessedDataItem['parent']
+  // parent: CommentsProcessed['parent']
 
   //-- Based data for the comment block.
   data: {
-    // item: ProcessedDataItem
-    arguments: ProcessedDataItem['arguments']
-    props: ProcessedDataItem['props']
-    returns: ProcessedDataItem['returns']
-    requires: ProcessedDataItem['requires']
-    changelog: ProcessedDataItem['changelog']
-    parent: ProcessedDataItem['parent']
-    children: ProcessedDataItem['children']
+    // item: CommentsProcessed
+    arguments: CommentsProcessed['arguments']
+    props: CommentsProcessed['props']
+    returns: CommentsProcessed['returns']
+    requires: CommentsProcessed['requires']
+    changelog: CommentsProcessed['changelog']
+    parent: CommentsProcessed['parent']
+    children: CommentsProcessed['children']
   }
   //-- Array of Objects which are elements to be rendered
   Element: Element[]
@@ -76,7 +76,7 @@ export type Element = {
   attributes: {
     //-- What's to be displayed.
     value: null | string
-    type: ProcessedDataItem['type']
+    type: CommentsProcessed['type']
     
     //-- Role of content when rendered to the UI.
     role:

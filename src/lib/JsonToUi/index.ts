@@ -12,8 +12,10 @@
  */
 
 import {
-  DataItem,
-  ProcessedDataItem,
+  Comment,
+  Comments,
+  CommentsRaw,
+  CommentsProcessed,
   Namespace,
   Module,
   File,
@@ -38,12 +40,12 @@ import { randomUUID } from 'crypto'
  * Class to convert JSON data to Markdown and HTML
  */
 class JsonToUi {
-  data: DataItem[]
+  commentsRaw: CommentsRaw[]
   files: File[]
   namespaces: Namespace[]
   modules: Module[]
-  processedData: ProcessedDataItem[] | []
-  rootItems: ProcessedDataItem[] | []
+  processedData: CommentsProcessed[] | []
+  rootItems: CommentsProcessed[] | []
   elements: Elements
   config: JsonToUiConfig
 
@@ -51,23 +53,23 @@ class JsonToUi {
    * @access private
    * @constructor
    * @summary When class instantiated, process data and build elements.
-   * @param {DataItem[]} data - The JSON data to convert
-   * @param {Config} config - The configuration for the conversion
+   * @param {Comments[]} comments - The JSON data object containing all comment info to converted.
+   * @param {Config} config - The configuration for the conversion.
    */
   constructor(
-    data: DataItem[],
+    commentsRaw: CommentsRaw[],
     //TODO: onboard this.
     config: {
       convertToMarkdown: boolean
       convertToHtml: boolean
     },
   ) {
-    this.data = data
+    this.commentsRaw = commentsRaw
     this.config = config
     this.files = []
     this.namespaces = []
     this.modules = []
-    this.processedData = this.processData(data)
+    this.processedData = this.processComments(commentsRaw)
 
     //-- All top-level items that represent a group of info. (Ex, the file that contains a class, functions, etc)
     this.rootItems = this.getRootItems()
@@ -78,20 +80,20 @@ class JsonToUi {
   //----------------------------------------------------------------------------
   /**
    * Process data for easier use
-   * @param {DataItem[]} data - The data to process
-   * @return {ProcessedDataItem[]} The processed data
+   * @param {Comments[]} comments - The data to process
+   * @return {CommentsProcessed[]} The processed data
    */
-  processData(data: DataItem[]): ProcessedDataItem[] {
-    const processedData: ProcessedDataItem[] = []
+  processComments(comments: CommentsRaw[]): CommentsProcessed[] {
+    const processedData: CommentsProcessed[] = []
 
     //-----------------------------
     // 1. First pass through all items to extract individual doc info.
-    data.map((item: DataItem) => {
+    comments.map((item: CommentsRaw) => {
       processedData.push({
         id: item.id,
 
         //-- if it's got a namespace it's a root item.
-        isRootItem: item.doc?.namespace?.[0]?.description ? true : false,
+        isRootItem: item.comments?.namespace?.[0]?.description ? true : false,
 
         fileDetails: {
           //-- All return this even if it's not a file because it's relational reference.
@@ -101,45 +103,45 @@ class JsonToUi {
           modifiedDate: item.modifiedDate,
         },
 
-        type: item.doc?.type?.[0]?.description
+        type: item.comments?.type?.[0]?.description
           ? {
-              type: item.doc?.type?.[0]?.description
+              type: item.comments?.type?.[0]?.description
                 .split('}')[0]
                 .replace('{', ''),
-              description: item.doc?.type?.[0]?.description
+              description: item.comments?.type?.[0]?.description
                 .split('}')[1]
                 .trim(),
             }
-          : item.doc?.file?.[0]?.description
+          : item.comments?.file?.[0]?.description
           ? {
               type: 'file',
-              description: item.doc?.file?.[0]?.description,
+              description: item.comments?.file?.[0]?.description,
             }
           : null,
 
-        version: item.doc?.version?.[0]?.description
-          ? item.doc?.version?.[0]?.description
+        version: item.comments?.version?.[0]?.description
+          ? item.comments?.version?.[0]?.description
           : null,
 
-        author: item.doc?.author?.[0]?.description
-          ? item.doc?.author?.[0]?.description
+        author: item.comments?.author?.[0]?.description
+          ? item.comments?.author?.[0]?.description
           : null,
 
-        access: item.doc?.access?.[0]?.description
-          ? item.doc?.access?.[0]?.description
+        access: item.comments?.access?.[0]?.description
+          ? item.comments?.access?.[0]?.description
           : null,
 
-        description: item.doc?.description?.[0]?.description
-          ? item.doc?.description?.[0]?.description
+        description: item.comments?.description?.[0]?.description
+          ? item.comments?.description?.[0]?.description
           : null,
 
-        summary: item.doc?.summary?.[0]?.description
-          ? item.doc?.summary?.[0]?.description
+        summary: item.comments?.summary?.[0]?.description
+          ? item.comments?.summary?.[0]?.description
           : null,
 
-        params:
-          item.doc?.param?.length > 0
-            ? item.doc.param.map(param => {
+        props:
+          item.comments?.param?.length > 0
+            ? item.comments.param.map(param => {
                 const args = param.description.match(
                   /(\{[^}]*\}|\[[^\]]*\]|`[^`]*`|[^ ]+)/g,
                 )
@@ -155,14 +157,15 @@ class JsonToUi {
             : [],
 
         arguments:
-          item.doc?.argument?.length > 0
-            ? item.doc?.argument.map(argument => {
+          item.comments?.argument?.length > 0
+            ? item.comments?.argument.map(argument => {
                 const args = argument.description.match(
                   /(\{[^}]*\}|\[[^\]]*\]|`[^`]*`|[^ ]+)/g,
                 )
                 const [type, name, ...description] = args || []
 
                 return {
+                  id: item.id,
                   type: type?.replace('{', '').replace('}', '') || '',
                   name: name?.replace('[', '').replace(']', '') || '',
                   description: description?.join(' ').replace('-', '') || '',
@@ -171,29 +174,29 @@ class JsonToUi {
             : [],
 
         changelog:
-          item.doc?.changelog?.length > 0
-            ? item.doc?.changelog.map(changelog => {
+          item.comments?.changelog?.length > 0
+            ? item.comments?.changelog.map(changelog => {
                 return changelog?.description
               })
             : [],
 
         todo:
-          item.doc?.todo?.length > 0
-            ? item.doc?.todo.map(todo => {
+          item.comments?.todo?.length > 0
+            ? item.comments?.todo.map(todo => {
                 return todo?.description
               })
             : [],
 
         bug:
-          item.doc?.bug?.length > 0
-            ? item.doc?.bug.map(bug => {
+          item.comments?.bug?.length > 0
+            ? item.comments?.bug.map(bug => {
                 return bug?.description
               })
             : [],
 
         example:
-          item.doc?.example?.length > 0
-            ? item.doc?.example.map(example => {
+          item.comments?.example?.length > 0
+            ? item.comments?.example.map(example => {
                 return example?.description
               })
             : [],
@@ -206,8 +209,8 @@ class JsonToUi {
         //-----------------------------
         //-- Extract description from comment for namespace(s)
         namespaces:
-          item.doc?.namespace?.length > 0
-            ? item.doc?.namespace.map(namespace => {
+          item.comments?.namespace?.length > 0
+            ? item.comments?.namespace.map(namespace => {
                 //-- Cleanup description to prepare to record
                 const description = namespace?.description
                   .replace('{', '')
@@ -234,8 +237,8 @@ class JsonToUi {
         //-----------------------------
         //-- Extract description from comment for module(s)
         modules:
-          item.doc?.module?.length > 0
-            ? item.doc?.module.map(thisModule => {
+          item.comments?.module?.length > 0
+            ? item.comments?.module.map(thisModule => {
                 const value = thisModule.description
                 this.modules.push({
                   id: item.id,
@@ -247,8 +250,8 @@ class JsonToUi {
 
         //-----------------------------
         memberOf:
-          item.doc?.memberof?.length > 0
-            ? item.doc?.memberof.map(memberof => {
+          item.comments?.memberof?.length > 0
+            ? item.comments?.memberof.map(memberof => {
                 const value = memberof?.description.split(':')
                 return {
                   type: value[0],
@@ -258,8 +261,8 @@ class JsonToUi {
             : [],
 
         requires:
-          item.doc?.requires?.length > 0
-            ? item.doc?.requires.map(require => {
+          item.comments?.requires?.length > 0
+            ? item.comments?.requires.map(require => {
                 const rootDesc = require.description
                 const { type, name, description } = rootDesc.includes(
                   'https://nodejs.org/api',
@@ -299,7 +302,7 @@ class JsonToUi {
     })
 
     // 2. Second  pass to add associations between items, recording files, etc
-    processedData.map((item: ProcessedDataItem) => {
+    processedData.map((item: CommentsProcessed) => {
       // 2.1. if has an @memberof tagging.
       if (item?.memberOf && item?.memberOf?.length > 0) {
         item.memberOf.map(memberOf => {
@@ -342,7 +345,7 @@ class JsonToUi {
                 })
 
                 //-- Find the parent and assign the child id to it
-                processedData.map((parentItem: ProcessedDataItem) => {
+                processedData.map((parentItem: CommentsProcessed) => {
                   if (parentItem.id === thisModule.id) {
                     parentItem.children.push({
                       id: item.id,
@@ -375,7 +378,7 @@ class JsonToUi {
     }) //-- end of looping through all processedData
 
     // 3. If item is NOT a Root Item, add it's parent file to the files parent array.
-    processedData.map((item: ProcessedDataItem) => {
+    processedData.map((item: CommentsProcessed) => {
       if (item?.isRootItem != true) {
         // 3.1 If item is NOT a Root Item, add it's parent file to the files parent array.
         this.files.map(file => {
@@ -389,8 +392,8 @@ class JsonToUi {
           }
           // 3.2 Make sure proper parent association
           else {
-            let fileToUpdate: any = processedData.filter(processedDataItem => {
-              processedDataItem.id === file.id
+            let fileToUpdate: any = processedData.filter(CommentsProcessed => {
+              CommentsProcessed.id === file.id
             })
             //-- If there is a file, and there is not already an entry for it, add it.
             if (
@@ -420,10 +423,10 @@ class JsonToUi {
    * @memberof module:JsonToUi
    * @returns {boolean} True if successful, false if not.
    */
-  getRootItems(): ProcessedDataItem[] | [] {
+  getRootItems(): CommentsProcessed[] | [] {
     try {
       //-- Get the root items
-      const rootItems = this.processedData?.filter(item => {
+      const rootItems = this.processedData?.filter((item:CommentsProcessed) => {
         if (
           // item.parent.length === 0 ||
           item.isRootItem == true
@@ -439,10 +442,10 @@ class JsonToUi {
     }
   }
 
-  getItemsByParent(parent: string): ProcessedDataItem[] | undefined | boolean {
+  getItemsByParent(parent: string): CommentsProcessed[] | undefined | boolean {
     try {
       //-- Get the root items
-      const items = this.processedData?.filter((item: ProcessedDataItem) => {
+      const items = this.processedData?.filter((item: CommentsProcessed) => {
         if (item.parent.length > 0) {
           item.parent.map(parent => {
             if (parent.id === item.id) {
@@ -470,7 +473,7 @@ class JsonToUi {
     // 1. Create an array to hold the elements
     let elements: Elements = {
       created: new Date(),
-      data: [],
+      comments: [],
     }
 
     //TODO: 2023-07-17 | Erik Plachta | Onboard this below once decide to use like this or remove.
@@ -479,7 +482,7 @@ class JsonToUi {
 
     // 2. Loop through all Root Items and generate base content.
     // this.rootItems != undefined &&
-    this.rootItems.map((item: ProcessedDataItem) => {
+    this.rootItems.map((item: CommentsProcessed) => {
       let headerNavLinkId = randomUUID()
       let containerId = randomUUID()
       let tabStripNavId = randomUUID()
