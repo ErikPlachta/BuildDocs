@@ -205,6 +205,7 @@ class JsonToUi {
         //-- Creating empty values for the below, which will be populated on next pass.
         parent: [],
         children: [],
+        related: [],
 
         //-----------------------------
         //-- Extract description from comment for namespace(s)
@@ -519,6 +520,56 @@ class JsonToUi {
     return ElementsProcessed
   }
 
+
+    /**
+   * Evaluates namespaces and creates content to be built into main.
+   */
+    buildMainContent(ElementsProcessed: ElementsProcessed): ElementsProcessed {
+      // 1. Get all Namespaces and create main nav elements for them.
+      this.rootItems.map((item: CommentsProcessed) => {
+        if (item.namespaces.length > 0) {
+          // 2. Create the main nav elements for each namespace.
+          const rootElementToRender: Elements = {
+            id: item.id, //-- The ID of the raw json data all content is being rendered from.
+            createdDate: new Date(),
+            parents: {
+              ...ElementsProcessed.parents,
+            },
+            Elements: [
+              //-------------
+              // 3.2.1 - header-nav-link
+              {
+                id: item.id,
+                parent: ElementsProcessed.parents.main,
+                description: `Content wrapper for group ${item.namespaces[0]} content within main.}`,
+                //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
+                elementType: 'div',
+                dataAttributes: {
+                  value: null,
+                  type: null,
+                  path: item.fileDetails.filePath,
+                  role: 'nav-header-link', //-- Role of content when rendered to the UI.
+                  group: item.namespaces[0], //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
+                  subGroup: item.namespaces[0], //-- Primary module that's running the show.
+                  id: item.modules[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+                },
+                children: [],
+                helpers: {
+                  getChildren: () => [],
+                },
+              },
+            ],
+          }// end of this element.
+  
+          // 3. Add the main nav elements to the ElementsProcessed object.
+          ElementsProcessed.Elements.push(rootElementToRender)
+        } // -- end of if namespace check.
+      }) // -- end of looping through root items.
+      // 4. Return updated object with the main nav elements within.
+      return ElementsProcessed
+    }
+
+
   /**
    *
    * @return {array[object]} - An array of objects, each containing the id of the element, the id of the processed item it relates to, and the data to render.
@@ -695,6 +746,7 @@ class JsonToUi {
 
 
     ElementsProcessed = this.buildMainNav(ElementsProcessed)
+    ElementsProcessed = this.buildMainContent(ElementsProcessed)
 
     //---------------------------------
     // 5. Map through ALL Content to Render and make sure children are populated.

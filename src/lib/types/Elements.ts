@@ -133,6 +133,7 @@ type Elements = {
     changelog: CommentsProcessed['changelog'] | []
     parent: CommentsProcessed['parent'] | null
     children: CommentsProcessed['children'] | []
+    related : CommentsProcessed['related'] | []
   }
   //-- Array of Objects which are elements to be rendered
   Elements?: Element[]

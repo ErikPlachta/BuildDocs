@@ -109,7 +109,7 @@ type CommentsProcessed = {
     description: string // after `-`
   }
   example: void | string[]
-  related?: string[]
+  
   see?: string[]
 
   todo?: void | string[]
@@ -182,6 +182,14 @@ type CommentsProcessed = {
     association: 'namespace' | 'module' | 'file' | string
     description?: string
   }[]
+  //-- Elements indirectly related to this item.
+  related: {
+    id: CommentsProcessed['id']
+    type: string | null
+    association: 'namespace' | 'module' | 'file' | string
+    description?: string
+  }[]
+
   // dataToRender: dataToRender;
 
   // Optionally add the original doc object for debugging.
