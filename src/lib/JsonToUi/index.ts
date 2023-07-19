@@ -722,34 +722,6 @@ class JsonToUi {
   }
 
   /**
-   * Utility for building the tab strip nav based on the processed data.
-   *
-   * @returns null
-   * @todo build this out, changing it's arg.
-   */
-  buildTabStripNav(parentId : string):Element[]{
-
-    // 1. Get the parent element.
-
-    // 2. Get the children of the parent element. ( all modules that are members of namespace )
-
-    // 3. return built elements.
-    
-    return []
-  }
-
-buildContent(parentId : string):Element[]{
-
-  // 1. Get the parent element.
-
-  // 2. Get the children of the parent element. ( all modules that are members of namespace )
-
-  // 3. return built elements.
-
-  return []
-}
-
-  /**
    * Evaluates namespaces and creates content to be built into main.
    */
   buildMainContent(ElementsProcessed: ElementsProcessed): ElementsProcessed {
@@ -785,14 +757,11 @@ buildContent(parentId : string):Element[]{
               children: [],
               helpers: {
                 // 2. Build the content and it's children
-                getChildren: () => { 
-                  const tabStripNav :Element[] = this.buildTabStripNav(item.id)
-                  const content :Element[] = this.buildContent(item.id)
+                getChildren: () => {
+                  const tabStripNav: Element[] = this.buildTabStripNav(item.id)
+                  const content: Element[] = this.buildContent(item.id)
 
-                  return [
-                    ...tabStripNav,
-                    ...content
-                    ]
+                  return [...tabStripNav, ...content]
                 },
               },
             },
@@ -805,6 +774,40 @@ buildContent(parentId : string):Element[]{
     }) // -- end of looping through root items.
     // 4. Return updated object with the main nav elements within.
     return ElementsProcessed
+  }
+
+  /**
+   * Utility for building the tab strip nav based on the processed data.
+   *
+   * @returns null
+   * @todo build this out to render content properly.
+   * @todo determine if any defaults should exist.
+   */
+  buildTabStripNav(parentId: string): Element[] {
+    // 1. Get the parent element.
+
+    // 2. Get the children of the parent element. ( all modules that are members of namespace )
+
+    // 3. return built elements.
+
+    return []
+  }
+
+  /**
+   * 
+   * @param parentId - The ID of the parent element to be used to get data to render content for.
+   * @returns 
+   * @todo build this out to render content properly.
+   * @todo determine if any defaults should exist.
+   */
+  buildContent(parentId: string): Element[] {
+    // 1. Get the parent element.
+
+    // 2. Get the children of the parent element. ( all modules that are members of namespace )
+
+    // 3. return built elements.
+
+    return []
   }
 
   //--------------------------------------------------------------------------
