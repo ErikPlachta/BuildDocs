@@ -57,7 +57,8 @@ type Element = {
   dataAttributes: {
     //-- What's to be displayed.
     value: null | string
-    type?: null | string | CommentsProcessed['type']
+    type: null | string | CommentsProcessed['type']
+    path: null | string //-- location of item in content for reference.
 
     //-- Role of content when rendered to the UI.
     role:
@@ -113,17 +114,17 @@ type Elements = {
   createdDate: Date
 
   //-- Id's for parent containers generated at time of execution
-  parentContainerIds: {
+  parents: {
     main: string
     headerNav: string
     headerNavLinks: string
-    container: string
-    tabStripNav: string
-    contentWrapper: string
+    container?: string
+    tabStripNav?: string
+    contentWrapper?: string
   }
 
   //-- Based data for the comment block.
-  data: {
+  data?: {
     // item: CommentsProcessed //TODO: uncomment and keep full item here or remove this.
     arguments: CommentsProcessed['arguments'] | []
     props: CommentsProcessed['props'] | []
@@ -145,7 +146,15 @@ type Elements = {
 type ElementsProcessed = {
   id: string
   createdDate: Date
-  data: Elements[]
+  parents: {
+    headerNav: string
+    headerNavLinks: string
+    main: string
+    container?: string
+    tabStripNav?: string
+    contentWrapper?: string
+  }
+  Elements: Elements[]
 }
 
 //-- Exporting types

@@ -142,6 +142,8 @@ async function getConfig(args) {
  * @param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.
  * @param {object} config - Config is the default configuration for the DocsToJson utility.
  * @returns {object} - Updated config with args passed in.
+ * 
+ * @todo: Add logic to strip `--` prefaced to args if any just in case.
  */
 async function getUpdatedConfig(args, config) {
   const updatedConfig = {
