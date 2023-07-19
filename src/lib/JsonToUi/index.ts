@@ -20,7 +20,7 @@ import {
   JsonToUiConfig,
   Element,
   Elements,
-  ElementsProcessed
+  ElementsProcessed,
 } from '../types'
 import { randomUUID } from 'crypto'
 
@@ -429,14 +429,16 @@ class JsonToUi {
   getRootItems(): CommentsProcessed[] | [] {
     try {
       //-- Get the root items
-      const rootItems = this.processedData?.filter((item:CommentsProcessed) => {
-        if (
-          // item.parent.length === 0 ||
-          item.isRootItem == true
-        ) {
-          return item
-        }
-      })
+      const rootItems = this.processedData?.filter(
+        (item: CommentsProcessed) => {
+          if (
+            // item.parent.length === 0 ||
+            item.isRootItem == true
+          ) {
+            return item
+          }
+        },
+      )
 
       return rootItems
     } catch (error) {
@@ -473,42 +475,50 @@ class JsonToUi {
    * @return {array[object]} - An array of objects, each containing the id of the element, the id of the processed item it relates to, and the data to render.
    */
   buildElements(): ElementsProcessed {
-    
     // 1. Create an array to hold the Element and all related info to be generated.
-    const ElementsProcessed:ElementsProcessed = {
+    const ElementsProcessed: ElementsProcessed = {
       id: randomUUID(),
       createdDate: new Date(),
       data: [],
     }
 
     //TODO: 2023-07-17 | Erik Plachta | Onboard this below once decide to use like this or remove.
-    const headerId = randomUUID()
+    const headerNavId = randomUUID()
+    let headerNavLinksId = randomUUID()
     const mainId = randomUUID()
 
     // 2. Loop through all Root Items and generate base content.
     // this.rootItems != undefined &&
     this.rootItems.map((item: CommentsProcessed) => {
-      let headerNavLinkId = randomUUID()
+      
       let containerId = randomUUID()
       let tabStripNavId = randomUUID()
       let contentWrapperId = randomUUID()
 
-      // 2.0 - Add the root item to the elements.data array.
-      ElementsProcessed.data.push({
+      const rootElementToRender: Elements = {
         id: item.id, //-- The ID of the raw json data all content is being rendered from.
         createdDate: new Date(),
+        parentContainerIds: {
+          headerNav: headerNavId,
+          headerNavLinks: headerNavLinksId,
+          main: mainId,
+          container: containerId,
+          tabStripNav: tabStripNavId,
+          contentWrapper: contentWrapperId,
+        },
         //-----------------
         // 2.1 - Get all root data for reference.
+        //TODO: 2023-07-18 | Erik Plachta | Decide if this is needed and purge if not.
         data: {
           // item: item,
           //-- data to reference when building content.
-          changelog: item.changelog || [],
-          props: item.props || [],
-          arguments: item.arguments || [],
-          returns: item.returns || [],
-          requires: item.requires || [],
-          parent: item.parent || null,
-          children: item.children || []
+          changelog: [], // item.changelog || [],
+          props: [], // item.props || [],
+          arguments: [], // item.arguments || [],
+          returns: [], // item.returns || [],
+          requires: [], // item.requires || [],
+          parent: item.parent, // item.parent || null,
+          children: [], // item.children || []
         },
         //-----------------
         //-- 2.2 Array of all content to be rendered
@@ -516,227 +526,139 @@ class JsonToUi {
           //-------------
           // 2.2.1 - header-nav-link
           {
-            id: headerNavLinkId,
+            id: item.id,
             parent: 'nav-header',
-            description:
-              'Container that holds navigation to toggle what is visible within the main section.',
+            description: `Link within the main navigation for module: ${item.modules[0]}`,
             //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
-            type: 'li',
-            attributes: {
-              value: item.namespaces[0],
-              type : null,
+            elementType: 'li',
+            dataAttributes: {
+              value: item.modules[0],
+              type: item.type?.type || item.type?.description || null,
               role: 'nav-header-link', //-- Role of content when rendered to the UI.
               group: item.namespaces[0], //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
               subGroup: item.modules[0], //-- Primary module that's running the show.
               id: item.modules[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
             },
             children: [],
-            getChildren: () => {
-              let navHeaderLinks: Element[] = []
+            helpers: {
+              getChildren: () => {
+                const tabStripLinks: Element[] = []
+                const relatedRequires: Element[] = []
+                const relatedContent: Element[] = []
 
-              //!! TODO: Pick up here, by getting all child elements and managing accordingly. Then to go through each.
-              this.rootItems.forEach(rootItem => {
-                let relatedChildren: Element[] = []
-                let relatedRequires: Element[] = []
-                
-                rootItem.requires &&
-                  rootItem.requires.forEach(entry => {
-                    this.processedData.map((each:CommentsProcessed) => {
-                      if (entry.id == each.id) {
-                        relatedRequires.push({
-                          id: randomUUID(),
-                          parent: tabStripNavId,
-                          type: 'li',
-                          attributes: {
-                            // type: rootItem?.type?.type, //
-                            value: rootItem.modules[0],
-                            role: 'tab-strip-nav-link',
-                            group: rootItem.namespaces[0],
-                            subGroup: rootItem.modules[0],
-                            id: `${rootItem.modules[0]}-tab`,
-                          },
-                          children: [],
-                          getChildren: () => [],
-                        })
-                      }
+                //!! TODO: Pick up here, by getting all child elements and managing accordingly. Then to go through each.
+                this.rootItems.forEach(rootItem => {
+                  console.log('rootItem.requires: ', rootItem?.modules?.[0])
+
+                  //-- Elements to be rendered in the tab-strip-nav for the root item.
+                  const tabStripNavElement: Element = {
+                    id: randomUUID(),
+                    description: `A nav-link within tab-strip-nav for root module ${item.modules[0]}, this module: ${rootItem.modules[0]}}`,
+                    parent: tabStripNavId,
+                    children: [],
+                    elementType: 'li',
+                    dataAttributes: {
+                      value: rootItem.modules[0],
+                      type: rootItem?.type?.type,
+                      role: 'tab-strip-nav-link',
+                      group: rootItem.namespaces[0],
+                      subGroup: rootItem.modules[0],
+                      id: `${rootItem.modules[0]}-tab`,
+                    },
+                    helpers: {
+                      getChildren: () => [],
+                    },
+                  }
+                  //-- populate children
+                  tabStripNavElement.children =
+                    tabStripNavElement.helpers.getChildren()
+                  //-- Update array
+                  tabStripLinks.push(tabStripNavElement)
+
+
+                  /**
+                   * IF the root item has an @require tag, check for matched ID match to current root item.
+                   * IF match, then create a new element for the tab-strip-nav for the root item.
+                   */
+                  rootItem.requires &&
+                    rootItem?.id?.length > 0 &&
+                    //-- Loop through all @require items
+                    rootItem.requires.forEach(entry => {
+                      //-- loop through all Comments Processed to find a requirement match within the root item.
+                      this.processedData.map((child: CommentsProcessed) => {
+                        //-- If a requirement Match is found, create a new element for the tab-strip-nav for the root item.
+                        if (entry.id == child.id) {
+                         //-- Build element.
+                          const childElement = {
+                            id: randomUUID(),
+                            parent: rootItem.id,
+                            elementType: 'li',
+                            description: `Link within the module'${rootItem.modules[0]}' tab-strip-navigation, for module: ${child.modules[0]}`,
+                            dataAttributes: {
+                              // type: rootItem?.type?.type, //
+                              value: rootItem.modules[0],
+                              role: 'tab-strip-nav-link',
+                              group: rootItem.namespaces[0],
+                              subGroup: rootItem.modules[0],
+                              id: `${child.modules[0]}-tab`,
+                            },
+                            children: [],
+                            helpers: {
+                              getChildren: () => [],
+                            },
+                          } //-- end of building the child elements
+                          //-- Update the parent element with the child element.
+                          childElement.children.push(
+                            ...childElement.helpers.getChildren()
+                          )
+                          //-- Update the relatedRequires array with the child element.
+                          // relatedRequires.push(childElement)
+                        } // -- end of root items requires loop.
+                      })
                     })
-                  })
+                }) //-- End of each group rendering.
 
-                // navHeaderLinks.push({
-                //   id: randomUUID(),
-                //   parent: tabStripNavId,
-                  
-                //   type: 'li',
-                //   attributes: {
-                //     value: rootItem.modules[0],
-                //     type: rootItem?.type?.type,
-                //     role: 'tab-strip-nav-link',
-                //     group: rootItem.namespaces[0],
-                //     subGroup: rootItem.modules[0],
-                //     id: `${rootItem.modules[0]}-tab`,
-                //   },
-                //   children: [],
-                //   getChildren: () => [],
-                // })
-              })
-
-              return [...navHeaderLinks]
+                return [...tabStripLinks, ...relatedRequires]
+              },
             },
           },
-
-          //!! TODO: Pick up from here next.
-        //   //-------------
-        //   // 2.2.2 - container - Each Root Item has a container element. Is visible when selected via main navigation.
-        //   {
-        //     id: containerId,
-        //     parent: 'main',
-        //     description:
-        //       'Container that holds ALL content for all Root Items to be displayed, based on the selection within nav-header.',
-        //     type: 'div',
-        //     attributes: {
-        //       value: null,
-        //       role: 'container',
-        //       group: item.namespaces[0],
-        //       subGroup: null,
-        //       id: `container-${item.namespaces[0]}`,
-        //     },
-
-        //     children: [],
-        //     //-- Populate Children and Children's children for TabStrip
-        //     getChildren: () => {
-        //       //TODO: build elements dynamically
-        //       //-- TabStrip Wrapper and then tabs.
-        //       const tabStripNavElements: ContentToRender[] = []
-        //       tabStripNavElements.push({
-        //         id: tabStripNavId,
-        //         parent: containerId,
-        //         type: 'nav',
-        //         attributes: {
-        //           value: null,
-        //           role: 'tab-strip-nav',
-        //           group: item.namespaces[0],
-        //           subGroup: null,
-        //           id: `tab-strip-${item.namespaces[0]}`,
-        //         },
-        //         children: [],
-        //         getChildren: () => {
-        //           //-- Map thru all child elements
-        //           const childrenElements: ContentToRender[] = []
-
-        //           item.children.map(child => {
-        //             const thisElement = this.processedData.filter(
-        //               entry => entry.id == child.id,
-        //             )[0]
-
-        //             if (thisElement) {
-        //               childrenElements.push({
-        //                 id: randomUUID(),
-        //                 parent: tabStripNavId,
-        //                 type: thisElement?.type?.type,
-        //                 attributes: {
-        //                   value: null,
-        //                   role: 'tab-strip-nav-link',
-        //                   group: item.namespaces[0],
-        //                   subGroup: item.modules[0],
-        //                   id: `${item.modules[0]}-tab`,
-        //                 },
-        //                 children: [],
-        //                 getChildren: () => [],
-        //               })
-        //             }
-        //           })
-
-        //           const childNavElements: ContentToRender[] = [
-        //             {
-        //               id: randomUUID(),
-        //               parent: tabStripNavId,
-        //               attributes: {
-        //                 value: null,
-        //                 role: 'tab-strip-nav-link',
-        //                 group: item.namespaces[0],
-        //                 subGroup: item.modules[0],
-        //                 id: `${item.modules[0]}-tab`,
-        //               },
-        //               children: [],
-        //               getChildren: () => [],
-        //             },
-        //           ]
-
-        //           return [...childrenElements]
-        //         },
-        //       })
-
-        //       //-- Populate CHildren Content
-        //       const contentWrapper: ContentToRender[] = []
-        //       contentWrapper.push(
-        //         // 2.2.4 - Content Wrapper (element after tab-strip-nav that  holds all content)
-        //         {
-        //           id: randomUUID(),
-        //           parent: containerId,
-        //           attributes: {
-        //             value: null,
-        //             role: 'content-wrapper',
-        //             group: item.namespaces[0],
-        //             subGroup: null,
-        //             id: `content-${item.namespaces[0]}`,
-        //           },
-        //           children: [],
-        //           getChildren: () => {
-        //             const contentElements: ContentToRender[] = []
-
-        //             // 2.2.5 - Content (Element that holds all content related.)
-        //             //TODO: Update so builds all, not just the one.
-        //             contentElements.push({
-        //               id: randomUUID(),
-        //               parent: contentWrapperId,
-        //               attributes: {
-        //                 value: null,
-        //                 role: 'content',
-        //                 group: item.namespaces[0],
-        //                 subGroup: null,
-        //                 id: `content-${item.namespaces[0]}`,
-        //               },
-        //               children: [],
-        //               getChildren: () => {
-        //                 const elementsInContent: ContentToRender[] = []
-        //                 return elementsInContent
-        //               },
-        //             })
-
-        //             return contentElements
-        //           },
-        //         },
-        //       )
-        //       return [...tabStripNavElements, ...contentWrapper]
-        //     },
-        //   },
-        
-      
         ], //--  END of creating elements for each Root Item.
-      })
+      }
+
+      rootElementToRender.Elements &&
+        rootElementToRender.Elements.forEach((element: Element) => {
+          element.children = element.helpers.getChildren()
+        })
+
+      // 2.0 - Add the root item to the elements.data array.
+      ElementsProcessed.data.push(rootElementToRender)
     })
 
     //---------------------------------
     // 3. Map through ALL Content to Render and make sure children are populated.
+    //TODO: Build out or remove if not needed
 
-    // Recursively populate children of each ContentToRender element.
-    function populateChildren(element: Element) {
-      
-      // Call getChildren method to populate children.
-      if (element.hasOwnProperty('getChildren')) {
-        element.children = element.getChildren()
-      }
+    // // Recursively populate children of each ContentToRender element.
+    // function populateChildren(element: Element) {
+    //   // Call getChildren method to populate children.
+    //   if (element.hasOwnProperty('getChildren')) {
+    //     element.children = element.helpers.getChildren()
+    //   }
 
-      // Recursively call populateChildren for each child.
-      if (element.children) {
-        element.children.forEach((child: Element) =>
-          populateChildren(child),
-        )
-      }
-    }
+    //   // Recursively call populateChildren for each child.
+    //   if (element.children) {
+    //     element.children.forEach((child: Element) => populateChildren(child))
+    //   }
+    // }
+    // for (let i = 0; i < ElementsProcessed.data.length; i++) {
+    //   // console.log('i: ', i, ' - ', ElementsProcessed.data[i].Elements)
+    //   // for(let j = 0; j < ElementsProcessed.data; j++) {
+    //   //   populateChildren(ElementsProcessed.data[i][j])
+    //   // }
+    // }
 
     // 4. Finally, return the elements array.
-    return ElementsProcessed;
+    return ElementsProcessed
   }
 
   //--------------------------------------------------------------------------
@@ -760,39 +682,6 @@ class JsonToUi {
     subTitle = 'Placeholder subtitle for html.',
   ): string {
     return `${title} ${subTitle}`
-    // const bodyStart = `<html>
-    //         <head>
-    //             <title>${title}</title>
-    //             <meta charset="utf-8" />
-    //             <meta name="viewport" content="width=device-width, initial-scale=1" />
-    //             <script src="https://cdn.tailwindcss.com"></script>
-    //         </head>
-    //         <body class="bg-gray-100 flex flex-col gap-8">`;
-
-    // const getMainNav = ""; //todo: build this out
-
-    // const buildHeader = `<header class="w-full p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto">
-    // 		<div class="max-w-4xl mx-auto w-full">
-    // 				<h1 class="text-blue-500 text-4xl">
-    // 						${title}
-    // 				</h1>
-    // 				<p class="text-gray-400">
-    // 						${subTitle}
-    // 				</p>
-    // 		</div>
-    // 		<nav>
-    // 			<ul class="flex flex-row gap-6 mt-auto h-full">
-    // 					<li class="py-2 px-4 border-solid border-b-4 border-blue-500 hover:border-blue-500/80"
-    // 							data-role="nav-main"
-    // 							data-group="overview"
-    // 					>
-    // 							<a href="#overview">Overview</a>
-    // 				</li>` +
-    // 		getMainNav() +
-    // 		`</ul>
-    // 		</nav>
-    // 	</header>`
-    // ;
   }
 }
 

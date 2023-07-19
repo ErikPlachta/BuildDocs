@@ -35,11 +35,15 @@ const configPath = `${rootPath}/.dist/JsonToUi`
  */
 function main(comments: Comments[]) {
     try {
+        //-- if Folder doesn't exist, create it.
+        if (!require('fs').existsSync(configPath)) {
+            require('fs').mkdirSync(configPath)
+        }
+        
+        //-- Then execute JsonToUi Class
         const run = new JsonToUi(comments)
-        // console.log('run: ', run)
 
-        // run.getItemsByParentId
-
+        //-- Then write all files to config path for debugging.
         writeFileSync(
             `${configPath}/sourceData.json`,
             JSON.stringify(run.elements, null, 2)

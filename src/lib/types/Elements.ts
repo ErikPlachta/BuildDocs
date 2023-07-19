@@ -21,30 +21,26 @@ import { CommentsProcessed } from './index'
 type Element = {
   //-- DOM ID for the element.
   id: string
+  //-- If there is a parent ID, it's to be here.
+  parent: string | null
+  //-- If this element has children elements, they'll be rendered here.
+  children: Element[] | []
+
   //-- Optional placeholder to be displayed when no content is present for tooltips, etc.
   description?: string
 
   //-- The role of the item within the content itself.
-  type:
-    | string
-    | 'li'
-    | 'section'
-    | 'div'
-    | 'span'
-    | 'a'
-    | 'button'
-    | 'input'
-    | 'textarea'
-  //-- The definition after the @type tag, if any.
-  typeDescription?: null | string
+  elementType: ElementType
 
-  parent: string | null
-  
-  //-- If this element has children elements, they'll be rendered here.
-  getChildren: () => Element[]
-  children: Element[] | []
+  helpers: {
+    getChildren: () => Element[]
+    // getChildrenByType: (type: string) => Element[],
+    // getChildrenByRole: (role: string) => Element[],
+    // getChildrenByGroup: (group: string) => Element[],
+    // getChildrenBySubGroup: (subGroup: string) => Element[],
+    // getChildrenByParent: (parent: string) => Element[],
+  }
 
-  
   //-- Array of Objects which are elements to be rendered
   // Default configuration for content.
   defaults?: {
@@ -58,7 +54,7 @@ type Element = {
   }
 
   //-- Organizational attributes for content being rendered
-  attributes: {
+  dataAttributes: {
     //-- What's to be displayed.
     value: null | string
     type?: null | string | CommentsProcessed['type']
@@ -87,6 +83,20 @@ type Element = {
 }
 
 /**
+ * Used for rendering HTML elements.
+ */
+type ElementType =
+  | string
+  | 'li'
+  | 'section'
+  | 'div'
+  | 'span'
+  | 'a'
+  | 'button'
+  | 'input'
+  | 'textarea'
+
+/**
  * @typedef Elements
  * @version 0.0.1
  * @since 2023-07-17
@@ -96,13 +106,25 @@ type Element = {
  * @description For each code-block, this Type is used for the collection of elements generated.
  */
 type Elements = {
+  // -- the ID of the root item in processed data
   id: string
+
+  //-- date the data was generated
   createdDate: Date
-  // parent: CommentsProcessed['parent']
+
+  //-- Id's for parent containers generated at time of execution
+  parentContainerIds: {
+    main: string
+    headerNav: string
+    headerNavLinks: string
+    container: string
+    tabStripNav: string
+    contentWrapper: string
+  }
 
   //-- Based data for the comment block.
   data: {
-    // item: CommentsProcessed
+    // item: CommentsProcessed //TODO: uncomment and keep full item here or remove this.
     arguments: CommentsProcessed['arguments'] | []
     props: CommentsProcessed['props'] | []
     returns: CommentsProcessed['returns'] | []
