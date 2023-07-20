@@ -78,9 +78,14 @@ type Element = {
     //-- Category of content. ( to get all stats for all module could query this.)
     subGroup: null | string // 'stats'
 
+    active :  null | boolean //-- If the item is active or not. (Used by logic to determine how to style/behave in general.)
+
     //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
     id: null | string
   }
+
+  //-- HTML attributes for content being rendered
+  classList: string[]
 }
 
 /**
@@ -101,9 +106,10 @@ type Parents = {
   main: string
   headerNav: string
   headerNavLinks: string
-  container: string
   tabStripNav: string
+  tabStripNavList: string
   contentWrapper: string
+  container: string | null // can be null because not always relevant
 }
 
 /**
@@ -118,6 +124,7 @@ type Parents = {
 type Elements = {
   // -- the ID of the root item in processed data
   id: string
+  description: string
   parents: Parents
   //-- date the data was generated
   createdDate: Date
@@ -149,8 +156,19 @@ type Elements = {
 type ElementsProcessed = {
   id: string
   createdDate: Date
-  parents: Parents
+  description : string
   Elements: Elements[]
+  parents: Parents
+  helpers: {
+    getElements: () => Elements[]
+    getElementById: (id: string) => Elements[]
+    getElementsById: (id: string) => Elements[]
+    getElementsByParentId: (parent: string) => Elements[]
+    getElementsByRole: (role: string) => Elements[]
+    getElementsByGroup: (group: string) => Elements[]
+    getElementsBySubGroup: (subGroup: string) => Elements[]
+    getElementsByType: (type: string) => Elements[]
+  }
 }
 
 //-- Exporting types

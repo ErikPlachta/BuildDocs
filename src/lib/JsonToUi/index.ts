@@ -473,30 +473,59 @@ class JsonToUi {
   //-- Building actual objects based on what UI content needs.
 
   /**
-   *
+   * This function is the main function that generates the `this.elements` object.
+   * 
+   * 1. Create an array to hold the Element and all related info to be generated.
+   * 2. Executes this.buildMainNav() to get Elements Processed for the Main Nav component.
+   * 3. Executes this.buildContentWrapper() to get Elements Processed for the Content Wrapper component.
+   * 
+   * @access private
+   * @type {function} buildElements
+   * @function buildElements
+   * @memberof module:JsonToUi
+   * @summary Manages parsing Processed Data and builds `this.elements`.
+   * @description This function is the main function that generates the `this.elements` object.
+   * @returns {boolean} True if successful, false if not.
+   * @fires buildMainNav
+   * @fires buildContentWrapper
    * @return {array[object]} - An array of objects, each containing the id of the element, the id of the processed item it relates to, and the data to render.
+   * 
+   * @todo  2023-07-20 | Erik Plachta | Onboard helper functions
    */
   buildElements(): ElementsProcessed {
     // 1. Create an array to hold the Element and all related info to be generated.
     let ElementsProcessed: ElementsProcessed = {
       id: randomUUID(),
       createdDate: new Date(),
-      parents: {
+      description : "Holds ALL elements to be rendered.",
+      parents : {
+        main: randomUUID(),
         headerNav: randomUUID(),
         headerNavLinks: randomUUID(),
-        main: randomUUID(),
         tabStripNav: randomUUID(),
+        tabStripNavList: randomUUID(),
         contentWrapper: randomUUID(),
-        container: randomUUID(),
+        container: null,
       },
       Elements: [],
+      helpers : {
+        //TODO: 2023-07-20 | Erik Plachta | Onboard these helper functions
+        getElements: () => [],
+        getElementById: (id: string) => [],
+        getElementsById: (id: string) => [],
+        getElementsByParentId: (parent: string) => [],
+        getElementsByRole: (role: string) => [],
+        getElementsByGroup: (group: string) => [],
+        getElementsBySubGroup: (subGroup: string) => [],
+        getElementsByType: (type: string) => [],
+      }
     } // end of base declaration.
 
     // 2. Build the Main navigation, one link for each namespace.
     ElementsProcessed = this.buildMainNav(ElementsProcessed)
 
     // 3. Build Content Wrapper, Tab-Strip-Nav, and Content for each namespace.
-    ElementsProcessed = this.buildMainContent(ElementsProcessed)
+    ElementsProcessed = this.buildContentWrapper(ElementsProcessed)
 
     // 4. Returns finalized ElementsProcessed object.
     return ElementsProcessed
@@ -518,6 +547,7 @@ class JsonToUi {
     const HeaderNav: Elements = {
       id: ElementsProcessed.parents.headerNavLinks, //-- The ID of the raw json data all content is being rendered from.
       createdDate: new Date(),
+      description : "Holds all elements for the main navigation.",
       parents: {
         ...ElementsProcessed.parents,
       },
@@ -526,15 +556,17 @@ class JsonToUi {
           id: ElementsProcessed.parents.headerNavLinks,
           parent: ElementsProcessed.parents.headerNav,
           description: `Main navigation wrapper, holding a link for each namespace.`,
-          elementType: 'li',
+          elementType: 'ul',
+          classList: ['flex flex-row gap-6 mt-auto h-full'],
           dataAttributes: {
             value: null,
             type: null,
             path: null,
-            role: 'nav-header', //-- Role of content when rendered to the UI.
+            role: 'nav-header-list', //-- Role of content when rendered to the UI.
             group: null,
             subGroup: null,
             id: null,
+            active: null, // -- not relevant for ul.
           },
           children: [],
           helpers: { getChildren: () => [] },
@@ -543,6 +575,7 @@ class JsonToUi {
     } // end of base UL to hold LIs.
 
     // 2. Get all Namespaces and create main nav elements for them.
+    let itemCount = 0 // Used to set the first item as active within elements being processed.
     this.rootItems.map((item: CommentsProcessed) => {
       if (item.namespaces.length > 0) {
         // 2. Create the main nav elements for each namespace.
@@ -552,18 +585,25 @@ class JsonToUi {
           description: `Link within the main navigation for module: ${item.modules[0]}`,
           //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
           elementType: 'li',
+          classList: [
+            'py-2 px-4 border-solid border-b-4 border-blue-500 hover:border-blue-500/80',
+          ],
           dataAttributes: {
-            value: item.namespaces[0],
+            value: item.namespaces[0]?.toUpperCase(),
             type: item.type?.type || item.type?.description || null,
             path: item.fileDetails.filePath,
             role: 'nav-header-link', //-- Role of content when rendered to the UI.
             group: item.namespaces[0], //-- Used to target content to make visible.
             subGroup: null, //-- none at this level. // TODO: Verify this is correct.
             id: item.namespaces[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+            active: itemCount === 0 ? true : false, //-- Used to determine if the content should be visible or not.
           },
           children: [],
           helpers: { getChildren: () => [] },
         } // end of HeaderNavLink declaration.
+
+        //-- Increment the item count to make sure only first item is active.
+        itemCount++
 
         // 3. Add the nav link to the HeaderNav object.
         if (HeaderNav.Elements?.[0].children) {
@@ -583,10 +623,11 @@ class JsonToUi {
   //-- Build Content Wrapper, Tab-Strip-Nav, and Content for each namespace.
 
   /**
-   * Evaluates namespaces and creates content to be built into main.
+   * For each namespace, creates a content wrapper, tab-strip-nav, and content.
+   *
    * @access private
-   * @type {function} buildMainContent
-   * @function buildMainContent
+   * @type {function} buildContentWrapper
+   * @function buildContentWrapper
    * @param {object} ElementsProcessed - The object containing all elements to be rendered.
    * @return {object} ElementsProcessed - The object containing all elements to be rendered.
    * @summary Evaluates namespaces and creates content to be built into main.
@@ -594,8 +635,12 @@ class JsonToUi {
    * @fires buildTabStripNav
    * @fires buildContentWrapper
    * @fires buildContent
+   *
+   * @todo 2023-07-20 | Erik Plachta | Add logic to build default tab for overview
    */
-  buildMainContent(ElementsProcessed: ElementsProcessed): ElementsProcessed {
+  buildContentWrapper(ElementsProcessed: ElementsProcessed): ElementsProcessed {
+    //TODO: 2023-07-20 | Erik Plachta | Add logic to build default tab for overview
+
     // 1. Get all Namespaces and create main nav elements for them.
     this.rootItems.map((item: CommentsProcessed) => {
       if (item.namespaces.length > 0) {
@@ -603,6 +648,7 @@ class JsonToUi {
         const rootElementToRender: Elements = {
           id: item.id, //-- The ID of the raw json data all content is being rendered from.
           createdDate: new Date(),
+          description : `Holds all elements for the namespace: ${item.namespaces[0]}.`,
           parents: {
             ...ElementsProcessed.parents,
             container: item.id,
@@ -613,17 +659,21 @@ class JsonToUi {
             {
               id: item.id,
               parent: ElementsProcessed.parents.main,
-              description: `Content wrapper for group ${item.namespaces[0]} content within main.}`,
+              description: `Div within section.content-wrapper for group ${item.namespaces[0]}. Holds the tab-strip-nav and content.`,
               //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
               elementType: 'div',
+              classList: [
+                'relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full',
+              ],
               dataAttributes: {
                 value: null,
                 type: null,
-                path: item.fileDetails.filePath,
-                role: 'content-wrapper',
+                path: null,
+                role: 'content',
                 group: item.namespaces[0],
                 subGroup: null,
                 id: item.namespaces[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+                active: false,
               },
               children: [],
               helpers: {
@@ -667,6 +717,13 @@ class JsonToUi {
    *
    * Get all modules within the namespace.
    *
+   * 1. Build TabStripNav element, a `nav` element, which will hold the tab strip nav list.
+   * 2. Execute `TabStripNav.helpers.getChildren()`, which populates all children within TabStripNav.
+   * 3. Build the tab strip nav wrapper.
+   * 4. Build the tab strip nav list.
+   * 5. Build the tab strip nav list items.
+   *
+   *
    * @returns null
    * @todo build this out to render content properly.
    * @todo determine if any defaults should exist.
@@ -675,92 +732,121 @@ class JsonToUi {
     parentId: string,
     ElementsProcessed: ElementsProcessed,
   ): Element[] {
-    // 1. Get the parent element.
-    const tabStripLinks_modulesInNamespace: Element[] = []
-
-    // 2. Build the tab strip nav wrapper.
-    const tabStripNav: Element = {
+    // 1. Build TabStripNav element, a `nav` element, which will hold the tab strip nav list.
+    const TabStripNav: Element = {
       id: ElementsProcessed.parents.tabStripNav,
-      parent: ElementsProcessed.parents.contentWrapper,
-      description: `Tab strip nav for namespace: ${parentId}`,
-      //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
-      elementType: 'ul',
+      parent: ElementsProcessed.parents.headerNav,
+      description:
+        "Nav container holding the nav element and it's children within content-wrapper for group.",
+      elementType: 'nav',
+      classList: ['w-full flex flex-row gap-2 bg-gray-100'],
       dataAttributes: {
         value: null,
         type: null,
         path: null,
-        role: 'tab-strip-nav', //-- Role of content when rendered to the UI.
-        group: parentId, //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
-        subGroup: parentId, //-- Primary module that's running the show.
-        id: parentId, //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+        role: 'tab-strip-nav',
+        group: parentId,
+        subGroup: null,
+        id: null,
+        active: false,
       },
       children: [],
       helpers: {
         getChildren: () => {
-          // 3. Loop through processed data
-          const tabStripLinks: Element[] = []
-
-          this.processedData.map((item: CommentsProcessed) => {
-            console.log('item: ', item.type?.type)
-            // 3. Get the children of the parent element.
-            // If Module is a member of the namespace.
-            if (
-              item.parent.filter(
-                itemParent => itemParent.id === parentId,
-                // && itemParent.type === 'file',
-              ).length > 0
-            ) {
-              console.log('navStrip.item to build: ', item.id)
-              // 4. Then build an element for it.
-              const tabStripLink: Element = {
-                id: item.id,
-                parent: ElementsProcessed.parents.tabStripNav,
-                description: `Link within the main navigation for module: ${item.modules[0]}`,
-                //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
-                elementType: 'li',
-                dataAttributes: {
-                  value: item.modules[0],
-                  type: item.type?.type || item.type?.description || null,
-                  path: item.fileDetails.filePath,
-                  role: 'tab-strip-link', //-- Role of content when rendered to the UI.
-                  group:
-                    item.namespaces[0] ||
-                    item.memberOf?.filter(value => value.type == 'namespace')[0]
-                      ?.description ||
-                    item.parent?.filter(value => value.type == 'namespace')[0]
-                      ?.description ||
-                    item.modules[0] ||
-                    item.memberOf?.filter(value => value.type == 'module')[0]
-                      ?.description ||
-                    null,
-                  //-- Either Module, Type Description ( like file name, function name, etc), or NULL
-                  subGroup: item.modules[0] || item.type?.description || null,
-                  id: item.modules[0],
-                },
-                children: [],
-                helpers: {
-                  getChildren: () => [],
-                },
-              }
-              // 5. Push the element to the tabStripLinks array.
-              tabStripLinks.push(tabStripLink)
-            }
-          })
-
-          // 6. return all children links within tab-strip-nav
-          return tabStripLinks
+          // 3. Build the tab strip nav wrapper. (See step 2 below, which calls this function. )
+          const tabStripNavList: Element = {
+            id: ElementsProcessed.parents.tabStripNavList,
+            parent: ElementsProcessed.parents.tabStripNav,
+            description: `List holding tab-strip-nav-links for namespace with id: '${parentId}'.`,
+            elementType: 'ul',
+            classList: ['flex w-full flex-row w-full gap-2 w-full'],
+            dataAttributes: {
+              value: null,
+              type: null,
+              path: null,
+              role: 'tab-strip-nav-list', //-- Role of content when rendered to the UI.
+              group: parentId,
+              subGroup: null,
+              id: null,
+              active: false,
+            },
+            children: [],
+            helpers: {
+              getChildren: () => {
+                // 4. Create container to hold tab-strip-nav-link elements. (See step 2 below, which calls this function.)
+                const tabStripLinks: Element[] = []
+                // 5. Get all modules within the namespace.
+                this.processedData.map((item: CommentsProcessed) => {
+                  // 6. If item's parent is the namespace, build it.
+                  if (
+                    item.parent.filter(
+                      itemParent => itemParent.id === parentId,
+                      // && itemParent.type === 'file',
+                    ).length > 0
+                  ) {
+                    // console.log('navStrip.item to build: ', item.id)
+                    const tabStripLink: Element = {
+                      id: item.id,
+                      parent: ElementsProcessed.parents.tabStripNavList,
+                      description: `Link within the tab-strip-nav-list for for module '${item.modules[0]}' within namespace '${item.namespaces[0]}'.`,
+                      elementType: 'li',
+                      classList: [
+                        'bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid border-b-blue-500 hover:bg-opacity-90 hover:border-b-blue-500/50',
+                      ],
+                      dataAttributes: {
+                        value: item.modules[0],
+                        type: item.type?.type || item.type?.description || null,
+                        path: item.fileDetails.filePath,
+                        role: 'tab-strip-nav-link', //-- Role of content when rendered to the UI.
+                        group:
+                          item.namespaces[0] ||
+                          item.memberOf?.filter(
+                            value => value.type == 'namespace',
+                          )[0]?.description ||
+                          item.parent?.filter(
+                            value => value.type == 'namespace',
+                          )[0]?.description ||
+                          item.modules[0] ||
+                          item.memberOf?.filter(
+                            value => value.type == 'module',
+                          )[0]?.description ||
+                          null,
+                        //-- Either Module, Type Description ( like file name, function name, etc), or NULL
+                        subGroup:
+                          item.modules[0] || item.type?.description || null,
+                        id: item.modules[0],
+                        active: false,
+                      },
+                      children: [],
+                      helpers: {
+                        getChildren: () => [],
+                      },
+                    }
+                    // 6.Populate TabStripLinks array with this link.
+                    tabStripLinks.push(tabStripLink)
+                  }
+                }) // End of building TabStripNavLink
+                // 7. return all children links within tab-strip-nav
+                return tabStripLinks
+              }, // end of tabStripNavList declaration.
+            }, // end of tabStripNavList declaration.
+          } // end of tabStripNavList declaration.
+          // 8. Get children.
+          tabStripNavList.children.push(
+            ...tabStripNavList.helpers.getChildren(),
+          )
+          // 9. Return children Elements for tabStripNav.
+          return [tabStripNavList]
         },
       },
-    }
+    } // end of tabStripNav declaration.
 
-    // 7. Get children.
-    tabStripNav.children.push(...tabStripNav.helpers.getChildren())
+    // 2.Executes TabStripNav's getChildren helper to populate all children within TabStripNav.
+    // ( This executes steps 3 - 9. )
+    TabStripNav.children.push(...TabStripNav.helpers.getChildren())
 
-    // 8. Push populated tab-strip-nav to be merged into the namespaces content.
-    tabStripLinks_modulesInNamespace.push(tabStripNav)
-
-    // 9. return the tab-strip-nav with links.
-    return tabStripLinks_modulesInNamespace
+    // 8. return the tab-strip-nav with links.
+    return [TabStripNav]
   }
 
   /**
@@ -780,6 +866,7 @@ class JsonToUi {
     // 2. Loop through processed data.
     this.processedData.map((item: CommentsProcessed) => {
       // 3. Get the children of the parent element.
+      let itemCount = 0 // Used to determine if the item is the first item in the list.
       //  If Module is a member of the namespace.
       if (item.parent.filter(parent => parent.id === parentId).length > 0) {
         // 3. Create the content for the module.
@@ -789,11 +876,13 @@ class JsonToUi {
           description: `Content for ${item.id} module within namespace ${parentId}.`,
           //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
           elementType: 'div',
+          classList: ['content'],
           dataAttributes: {
             value: item, //TODO: Parse so real content, not just raw data.
             type: item.type?.type || item.type?.description || null,
             path: item.fileDetails.filePath,
             role: 'content', //-- Role of content when rendered to the UI.
+            active: itemCount === 0 ? true : false,
             //-- Either Namespace or Module
             group:
               item.namespaces[0] ||
@@ -813,7 +902,10 @@ class JsonToUi {
           helpers: {
             getChildren: () => [],
           },
-        }
+        } // End of building element
+
+        itemCount++ // Increment the item count.
+
         // 4. Push it into the content_modulesInNamespace array.
         content_modulesInNamespace.push(content)
       }

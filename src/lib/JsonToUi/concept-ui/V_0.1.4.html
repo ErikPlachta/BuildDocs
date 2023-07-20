@@ -41,18 +41,20 @@
       </nav>
     </header>
 
-    <!-- Main container holding all tabs -->
+    <!-- Main content holding all tabs -->
     <section
-      id="main"
-      data-role="container-wrapper"
-      class="'mx-4 min-h-[80%] overflow-hidden"
+      id="content-wrapper"
+      class="mx-4 min-h-[80%] overflow-hidden"
+      data-role="content-wrapper"
+      data-group="main"
+
     >
       <!-- Overview of Execution -->
       <div
-        id="overview-container"
+        id="overview-content"
         class="relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full"
         data-group="overview"
-        data-role="container"
+        data-role="content"
         data-active="true"
       >
         <!-- Tab Strip for Overview -->
@@ -142,10 +144,10 @@
 
       <!-- Module 1 -->
       <div
-        id="mn1-container"
+        id="mn1-content"
         class="relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full hidden"
         data-group="mn1"
-        data-role="container"
+        data-role="content-wrapper"
         data-active="false"
       >
         <nav
@@ -254,15 +256,15 @@
           }
         })
 
-      // 2. Show / hide the main nav's content within their containers based on the selected group from nav-main li.
+      // 2. Show / hide the main nav's content within their contents based on the selected group from nav-main li.
       document
-        .querySelectorAll("[data-role='container']")
-        .forEach(container => {
-          // If the container's group matches the selected group, show it.
-          if (container.dataset.group == groupId) {
-            container?.classList.remove('hidden')
+        .querySelectorAll("[data-role='content']")
+        .forEach(content => {
+          // If the content's group matches the selected group, show it.
+          if (content.dataset.group == groupId) {
+            content?.classList.remove('hidden')
           } else {
-            container?.classList.add('hidden')
+            content?.classList.add('hidden')
           }
         })
     } // end of handleMainNav.
