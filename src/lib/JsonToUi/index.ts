@@ -494,7 +494,7 @@ class JsonToUi {
 
     // 2. Build the Main navigation, one link for each namespace.
     ElementsProcessed = this.buildMainNav(ElementsProcessed)
-    
+
     // 3. Build Content Wrapper, Tab-Strip-Nav, and Content for each namespace.
     ElementsProcessed = this.buildMainContent(ElementsProcessed)
 
@@ -514,50 +514,72 @@ class JsonToUi {
    * @return {object} ElementsProcessed - The object containing all elements to be rendered.
    */
   buildMainNav(ElementsProcessed: ElementsProcessed): ElementsProcessed {
-    // 1. Get all Namespaces and create main nav elements for them.
+    
+    // 1. Create a container to hold all nav links, the Header-nav.
+    const HeaderNav: Elements = {
+      id: ElementsProcessed.parents.headerNavLinks, //-- The ID of the raw json data all content is being rendered from.
+      createdDate: new Date(),
+      parents: {
+        ...ElementsProcessed.parents,
+      },
+      Elements: [
+        {
+          id: ElementsProcessed.parents.headerNavLinks,
+          parent: ElementsProcessed.parents.headerNav,
+          description: `Main navigation wrapper, holding a link for each namespace.`,
+          elementType: 'li',
+          dataAttributes: {
+            value: null,
+            type: null,
+            path: null,
+            role: 'nav-header', //-- Role of content when rendered to the UI.
+            group: null,
+            subGroup: null,
+            id: null,
+          },
+          children: [],
+          helpers: { getChildren: () => [] },
+        },
+      ],
+    } // end of base UL to hold LIs.
+
+    // 2. Get all Namespaces and create main nav elements for them.
     this.rootItems.map((item: CommentsProcessed) => {
       if (item.namespaces.length > 0) {
         // 2. Create the main nav elements for each namespace.
-        const rootElementToRender: Elements = {
-          id: item.id, //-- The ID of the raw json data all content is being rendered from.
-          createdDate: new Date(),
-          parents: {
-            ...ElementsProcessed.parents,
+        const HeaderNavLink: Element = {
+          id: item.id,
+          parent: ElementsProcessed.parents.headerNavLinks,
+          description: `Link within the main navigation for module: ${item.modules[0]}`,
+          //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
+          elementType: 'li',
+          dataAttributes: {
+            value: item.namespaces[0],
+            type: item.type?.type || item.type?.description || null,
+            path: item.fileDetails.filePath,
+            role: 'nav-header-link', //-- Role of content when rendered to the UI.
+            group: item.namespaces[0], //-- Used to target content to make visible.
+            subGroup: null, //-- none at this level. // TODO: Verify this is correct.
+            id: item.namespaces[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
           },
-          Elements: [
-            //-------------
-            // 3.2.1 - header-nav-link
-            {
-              id: item.id,
-              parent: ElementsProcessed.parents.headerNavLinks,
-              description: `Link within the main navigation for module: ${item.modules[0]}`,
-              //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
-              elementType: 'li',
-              dataAttributes: {
-                value: item.modules[0],
-                type: item.type?.type || item.type?.description || null,
-                path: item.fileDetails.filePath,
-                role: 'nav-header-link', //-- Role of content when rendered to the UI.
-                group: item.namespaces[0], //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
-                subGroup: item.namespaces[0], //-- Primary module that's running the show.
-                id: item.modules[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
-              },
-              children: [],
-              helpers: {
-                getChildren: () => [],
-              },
-            },
-          ],
-        } // end of this element.
+          children: [],
+          helpers: { getChildren: () => [] },
+        } // end of HeaderNavLink declaration.
 
-        // 3. Add the main nav elements to the ElementsProcessed object.
-        ElementsProcessed.Elements.push(rootElementToRender)
-      } // -- end of if namespace check.
-    }) // -- end of looping through root items.
-    // 4. Return updated object with the main nav elements within.
+        // 3. Add the nav link to the HeaderNav object.
+        if(HeaderNav.Elements?.[0].children){
+          HeaderNav.Elements[0].children.push(HeaderNavLink)
+        }
+
+      }
+    }) // -- end of making links for namespaces.
+    
+    // 4. Add the main navigation UL and children LIs to the ElementsProcessed object.
+    ElementsProcessed.Elements.push(HeaderNav)
+
+    // 5. Return updated object with the main nav elements within.
     return ElementsProcessed
   }
-
 
   //-------------------------------------
   //-- Build Content Wrapper, Tab-Strip-Nav, and Content for each namespace.
@@ -600,10 +622,10 @@ class JsonToUi {
                 value: null,
                 type: null,
                 path: item.fileDetails.filePath,
-                role: 'nav-header-link', //-- Role of content when rendered to the UI.
-                group: item.namespaces[0], //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
-                subGroup: item.namespaces[0], //-- Primary module that's running the show.
-                id: item.modules[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+                role: 'content-wrapper', 
+                group: item.namespaces[0], 
+                subGroup: null, 
+                id: item.namespaces[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
               },
               children: [],
               helpers: {
@@ -687,7 +709,8 @@ class JsonToUi {
             if (
               item.parent.filter(
                 itemParent =>
-                  itemParent.id === parentId && itemParent.type === 'file',
+                  itemParent.id === parentId 
+                  // && itemParent.type === 'file',
               ).length > 0
             ) {
               console.log('navStrip.item to build: ', item.id)
@@ -705,26 +728,31 @@ class JsonToUi {
                   role: 'tab-strip-link', //-- Role of content when rendered to the UI.
                   group: item.namespaces[0], //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
                   subGroup: item.modules[0], //-- Primary module that's running the show.
-                  id: `${item.modules[0]}-${item.id}`, //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+                  id: item.modules[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
                 },
                 children: [],
                 helpers: {
                   getChildren: () => [],
                 },
               }
+              // 5. Push the element to the tabStripLinks array.
+              tabStripLinks.push(tabStripLink)
             }
           })
 
-          // 5. return all children links within tab-strip-nav
+          // 6. return all children links within tab-strip-nav
           return tabStripLinks
         },
       },
     }
 
-    // 6. Push populated tab-strip-nav to be merged into the namespaces content.
+    // 7. Get children.
+    tabStripNav.children.push(...tabStripNav.helpers.getChildren())
+
+    // 8. Push populated tab-strip-nav to be merged into the namespaces content.
     tabStripLinks_modulesInNamespace.push(tabStripNav)
 
-    // 7. return the tab-strip-nav with links.
+    // 9. return the tab-strip-nav with links.
     return tabStripLinks_modulesInNamespace
   }
 
@@ -762,7 +790,7 @@ class JsonToUi {
               role: 'content', //-- Role of content when rendered to the UI.
               group: item.namespaces[0], //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
               subGroup: item.modules[0], //-- Primary module that's running the show.
-              id: `${item.modules[0]}-${child.id}`, //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+              id: item.modules[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
             },
             children: [],
             helpers: {
@@ -777,8 +805,6 @@ class JsonToUi {
     // 5. return built elements.
     return content_modulesInNamespace
   }
-
-
 
   //----------------------------------------------------------------------------
   //----------------------------------------------------------------------------
