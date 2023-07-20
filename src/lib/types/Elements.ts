@@ -103,13 +103,14 @@ type ElementType =
   | 'textarea'
 
 type Parents = {
+  header: string
+  navHeader: string
+  navHeaderList: string
   main: string
-  headerNav: string
-  headerNavLinks: string
-  tabStripNav: string
-  tabStripNavList: string
   contentWrapper: string
-  container: string | null // can be null because not always relevant
+  tabStripNav?: string // doesn't exist unless Group-Content
+  tabStripNavList?: string // doesn't exist unless Group-Content
+  container?: string // Doesn't exist unless Group-Content
 }
 
 /**
@@ -124,6 +125,7 @@ type Parents = {
 type Elements = {
   // -- the ID of the root item in processed data
   id: string
+  title : string
   description: string
   parents: Parents
   //-- date the data was generated
