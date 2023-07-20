@@ -477,7 +477,7 @@ class JsonToUi {
    * 
    * 1. Create an array to hold the Element and all related info to be generated.
    * 2. Executes this.buildMainNav() to get Elements Processed for the Main Nav component.
-   * 3. Executes this.buildContentWrapper() to get Elements Processed for the Content Wrapper component.
+   * 3. Executes this.buildGroupContentWrapper() to get Elements Processed for the Content Wrapper component.
    * 
    * @access private
    * @type {function} buildElements
@@ -487,7 +487,7 @@ class JsonToUi {
    * @description This function is the main function that generates the `this.elements` object.
    * @returns {boolean} True if successful, false if not.
    * @fires buildMainNav
-   * @fires buildContentWrapper
+   * @fires buildGroupContentWrapper
    * @return {array[object]} - An array of objects, each containing the id of the element, the id of the processed item it relates to, and the data to render.
    * 
    * @todo  2023-07-20 | Erik Plachta | Onboard helper functions
@@ -525,7 +525,7 @@ class JsonToUi {
     ElementsProcessed = this.buildMainNav(ElementsProcessed)
 
     // 3. Build Content Wrapper, Tab-Strip-Nav, and Content for each namespace.
-    ElementsProcessed = this.buildContentWrapper(ElementsProcessed)
+    ElementsProcessed = this.buildGroupContentWrapper(ElementsProcessed)
 
     // 4. Returns finalized ElementsProcessed object.
     return ElementsProcessed
@@ -626,20 +626,19 @@ class JsonToUi {
    * For each namespace, creates a content wrapper, tab-strip-nav, and content.
    *
    * @access private
-   * @type {function} buildContentWrapper
-   * @function buildContentWrapper
+   * @type {function} buildGroupContentWrapper
+   * @function buildGroupContentWrapper
    * @param {object} ElementsProcessed - The object containing all elements to be rendered.
    * @return {object} ElementsProcessed - The object containing all elements to be rendered.
    * @summary Evaluates namespaces and creates content to be built into main.
    * @description For each namespace, creates a content wrapper, tab-strip-nav, and content.
    * @fires buildTabStripNav
-   * @fires buildContentWrapper
    * @fires buildContent
-   *
+   * 
    * @todo 2023-07-20 | Erik Plachta | Add logic to build default tab for overview
    */
-  buildContentWrapper(ElementsProcessed: ElementsProcessed): ElementsProcessed {
-    //TODO: 2023-07-20 | Erik Plachta | Add logic to build default tab for overview
+  buildGroupContentWrapper(ElementsProcessed: ElementsProcessed): ElementsProcessed {
+    //TODO: 2023-07-20 | Erik Plachta | Add logic to build default tab for overview, too.
 
     // 1. Get all Namespaces and create main nav elements for them.
     this.rootItems.map((item: CommentsProcessed) => {
@@ -651,16 +650,13 @@ class JsonToUi {
           description : `Holds all elements for the namespace: ${item.namespaces[0]}.`,
           parents: {
             ...ElementsProcessed.parents,
-            container: item.id,
+            container: item.id //-- Unique Container ID for the Namespace, so can target container by the namespace (parent) id.
           },
           Elements: [
-            //-------------
-            // 3.2.1 - header-nav-link
             {
               id: item.id,
               parent: ElementsProcessed.parents.main,
-              description: `Div within section.content-wrapper for group ${item.namespaces[0]}. Holds the tab-strip-nav and content.`,
-              //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
+              description: `Div within 'main' for Group (namespace) '${item.namespaces[0]}'. Holds the tab-strip-nav and all GroupContentWrapper (which holds GroupContent).`,
               elementType: 'div',
               classList: [
                 'relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full',
@@ -669,7 +665,7 @@ class JsonToUi {
                 value: null,
                 type: null,
                 path: null,
-                role: 'content',
+                role: 'group-content-wrapper',
                 group: item.namespaces[0],
                 subGroup: null,
                 id: item.namespaces[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
@@ -679,17 +675,41 @@ class JsonToUi {
               helpers: {
                 // 2. Build the content and it's children
                 getChildren: () => {
-                  const tabStripNav: Element[] = this.buildTabStripNav(
-                    item.id,
-                    ElementsProcessed,
-                  )
-                  const content: Element[] = this.buildContent(
+                  const GroupContent: Element = {
+                    id: randomUUID(),
+                    parent: ElementsProcessed.parents.container,
+                    description: `Wrapper to hold content within group-content-wrapper, for group (namespace) '${item.namespaces[0]}'.`,
+                    elementType: 'div',
+                    classList: ["border-solid border-2 rounded-b-xl h-full p-4"],
+                    dataAttributes: {
+                      value: null,
+                      type: null,
+                      path: null,
+                      role: 'group-content',
+                      group: item.namespaces[0],
+                      subGroup: null,
+                      id: null,
+                      active: false,
+                    },
+                    children: [],
+                    helpers: { 
+                      getChildren: () => {
+                        return this.buildGroupContent(
+                          item.id,
+                          ElementsProcessed,
+                        )
+                      } 
+                    },
+                  }
+                  
+                  // 3. Build the tab strip nav and it's children
+                  const tabStripNav: Element = this.buildTabStripNav(
                     item.id,
                     ElementsProcessed,
                   )
 
-                  // return [...tabStripNav, ...content]
-                  return [...tabStripNav, ...content]
+                  // 4. Return the tab strip nav and Content-Group-Wrapper elements fully populated.
+                  return [tabStripNav, GroupContent]
                 },
               },
             },
@@ -724,14 +744,14 @@ class JsonToUi {
    * 5. Build the tab strip nav list items.
    *
    *
-   * @returns null
+   * @returns {Element} TabStripNav - The tab strip nav element.
    * @todo build this out to render content properly.
    * @todo determine if any defaults should exist.
    */
   buildTabStripNav(
     parentId: string,
     ElementsProcessed: ElementsProcessed,
-  ): Element[] {
+  ): Element {
     // 1. Build TabStripNav element, a `nav` element, which will hold the tab strip nav list.
     const TabStripNav: Element = {
       id: ElementsProcessed.parents.tabStripNav,
@@ -846,7 +866,7 @@ class JsonToUi {
     TabStripNav.children.push(...TabStripNav.helpers.getChildren())
 
     // 8. return the tab-strip-nav with links.
-    return [TabStripNav]
+    return TabStripNav
   }
 
   /**
@@ -856,7 +876,7 @@ class JsonToUi {
    * @todo build this out to render content properly.
    * @todo determine if any defaults should exist.
    */
-  buildContent(
+  buildGroupContent(
     parentId: string,
     ElementsProcessed: ElementsProcessed,
   ): Element[] {
