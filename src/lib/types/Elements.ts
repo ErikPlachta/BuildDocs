@@ -24,7 +24,7 @@ type Element = {
   //-- If there is a parent ID, it's to be here.
   parent: string | null
   //-- If this element has children elements, they'll be rendered here.
-  children: Element[] 
+  children: Element[]
 
   //-- Optional placeholder to be displayed when no content is present for tooltips, etc.
   description?: string
@@ -97,6 +97,15 @@ type ElementType =
   | 'input'
   | 'textarea'
 
+type Parents = {
+  main: string
+  headerNav: string
+  headerNavLinks: string
+  container: string
+  tabStripNav: string
+  contentWrapper: string
+}
+
 /**
  * @typedef Elements
  * @version 0.0.1
@@ -109,19 +118,12 @@ type ElementType =
 type Elements = {
   // -- the ID of the root item in processed data
   id: string
-
+  parents: Parents
   //-- date the data was generated
   createdDate: Date
 
   //-- Id's for parent containers generated at time of execution
-  parents: {
-    main: string
-    headerNav: string
-    headerNavLinks: string
-    container?: string
-    tabStripNav?: string
-    contentWrapper?: string
-  }
+  
 
   //-- Based data for the comment block.
   data?: {
@@ -133,7 +135,7 @@ type Elements = {
     changelog: CommentsProcessed['changelog'] | []
     parent: CommentsProcessed['parent'] | null
     children: CommentsProcessed['children'] | []
-    related : CommentsProcessed['related'] | []
+    related: CommentsProcessed['related'] | []
   }
   //-- Array of Objects which are elements to be rendered
   Elements?: Element[]
@@ -147,14 +149,7 @@ type Elements = {
 type ElementsProcessed = {
   id: string
   createdDate: Date
-  parents: {
-    headerNav: string
-    headerNavLinks: string
-    main: string
-    container?: string
-    tabStripNav?: string
-    contentWrapper?: string
-  }
+  parents: Parents
   Elements: Elements[]
 }
 
