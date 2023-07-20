@@ -514,7 +514,6 @@ class JsonToUi {
    * @return {object} ElementsProcessed - The object containing all elements to be rendered.
    */
   buildMainNav(ElementsProcessed: ElementsProcessed): ElementsProcessed {
-    
     // 1. Create a container to hold all nav links, the Header-nav.
     const HeaderNav: Elements = {
       id: ElementsProcessed.parents.headerNavLinks, //-- The ID of the raw json data all content is being rendered from.
@@ -567,13 +566,12 @@ class JsonToUi {
         } // end of HeaderNavLink declaration.
 
         // 3. Add the nav link to the HeaderNav object.
-        if(HeaderNav.Elements?.[0].children){
+        if (HeaderNav.Elements?.[0].children) {
           HeaderNav.Elements[0].children.push(HeaderNavLink)
         }
-
       }
     }) // -- end of making links for namespaces.
-    
+
     // 4. Add the main navigation UL and children LIs to the ElementsProcessed object.
     ElementsProcessed.Elements.push(HeaderNav)
 
@@ -622,9 +620,9 @@ class JsonToUi {
                 value: null,
                 type: null,
                 path: item.fileDetails.filePath,
-                role: 'content-wrapper', 
-                group: item.namespaces[0], 
-                subGroup: null, 
+                role: 'content-wrapper',
+                group: item.namespaces[0],
+                subGroup: null,
                 id: item.namespaces[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
               },
               children: [],
@@ -708,9 +706,8 @@ class JsonToUi {
             // If Module is a member of the namespace.
             if (
               item.parent.filter(
-                itemParent =>
-                  itemParent.id === parentId 
-                  // && itemParent.type === 'file',
+                itemParent => itemParent.id === parentId,
+                // && itemParent.type === 'file',
               ).length > 0
             ) {
               console.log('navStrip.item to build: ', item.id)
@@ -767,39 +764,49 @@ class JsonToUi {
     parentId: string,
     ElementsProcessed: ElementsProcessed,
   ): Element[] {
-    console.log('buildContent: ', parentId)
+    // 1. Create container to holder all content for namespace / file (should be module).
     const content_modulesInNamespace: Element[] = []
-    // 1. Loop through processed data.
+
+    // 2. Loop through processed data.
     this.processedData.map((item: CommentsProcessed) => {
-      // 2. Get the children of the parent element.
+      // 3. Get the children of the parent element.
       //  If Module is a member of the namespace.
-      item.parent
-        .filter(parent => parent.id === parentId)
-        .map(child => {
-          // 3. Create the content for the module.
-          const content: Element = {
-            id: child.id,
-            parent: ElementsProcessed.parents.contentWrapper || null,
-            description: `Content for ${item.id} module within namespace${parentId}.`,
-            //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
-            elementType: 'div',
-            dataAttributes: {
-              value: null,
-              type: null,
-              path: item.fileDetails.filePath,
-              role: 'content', //-- Role of content when rendered to the UI.
-              group: item.namespaces[0], //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
-              subGroup: item.modules[0], //-- Primary module that's running the show.
-              id: item.modules[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
-            },
-            children: [],
-            helpers: {
-              getChildren: () => [],
-            },
-          }
-          // 4. Push it into the content_modulesInNamespace array.
-          content_modulesInNamespace.push(content)
-        })
+      if (item.parent.filter(parent => parent.id === parentId).length > 0) {
+        // 3. Create the content for the module.
+        const content: Element = {
+          id: item.id,
+          parent: ElementsProcessed.parents.contentWrapper || null,
+          description: `Content for ${item.id} module within namespace ${parentId}.`,
+          //-- Used for Classifications, special behaviors, etc. (In HTML, used to create attributes, starting with `data-`.)
+          elementType: 'div',
+          dataAttributes: {
+            value: item, //TODO: Parse so real content, not just raw data.
+            type: item.type?.type || item.type?.description || null,
+            path: item.fileDetails.filePath,
+            role: 'content', //-- Role of content when rendered to the UI.
+            //-- Either Namespace or Module
+            group:
+              item.namespaces[0] ||
+              item.memberOf?.filter(value => value.type == 'namespace')[0]
+                ?.description ||
+              item.parent?.filter(value => value.type == 'namespace')[0]
+                ?.description ||
+              item.modules[0] ||
+              item.memberOf?.filter(value => value.type == 'module')[0]
+                ?.description ||
+              null,
+            //-- Either Module, Type Description ( like file name, function name, etc), or NULL
+            subGroup: item.modules[0] || item.type?.description || null,
+            id: item.modules[0],
+          },
+          children: [],
+          helpers: {
+            getChildren: () => [],
+          },
+        }
+        // 4. Push it into the content_modulesInNamespace array.
+        content_modulesInNamespace.push(content)
+      }
     }) // -- end of looping through processed data.
 
     // 5. return built elements.

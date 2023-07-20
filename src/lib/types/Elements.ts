@@ -56,7 +56,7 @@ type Element = {
   //-- Organizational attributes for content being rendered
   dataAttributes: {
     //-- What's to be displayed.
-    value: null | string
+    value: null | string | CommentsProcessed
     type: null | string | CommentsProcessed['type']
     path: null | string //-- location of item in content for reference.
 
