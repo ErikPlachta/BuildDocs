@@ -24,7 +24,7 @@ type Element = {
   //-- If there is a parent ID, it's to be here.
   parent: string | null
   //-- If this element has children elements, they'll be rendered here.
-  children: Element[] | []
+  children: Element[] 
 
   //-- Optional placeholder to be displayed when no content is present for tooltips, etc.
   description?: string

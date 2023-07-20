@@ -220,7 +220,9 @@ async function run(updatedConfig) {
     }
 
     // 4. Generate UI from generated docs
-    const generateUiResults = new JsonToUi(docs, config_JsonToUi);
+    console.table('!!!!!!!!!!!!!!!!!!!!\nWARNING\n\n: build-docs.run: JsonToUi is Disabled for development\n\n!!!!!!!!!!!!!!!')
+    const generateUiResults = [];
+    // const generateUiResults = new JsonToUi(docs, config_JsonToUi);
 
     // console.log('generateUiResults: ', generateUiResults)
 

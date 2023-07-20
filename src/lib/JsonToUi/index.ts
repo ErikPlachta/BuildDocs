@@ -761,12 +761,21 @@ class JsonToUi {
                   const tabStripNav: Element[] = this.buildTabStripNav(item.id)
                   const content: Element[] = this.buildContent(item.id)
 
+                  // return [...tabStripNav, ...content]
                   return [...tabStripNav, ...content]
                 },
               },
             },
           ],
         } // end of this element.
+
+        // 3. Add TabStripNav and Content as Children to Namespaces content.
+        //    IF there are children, add them to the root element.
+        if (rootElementToRender?.Elements?.[0]) {
+          rootElementToRender.Elements[0].children.push(
+            ...rootElementToRender.Elements[0].helpers.getChildren()
+          )
+        }
 
         // 3. Add the main nav elements to the ElementsProcessed object.
         ElementsProcessed.Elements.push(rootElementToRender)
@@ -779,35 +788,54 @@ class JsonToUi {
   /**
    * Utility for building the tab strip nav based on the processed data.
    *
+   * Get all modules within the namespace.
+   *
    * @returns null
    * @todo build this out to render content properly.
    * @todo determine if any defaults should exist.
    */
   buildTabStripNav(parentId: string): Element[] {
     // 1. Get the parent element.
+    const tabStripLinks: Element[] = []
 
-    // 2. Get the children of the parent element. ( all modules that are members of namespace )
+    // 2. Get the children of the parent element.
+    //  IF modules that are members of namespace.
 
     // 3. return built elements.
 
-    return []
+    return tabStripLinks
   }
 
   /**
-   * 
+   *
    * @param parentId - The ID of the parent element to be used to get data to render content for.
-   * @returns 
+   * @returns
    * @todo build this out to render content properly.
    * @todo determine if any defaults should exist.
    */
   buildContent(parentId: string): Element[] {
-    // 1. Get the parent element.
+    console.log('buildContent: ', parentId)
+    const modulesInNamespace: Element[] = []
+    // 1. Loop through processed data.
+    this.processedData.map((item: CommentsProcessed) => {
+      // 2. Get the children of the parent element.
+      //  If Module is a member of the namespace.
+      item.parent.filter( parent => parent.id === parentId).map( parent => {
+        // 3. Create the content for the module.
+        console.log(`item.id '${item.id}' is a part of the namespace, '${parentId}'`)
+      })
 
-    // 2. Get the children of the parent element. ( all modules that are members of namespace )
+        
+
+
+      // if (item.parent.filter( parent => parent.id === parentId)) {
+      //   console.log(`item.id '${item.id}' is a part of the namespace, '${parentId}'`)
+      // }
+    }) // -- end of looping through processed data.
 
     // 3. return built elements.
 
-    return []
+    return modulesInNamespace
   }
 
   //--------------------------------------------------------------------------
