@@ -723,9 +723,19 @@ class JsonToUi {
                   type: item.type?.type || item.type?.description || null,
                   path: item.fileDetails.filePath,
                   role: 'tab-strip-link', //-- Role of content when rendered to the UI.
-                  group: item.namespaces[0], //-- High-level association of content in nav-header to the main container. Each Root item should only have 1.
-                  subGroup: item.modules[0], //-- Primary module that's running the show.
-                  id: item.modules[0], //-- Unique ID to connect tab-strip-nav to it's related content to display. For example, `overview-summary` is the id for the overview tab and the overview content.
+                  group:
+                    item.namespaces[0] ||
+                    item.memberOf?.filter(value => value.type == 'namespace')[0]
+                      ?.description ||
+                    item.parent?.filter(value => value.type == 'namespace')[0]
+                      ?.description ||
+                    item.modules[0] ||
+                    item.memberOf?.filter(value => value.type == 'module')[0]
+                      ?.description ||
+                    null,
+                  //-- Either Module, Type Description ( like file name, function name, etc), or NULL
+                  subGroup: item.modules[0] || item.type?.description || null,
+                  id: item.modules[0],
                 },
                 children: [],
                 helpers: {
