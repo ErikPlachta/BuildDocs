@@ -1,23 +1,26 @@
 /**
  * @file OnLoad_Manager.js
- * @namespace OnLoad
- * @module OnLoad.Manager
- * @requires module:OnLoad.GetData
+ * @type {file} onLoad_Manager.js
+ * @namespace onLoad
+ * @module onLoad.Manager
+ * @requires module:onLoad.GetData
+ * @description This module is the entry point for the OnLoad event. It calls the OnLoad_GetData module and returns the response.
+ * @fires onLoad_GetData
  */
 
-
-import OnLoad_GetData from '../OnLoad_GetData';
-// const OnLoad_GetData = requires('../OnLoad_GetData')
+import onLoad_GetData from '../../onLoad_GetData';
 
 /**
  * @function main
  * @type {function} main
- * @memberof module:OnLoad.Manager
+ * @memberof module:onLoad.Manager
  * @returns {object} - OnLoad_GetData response.
+ * @description This module is the entry point for the OnLoad event. It calls the OnLoad_GetData module and returns the response.
+ * 
  */
 function main() {
-  return OnLoad_GetData()
+  return onLoad_GetData()
 
 }
 
-return main()
+main()
