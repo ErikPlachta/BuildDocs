@@ -199,7 +199,7 @@ class JsonToUi {
 
                 //-- Record namespace if isn't already defined in global state.
                 // ( Should never create duplicates either way, but just in case. )
-                if (this.namespaces.filter(item => description !== item.description).length === 0) {
+                if (this.namespaces.filter(item => description !== item.description)) {
                   this.namespaces.push({
                     id: item.id,
                     description: description,
