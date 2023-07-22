@@ -43,6 +43,7 @@ const JsonToUi = require('./lib/JsonToUi/index.ts');
 
 //-- Custom Utilities
 const { DataManager } = require('./utils/DataManager.ts');
+const { emitWarning } = require('process');
 console.log('DataManager: ', DataManager)
 const dm = new DataManager();
 
@@ -54,8 +55,7 @@ const dm = new DataManager();
  * @function getArgs
  * @summary Get cli args passed to the DocsToJson utility.
  * @description Used by the DocsToJson utility to parse args passed to the DocsToJson utility to customize run configuration via cli.
- * @returns {object} - Args object
- * @throws {error} - Error if args cannot be parsed.
+ * @returns {object} - success (boolean), message (string), and data (object) containing the args passed in.
  */
 async function getArgs() {
   try {
@@ -66,12 +66,18 @@ async function getArgs() {
       const [key, value] = arg.split('=');
       argsMap[key] = value;
     });
-    return argsMap;
+    return {
+      success: true,
+      message: `SUCCESS: Args loaded successfully.`,
+      data: argsMap
+    };
   }
   catch (error) {
-    console.error(error.message);
-    console.error(error);
-    throw new Error(`Error getting args. Error: ${error.message}`);
+    return {
+      success: false,
+      message: `ERROR: Failed to process args: ${error.message}`,
+      data: error
+    }
   }
 }
 
@@ -82,71 +88,83 @@ async function getArgs() {
  * @function getConfig
  * @summary Get DocsToJson default configuration.
  * @description Used by the DocsToJson utility to feed default configuration values. Args passed to the DocsToJson class will override these if valid.
- * @param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.
- * @returns {object} - Config with updated values sent in as cli args, if any.
+ * @returns {object} - Verified Config object.
  * @throws {error} - Error if config cannot be parsed.
  * @todo Add validation of args.
  */
 async function getConfig() {
-  const config = {}; // The configuration option to be returned
-  const supportedConfig = ['init', 'out', 'logging'] // Config options that are supported.
+  const verifiedConfig = {}; // The configuration option to be returned
+  const supportedConfig = ['Logging', 'Output', 'Target'] // Config options that are supported.
   const unsupportedSettings = [] // holds any config options that are not supported.
   try {
 
-    // 1. Get the config.json file path based on this files location.
-    const configPath = resolve(__dirname, 'config.json');
 
-    // 2. Get the configuration, convert to JSON
-    let defaults = readFileSync(configPath, 'utf8')
-    defaults = JSON.parse(defaults);
+    // 1. Get the configuration, convert to JSON
+    const config = resolve(__dirname, 'config.ts'); // Import transpiled JavaScript file
+    const settings = config.settings;
+    // const configPath = resolve(__dirname, 'config.json');
 
+    // 2. Create string of config for logging purposes.
+    const configString = JSON.stringify(config, null, 2);
+
+    // let config = readFileSync(configPath, 'utf8')
+    // config = JSON.parse(config);
 
     // 3. Check for any unsupported config.settings group(s):
-    supportedConfig.forEach((item) => {
-      // console.log('item: ', item, 'defaults[item]: ', defaults.settings[item])
-      if (!defaults.settings[item]) unsupportedSettings.push(item);
+    supportedConfig.forEach((setting) => {
+      // console.log('setting: ', setting, 'settings: ', settings[setting])
+      if (!settings[setting]) unsupportedSettings.push(setting);
     })
     // Log any unsupported config.settings group(s) for awareness
     if (unsupportedSettings.length > 0) console.error(`The following config options within settings are unsupported: ${unsupportedSettings.join(', ')}`);
 
 
-    // 4. Get default options to prepare to be evaluated.
+    // 4. Get default options to prepare to be evaluated by looping through all settings.
+
+
+
 
     // The logging options
-    defaults.settings.logging.options.forEach((item) => {
-      if (!item.title || !item.default) throw new Error(`Error getting config logging options. Make sure config is setup with proper 'item' and 'default' configurations.`);
-      // console.log('item: ', item)
+    // config.settings.Logging.options.forEach((item) => {
+    //   if (!item.title || !item.default) throw new Error(`Error getting config logging options. Make sure config is setup with proper 'item' and 'default' configurations.`);
+    //   // console.log('item: ', item)
 
-      config.logging[item.title] = {
-        ...item,
-        value: item.default
-      };
-    })
+    //   verifiedConfig.Logging[item.title] = {
+    //     ...item,
+    //     value: item.default
+    //   };
+    // })
 
-    // The init options
-    defaults.settings.init.options.forEach((item) => {
-      if (!item.title || !item.default) throw new Error(`Error getting config init options. Make sure config is setup with proper 'item' and 'default' configurations.`);
-      config.init[item.title] = {
-        ...item,
-        value: item.default
-      };
-    });
+    // // The init options
+    // config.settings.Target.options.forEach((item) => {
+    //   if (!item.title || !item.default) throw new Error(`Error getting config init options. Make sure config is setup with proper 'item' and 'default' configurations.`);
+    //   verifiedConfig.Target[item.title] = {
+    //     ...item,
+    //     value: item.default
+    //   };
+    // });
 
-    // The output options
-    defaults.settings.out.options.forEach((item) => {
-      if (!item.title || !item.default) throw new Error(`Error getting config output options. Make sure config is setup with proper 'item' and 'default' configurations.`);
-      config.out[item.title] = {
-        ...item,
-        value: item.default
-      };
-    });
+    // // The output options
+    // config.settings.out.options.forEach((item) => {
+    //   if (!item.title || !item.default) throw new Error(`Error getting config output options. Make sure config is setup with proper 'item' and 'default' configurations.`);
+    //   verifiedConfig.out[item.title] = {
+    //     ...item,
+    //     value: item.default[0].value
+    //   };
+    // });
     //4. Return the config if no errors.
-    return config;
+    return {
+      success: true,
+      message: `SUCCESS: Config loaded successfully.`,
+      data: verifiedConfig
+    }
   }
   catch (error) {
-    console.error(error.message);
-    console.error(error);
-    throw new Error(`Error getting config. Error: ${error.message}`);
+    return {
+      success: false,
+      message: `ERROR: Failed to process config: ${error.message}`,
+      data: error
+    }
   }
 }
 
@@ -158,33 +176,45 @@ async function getConfig() {
  * @function getUpdatedConfig
  * @param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.
  * @param {object} config - Config is the default configuration for the DocsToJson utility.
- * @returns {object} - Updated config with args passed in.
- * 
+ * @returns {object} - success (boolean), message (string), and data (object) containing the updated config.
  * @todo: Add logic to strip `--` prefaced to args if any just in case.
  */
 async function getUpdatedConfig(args, config) {
-  const updatedConfig = {
-    ...config
+  try {
+    const updatedConfig = {
+      ...config
+    }
+
+    // 1. Loop through args and overwrite  options accordingly.
+    Object.keys(args).forEach((key) => {
+      // TODO: 20230713 #EP || Add validation of args.
+
+      //-- 1.1. Overwrite if the key exists in config.init.
+      if (config.init[key]) {
+        console.log('config.init[key] being overwritten: ', `key: '${key}'`, `old-value: '${config.init[key].value}', new-value: '${args[key]}'`)
+        updatedConfig.init[key].value = args[key];
+      }
+
+      //-- 1.2. Overwrite if the key exists in config.out.
+      if (config.out[key]) {
+        console.log('config.out[key] being overwritten: ', `key: ${key}`, `old-value: '${config.out[key].value}', new-value: '${args[key]}'`)
+        updatedConfig.out[key].value = args[key];
+      }
+    })
+    // 2. Return the updated config.
+    return {
+      success: true,
+      message: `SUCCESS: Updated config with args successfully.`,
+      data: updatedConfig
+    };
   }
-
-  // 1. Loop through args and overwrite  options accordingly.
-  Object.keys(args).forEach((key) => {
-    // TODO: 20230713 #EP || Add validation of args.
-
-    //-- 1.1. Overwrite if the key exists in config.init.
-    if (config.init[key]) {
-      console.log('config.init[key] being overwritten: ', `key: '${key}'`, `old-value: '${config.init[key].value}', new-value: '${args[key]}'`)
-      updatedConfig.init[key].value = args[key];
+  catch (error) {
+    return {
+      success: false,
+      message: `ERROR: Failed to update config with args: ${error.message}`,
+      data: error
     }
-
-    //-- 1.2. Overwrite if the key exists in config.out.
-    if (config.out[key]) {
-      console.log('config.out[key] being overwritten: ', `key: ${key}`, `old-value: '${config.out[key].value}', new-value: '${args[key]}'`)
-      updatedConfig.out[key].value = args[key];
-    }
-  })
-  // 2. Return the updated config.
-  return updatedConfig;
+  }
 }
 
 /**
@@ -289,27 +319,50 @@ async function run(updatedConfig) {
  * @description Executes the build-docs utility. Takes a config to target specific path(s) and file(s). Extracts comment blocks and generates a JSON file with the extracted data. Then generates an HTML or Markdown file with the extracted data.
  * @returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.
  * @throws {error} - Error if build-docs fails.
- */
+*/
 async function main() {
+  let LoggingLevel = 5; // Default to info until pulled from config.
   try {
-    // 1. Get Args - The cli args passed in.
-    const args = await getArgs();
 
-    // 2. Get Config - The default config values.
+    // 1. Get Config - The default config values.
     const config = await getConfig();
+    if (config.success == false && LoggingLevel > 0) {
+      console.error(config)
+      throw new Error(JSON.stringify(config))
+    }
+    console.log('config: ', config)
 
-    // 3. Update Config with Args  - Overwrite the default config values with any matching args passed in.
-    const updatedConfig = await getUpdatedConfig(args, config);
+    // 2. Set the logging level 
+    LoggingLevel = config.data.Logging.logLevel.value;
+    console.log('LoggingLevel: ', LoggingLevel)
 
-    // 4. Execute build-docs module with updatedConfig .
-    const runResults = await run(updatedConfig);
 
-    // 5.If failed to run module properly, throw error.
-    if (runResults.success == false) {
-      throw new Error(runResults.message);
+    // 3. Get Args - The cli args passed in.
+    const args = await getArgs();
+    // failed, warning but can still continue
+    if (args.success == false && LoggingLevel > 1) {
+      console.warn(args)
     }
 
-    // 6. Otherwise successful execution.
+    // 4. Update Config with Args  - Overwrite the default config values with any matching args passed in.
+    const updatedConfig = await getUpdatedConfig(args.data, config.data);
+    if (updatedConfig.success == false) {
+      if (LoggingLevel > 0) console.error(updatedConfig)
+      throw new Error(updatedConfig)
+    }
+
+    // 5. Execute build-docs module with updatedConfig .
+    // const runResults = await run(updatedConfig.data);
+
+    // 6.If failed to run module properly, throw error.
+    if (runResults.success == false) {
+      if (LoggingLevel > 0) console.error(runResults)
+      throw new Error(runResults.message)
+    };
+
+
+
+    // 7. Otherwise successful execution.
     return {
       success: true,
       message: 'SUCCESS: Execution of build-docs module complete.',

@@ -1,4 +1,4 @@
-import { htmlConfig, ElementsProcessed } from '../../types'
+import { htmlConfig, ElementsProcessed, Logging } from '../../types'
 import { JSDOM } from 'jsdom'
 
 /**
@@ -27,7 +27,7 @@ import { JSDOM } from 'jsdom'
  * @return {string} - The complete HTML document.
  */
 class BuildHtml {
-  private DEBUG: boolean = false
+  private LogLevel: Logging['option']['level']['value']
   private dom: JSDOM = new JSDOM(`<!DOCTYPE html>`) // Create a new JSDOM instance and get the document from it.
   private document: Document = this.dom.window.document
   private elements: ElementsProcessed
@@ -36,8 +36,13 @@ class BuildHtml {
   private resultsIfError: (error: string) => string
   public results: string | undefined
 
-  constructor(DEBUG:boolean, elements: ElementsProcessed, title: string, htmlConfig: htmlConfig) {
-    this.DEBUG = DEBUG
+  constructor(
+    LogLevel: Logging['option']['level']['value'],
+    elements: ElementsProcessed,
+    title: string,
+    htmlConfig: htmlConfig,
+  ) {
+    this.LogLevel = LogLevel
     this.elements = elements
     this.title = title
     this.htmlConfig = htmlConfig
@@ -47,15 +52,15 @@ class BuildHtml {
 
     // Run the build function and return it's results.
     this.build()
-    .then(results => {
-      this.results = results;
-       return Promise.resolve(results)
-    })
-    .catch(error => {
-      this.resultsIfError(error)
-      this.results = this.resultsIfError(error)
-      return Promise.reject(this.results)
-    })
+      .then(results => {
+        this.results = results
+        return Promise.resolve(results)
+      })
+      .catch(error => {
+        this.resultsIfError(error)
+        this.results = this.resultsIfError(error)
+        return Promise.reject(this.results)
+      })
   }
 
   async build(): Promise<string> {
@@ -73,7 +78,10 @@ class BuildHtml {
       // Returns results back to this.getHtml()
       return `<!DOCTYPE html>\n ${this.document.documentElement.outerHTML}`
     } catch (error) {
-      if (this.DEBUG) console.log(error)
+      if (this.LogLevel > 1) {
+        console.log(error)
+      }
+
       return this.resultsIfError(error as string)
     }
   }
@@ -100,7 +108,10 @@ class BuildHtml {
         message: 'Head content built successfully.',
       }
     } catch (error) {
-      if (this.DEBUG) console.log(error)
+      if (this.LogLevel > 1) {
+        console.log(error)
+      }
+
       return {
         success: false,
         message: error,
@@ -127,7 +138,10 @@ class BuildHtml {
         message: 'Body content built successfully.',
       }
     } catch (error) {
-      if (this.DEBUG) console.log(error)
+      if (this.LogLevel > 1) {
+        console.log(error)
+      }
+
       return {
         success: false,
         message: error,
@@ -149,7 +163,10 @@ class BuildHtml {
         message: 'Content built successfully.',
       }
     } catch (error) {
-      if (this.DEBUG) console.log(error)
+      if (this.LogLevel > 1) {
+        console.log(error)
+      }
+
       return {
         success: false,
         message: error,
@@ -214,7 +231,10 @@ class BuildHtml {
       return el
     } catch (error) {
       // end of generateHtml function.
-      if (this.DEBUG) console.log(error)
+      if (this.LogLevel > 1) {
+        console.log(error)
+      }
+
       console.log(error)
 
       return null

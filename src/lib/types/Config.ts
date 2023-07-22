@@ -23,7 +23,7 @@ type Config = {
 }
 
 type Setting = {
-  title: string
+  title: 'Logging' | 'Output' | 'Target'
   summary: string
   description: string
   options: Option[]
@@ -59,12 +59,15 @@ type WriteMode = {
 }
 
 interface Output extends Setting {
-  properties: 'outPath' | 'outName' | 'outFormat' | 'writeMode '
+  option: 'outPath' | 'outName' | 'outFormat' | 'writeMode '
 }
 
 interface Logging extends Setting {
-  properties: {
-    level: 'info' | 'debug' | 'warn' | 'error' | 'fatal'
+  option: {
+    level: {
+      title: 'info' | 'debug' | 'warn' | 'error' | 'fatal'
+      value: 5 | 4 | 3 | 2 | 1 | 0
+    }
     toConsole: boolean
     toFile: boolean
     fileName: string
@@ -75,7 +78,7 @@ interface Logging extends Setting {
 }
 
 interface Target extends Setting {
-  properties: 'initPath' | 'initName'
+  option: 'initPath' | 'initName'
 }
 
 export { Config, Setting, Logging, Output, Target, Option, Supported, WriteMode }

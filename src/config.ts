@@ -10,13 +10,13 @@ const config: Config = {
     'Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values.',
   settings: [
     {
-      title: 'logging',
+      title: 'Logging',
       summary: 'Settings for logging behavior.',
       description: 'How build-docs should handle logging, including output location and level.',
       options: [
         {
           title: 'level',
-          description: 'The level of logging to output. (NOTE: this is not yet finalized)',
+          description: 'The level of logging to output to file and/or console depending on config. 0 = None, 1 = Fatal, 2 = Error, 3 = Warn, 4 = Debug, 5 = Info.',
           type: 'string',
           required: true,
           enabled: true,
@@ -25,35 +25,39 @@ const config: Config = {
             {
               title: 'Info',
               description: 'Log all info, debug, warn, error, and fatal messages.',
-              value: 'info',
+              value: 5,
             },
           ],
-          //"info", "debug", "warn", "error", "fatal"
           supported: [
             {
               title: 'Info',
               description: 'Log all info, debug, warn, error, and fatal messages.',
-              value: 'info',
+              value: 5,
             },
             {
               title: 'Debug',
               description: 'Log all debug, warn, error, and fatal messages.',
-              value: 'debug',
+              value: 4,
             },
             {
               title: 'Warn',
               description: 'Log all warn, error, and fatal messages.',
-              value: 'warn',
+              value: 3,
             },
             {
               title: 'Error',
               description: 'Log all error, and fatal messages.',
-              value: 'error',
+              value: 2,
             },
             {
               title: 'Fatal',
               description: 'Log only fatal messages.',
-              value: 'fatal',
+              value: 1,
+            },
+            {
+              title: 'None',
+              description: 'Log only fatal messages.',
+              value: 0,
             },
           ],
           memberOf: 'build-docs',

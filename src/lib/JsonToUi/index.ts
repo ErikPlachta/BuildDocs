@@ -30,6 +30,7 @@ import {
   Elements,
   ElementsProcessed,
   htmlConfig,
+  Logging
 } from '../types'
 
 import BuildHtml from './lib/BuildHtml'
@@ -47,7 +48,7 @@ import BuildHtml from './lib/BuildHtml'
 class JsonToUi {
   public config: JsonToUiConfig
   public comments: Comments[]
-  private LogLevel: "info" | "debug" | "warn" | "error" | "fatal"
+  private LogLevel: Logging['option']['level']['value']
   public files: File[]
   public namespaces: Namespace[]
   public modules: Module[]
@@ -67,13 +68,13 @@ class JsonToUi {
    * @param {Config} config - The configuration for the conversion.
    */
   constructor(
-    loggingLevel: LogLevel,
+    LogLevel: Logging['option']['level']['value'],
     comments: Comments[],
     config: { convertToMarkdown: boolean; convertToHtml: boolean },
   ) {
     this.comments = comments
     this.config = config
-    this.loggingLevel = loggingLevel
+    this.LogLevel = LogLevel
     this.files = []
     this.namespaces = []
     this.modules = []
@@ -114,11 +115,11 @@ class JsonToUi {
     }
     // Takes all elements and builds html data.
     this.getHtml = async () => {
-      const html = new BuildHtml(this.DEBUG, this.elements, this.title, this.htmlConfig)
+      const html = new BuildHtml(this.LogLevel, this.elements, this.title, this.htmlConfig)
       return html.results
     }
 
-    console.log('JsonToUi.constructor: this.DEBUG', this.DEBUG)
+    console.log('JsonToUi.constructor: this.LogLevel', this.LogLevel)
   }
   //----------------------------------------------------------------------------
   /**
