@@ -1,4 +1,4 @@
-import { Config } from './lib/types'
+import { Config } from '../types'
 
 export const config: Config = {
   title: 'config.json',
@@ -464,6 +464,7 @@ export const config: Config = {
               description: 'Ignore _ARCHIVE directory anywhere within target root path.',
               value: '_ARCHIVE',
             },
+            
             {
               title: 'Thunder Client',
               description: 'Ignore _thunder-client, a VS Code extension, directory.',

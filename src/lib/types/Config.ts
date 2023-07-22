@@ -12,7 +12,7 @@
  * @memberof Types
  */
 
-type Config = {
+interface Config {
   title: string
   namespace: string
   summary : string

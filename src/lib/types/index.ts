@@ -13,7 +13,7 @@
 
 import { Element, Elements, ElementsProcessed, htmlConfig } from './Elements'
 import { CommentRaw, CommentsRaw, CommentsProcessed, Comments } from './Comments'
-import { Config, Logging, Output, Target  } from './Config'
+import { Config, Logging, Output, Target, Setting, Option  } from './Config'
 
 /**
  * @type {Type}
@@ -51,6 +51,13 @@ type JsonToUiConfig = {
   convertToHtml: boolean
 }
 
+type ErrorRecord = {
+  id : string
+  type: 'warning' | 'error' | 'fatal'
+  message: string
+  data: any
+}
+
 
 //-- Export all types
 export {
@@ -59,12 +66,15 @@ export {
   Logging,
   Output,
   Target,
+  Setting, 
+  Option,
   
 
   //TODO: identify where these are being used and note properly..
   File,
   Namespace,
   Module,
+  ErrorRecord,
 
   //-- GetDocs
   CommentRaw,
