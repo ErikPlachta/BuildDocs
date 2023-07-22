@@ -37,19 +37,13 @@ const { resolve } = require('path'); // used for building results
 const { readFileSync, writeFileSync } = require('fs'); // used for reading config file
 
 // Custom Libraries
+const Config = require('./lib/Config/index.ts');
 const DocsToJson = require('./lib/DocsToJson/index.ts');
 const JsonToUi = require('./lib/JsonToUi/index.ts');
 
 
 //-- Custom Utilities
 const { DataManager } = require('./utils/DataManager.ts');
-// console.log('DataManager: ', DataManager)
-
-
-//-- Configuration Options
-// const { config } = require('./config.ts'); // Import transpiled JavaScript file
-
-const Config = require('./lib/Config/index.ts');
 
 
 //----------------------------- Utility Functions ----------------------------//
@@ -315,8 +309,8 @@ async function main() {
   try {
 
     // 1. Handle the configuration options.
-    const config = await new Config.init(config);
-    console.log('config: ', config)
+    const config = await new Config();
+    // console.log('config: ', config)
 
 
     // 1. Get Config - The default config values.
@@ -348,13 +342,13 @@ async function main() {
 
     // 5. Execute build-docs module with updatedConfig .
     //TODO: Re-enable this once config is moved out
-    // const runResults = await run(updatedConfig.data);
+    // const runResults = await run(config.data);
 
-    // 6.If failed to run module properly, throw error.
-    if (runResults.success == false) {
-      if (LoggingLevel > 0) console.error(runResults)
-      throw new Error(runResults.message)
-    };
+    // // 6.If failed to run module properly, throw error.
+    // if (runResults.success == false) {
+    //   if (this.LoggingLevel > 0) console.error(runResults)
+    //   throw new Error(runResults.message)
+    // };
 
 
 
@@ -362,7 +356,7 @@ async function main() {
     return {
       success: true,
       message: 'SUCCESS: Execution of build-docs module complete.',
-      results: runResults
+      results: 'runResults'
     }
   }
   catch (error) {

@@ -372,7 +372,7 @@ export const config: Config = {
         'Manage the location(s) to search within, location(s) to ignore, file types to look for, and file types to ignore.',
       options: [
         {
-          title: 'root',
+          title: 'targetPath',
           description: 'The root directory to search for documentation within by build-docs.',
           type: 'string',
           required: true,
