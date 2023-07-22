@@ -45,7 +45,9 @@ module.exports = {
     "resolveJsonModule": true,
     // "skipLibCheck": true,
     "strict": true,
-    "target": "ES2021", // (If defined, overrides lib) || 'ES3' | 'ES5' | 'ES6' | 'ES2015' | 'ES2016' | 'ES2017' | 'ES2018' | 'ES2019' | 'ES2020' | 'ES2021' | 'ESNext'
+    "target": "es5", // (If defined, overrides lib) || 'ES3' | 'ES5' | 'ES6' | 'ES2015' | 'ES2016' | 'ES2017' | 'ES2018' | 'ES2019' | 'ES2020' | 'ES2021' | 'ESNext'
+    
+    "lib": ["es6", "dom"],
   },
   "exclude": [
     "node_modules",

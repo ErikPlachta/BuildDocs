@@ -24,6 +24,12 @@ import {
 } from '../types'
 import { randomUUID } from 'crypto'
 
+import * as fs from 'fs'
+import * as path from 'path'
+import { JSDOM } from 'jsdom'
+const dom = new JSDOM(`<!DOCTYPE html>`) // Create a new JSDOM instance
+const document = dom.window.document // Get the document from the JSDOM instance
+
 /**
  * @access private
  * @class
@@ -74,6 +80,7 @@ class JsonToUi {
     this.rootItems = this.getRootItems()
     //-- Evaluate `this.processedData` and `this.rootItems`, assign `ContentToRender` values.
     this.elements = this.buildElements()
+    this.buildHtml()
   }
 
   //----------------------------------------------------------------------------
@@ -474,6 +481,7 @@ class JsonToUi {
     let ElementsProcessed: ElementsProcessed = {
       id: randomUUID(),
       createdDate: new Date(),
+
       description:
         'Top-level wrapper around all elements. Root consists of Body, Header, Main, Footer, and all children are rendered within.',
       parents: { ...parentIds },
@@ -1022,6 +1030,109 @@ class JsonToUi {
    */
   toHtml(title = 'Placeholder Title', subTitle = 'Placeholder subtitle for html.'): string {
     return `${title} ${subTitle}`
+  }
+
+  /**
+   * @type {function} generateHtml
+   * @function generateHtml
+   * @memberof module:JsonToUi
+   * @summary Generates HTML from the provided element.
+   * @example generateHtml(myElement, path.join(__dirname, 'output.html'));
+   */
+  generateHtml(element: any, parent: any = document.body) {
+    const el = document.createElement(element.elementType);
+
+    if (element.id) {
+        el.id = element.id;
+    }
+
+    function setAttributesFromObject(obj: any, el: any) {
+        for (const key of Object.keys(obj)) {
+            const value = obj[key]
+            if (value !== null) {
+                el.setAttribute(`data-${key}`, value)
+            }
+        }
+    }
+
+    if (element.dataAttributes) {
+        setAttributesFromObject(element.dataAttributes, el);
+    }
+
+    if (element.description) {
+        el.setAttribute('title', element.description);
+    }
+
+    if (element.classList) {
+        el.className = element.classList.join(' ');
+    }
+
+    parent.appendChild(el);
+
+    if (element.children) {
+        for (const child of element.children) {
+            this.generateHtml(child, el);
+        }
+    }
+
+    return el;
+}
+  // generateHtml(element: Element) {
+  //   const el = document.createElement(element.elementType)
+
+  //   el.id = element.id
+
+  //   function setAttributesFromObject(obj: any, el: any) {
+  //     for (const key of Object.keys(obj)) {
+  //       const value = obj[key]
+  //       if (value !== null) {
+  //         el.setAttribute(`data-${key}`, value)
+  //       }
+  //     }
+  //   }
+
+  //   if (element.dataAttributes) {
+  //     setAttributesFromObject(element.dataAttributes, el)
+  //   }
+
+  //   if (element.defaults) {
+  //     setAttributesFromObject(element.defaults, el)
+  //   }
+
+  //   if (element.description) {
+  //     el.setAttribute('title', element.description)
+  //   }
+
+  //   if (element?.classList) {
+  //     el.className = element?.classList.join(' ')
+  //   }
+
+  //   if (element.children) {
+  //     for (const child of element.children) {
+  //       el.appendChild(this.generateHtml(child))
+  //     }
+  //   }
+  //   return el
+  // }
+
+  buildHtml() {
+    // Assuming your JSON is stored in a variable named `json`
+    //   const elements = this.elements.Elements
+    //   let html = ''
+    //   elements.forEach((element: any) => {
+    //     html += this.generateHtml(element)
+    //   })
+
+    //   // Write to file
+    //   fs.writeFileSync('output.html', document.body.innerHTML, 'utf8');
+    // }
+    const elements = this.elements.Elements
+    elements.forEach((element: any) => {
+      this.generateHtml(element)
+    })
+
+    // Write to file
+    fs.writeFileSync('output.html', document.body.innerHTML, 'utf8')
   }
 }
 

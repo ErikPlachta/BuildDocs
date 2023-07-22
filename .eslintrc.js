@@ -36,12 +36,14 @@ module.exports = {
     "env": {
         "browser": true,
         "commonjs": true,
-        "es2021": true
+        // "es2021": true,
+        "dom": true,
     },
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier"
+        "prettier",
+        'prettier/@typescript-eslint',
     ],
     "globals": {},
     "overrides": [
@@ -63,8 +65,9 @@ module.exports = {
     },
     "plugins": [
         "@typescript-eslint",
+        "prettier",
         "eslint-config-prettier",
-        "eslint-plugin-prettier",
+        "eslint-plugin-prettier"
     ],
     "rules": {
         // "no-unused-vars": "off",
