@@ -21,6 +21,8 @@ import { CommentsProcessed } from './index'
 type Element = {
   //-- DOM ID for the element.
   id: string
+  //-- The order in which the element is to be rendered.
+  orderId?: number
   //-- If there is a parent ID, it's to be here.
   parent: string | null
   //-- If this element has children elements, they'll be rendered here.
@@ -103,6 +105,7 @@ type ElementType =
   | 'textarea'
 
 type Parents = {
+  body: string
   header: string
   navHeader: string
   navHeaderList: string
@@ -111,6 +114,7 @@ type Parents = {
   tabStripNav?: string // doesn't exist unless Group-Content
   tabStripNavList?: string // doesn't exist unless Group-Content
   container?: string // Doesn't exist unless Group-Content
+  footer: string
 }
 
 /**
@@ -147,7 +151,7 @@ type Elements = {
     related: CommentsProcessed['related'] | []
   }
   //-- Array of Objects which are elements to be rendered
-  Elements?: Element[]
+  Elements: Element[]
 }
 
 /**

@@ -459,20 +459,77 @@ class JsonToUi {
    * @todo  2023-07-20 | Erik Plachta | Onboard helper functions
    */
   buildElements(): ElementsProcessed {
+    //-- Define IDs for the top-level elements.
+    const parentIds = {
+      body: randomUUID(),
+      header: randomUUID(),
+      navHeader: randomUUID(),
+      navHeaderList: randomUUID(),
+      main: randomUUID(),
+      contentWrapper: randomUUID(),
+      footer: randomUUID(),
+    }
+
     // 1. Create an array to hold the Element and all related info to be generated.
     let ElementsProcessed: ElementsProcessed = {
       id: randomUUID(),
       createdDate: new Date(),
       description:
-        'Top-level wrapper around all elements. Root consists of Header, Main, Footer, and all children are rendered within.',
-      parents: {
-        header: randomUUID(),
-        navHeader: randomUUID(),
-        navHeaderList: randomUUID(),
-        main: randomUUID(),
-        contentWrapper: randomUUID(),
-      },
-      Elements: [],
+        'Top-level wrapper around all elements. Root consists of Body, Header, Main, Footer, and all children are rendered within.',
+      parents: { ...parentIds },
+      Elements: [
+        {
+          id: parentIds.body,
+          createdDate: new Date(),
+          title: 'body',
+          description: 'The body wrapping all content.',
+          parents: { ...parentIds },
+          Elements: [
+            {
+              id: parentIds.body,
+              orderId: 1,
+              parent: null,
+              description:
+                'Top-level wrapper around all elements. Root consists of Header, Main, Footer, and all children are rendered within.',
+              elementType: 'body',
+              classList: ['bg-gray-100 flex flex-col gap-8'],
+              dataAttributes: {
+                value: null,
+                type: null,
+                path: null,
+                role: 'body',
+                group: null,
+                subGroup: null,
+                id: null,
+                active: null,
+              },
+              children: [],
+              helpers: { getChildren: () => [] },
+            },
+            {
+              id: parentIds.footer,
+              orderId: 99,
+              parent: null,
+              //TODO: Add footer content
+              description: 'Footer within the rendered content.',
+              elementType: 'footer',
+              classList: [],
+              dataAttributes: {
+                value: null,
+                type: null,
+                path: null,
+                role: 'body',
+                group: null,
+                subGroup: null,
+                id: null,
+                active: null,
+              },
+              children: [],
+              helpers: { getChildren: () => [] },
+            },
+          ],
+        },
+      ],
       helpers: {
         //TODO: 2023-07-20 | Erik Plachta | Onboard these helper functions
         getElements: () => [],
@@ -486,13 +543,13 @@ class JsonToUi {
       },
     } // end of base declaration.
 
-    // 2. Build the Main navigation, one link for each namespace.
+    // 3. Build the Main navigation, one link for each namespace.
     ElementsProcessed = this.buildHeader(ElementsProcessed)
 
-    // 3. Build Content Wrapper, Tab-Strip-Nav, and Content for each namespace.
+    // 4. Build Content Wrapper, Tab-Strip-Nav, and Content for each namespace.
     ElementsProcessed = this.buildGroupContentWrapper(ElementsProcessed)
 
-    // 4. Returns finalized ElementsProcessed object.
+    // 5. Returns finalized ElementsProcessed object.
     return ElementsProcessed
   }
 
@@ -517,6 +574,7 @@ class JsonToUi {
       Elements: [
         {
           id: ElementsProcessed.parents.header,
+          orderId: 2,
           parent: null,
           description: 'Header element for the page. Contains the main navigation.',
           elementType: 'header',
@@ -615,7 +673,7 @@ class JsonToUi {
                   },
                 },
               }
-              
+
               // Render children for NavHeader
               NavHeader.children.push(...NavHeader.helpers.getChildren())
 
@@ -681,6 +739,7 @@ class JsonToUi {
           Elements: [
             {
               id: item.id,
+              orderId: 3,
               parent: ElementsProcessed.parents.main,
               description: `Div within 'main' for Group (namespace) '${item.namespaces[0]}'. Holds the tab-strip-nav and all GroupContentWrapper (which holds GroupContent).`,
               elementType: 'div',
