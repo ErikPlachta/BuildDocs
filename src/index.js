@@ -87,27 +87,43 @@ async function getArgs() {
  * @throws {error} - Error if config cannot be parsed.
  * @todo Add validation of args.
  */
-async function getConfig(args) {
-
-  //TODO: 20230713 #EP || Add validation of args.
-  console.log('args: ', args)
-
+async function getConfig() {
+  const config = {}; // The configuration option to be returned
+  const supportedConfig = ['init', 'out', 'logging'] // Config options that are supported.
+  const unsupportedSettings = [] // holds any config options that are not supported.
   try {
-    //-- The configuration option to be returned
-    const config = {
-      init: {},
-      out: {}
-    };
 
     // 1. Get the config.json file path based on this files location.
-    // eslint-disable-next-line no-undef
     const configPath = resolve(__dirname, 'config.json');
 
     // 2. Get the configuration, convert to JSON
     let defaults = readFileSync(configPath, 'utf8')
     defaults = JSON.parse(defaults);
 
-    // 3. Get default options to prepare to be evaluated.
+
+    // 3. Check for any unsupported config.settings group(s):
+    supportedConfig.forEach((item) => {
+      // console.log('item: ', item, 'defaults[item]: ', defaults.settings[item])
+      if (!defaults.settings[item]) unsupportedSettings.push(item);
+    })
+    // Log any unsupported config.settings group(s) for awareness
+    if (unsupportedSettings.length > 0) console.error(`The following config options within settings are unsupported: ${unsupportedSettings.join(', ')}`);
+
+
+    // 4. Get default options to prepare to be evaluated.
+
+    // The logging options
+    defaults.settings.logging.options.forEach((item) => {
+      if (!item.title || !item.default) throw new Error(`Error getting config logging options. Make sure config is setup with proper 'item' and 'default' configurations.`);
+      // console.log('item: ', item)
+
+      config.logging[item.title] = {
+        ...item,
+        value: item.default
+      };
+    })
+
+    // The init options
     defaults.settings.init.options.forEach((item) => {
       if (!item.title || !item.default) throw new Error(`Error getting config init options. Make sure config is setup with proper 'item' and 'default' configurations.`);
       config.init[item.title] = {
@@ -115,6 +131,8 @@ async function getConfig(args) {
         value: item.default
       };
     });
+
+    // The output options
     defaults.settings.out.options.forEach((item) => {
       if (!item.title || !item.default) throw new Error(`Error getting config output options. Make sure config is setup with proper 'item' and 'default' configurations.`);
       config.out[item.title] = {
@@ -183,8 +201,16 @@ async function getUpdatedConfig(args, config) {
 async function run(updatedConfig) {
   try {
 
-    // 1. Deconstruct for readability.
-    const { init, out } = updatedConfig;
+    // 1. Deconstruct for readability. 
+    const { init, out, logging } = updatedConfig;
+    // const { logLevel, logToConsole, logToFile, logFileWriteMode  } = logging;
+    console.log('logging: ', logging)
+    // console.log( 'logging:'
+    //   `\n\t - logLevel: ${logLevel}`,
+    //   `\n\t - logToConsole: ${logToConsole}`,
+    //   `\n\t - logToFile: ${logToFile}`,
+    //   `\n\t - logFileWriteMode: ${logFileWriteMode}`  
+    // )
     const { targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths } = init;
     const { outputPath } = out;
 
@@ -219,8 +245,8 @@ async function run(updatedConfig) {
     }
 
     // 4. Generate UI from generated docs
-    const generateUiResults = new JsonToUi(docs, config_JsonToUi);
-    
+    const generateUiResults = new JsonToUi(true, docs, config_JsonToUi);
+
     const htmlDocument = generateUiResults.getHtml();
     // const markdownDocument = generateUiResults.getMarkdown();
 
@@ -266,37 +292,36 @@ async function run(updatedConfig) {
  */
 async function main() {
   try {
-    // 1. Get Args
+    // 1. Get Args - The cli args passed in.
     const args = await getArgs();
-    // console.log('args: ', args)
 
-    // 2. Get Config
-    const config = await getConfig(args);
-    // console.log('config: ', config)
+    // 2. Get Config - The default config values.
+    const config = await getConfig();
 
-    // 3. Update Config with Args
-
+    // 3. Update Config with Args  - Overwrite the default config values with any matching args passed in.
     const updatedConfig = await getUpdatedConfig(args, config);
-    // console.log('updatedConfig: ', updatedConfig)
 
-
-    // 4. Run DocsToJson
+    // 4. Execute build-docs module with updatedConfig .
     const runResults = await run(updatedConfig);
-    // console.log('results: ')
-    // console.log(runResults)
-    // console.log('build-docs/index.main() passed: ', runResults.success);
+
+    // 5.If failed to run module properly, throw error.
     if (runResults.success == false) {
       throw new Error(runResults.message);
     }
 
-    // 4. Returns runResults
-    return runResults;
+    // 6. Otherwise successful execution.
+    return {
+      success: true,
+      message: 'SUCCESS: Execution of build-docs module complete.',
+      results: runResults
+    }
   }
   catch (error) {
     console.error(error);
     return {
       success: false,
-      message: `ERROR: ${error}`,
+      message: `ERROR: Execution of build-docs module failed.`,
+      results: error
     };
   }
 }
