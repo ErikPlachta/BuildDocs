@@ -34,8 +34,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { spawn } = require('child_process'); // used for args
 const { resolve } = require('path'); // used for building results
-const { readFileSync } = require('fs'); // used for reading config file
-
+const { readFileSync, writeFileSync } = require('fs'); // used for reading config file
 
 // Custom Libraries
 const DocsToJson = require('./lib/DocsToJson/index.ts');
@@ -220,9 +219,9 @@ async function run(updatedConfig) {
     }
 
     // 4. Generate UI from generated docs
-    console.table('!!!!!!!!!!!!!!!!!!!!\nWARNING\n\n: build-docs.run: JsonToUi is Disabled for development\n\n!!!!!!!!!!!!!!!')
-    const generateUiResults = [];
-    // const generateUiResults = new JsonToUi(docs, config_JsonToUi);
+    const generateUiResults = new JsonToUi(docs, config_JsonToUi);
+    writeFileSync(
+      `${outputPath.value}/docs.html`, generateUiResults.getHtml(), 'utf8')
 
     // console.log('generateUiResults: ', generateUiResults)
 

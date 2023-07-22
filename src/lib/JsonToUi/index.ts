@@ -11,6 +11,8 @@
  *
  */
 
+import { JSDOM } from 'jsdom'
+
 import {
   Comments, //-- Comments built by DocsToJson, ready to be processed.
   CommentsProcessed,
@@ -23,12 +25,6 @@ import {
   ElementsProcessed,
 } from '../types'
 import { randomUUID } from 'crypto'
-
-import * as fs from 'fs'
-import * as path from 'path'
-import { JSDOM } from 'jsdom'
-const dom = new JSDOM(`<!DOCTYPE html>`) // Create a new JSDOM instance
-const document = dom.window.document // Get the document from the JSDOM instance
 
 /**
  * @access private
@@ -45,6 +41,7 @@ const document = dom.window.document // Get the document from the JSDOM instance
  * Class to convert JSON data to Markdown and HTML
  */
 class JsonToUi {
+  config: JsonToUiConfig
   comments: Comments[]
   files: File[]
   namespaces: Namespace[]
@@ -52,7 +49,7 @@ class JsonToUi {
   processedData: CommentsProcessed[] | []
   rootItems: CommentsProcessed[] | []
   elements: ElementsProcessed
-  config: JsonToUiConfig
+  getHtml: () => string
 
   /**
    * @access private
@@ -80,7 +77,8 @@ class JsonToUi {
     this.rootItems = this.getRootItems()
     //-- Evaluate `this.processedData` and `this.rootItems`, assign `ContentToRender` values.
     this.elements = this.buildElements()
-    this.buildHtml()
+    // Takes all elements and builds html data.
+    this.getHtml = () => this.buildHtml()
   }
 
   //----------------------------------------------------------------------------
@@ -485,7 +483,7 @@ class JsonToUi {
       description:
         'Top-level wrapper around all elements. Root consists of Body, Header, Main, Footer, and all children are rendered within.',
       parents: { ...parentIds },
-      Elements: [
+      HtmlElements: [
         {
           id: parentIds.body,
           createdDate: new Date(),
@@ -493,6 +491,27 @@ class JsonToUi {
           description: 'The body wrapping all content.',
           parents: { ...parentIds },
           Elements: [
+            {
+              id: null,
+              orderId: 1,
+              parent: null,
+              description:
+                'Top-level wrapper around all elements. Root consists of Header, Main, Footer, and all children are rendered within.',
+              elementType: 'body',
+              classList: ['bg-gray-100 flex flex-col gap-8'],
+              dataAttributes: {
+                value: null,
+                type: null,
+                path: null,
+                role: 'body',
+                group: null,
+                subGroup: null,
+                id: null,
+                active: null,
+              },
+              children: [],
+              helpers: { getChildren: () => [] },
+            },
             {
               id: parentIds.body,
               orderId: 1,
@@ -523,10 +542,10 @@ class JsonToUi {
               elementType: 'footer',
               classList: [],
               dataAttributes: {
-                value: null,
+                value: 'Footer Placeholder Text',
                 type: null,
                 path: null,
-                role: 'body',
+                role: 'footer',
                 group: null,
                 subGroup: null,
                 id: null,
@@ -698,7 +717,7 @@ class JsonToUi {
     }
 
     // 4. Add the main navigation UL and children LIs to the ElementsProcessed object.
-    ElementsProcessed.Elements.push(header)
+    ElementsProcessed.HtmlElements.push(header)
 
     // 5. Return updated object with the main nav elements within.
     return ElementsProcessed
@@ -815,7 +834,7 @@ class JsonToUi {
         }
 
         // 3. Add the main nav elements to the ElementsProcessed object.
-        ElementsProcessed.Elements.push(rootElementToRender)
+        ElementsProcessed.HtmlElements.push(rootElementToRender)
       } // -- end of if namespace check.
     }) // -- end of looping through root items.
     // 4. Return updated object with the main nav elements within.
@@ -1033,106 +1052,76 @@ class JsonToUi {
   }
 
   /**
-   * @type {function} generateHtml
-   * @function generateHtml
-   * @memberof module:JsonToUi
-   * @summary Generates HTML from the provided element.
-   * @example generateHtml(myElement, path.join(__dirname, 'output.html'));
+   * Convert the data to HTML
+   * @return {string} The HTML string
    */
-  generateHtml(element: any, parent: any = document.body) {
-    const el = document.createElement(element.elementType);
+  buildHtml(): string {
+    // Create a new JSDOM instance and get the document from it.
+    const dom = new JSDOM(`<!DOCTYPE html>`)
+    const document = dom.window.document
 
-    if (element.id) {
-        el.id = element.id;
-    }
 
-    function setAttributesFromObject(obj: any, el: any) {
+    /**
+     * Generates HTML from the provided element.
+     * 
+     * @type {function} generateHtml
+     * @function generateHtml
+     * @memberof module:JsonToUi
+     * @summary Generates HTML from the provided element.
+     */
+    function generateHtml(element: any, parent: any = document.body) {
+      // Build HTML element.
+      const el = document.createElement(element.elementType)
+
+      // Utility function to set attributes on an element.
+      function setAttributes(obj: any, el: any) {
         for (const key of Object.keys(obj)) {
-            const value = obj[key]
-            if (value !== null) {
-                el.setAttribute(`data-${key}`, value)
-            }
+          const value = obj[key]
+          if (value !== null) {
+            el.setAttribute(`data-${key}`, value)
+          }
         }
-    }
+      }
 
-    if (element.dataAttributes) {
-        setAttributesFromObject(element.dataAttributes, el);
-    }
+      if (element.id) {
+        el.id = element.id
+      }
+      if (element.dataAttributes) {
+        setAttributes(element.dataAttributes, el)
+      }
+      if (element.classList) {
+        el.className = element.classList.join(' ')
+      }
+      if (element.description) {
+        el.setAttribute('data-description', element.description)
+      }
+      if (element.value) {
+        el.setAttribute('data-value', element.value)
+        el.innerText = element.value
+      }
 
-    if (element.description) {
-        el.setAttribute('title', element.description);
-    }
+      parent.appendChild(el)
 
-    if (element.classList) {
-        el.className = element.classList.join(' ');
-    }
-
-    parent.appendChild(el);
-
-    if (element.children) {
+      // If more to render, do so.
+      if (element.children) {
         for (const child of element.children) {
-            this.generateHtml(child, el);
+          generateHtml(child, el)
         }
+      }
+      return el
     }
 
-    return el;
-}
-  // generateHtml(element: Element) {
-  //   const el = document.createElement(element.elementType)
-
-  //   el.id = element.id
-
-  //   function setAttributesFromObject(obj: any, el: any) {
-  //     for (const key of Object.keys(obj)) {
-  //       const value = obj[key]
-  //       if (value !== null) {
-  //         el.setAttribute(`data-${key}`, value)
-  //       }
-  //     }
-  //   }
-
-  //   if (element.dataAttributes) {
-  //     setAttributesFromObject(element.dataAttributes, el)
-  //   }
-
-  //   if (element.defaults) {
-  //     setAttributesFromObject(element.defaults, el)
-  //   }
-
-  //   if (element.description) {
-  //     el.setAttribute('title', element.description)
-  //   }
-
-  //   if (element?.classList) {
-  //     el.className = element?.classList.join(' ')
-  //   }
-
-  //   if (element.children) {
-  //     for (const child of element.children) {
-  //       el.appendChild(this.generateHtml(child))
-  //     }
-  //   }
-  //   return el
-  // }
-
-  buildHtml() {
-    // Assuming your JSON is stored in a variable named `json`
-    //   const elements = this.elements.Elements
-    //   let html = ''
-    //   elements.forEach((element: any) => {
-    //     html += this.generateHtml(element)
-    //   })
-
-    //   // Write to file
-    //   fs.writeFileSync('output.html', document.body.innerHTML, 'utf8');
-    // }
-    const elements = this.elements.Elements
-    elements.forEach((element: any) => {
-      this.generateHtml(element)
+    // Run through all elements and generate HTML.
+    const htmlElements = this.elements.HtmlElements
+    htmlElements.forEach((group: any) => {
+      group.Elements.forEach((element: any) => {
+        generateHtml(element)
+      })
     })
 
     // Write to file
-    fs.writeFileSync('output.html', document.body.innerHTML, 'utf8')
+    // fs.writeFileSync('output.html', document.body.innerHTML, 'utf8')
+    return document.body.innerHTML
   }
 }
 

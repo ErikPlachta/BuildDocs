@@ -1,7 +1,44 @@
 import { CommentsProcessed } from './index'
 
-type Element = {
+type ElementsProcessed = {
   id: string
+  createdDate: Date
+  description : string
+  HtmlElements: Elements[]
+  parents: Parents
+  helpers: {
+    getElements: () => Elements[]
+    getElementById: (id: string) => Elements[]
+    getElementsById: (id: string) => Elements[]
+    getElementsByParentId: (parent: string) => Elements[]
+    getElementsByRole: (role: string) => Elements[]
+    getElementsByGroup: (group: string) => Elements[]
+    getElementsBySubGroup: (subGroup: string) => Elements[]
+    getElementsByType: (type: string) => Elements[]
+  }
+}
+
+type Elements = {
+  id: string
+  title : string
+  description: string
+  parents: Parents
+  createdDate: Date
+  data?: {
+    arguments: CommentsProcessed['arguments'] | []
+    props: CommentsProcessed['props'] | []
+    returns: CommentsProcessed['returns'] | []
+    requires: CommentsProcessed['requires'] | []
+    changelog: CommentsProcessed['changelog'] | []
+    parent: CommentsProcessed['parent'] | null
+    children: CommentsProcessed['children'] | []
+    related: CommentsProcessed['related'] | []
+  }
+  Elements: Element[]
+}
+
+type Element = {
+  id: string | null
   orderId?: number
   parent: string | null
   children: Element[]
@@ -47,42 +84,6 @@ type Parents = {
   footer: string
 }
 
-type Elements = {
-  id: string
-  title : string
-  description: string
-  parents: Parents
-  createdDate: Date
-  data?: {
-    arguments: CommentsProcessed['arguments'] | []
-    props: CommentsProcessed['props'] | []
-    returns: CommentsProcessed['returns'] | []
-    requires: CommentsProcessed['requires'] | []
-    changelog: CommentsProcessed['changelog'] | []
-    parent: CommentsProcessed['parent'] | null
-    children: CommentsProcessed['children'] | []
-    related: CommentsProcessed['related'] | []
-  }
-  Elements: Element[]
-}
-
-type ElementsProcessed = {
-  id: string
-  createdDate: Date
-  description : string
-  Elements: Elements[]
-  parents: Parents
-  helpers: {
-    getElements: () => Elements[]
-    getElementById: (id: string) => Elements[]
-    getElementsById: (id: string) => Elements[]
-    getElementsByParentId: (parent: string) => Elements[]
-    getElementsByRole: (role: string) => Elements[]
-    getElementsByGroup: (group: string) => Elements[]
-    getElementsBySubGroup: (subGroup: string) => Elements[]
-    getElementsByType: (type: string) => Elements[]
-  }
-}
 
 export { Element, Elements, ElementsProcessed }
 
