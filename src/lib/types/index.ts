@@ -11,13 +11,8 @@
  *
  */
 
-import { Element, Elements, ElementsProcessed } from './Elements'
-import {
-  CommentRaw,
-  CommentsRaw,
-  CommentsProcessed,
-  Comments,
-} from './Comments'
+import { Element, Elements, ElementsProcessed, htmlConfig } from './Elements'
+import { CommentRaw, CommentsRaw, CommentsProcessed, Comments } from './Comments'
 
 /**
  * @type {Type}
@@ -64,14 +59,15 @@ export {
   //-- GetDocs
   CommentRaw,
   CommentsRaw,
-  
+
   //-- DocsToJson && JsonToUi:
   CommentsProcessed,
-  
+
   //-- JsonToUi
   Comments,
   JsonToUiConfig,
   Element,
   Elements,
   ElementsProcessed,
+  htmlConfig
 }

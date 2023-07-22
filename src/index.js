@@ -220,8 +220,11 @@ async function run(updatedConfig) {
 
     // 4. Generate UI from generated docs
     const generateUiResults = new JsonToUi(docs, config_JsonToUi);
-    writeFileSync(
-      `${outputPath.value}/docs.html`, generateUiResults.getHtml(), 'utf8')
+    
+    const htmlDocument = generateUiResults.getHtml();
+    // const markdownDocument = generateUiResults.getMarkdown();
+
+    writeFileSync(resolve(outputPath.value, 'index.html'), htmlDocument);
 
     // console.log('generateUiResults: ', generateUiResults)
 

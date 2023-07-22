@@ -85,6 +85,38 @@ type Parents = {
 }
 
 
-export { Element, Elements, ElementsProcessed }
+type htmlConfig = {
+  html: {
+    lang: string
+  }
+  head: {
+    scripts: htmlScript[]
+    styles: htmlStyle[]
+    meta: htmlMeta[]
+  }
+  body: {
+    styles: string[]
+    classList: string[]
+  }
+}
+
+type htmlScript = {
+  src: string
+  type?: string
+  async?: boolean
+  defer?: boolean
+}
+
+type htmlStyle = {
+  type: CSSStyleRule
+  value: CSSStyleValue
+}
+
+type htmlMeta = {
+  type: string | 'charset' | 'name' | 'http-equiv' | 'content' | 'property' 
+  value: string
+}
+
+export { Element, Elements, ElementsProcessed, htmlConfig }
 
 
