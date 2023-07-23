@@ -814,7 +814,8 @@ class JsonToUi {
                     elementType: 'div',
                     classList: ['border-solid border-2 rounded-b-xl h-full p-4'],
                     dataAttributes: {
-                      value: null,
+                      value: item.description || item.summary || JSON.stringify(item),
+                      //! TODO: NEXT: Have this render real content.
                       type: null,
                       path: null,
                       role: 'group-content',
@@ -858,7 +859,7 @@ class JsonToUi {
       } // -- end of if namespace check.
 
       itemCount++
-      console.log('itemCount: ', itemCount)
+      
     }) // -- end of looping through root items.
     // 4. Return updated object with the main nav elements within.
     return ElementsProcessed
@@ -1016,7 +1017,7 @@ class JsonToUi {
       //  If Module is a member of the namespace.
       if (item.parent.filter(parent => parent.id === parentId).length > 0) {
         // 3. Create the content for the module.
-        // console.log('itemCount: ', itemCount)
+        
         const content: Element = {
           id: item.id,
           parent: ElementsProcessed.parents.contentWrapper || null,
@@ -1029,7 +1030,7 @@ class JsonToUi {
             }}`,
           ],
           dataAttributes: {
-            value: item, //TODO: Parse so real content, not just raw data.
+            value: item.description || item.summary || `JSON.stringify(item)`, 
             type: item.type?.type || item.type?.description || null,
             path: item.fileDetails.filePath,
             role: 'content', //-- Role of content when rendered to the UI.
@@ -1054,9 +1055,9 @@ class JsonToUi {
         } // End of building element
 
         itemCount++ // Increment the item count.
+        
         // 4. Push it into the content_modulesInNamespace array.
         content_modulesInNamespace.push(content)
-        // console.log('itemCount: ', itemCount)
       }
     }) // -- end of looping through processed data.
 

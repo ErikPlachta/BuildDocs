@@ -5,7 +5,7 @@ function ManageHtmlContent() {
    * 1. Update the main nav's active tab.
    * 2. Show / hide the main nav's content based on the selected group from nav-main li.
    */
-  function handleMainNav(groupId: string) {
+  function handleMainNav(groupId: any) {
     // 1. Update the main nav's active tab.
     document.querySelectorAll("[data-role='nav-header-link']").forEach((navMainLink: any) => {
       if (navMainLink?.dataset.group == groupId) {
@@ -17,8 +17,18 @@ function ManageHtmlContent() {
       }
     })
 
-    // 2. Show / hide the main nav's content within their contents based on the selected group from nav-main li.
-    document.querySelectorAll("[data-role='content']").forEach((content: any) => {
+    // 2. Show / hide wrapper for content group.
+    document.querySelectorAll("[data-role='group-content-wrapper']").forEach((content: any) => {
+      // If the content's group matches the selected group, show it.
+      if (content.dataset.group == groupId) {
+        content?.classList.remove('hidden')
+      } else {
+        content?.classList.add('hidden')
+      }
+    })
+
+    // 3. Show / hide content within the group-wrapper.
+    document.querySelectorAll("[data-role='group-content']").forEach((content: any) => {
       // If the content's group matches the selected group, show it.
       if (content.dataset.group == groupId) {
         content?.classList.remove('hidden')
@@ -76,7 +86,7 @@ function ManageHtmlContent() {
       })
     })
   }
-  
+
   // When the DOM is loaded, add event listeners.
   document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded')
