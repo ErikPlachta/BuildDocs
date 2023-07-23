@@ -39,7 +39,7 @@ const { readFileSync, writeFileSync } = require('fs'); // used for reading confi
 // Custom Libraries
 const Config = require('./lib/Config/index.ts');
 const DocsToJson = require('./lib/DocsToJson/index.ts');
-const JsonToUi = require('./lib/JsonToUi/index.ts');
+const JsonToUi = require('./lib/DocsToUi/index.js');
 
 
 //-- Custom Utilities

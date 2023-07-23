@@ -1,0 +1,108 @@
+import { User } from '../lib/types'
+
+/**
+ * Options used by `build-docs` to determine run behavior.
+ *
+ * @type {Config} config - Options used by `build-docs` to determine run behavior.
+ * @summary Options used by `build-docs` to determine run behavior.
+ * @description Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values.
+ * @typedef {Object} Config
+ * @summary Options used by `build-docs` to determine run behavior.
+ * @description Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values.
+ * @memberof module:build-docs
+ * @author Erik Plachta
+ * @version 0.0.1
+ * @since 0.0.1
+ * @property {DocsToJson} DocsToJson - Options for the DocsToJson sub-module.
+ * @property {DocsToJson.outputName} DocsToJson.outputName - Name of the file to output the generated docs raw JSON data.
+ * @property {DocsToJson.outputFormat} DocsToJson.outputFormat - Format of the generated docs raw JSON data.
+ * @property {DocsToJson.writeMode} DocsToJson.writeMode - Write mode to use when saving the raw generate doc values.
+ * @property {DocsToUi} DocsToUi - Options for the DocsToUi sub-module.
+ * @property {DocsToUi.customOutputPath} DocsToUi.customOutputPath - Where to output the generated docs raw JSON data.
+ * @property {DocsToUi.outputName} DocsToUi.outputName - Name of the file to output the generated docs raw JSON data.
+ * @property {DocsToUi.buildHtml} DocsToUi.buildHtml - Build HTML from the generated docs raw JSON data.
+ * @property {DocsToUi.buildMarkdown} DocsToUi.buildMarkdown - Build Markdown from the generated docs raw JSON data.
+ * @property {DocsToUi.writeMode} DocsToUi.writeMode - Write mode to use when saving the generated docs.
+ * @property {Logging} Logging - Options for build-docs logging.
+ * @property {Logging.level} Logging.level - Default `3`. 0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info.
+ * @property {Logging.toConsole} Logging.toConsole - Default `true`, should build-docs log to console. true | false.
+ * @property {Logging.toFile} Logging.toFile - Default `true`, should build docs log to file. true | false.
+ * @property {Logging.filePath} Logging.filePath - Default `./build/docs/logs`, where to save the log file.
+ * @property {Logging.fileNameCustom} Logging.fileNameCustom - Default `undefined`, custom file name for the log file.
+ * @property {Logging.fileNameIncludeDate} Logging.fileNameIncludeDate - Default `true`, should the log file name include the date. true | false.
+ * @property {Logging.fileNameIncludeTime} Logging.fileNameIncludeTime - Default `true`, should the log file name include the time. true | false.
+ * @property {Logging.fileNameIncludeRoot} Logging.fileNameIncludeRoot - Default `true`, should the log file name include the root. true | false.
+ * @property {Logging.fileFormat} Logging.fileFormat - Default `json`, format of the log file. 'json' | 'txt'.
+ * @property {Logging.writeMode} Logging.writeMode - Default `new`, write mode to use when saving the log file. 'append' | 'new' | 'overwrite' | 'prepend'.
+ * @property {Output} Output - Options for build-docs output.
+ * @property {Output.outputPath} Output.outputPath - Default `./build/`, where to output the generated docs raw JSON data.
+ * @property {Output.outputFolderName} Output.outputFolderName - Default `docs`, folder within path all build-docs content will be generated.
+ * @property {Target} Target - Options for what/where `build-docs` will/will not target when looking for comments.
+ * @property {Target.targetPath} Target.targetPath - Default `./src`, where to look for docs.
+ * @property {Target.targetPaths} Target.targetPaths - Default `[]`, where to look for docs.
+ * @property {Target.ignorePaths} Target.ignorePaths - Default see below, paths to ignore when generating docs.
+ * @property {Target.ignoreFiles} Target.ignoreFiles - Default `[]`, files to ignore when generating docs.
+ *
+ * @changelog 0.0.1 | 2023-07-23 | Erik Plachta | docs: Build out user config file concept.
+ */
+const config = {
+  DocsToJson: {
+    outputName: 'docs', // string - ( Name of the file to output the generated docs raw JSON data.)
+    outputFormat: 'json', // 'json' - ( Format of the generated docs raw JSON data.)
+    writeMode: 'overwrite', // 'append' | 'new' | 'overwrite' | 'prepend' - ( Write mode to use when saving the raw generate doc values.)
+  },
+  DocsToUi: {
+    customOutputPath: undefined, // string - ( Where to output the generated docs raw JSON data.)
+    outputName: 'docs', // string - ( Name of the file to output the generated docs raw JSON data.)
+    buildHtml: true, // true | false - ( Build HTML from the generated docs raw JSON data.)
+    buildMarkdown: false, // true | false - ( Build Markdown from the generated docs raw JSON data.)
+    writeMode: 'overwrite', // 'append' | 'new' | 'overwrite' | 'prepend' - ( Write mode to use when saving the generated docs.)
+  },
+  Logging: {
+    level: 0, // | 1 | 2 | 3 | 4 | 5 (0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info )
+    toConsole: true, // true | false
+    toFile: true, // true | false
+    filePath: './build/build-docs/logs', // string
+    fileNameCustom: undefined, // undefined | string
+    fileNameIncludeDate: true, // true | false
+    fileNameIncludeTime: true, // true | false
+    fileNameIncludeRoot: true, // true | false
+    fileFormat: 'json', // 'json' | 'txt'
+    writeMode: 'new', // 'append' | 'new' | 'overwrite' | 'prepend'
+  },
+  Output: {
+    outputPath: './build/', // string - ( Where to output the generated docs raw JSON data.)
+    outputFolderName: 'docs', // string - ( Folder within path all build-docs content will be generated.)
+  },
+  Target: {
+    targetPath: './src', // string - ( Where to look for docs.)
+    targetPaths: [], // string[] - ( Where to look for docs. )
+    ignorePaths: [
+      // string[] - ( Paths to ignore when generating docs. )
+      'node_modules',
+      '.git',
+      '.build',
+      '.vscode',
+      '.github',
+      'backup',
+      'backups',
+      'build',
+      'cache',
+      'caches',
+      'coverage',
+      'dump',
+      'dumps',
+      'dist',
+      'docs',
+      'log',
+      'logs',
+      'out',
+      'temp',
+      'tmp',
+    ],
+    ignoreFiles: [], // string[] - ( Files to ignore when generating docs. )
+    targetFiles: [], // string[] - ( Files to generate docs for. )
+  },
+}
+
+export default config

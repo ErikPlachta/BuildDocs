@@ -4,11 +4,12 @@
   "description": "A tool to generate documentation from JSDoc style comments in your codebase.",
   "type": "commonjs",
   "scripts": {
-    "test": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js targetPath=\"./src/_TEST/\"",
+    "test": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js",
+    "test-cli": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js targetPath=\"./src/bin/_TEST/\"",
     "start": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js",
     "setup": "echo \nNo Setup script specified yet.\" && exit 1",
-    "JsonToUiTest": "ts-node -O '{\"module\": \"commonjs\"}' './src/lib/JsonToUi/JsonToUi.test.ts'",
-    "JsonToUiTestOld": "ts-node './src/lib/JsonToUi/JsonToUi.test.ts'",
+    "DocsToUiTest": "ts-node -O '{\"module\": \"commonjs\"}' './src/lib/DocsToUi/DocsToUi.test.ts'",
+    "DocsToUiTestOld": "ts-node './src/lib/DocsToUi/DocsToUi.test.ts'",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts, ."
   },
   "keywords": [

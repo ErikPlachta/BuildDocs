@@ -13,7 +13,7 @@
 
 import { Element, Elements, ElementsProcessed, htmlConfig } from './Elements'
 import { CommentRaw, CommentsRaw, CommentsProcessed, Comments } from './Comments'
-import { Config, Logging, Output, Target, Setting, Option  } from './Config'
+import { Config, UserConfig, Logging_config, Target_config, DocsToJson_config, JsonToUi_config, Option  } from './Config'
 
 /**
  * @type {Type}

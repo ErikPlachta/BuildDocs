@@ -96,8 +96,8 @@ class Configure {
 
     if (this.getLoggingLevel() >= 5) console.log('config.data: ', config.data)
 
-    // 4. Update Config with Args  - Overwrite the default config values with any matching args passed in.
-    const updatedConfig: results = await this.getUpdatedConfig(args.data, config.data)
+    // 4. Update Config with Args through CLI or through `.build-docs`.
+    const updatedConfig: results = await this.getUpdatedConfig(args.data, config.data, undefined)
 
     if (updatedConfig.success == false) {
       if (this.getLoggingLevel() > 0) console.error(updatedConfig)

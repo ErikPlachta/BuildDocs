@@ -316,6 +316,7 @@ export {
   ConfigGroupDefaults,
   UserConfig,
   DocsToJson_config,
+  DocsToUi_config,
   Target_config,
   Logging_config,
   Option,
