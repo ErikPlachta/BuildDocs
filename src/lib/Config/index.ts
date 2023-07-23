@@ -77,10 +77,10 @@ class Configure {
         { key: 'writeMode', validator: (val: any) => ['append', 'new', 'overwrite', 'prepend'].includes(val) },
       ]),
       DocsToUiValidators: ([] = [
-        { key: 'customOutputPath', validator: (val: any) => typeof val === ('string' || undefined )},
-        { key: 'outputName', validator: (val: any) => typeof val === ('string' || undefined )},
-        { key: 'buildHtml', validator: (val: any) => typeof val === 'boolean' },
-        { key: 'buildMarkdown', validator: (val: any) => typeof val === 'boolean' },
+        { key: 'customOutputPath', validator: (val: any) => typeof val === ('string' || undefined) },
+        { key: 'outputName', validator: (val: any) => typeof val === ('string' || undefined) },
+        { key: 'buildHtml', validator: (val: any) => typeof val === 'boolean' || val == ('true' || 'false') },
+        { key: 'buildMarkdown', validator: (val: any) => typeof val === 'boolean' || val == ('true' || 'false') },
         { key: 'writeMode', validator: (val: any) => ['append', 'new', 'overwrite', 'prepend'].includes(val) },
       ]),
 
@@ -232,6 +232,14 @@ class Configure {
 
       // Validate the user config data
       const isValidUserConfig = this.isValidUserConfig(userConfig)
+
+      console.log('isValidUserConfig results: ')
+      isValidUserConfig.forEach((group: any) => {
+        console.log(`\t${group.group}: `)
+        group.data.forEach((option: any) => {
+          console.log(`\t\t${option.key}: ${option.isValid}`)
+        })
+      })
 
       // Set the user config.
       this.UserConfig = userConfig
