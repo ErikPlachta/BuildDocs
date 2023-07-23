@@ -94,7 +94,7 @@ class JsonToUi {
     this.htmlConfig = {
       html: {
         lang: 'en',
-        classList: ['h-[100vh]']
+        classList: ['h-[100vh]'],
       },
       head: {
         meta: [
@@ -118,7 +118,7 @@ class JsonToUi {
         ],
         styles: [],
       },
-      
+
       body: {
         classList: ['bg-gray-100', 'flex', 'flex-col', 'gap-8', 'h-[100vh]'],
         styles: [],
@@ -560,13 +560,15 @@ class JsonToUi {
     ElementsProcessed = this.buildGroupContentWrapper(ElementsProcessed)
 
     // 5. Build the Footer at bottom of dom.
-    ElementsProcessed.HtmlElements[ElementsProcessed.HtmlElements.length-1].Elements.push({
+    ElementsProcessed.HtmlElements[ElementsProcessed.HtmlElements.length - 1].Elements.push({
       id: parentIds.footer,
       parent: null,
       //TODO: Add footer content
       description: 'Footer within the rendered content.',
       elementType: 'footer',
-      classList: ['w-full bottom-0 p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto'],
+      classList: [
+        'w-full bottom-0 p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto max-w-4xl',
+      ],
       dataAttributes: {
         value: 'Footer Placeholder Text',
         type: null,
