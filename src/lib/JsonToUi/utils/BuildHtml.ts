@@ -235,10 +235,41 @@ class BuildHtml {
       if (element.dataAttributes) {
         setAttributes(element.dataAttributes, el)
       }
-      // Set Text value if provided.
-      if (element.dataAttributes.value) {
+
+      // Build content if any defined
+      if (element.content) {
+        // If content is an array, run through each item and append to the element.
+        if (Array.isArray(element.content)) {
+          element.content.forEach((content: any) => {
+            // If it's a node already, append it to current element.
+            if (content.nodeType) {
+              el.appendChild(content)
+            }
+            // If it's an object, run through and build a list from it..
+            // TODO: Add more complex support for diff types of objects to render.
+            else if (typeof content === 'object') {
+              const list = this.document.createElement('ul')
+              for (const key of Object.keys(content)) {
+                // if has content, render it.
+                if (content[key]?.length != 0 && content[key] != (null && undefined && '')) {
+                  console.log('key: ', key, ' | content[key]: ', content[key])
+                  const li = this.document.createElement('li')
+                  li.textContent = `${key}: ${content[key]}`
+                  list.appendChild(li)
+                }
+              }
+              el.appendChild(list)
+            }
+            // Otherwise, it's text content so just render text.
+            else {
+              el.textContent = content
+            }
+          })
+        }
+      }
+      // Otherwise use the value
+      else if (element.dataAttributes.value) {
         el.textContent = element.dataAttributes.value
-        //  = element.dataAttributes.value
       }
 
       if (element.classList) {
