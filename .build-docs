@@ -45,41 +45,49 @@
  */
 const config = {
   DocsToJson: {
-    outputName: 'docs',                         // string - ( Name of the file to output the generated docs raw JSON data.)
-    outputFormat: 'json',                       // 'json' - ( Format of the generated docs raw JSON data.)
-    writeMode: 'overwrite',                     // 'append' | 'new' | 'overwrite' | 'prepend' - ( Write mode to use when saving the raw generate doc values.)
+    outputName: 'docs',                           // string - ( Name of the file to output the generated docs raw JSON data.)
+    outputFormat: 'json',                         // 'json' - ( Format of the generated docs raw JSON data.)
+    writeMode: 'overwrite',                       // 'append' | 'new' | 'overwrite' | 'prepend' - ( Write mode to use when saving the raw generate doc values.)
   },
   DocsToUi: {
-    customOutputPath: undefined,                // string - ( Where to output the generated docs raw JSON data.)
-    outputName: 'docs',                         // string - ( Name of the file to output the generated docs raw JSON data.)
-    buildHtml: true,                            // true | false - ( Build HTML from the generated docs raw JSON data.)
-    buildMarkdown: false,                       // true | false - ( Build Markdown from the generated docs raw JSON data.)
-    writeMode: 'overwrite',                     // 'append' | 'new' | 'overwrite' | 'prepend' - ( Write mode to use when saving the generated docs.)
+    customOutputPath: undefined,                  // string - ( Where to output the generated docs raw JSON data.)
+    outputName: 'docs',                           // string - ( Name of the file to output the generated docs raw JSON data.)
+    buildHtml: true,                              // true | false - ( Build HTML from the generated docs raw JSON data.)
+    buildMarkdown: false,                         // true | false - ( Build Markdown from the generated docs raw JSON data.)
+    writeMode: 'overwrite',                       // 'append' | 'new' | 'overwrite' | 'prepend' - ( Write mode to use when saving the generated docs.)
   },
   Logging: {
-    level: 0,                                   // | 1 | 2 | 3 | 4 | 5 (0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info )
-    toConsole: true,                            // true | false
-    toFile: true,                               // true | false
-    filePath: './build/build-docs/logs',        // string
-    fileNameCustom: undefined,                  // undefined | string
-    fileNameIncludeDate: true,                  // true | false
-    fileNameIncludeTime: true,                  // true | false
-    fileNameIncludeRoot: true,                  // true | false
-    fileFormat: 'json',                         // 'json' | 'txt'
-    writeMode: 'new',                           // 'append' | 'new' | 'overwrite' | 'prepend'
+    level: 0,                                     // | 1 | 2 | 3 | 4 | 5 (0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info )
+    toConsole: true,                              // true | false - ( Should build-docs log to console. )
+    toFile: false,                                // true | false - ( Should build-docs log to file. )
+    filePath: './.build/build-docs/logs',         // string - ( Where to save the log file.)
+    fileNameCustom: undefined,                    // undefined | string - ( Custom file name for the log file.)
+    fileFormat: 'json',                           // 'json' - ( Format of the log file.)
+    writeMode: 'overwrite',                       // 'append' | 'new' | 'overwrite' | 'prepend'
+
+    //TODO - Implement these options.
+    // fileNameIncludeDate: true,                  // true | false - ( Should the log file name include the date.)
+    // fileNameIncludeTime: true,                  // true | false - ( Should the log file name include the time.)
+    // fileNameIncludeRoot: true,                  // true | false
+
   },
   Output: {
-    outputPath: './build/',                     // string - ( Where to output the generated docs raw JSON data.)
-    outputFolderName: 'docs',                   // string - ( Folder within path all build-docs content will be generated.)
+    outputPath: './.build/',                      // string - ( Where to output the generated docs raw JSON data.)
+    outputFolderName: 'docs',                     // string - ( Folder within path all build-docs content will be generated.)
   },
   Target: {
-    targetPath: './src',                        // string - ( Where to look for docs.)
-    targetPaths: [],                            // string[] - ( Where to look for docs. )
-    ignorePaths: [                              // string[] - ( Paths to ignore when generating docs. )
-      'node_modules', '.git', '.build', '.vscode', '.github', 'backup', 'backups', 'build', 'cache', 'caches', 'coverage', 'dump', 'dumps', 'dist', 'docs', 'log', 'logs', 'out', 'temp', 'tmp',
+    targetPath: './src',                          // string - ( Where to look for docs.)
+    targetPaths: [],                              // string[] - ( Where to look for docs. )
+    ignorePaths: [                                // string[] - ( Paths to ignore when generating docs. )
+      'node_modules', '.git', '.build', '.vscode',
+      '.github', 'backup', 'backups', 'build',
+      'cache', 'caches', 'coverage', 'dump',
+      'dumps', 'dist', 'docs', 'log', 'logs',
+      'out', 'temp', 'tmp',
     ],
-    ignoreFiles: [],                            // string[] - ( Files to ignore when generating docs. )
-    targetFiles: [],                            // string[] - ( Files to generate docs for. )
+    ignoreFiles: [],                              // string[] - ( Files to ignore when generating docs. )
+    targetFiles: [],                              // string[] - ( Files to generate docs for. )
+    targetFileTypes: ['js', 'ts'],                // string[] - ( Files to generate docs for. )
   },
 }
 

@@ -178,13 +178,10 @@ async function main() {
     if (!success) throw new Error(Config);
 
     console.log(data.config)
-    
 
-    // const config = data.config;
-    const settings = data.config.settings;
 
     //  2. Run the build-docs utility with settings.
-    const runResults = await run(settings);
+    const runResults = await run(data.config);
 
     // // 6.If failed to run module properly, throw error.
     if (runResults.success == false) {
