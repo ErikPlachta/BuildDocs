@@ -20,7 +20,7 @@
  *
  * 
  * @requires module:DocsToJson - {@link module:DocsToJson | ./lib/DocsToJson.ts}
- * @requires module:JsonToUi - {@link module:JsonToUi | ./lib/JsonToUi.ts}
+ * @requires module:DocsToUi - {@link module:DocsToUi | ./lib/DocsToUi.ts}
  * @requires {@link https://nodejs.org/api/fs.html#fs_file_system | fs}
  * @requires {@link https://nodejs.org/api/path.html#path_path | path}
  * @requires {@link https://nodejs.org/api/child_process.html#child_process_child_process | child_process}
@@ -39,7 +39,7 @@ const { readFileSync, writeFileSync } = require('fs'); // used for reading confi
 // Custom Libraries
 const Config = require('./lib/Config/index.ts');
 const DocsToJson = require('./lib/DocsToJson/index.ts');
-const JsonToUi = require('./lib/DocsToUi/index.js');
+const DocsToUi = require('./lib/DocsToUi/index.js');
 
 
 //-- Custom Utilities
@@ -56,7 +56,7 @@ const { DataManager } = require('./utils/DataManager.ts');
  * @memberof module:build-docs
  * @access private
  * @async
- * @summary Run the DocsToJson utility and then JsonToUi libs.
+ * @summary Run the DocsToJson utility and then DocsToUi libs.
  * @description Executes libraries to generate docs and then generate UI from docs using values within `updatedConfig` as reference for behaviors.
  * @param {object} [settings] - DocsToJson Configuration object with possible updates from cli args. Contains `init` and `out` objects.
  * @returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.
@@ -82,10 +82,10 @@ async function run(settings) {
     //TODO: update to extract the rest of the output options once needed.
     const outputPath = Output.options.filter((option) => option.title == 'outputPath')[0];
     
-    const JsonToUiOptions = Output.options.filter((option) => option.memberOf != 'module:build-docs.JsonToUi')
+    const DocsToUiOptions = Output.options.filter((option) => option.memberOf != 'module:build-docs.DocsToUi')
     
 
-    // console.log('JsonToUiOptions: ', JsonToUiOptions)
+    // console.log('DocsToUiOptions: ', DocsToUiOptions)
 
     // 2. Build config object for DocsToJson.
     const config_DocsToJson = {
@@ -113,24 +113,24 @@ async function run(settings) {
 
 
     //-----------------------------------
-    // JsonToUi
+    // DocsToUi
 
     // 4. Generate UI from generated docs
-    //TODO: Update to extract from updatedConfig once added to it and verified built in JsonToUi properly.
-    const config_JsonToUi = {
+    //TODO: Update to extract from updatedConfig once added to it and verified built in DocsToUi properly.
+    const config_DocsToUi = {
       convertToMarkdown: true,
       convertToHtml: true,
     }
-    const jsonToUi = new JsonToUi(loggingLevel, docs, config_JsonToUi);
-    // console.log('jsonToUi: ', jsonToUi)
-    const jsonToHtml = await jsonToUi.getHtml();
+    const DocsToUi = new DocsToUi(loggingLevel, docs, config_DocsToUi);
+    // console.log('DocsToUi: ', DocsToUi)
+    const jsonToHtml = await DocsToUi.getHtml();
     // console.log('jsonToHtml: ', jsonToHtml)
-    // const markdownDocument = jsonToUi.getMarkdown();
+    // const markdownDocument = DocsToUi.getMarkdown();
 
     writeFileSync(resolve(outputPath.value, 'index.html'), jsonToHtml);
     
 
-    // console.log('jsonToUi: ', jsonToUi)
+    // console.log('DocsToUi: ', DocsToUi)
 
     return {
       success: true,
@@ -141,9 +141,9 @@ async function run(settings) {
           buildJson: buildJson,
           saveDocsToJson: saveDocsJson,
         },
-        JsonToUi: {
-          config: config_JsonToUi,
-          jsonToUi,
+        DocsToUi: {
+          config: config_DocsToUi,
+          DocsToUi,
           jsonToHtml
         }
       }

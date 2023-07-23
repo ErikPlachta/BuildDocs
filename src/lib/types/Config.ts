@@ -42,21 +42,21 @@ type ConfigGroupDefaults = {
  * @summary Logging configuration options.
  * @description Definition of all available options and their defaults for the logging configuration.
  * @prop {Option[]} options - An array of all available options.
- * @prop {Option} options[].level - The level of logging to use.
- * @prop {Option} options[].toConsole - Whether or not to log to the console.
- * @prop {Option} options[].toFile - Whether or not to log to a file.
- * @prop {Option} options[].filePath - The path to the file to log to.
- * @prop {Option} options[].fileNameIncludeDate - Whether or not to include the date in the log.
- * @prop {Option} options[].fileNameIncludeTime - Whether or not to include the time in the log.
- * @prop {Option} options[].fileNameIncludeRoot - Whether or not to include the root path in the log.
- * @prop {Option} options[].fileFormat - The format to use for the log.
- * @prop {Option} options[].fileWriteMode - The write mode to use for the log.
+ * @prop {Option} options.level - The level of logging to use.
+ * @prop {Option} options.toConsole - Whether or not to log to the console.
+ * @prop {Option} options.toFile - Whether or not to log to a file.
+ * @prop {Option} options.filePath - The path to the file to log to.
+ * @prop {Option} options.fileNameIncludeDate - Whether or not to include the date in the log.
+ * @prop {Option} options.fileNameIncludeTime - Whether or not to include the time in the log.
+ * @prop {Option} options.fileNameIncludeRoot - Whether or not to include the root path in the log.
+ * @prop {Option} options.fileFormat - The format to use for the log.
+ * @prop {Option} options.fileWriteMode - The write mode to use for the log.
  */
 interface Logging_config extends ConfigGroupDefaults {
-  options: LoggingOptions[]
+  options: LoggingOptions
 }
-interface LoggingOptions extends Option {
-  level: {
+interface LoggingOptions {
+  level: Option & {
     value: 0 | 1 | 2 | 3 | 4 | 5
     default: 3
   }
@@ -95,7 +95,7 @@ interface LoggingOptions extends Option {
 //-- Output
 
 interface Output_config extends ConfigGroupDefaults {
-  options: Output_config_Options[]
+  options: Output_config_Options
 }
 interface Output_config_Options extends Option {
   outputPath: {
@@ -118,42 +118,42 @@ interface Output_config_Options extends Option {
  * @summary Target configuration options.
  * @description Definition of all available options and their defaults for the Target configuration.
  * @prop {Option[]} options - An array of all available options.
- * @prop {Option} options[].outputPath - The path to the output file.
- * @prop {Option} options[].outputName - The name of the output file.
- * @prop {Option} options[].outputFormat - The format of the output file.
- * @prop {Option} options[].targetPath - The path to the target file.
- * @prop {Option} options[].targetPaths - The paths to the target files.
- * @prop {Option} options[].ignorePaths - The paths to ignore.
- * @prop {Option} options[].ignoreFiles - The files to ignore.
- * @prop {Option} options[].targetFiles - The files to target.
- * @prop {Option} options[].targetFileTypes - The file types to target.
- * @prop {Option} options[].writeMode - The write mode to use for the output file.
+ * @prop {Option} options.outputPath - The path to the output file.
+ * @prop {Option} options.outputName - The name of the output file.
+ * @prop {Option} options.outputFormat - The format of the output file.
+ * @prop {Option} options.targetPath - The path to the target file.
+ * @prop {Option} options.targetPaths - The paths to the target files.
+ * @prop {Option} options.ignorePaths - The paths to ignore.
+ * @prop {Option} options.ignoreFiles - The files to ignore.
+ * @prop {Option} options.targetFiles - The files to target.
+ * @prop {Option} options.targetFileTypes - The file types to target.
+ * @prop {Option} options.writeMode - The write mode to use for the output file.
  */
 interface Target_config extends ConfigGroupDefaults {
-  options: Target_config_Options[]
+  options: Target_config_Options
 }
-interface Target_config_Options extends Option {
-  outputPath: {
+interface Target_config_Options  {
+  outputPath: Option & {
     value: string
     default: './build'
   }
-  outputName: {
+  outputName: Option & {
     value: string
     default: 'docs'
   }
-  outputFormat: {
+  outputFormat: Option & {
     value: 'json' | 'txt'
     default: 'json'
   }
-  targetPath: {
+  targetPath: Option & {
     value: string
     default: './'
   }
-  targetPaths: {
+  targetPaths: Option & {
     value: string[]
     default: []
   }
-  ignorePaths: {
+  ignorePaths: Option & {
     value: string[]
     default: [
       'node_modules',
@@ -178,19 +178,19 @@ interface Target_config_Options extends Option {
       'tmp',
     ]
   }
-  ignoreFiles: {
+  ignoreFiles: Option & {
     value: string[]
     default: string[]
   }
-  targetFiles: {
+  targetFiles: Option & {
     value: string[]
     default: string[]
   }
-  targetFileTypes: {
+  targetFileTypes: Option & {
     value: string[]
     default: string[]
   }
-  writeMode: WriteMode
+  writeMode: Option & WriteMode
 }
 
 //-------------------------------------
@@ -203,34 +203,34 @@ interface Target_config_Options extends Option {
  * @summary DocsToUi configuration options.
  * @description Definition of all available options and their defaults for the DocsToUi configuration.
  * @prop {Option[]} options - An array of all available options.
- * @prop {Option} options[].outputPath - The path to the output file.
- * @prop {Option} options[].outputName - The name of the output file.
- * @prop {Option} options[].outputFormat - The format of the output file.
- * @prop {Option} options[].writeMode - The write mode to use for the output file.
- * @prop {Option} options[].buildHtml - Whether or not to build the HTML output.
+ * @prop {Option} options.outputPath - The path to the output file.
+ * @prop {Option} options.outputName - The name of the output file.
+ * @prop {Option} options.outputFormat - The format of the output file.
+ * @prop {Option} options.writeMode - The write mode to use for the output file.
+ * @prop {Option} options.buildHtml - Whether or not to build the HTML output.
  */
 interface DocsToUi_config extends ConfigGroupDefaults {
   // option: 'outPath' | 'outName' | 'outFormat' | 'writeMode '
-  options: DocsToUi_config_Options[]
+  options: DocsToUi_config_Options
 }
-interface DocsToUi_config_Options extends Option {
-  customOutputPath: {
+interface DocsToUi_config_Options {
+  customOutputPath: Option & {
     value: undefined | string
     default: undefined
   }
-  outputName: {
+  outputName: Option & {
     value: string
     default: 'docs'
   }
-  language: {
+  language: Option & {
     value: 'html' | 'md'
     default: 'html'
   }
-  buildHtml: {
+  buildHtml: Option & {
     value: boolean
     default: true
   }
-  buildMarkdown: {
+  buildMarkdown: Option & {
     value: boolean
     default: false
   }
@@ -240,26 +240,24 @@ interface DocsToUi_config_Options extends Option {
 //-------------------------------------
 //-- DocsToJson
 
-interface  DocsToJson_config extends ConfigGroupDefaults {
-  options: DocsToJson_config_Options[]
+interface DocsToJson_config {
+  options: DocsToJson_config_Options
 }
-interface DocsToJson_config_Options extends Option {
-  customOutputPath: {
+interface DocsToJson_config_Options {
+  customOutputPath: Option & {
     value: undefined | string
     default: undefined
   }
-  outputName: {
+  outputName: Option & {
     value: string
     default: 'docs'
   }
-  outputFormat: {
+  outputFormat: Option & {
     value: 'json'
     default: 'json'
   }
   writeMode: WriteMode
 }
-
-
 
 //-------------------------------------
 //-- User Config
@@ -270,7 +268,7 @@ interface DocsToJson_config_Options extends Option {
  * @description If there is a `.build-docs` | `.build.docs.js` file in the root of the project, it will be used to override the default config.
  */
 type UserConfig = {
-  logging: {
+  logging: Option & {
     level?: 0 | 1 | 2 | 3 | 4 | 5
     toConsole?: boolean
     toFile?: boolean
@@ -279,8 +277,8 @@ type UserConfig = {
     fileFormat?: 'json' | 'txt'
     writeMode?: WriteMode['value']
   }
-  output: {}
-  target: {}
+  output: Option & {}
+  target: Option & {}
 }
 
 type Option = {

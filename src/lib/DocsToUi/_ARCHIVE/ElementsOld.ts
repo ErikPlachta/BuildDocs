@@ -161,7 +161,7 @@
 // /**
 //  * @typedef ElementsProcessed
 //  * @memberof module:build-docs.types.elements
-//  * @summary Used by `JsonToUi.buildElements()` to generate all Elements.
+//  * @summary Used by `DocsToUi.buildElements()` to generate all Elements.
 //  */
 // type ElementsProcessed = {
 //   id: string

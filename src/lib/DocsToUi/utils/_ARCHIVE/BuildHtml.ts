@@ -7,23 +7,23 @@ const dom = new JSDOM(`<!DOCTYPE html>`)
 const document = dom.window.document
 
 /**
- * Called by `JsonToUi` to generate HTML from the JSON data.
+ * Called by `DocsToUi` to generate HTML from the JSON data.
  * 
- * @memberof JsonToUi
+ * @memberof DocsToUi
  * @module BuildHtml
- * @summary Called by `JsonToUi` to generate HTML from the JSON data.
+ * @summary Called by `DocsToUi` to generate HTML from the JSON data.
  * @description a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element.   
  * @version 0.0.2
  * @since 0.0.1
  * @author Erik Plachta
- * @changelog 0.0.1 | Generated concept within JsonToUi
+ * @changelog 0.0.1 | Generated concept within DocsToUi
  * @changelog 0.0.2 | Converted to module due to size and complexity.
  * 
  * Called by `this.buildHtml()` to convert ElementProcessed data to HTML.
  * @access private
  * @type {function} getHtml
  * @function getHtml
- * @memberof module:JsonToUi
+ * @memberof module:DocsToUi
  * @summary Called by `this.buildHtml()` to convert ElementProcessed data to HTML.
  * @description a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element.
  * @param {string} documentTitle - The title of the document.
@@ -82,7 +82,7 @@ function BuildHtml(elements:ElementsProcessed, title: string = 'No-Title-Set', h
    * @type {function} generateHtml
    * @function generateHtml
    * @access private
-   * @memberof module:JsonToUi
+   * @memberof module:DocsToUi
    * @summary Generates HTML from the provided element.
    * @description a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element.
    * @param {object} element - The element to be rendered.

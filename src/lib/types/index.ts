@@ -13,7 +13,7 @@
 
 import { Element, Elements, ElementsProcessed, htmlConfig } from './Elements'
 import { CommentRaw, CommentsRaw, CommentsProcessed, Comments } from './Comments'
-import { Config, UserConfig, Logging_config, Target_config, DocsToJson_config, JsonToUi_config, Option  } from './Config'
+import { Config, UserConfig, Logging_config, Target_config, DocsToJson_config, DocsToUi_config, Option  } from './Config'
 
 /**
  * @type {Type}
@@ -47,13 +47,13 @@ type Module = {
 }
 
 /**
- * Used by JsonToUi to define runtime configuration options.
+ * Used by DocsToUi to define runtime configuration options.
  * 
- * @summary Used by JsonToUi to define runtime configuration options.
+ * @summary Used by DocsToUi to define runtime configuration options.
  * @description Defined by `Config.settings` -> `Output` -> `options` ->
  *  `outputFormat.value`, these options are used to run time behavior.
  */
-type JsonToUiConfig = {
+type DocsToUiConfig = {
   outputFormat : {
     markdown : boolean
     html : boolean
@@ -73,10 +73,11 @@ type ErrorRecord = {
 export {
   // Configuration options
   Config,
-  Logging,
-  Output,
-  Target,
-  Setting, 
+  UserConfig,
+  Logging_config,
+  Target_config,
+  DocsToJson_config,
+  DocsToUi_config,
   Option,
   
 
@@ -90,12 +91,12 @@ export {
   CommentRaw,
   CommentsRaw,
 
-  //-- DocsToJson && JsonToUi:
+  //-- DocsToJson && DocsToUi:
   CommentsProcessed,
 
-  //-- JsonToUi
+  //-- DocsToUi
   Comments,
-  JsonToUiConfig,
+  DocsToUiConfig,
   Element,
   Elements,
   ElementsProcessed,

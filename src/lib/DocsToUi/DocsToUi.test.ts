@@ -1,28 +1,28 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /**
- * @file JsonToUi\JsonToUi.test.ts
- * @namespace {build-docs.JsonToUi.Test}
- * @memberof namespace:build-docs.JsonToUi
- * @module JsonToUi.Test
- * @description Executes a test of the JsonToUi class.
- * @requires module:build-docs.JsonToUi
+ * @file DocsToUi\DocsToUi.test.ts
+ * @namespace {build-docs.DocsToUi.Test}
+ * @memberof namespace:build-docs.DocsToUi
+ * @module DocsToUi.Test
+ * @description Executes a test of the DocsToUi class.
+ * @requires module:build-docs.DocsToUi
  * @requires module:build-docs.types
  * @requires module:fs
  */
 
 // import { resolve } from 'path'
 import { Comments } from '../types'
-const JsonToUi = require('./index.ts')
+const DocsToUi = require('./index.ts')
 const { writeFileSync } = require('fs')
 const rootPath  = process.cwd();
 const data = require(`${rootPath}/.dist/docs.json`)
-const configPath = `${rootPath}/.dist/JsonToUi`
+const configPath = `${rootPath}/.dist/DocsToUi`
 
 /**
  * @type {function} main
  * @function main
- * @memberof module:JsonToUi.Test
- * @summary Executed on run. Engages testing on JsonToUi class with some hard-coded params.
+ * @memberof module:DocsToUi.Test
+ * @summary Executed on run. Engages testing on DocsToUi class with some hard-coded params.
  * @param {Comments[]} comments - Array of comment blocks converted to object.
  * @returns {boolean} - Returns true if successful, otherwise false.
  */
@@ -33,8 +33,8 @@ function main(comments: Comments[]) {
             require('fs').mkdirSync(configPath)
         }
         
-        //-- Then execute JsonToUi Class
-        const run = new JsonToUi(comments)
+        //-- Then execute DocsToUi Class
+        const run = new DocsToUi(comments)
 
         //-- Then write all files to config path for debugging.
         writeFileSync(

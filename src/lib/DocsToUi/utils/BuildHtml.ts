@@ -1,24 +1,24 @@
 
-import { htmlConfig, ElementsProcessed, Logging } from '../../types'
+import { htmlConfig, ElementsProcessed, Config } from '../../types'
 import { JSDOM } from 'jsdom'
 
 /**
- * Called by `JsonToUi` to generate HTML from the JSON data.
+ * Called by `DocsToUi` to generate HTML from the JSON data.
  *
  * @access private
  * @class BuildHtml
- * @memberof module:JsonToUi
- * @memberof namespace:build-docs.JsonToUi
+ * @memberof module:DocsToUi
+ * @memberof namespace:build-docs.DocsToUi
  * @module BuildHtml
  * @requires JSDOM
- * @requires module:JsonToUi~htmlConfig
- * @requires module:JsonToUi~ElementsProcessed
- * @summary Called by `JsonToUi.` to generate HTML from the JSON data.
+ * @requires module:DocsToUi~htmlConfig
+ * @requires module:DocsToUi~ElementsProcessed
+ * @summary Called by `DocsToUi.` to generate HTML from the JSON data.
  * @description a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element.
  * @version 0.0.4
  * @author Erik Plachta
  * @since 0.0.1
- * @changelog 0.0.1 | 2023-07-22 | Generated concept within JsonToUi
+ * @changelog 0.0.1 | 2023-07-22 | Generated concept within DocsToUi
  * @changelog 0.0.2 | 2023-07-22 | Converted to module due to size and complexity.
  * @changelog 0.0.3 | 2023-07-22 | Updated to a Class object and refined.
  * @param {ElementsProcessed} elements - The elements to be rendered.
@@ -28,7 +28,7 @@ import { JSDOM } from 'jsdom'
  * @return {string} - The complete HTML document.
  */
 class BuildHtml {
-  private LogLevel: Logging['option']['level']['value']
+  private LogLevel: Config['Logging']['options']['level']['value']
   private dom: JSDOM = new JSDOM(`<!DOCTYPE html>`) // Create a new JSDOM instance and get the document from it.
   private document: Document = this.dom.window.document
   private elements: ElementsProcessed
@@ -38,7 +38,7 @@ class BuildHtml {
   public results: string | undefined
 
   constructor(
-    LogLevel: Logging['option']['level']['value'],
+    LogLevel: Config['Logging']['options']['level']['value'],
     elements: ElementsProcessed,
     title: string,
     htmlConfig: htmlConfig,
@@ -205,7 +205,7 @@ class BuildHtml {
    * @type {function} generateHtml
    * @function generateHtml
    * @access private
-   * @memberof module:JsonToUi
+   * @memberof module:DocsToUi
    * @summary Generates HTML from the provided element.
    * @description a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element.
    * @param {object} element - The element to be rendered.

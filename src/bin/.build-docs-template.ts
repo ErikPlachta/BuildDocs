@@ -1,4 +1,4 @@
-import { User } from '../lib/types'
+import { UserConfig } from '../lib/types'
 
 /**
  * Options used by `build-docs` to determine run behavior.

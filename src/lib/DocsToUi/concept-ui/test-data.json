@@ -2097,8 +2097,8 @@
   },
   {
     "id": "b8a1ce84-92fd-46eb-a707-c28337cc239b",
-    "fileName": "JsonToUi.test.ts",
-    "filePath": "src/lib/JsonToUi/JsonToUi.test.ts",
+    "fileName": "DocsToUi.test.ts",
+    "filePath": "src/lib/DocsToUi/DocsToUi.test.ts",
     "doc": {
       "file": [
         {
@@ -2109,23 +2109,23 @@
       ],
       "namespace": [
         {
-          "line": "@namespace JsonToUi",
+          "line": "@namespace DocsToUi",
           "type": "namespace",
-          "description": "JsonToUi"
+          "description": "DocsToUi"
         }
       ],
       "module": [
         {
-          "line": "@module JsonToUi.Test",
+          "line": "@module DocsToUi.Test",
           "type": "module",
-          "description": "JsonToUi.Test"
+          "description": "DocsToUi.Test"
         }
       ],
       "memberof": [
         {
-          "line": "@memberof namespace:build-docs.JsonToUi",
+          "line": "@memberof namespace:build-docs.DocsToUi",
           "type": "memberof",
-          "description": "namespace:build-docs.JsonToUi"
+          "description": "namespace:build-docs.DocsToUi"
         }
       ]
     },
@@ -2136,7 +2136,7 @@
   {
     "id": "2e456248-a2f3-4596-bf93-5c958bef46e2",
     "fileName": "index.ts",
-    "filePath": "src/lib/JsonToUi/index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
     "doc": {
       "file": [
         {
@@ -2154,16 +2154,16 @@
       ],
       "namespace": [
         {
-          "line": "@namespace build-docs.JsonToUi",
+          "line": "@namespace build-docs.DocsToUi",
           "type": "namespace",
-          "description": "build-docs.JsonToUi"
+          "description": "build-docs.DocsToUi"
         }
       ],
       "module": [
         {
-          "line": "@module JsonToUi",
+          "line": "@module DocsToUi",
           "type": "module",
-          "description": "JsonToUi"
+          "description": "DocsToUi"
         }
       ],
       "memberof": [
@@ -2181,7 +2181,7 @@
   {
     "id": "38df8552-6321-4ca3-8fbe-b2c4a9e6a49c",
     "fileName": "index.ts",
-    "filePath": "src/lib/JsonToUi/index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
     "doc": {
       "access": [
         {
@@ -2192,14 +2192,14 @@
       ],
       "memberof": [
         {
-          "line": "@memberof module:JsonToUi",
+          "line": "@memberof module:DocsToUi",
           "type": "memberof",
-          "description": "module:JsonToUi"
+          "description": "module:DocsToUi"
         },
         {
-          "line": "@memberof namespace:build-docs.JsonToUi",
+          "line": "@memberof namespace:build-docs.DocsToUi",
           "type": "memberof",
-          "description": "namespace:build-docs.JsonToUi"
+          "description": "namespace:build-docs.DocsToUi"
         }
       ],
       "classdesc": [
@@ -2217,7 +2217,7 @@
   {
     "id": "b15fceda-1d8d-4be3-8405-ec2c26c8ef1c",
     "fileName": "index.ts",
-    "filePath": "src/lib/JsonToUi/index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
     "doc": {},
     "createdDate": "2023-07-14T13:21:59.143Z",
     "modifiedDate": "2023-07-16T23:20:29.765Z",
@@ -2226,7 +2226,7 @@
   {
     "id": "c2fbeb56-3156-499c-9e6f-740108612492",
     "fileName": "index.ts",
-    "filePath": "src/lib/JsonToUi/index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
     "doc": {
       "param": [
         {
@@ -2243,7 +2243,7 @@
   {
     "id": "b854f891-b651-48c8-939a-e391bd4b0370",
     "fileName": "index.ts",
-    "filePath": "src/lib/JsonToUi/index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
     "doc": {
       "param": [
         {
@@ -2267,7 +2267,7 @@
   {
     "id": "9b914696-e5a4-4ed1-b8f0-ace07c2fda1c",
     "fileName": "index.ts",
-    "filePath": "src/lib/JsonToUi/index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
     "doc": {
       "return": [
         {
@@ -2291,7 +2291,7 @@
   {
     "id": "26987110-2cae-470f-a364-cbd5133d57c4",
     "fileName": "index.ts",
-    "filePath": "src/lib/JsonToUi/index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
     "doc": {
       "return": [
         {
