@@ -67,49 +67,49 @@ async function run(settings) {
 
   // TESTING
   // settings.forEach((setting) => {
-    //   setting.options.forEach((option) => {
-    //     console.log(`option: \t - ${option.title}: ${option.value}`)
-    //   })
-    // })
-  
+  //   setting.options.forEach((option) => {
+  //     console.log(`option: \t - ${option.title}: ${option.value}`)
+  //   })
+  // })
+
   try {
     // 1. Deconstruct for readability. 
     const [Logging, Output, Target] = settings;
-    
+
     //TODO: Use logging options to manage behavior once concept is built.
-    const loggingLevel = Logging.options.filter( (option) => option.title.toLowerCase() == 'level')?.[0]?.value || 3;
-    const [ targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths ] = Target.options;
+    const loggingLevel = Logging.options.filter((option) => option.title.toLowerCase() == 'level')?.[0]?.value || 3;
+    const [targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths] = Target.options;
     //TODO: update to extract the rest of the output options once needed.
     const outputPath = Output.options.filter((option) => option.title == 'outputPath')[0];
 
-      // 2. Build config object for DocsToJson.
-      const config_DocsToJson = {
-        targetPath: targetPath.value,
-        targetPaths: targetPaths.value,
-        ignorePaths: ignorePaths.value,
-        ignoreFiles: ignoreFiles.value,
-        targetFiles: targetFiles.value,
-        targetFileTypes: targetFileTypes.value,
-        outputPath: outputPath.value
+    // 2. Build config object for DocsToJson.
+    const config_DocsToJson = {
+      targetPath: targetPath.value,
+      targetPaths: targetPaths.value,
+      ignorePaths: ignorePaths.value,
+      ignoreFiles: ignoreFiles.value,
+      targetFiles: targetFiles.value,
+      targetFileTypes: targetFileTypes.value,
+      outputPath: outputPath.value
     }
 
     // console.log('config_DocsToJson: ', config_DocsToJson)
-    console.log('loggingLevel: ', loggingLevel)
-    
-    
+    // console.log('loggingLevel: ', loggingLevel)
+
+
     // 2. Create instance of DocsToJson class with configuration options.
-    const buildJson = new DocsToJson( ...dm.getObjectValuesAsArray(config_DocsToJson))
+    const buildJson = new DocsToJson(...dm.getObjectValuesAsArray(config_DocsToJson))
 
 
     // 3. Run the DocsToJson utility to generate docs for the rootPath, then save them to the outputPath.
     const docs = buildJson.generateDocs(targetPath.value);
     const saveDocsJson = buildJson.saveDocs(outputPath.value, docs);
 
-    
-    
+
+
     //-----------------------------------
     // JsonToUi
-    
+
     // 4. Generate UI from generated docs
     //TODO: Update to extract from updatedConfig once added to it and verified built in JsonToUi properly.
     const config_JsonToUi = {
@@ -117,13 +117,13 @@ async function run(settings) {
       convertToHtml: true,
     }
     const jsonToUi = new JsonToUi(loggingLevel, docs, config_JsonToUi);
-    console.log('jsonToUi: ', jsonToUi)
+    // console.log('jsonToUi: ', jsonToUi)
     const jsonToHtml = await jsonToUi.getHtml();
-    console.log('jsonToHtml: ', jsonToHtml)
+    // console.log('jsonToHtml: ', jsonToHtml)
     // const markdownDocument = jsonToUi.getMarkdown();
 
-    const htmlToFile = writeFileSync(resolve(outputPath.value, 'index.html'), jsonToHtml);
-    console.log('htmlToFile: ', htmlToFile)
+    writeFileSync(resolve(outputPath.value, 'index.html'), jsonToHtml);
+    
 
     // console.log('jsonToUi: ', jsonToUi)
 
@@ -133,14 +133,13 @@ async function run(settings) {
       results: {
         DocsToJson: {
           config: config_DocsToJson,
-          buildJson : buildJson,
+          buildJson: buildJson,
           saveDocsToJson: saveDocsJson,
         },
         JsonToUi: {
           config: config_JsonToUi,
           jsonToUi,
-          jsonToHtml,
-          htmlToFile
+          jsonToHtml
         }
       }
     };
@@ -173,8 +172,8 @@ async function main() {
     // 1. Handle the configuration options.
     const getConfig = await new Config().run();
     const { success, message, data } = getConfig;
-    if(!success) throw new Error(Config);
-    
+    if (!success) throw new Error(Config);
+
     // const config = data.config;
     const settings = data.config.settings;
 

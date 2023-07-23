@@ -521,7 +521,7 @@ class JsonToUi {
       description:
         'Top-level wrapper around all elements. Root consists of Body, Header, Main, Footer, and all children are rendered within.',
       parents: { ...parentIds },
-      HtmlElements: [
+      HtmlElements: [ 
         {
           id: parentIds.body,
           createdDate: new Date(),
@@ -567,10 +567,14 @@ class JsonToUi {
     } // end of base declaration.
 
     // 3. Build the Main navigation, one link for each namespace.
-    ElementsProcessed = this.buildHeader(ElementsProcessed)
-
+    ElementsProcessed = ElementsProcessed = this.buildHeader(ElementsProcessed)
+    // ElementsProcessed.HtmlElements.push(...header.HtmlElements)
     // 4. Build Content Wrapper, Tab-Strip-Nav, and Content for each namespace.
     ElementsProcessed = this.buildGroupContentWrapper(ElementsProcessed)
+    // ElementsProcessed.HtmlElements.push(...contentWrapper.HtmlElements)
+
+
+    // console.log('ElementsProcessed: ', ElementsProcessed)
 
     // 5. Returns finalized ElementsProcessed object.
     return ElementsProcessed

@@ -49,7 +49,6 @@ class BuildHtml {
     this.results = undefined
     this.resultsIfError = (error: string) =>
       `<!DOCTYPE html><html lang="en"><head><title>ERROR</title></head><body><h1>ERROR</h1><p>${error}</p></body></html>`
-
   }
 
   // Run the build function and return it's results.
@@ -63,8 +62,14 @@ class BuildHtml {
   //   this.results = this.resultsIfError(error)
   //   return Promise.reject(this.results)
   // })
-  
+
   async build(): Promise<string> {
+    // console.log('BuildHtml.build()',
+    //   '\n\t - this.LogLevel: ', this.LogLevel,
+    //   '\n\t - this.elements: ', this.elements,
+    //   '\n\t - this.title: ', this.title,
+    //   '\n\t - this.htmlConfig: ', this.htmlConfig,
+    // )
     try {
       // Deconstruct the htmlConfig object.
       const { head, body } = this.htmlConfig
@@ -74,7 +79,11 @@ class BuildHtml {
       // 2. Set body config.
       this.buildBody(body)
       // 3. Build content within body.
-      this.buildContent()
+      let buildContentResults = await this.buildContent()
+      console.log('buildContentResults', buildContentResults)
+
+      // Add a line break to the end of the body so closing tag on new line.
+      this.document.body.innerHTML = this.document.body.innerHTML + `\n`
 
       // Returns results back to this.getHtml()
       return `<!DOCTYPE html>\n ${this.document.documentElement.outerHTML}`
@@ -95,15 +104,25 @@ class BuildHtml {
     try {
       this.document.head.innerHTML = `\n\t<title>${this.title}</title>`
       head.meta.forEach(meta => {
-        this.document.head.innerHTML = this.document.head.innerHTML + `\n\t<meta ${meta} />`
+        this.document.head.innerHTML = this.document.head.innerHTML + `\n\t<meta ${meta.type} ${meta.value} />`
       })
       head.scripts.forEach(script => {
-        this.document.head.innerHTML = this.document.head.innerHTML + `\n\t<script src="${script}"></script>`
+        this.document.head.innerHTML =
+          this.document.head.innerHTML +
+          `\n\t<script src="${script.src} ${script?.defer ? ` ${script.defer}` : ''}"></script>`
       })
       head.styles.forEach(style => {
+        //TODO: onboard styles
+        // Build all styles into a single string.
+        // let styleString = ''
+        // styles.forEach(style => {
+        //   styleString = styleString + style
+        // })
+        // this.document.body.innerHTML = this.document.body.innerHTML + `\n<style>${styleString}</style>\n`
         this.document.head.innerHTML = this.document.head.innerHTML + `\n\t<link rel="stylesheet" href="${style}" />`
       })
       this.document.head.innerHTML = this.document.head.innerHTML + `\n`
+
       return {
         success: true,
         message: 'Head content built successfully.',
@@ -124,16 +143,10 @@ class BuildHtml {
   private async buildBody(body: htmlConfig['body']) {
     try {
       // deconstruct config values
-      const { classList, styles } = body
+      const { classList } = body
       // Set the classList
+      this.document.body.innerHTML = `\n` + this.document.body.innerHTML
       this.document.body.className = classList.join(' ')
-
-      // Build all styles into a single string.
-      let styleString = ''
-      styles.forEach(style => {
-        styleString = styleString + style
-      })
-      this.document.body.innerHTML = this.document.body.innerHTML + `\n<style>${styleString}</style>\n`
       return {
         success: true,
         message: 'Body content built successfully.',
@@ -152,16 +165,22 @@ class BuildHtml {
 
   private async buildContent() {
     try {
+      let content: any = null
       // Run through all Processed Elements and generate HTML.
       const htmlElements = this.elements.HtmlElements
+      // console.log('htmlElements', htmlElements)
+
       for (const group of htmlElements) {
         for (const element of group.Elements) {
-          await this.generateHtml(element)
+          console.log(await this.generateHtml(element))
         }
       } // Finished running through building.
+
+      // console.log('htmlElements: ', htmlElements)
       return {
         success: true,
         message: 'Content built successfully.',
+        data: content,
       }
     } catch (error) {
       if (this.LogLevel > 1) {
@@ -190,7 +209,9 @@ class BuildHtml {
    * @fires setAttributes
    * @changelog 2021-07-22 | Erik Plachta | Created private function to map through all elements and generate HTML.
    */
-  private async generateHtml(element: any, parent: any = this.document.body) {
+  private async generateHtml(element: any, parent: any = this.document.body): Promise<any> {
+    // console.log('parent: ', parent)
+    // console.log('element: ', element)
     try {
       const el = this.document.createElement(element.elementType)
 
@@ -210,6 +231,12 @@ class BuildHtml {
       if (element.dataAttributes) {
         setAttributes(element.dataAttributes, el)
       }
+      // Set Text value if provided.
+      if (element.dataAttributes.value) {
+        el.textContent = element.dataAttributes.value
+        //  = element.dataAttributes.value
+      }
+
       if (element.classList) {
         el.className = element.classList.join(' ')
       }
@@ -218,9 +245,8 @@ class BuildHtml {
       }
       if (element.value) {
         el.setAttribute('data-value', element.value)
-        el.innerHTML = element.value
       }
-
+      
       parent.appendChild(el)
 
       // If more to render, do so.
@@ -230,15 +256,14 @@ class BuildHtml {
         }
       }
       return el
-    } catch (error) {
+    } 
+    catch (error) {
       // end of generateHtml function.
       if (this.LogLevel > 1) {
         console.log(error)
       }
 
       console.log(error)
-
-      return null
     }
   }
 }
