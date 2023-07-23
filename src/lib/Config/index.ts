@@ -16,6 +16,11 @@ type results = {
   errors?: []
 }
 
+type Validator = {
+  key: string
+  validator: (val: any) => boolean
+}
+
 /**
  * @module HandleConfig
  * @class HandleConfig
@@ -45,6 +50,14 @@ class Configure {
   public getConfig: () => Config
   private dm: DataManager = new DataManager()
   public UserConfig: UserConfig = {}
+
+  private UserConfigValidation: {
+    DocsToJsonValidators: Validator[]
+    DocsToUiValidators: Validator[]
+    loggingValidators: Validator[]
+    outputValidators: Validator[]
+    targetValidators: Validator[]
+  }
   // public settings:Config['settings']
 
   constructor() {
@@ -56,6 +69,60 @@ class Configure {
     // this.settings = []
 
     this.UserConfig = {}
+
+    this.UserConfigValidation = {
+      DocsToJsonValidators: ([] = [
+        { key: 'outputName', validator: (val: any) => typeof val === 'string' },
+        { key: 'outputFormat', validator: (val: any) => ['json'].includes(val) },
+        { key: 'writeMode', validator: (val: any) => ['append', 'new', 'overwrite', 'prepend'].includes(val) },
+      ]),
+      DocsToUiValidators: ([] = [
+        { key: 'customOutputPath', validator: (val: any) => typeof val === ('string' || undefined )},
+        { key: 'outputName', validator: (val: any) => typeof val === ('string' || undefined )},
+        { key: 'buildHtml', validator: (val: any) => typeof val === 'boolean' },
+        { key: 'buildMarkdown', validator: (val: any) => typeof val === 'boolean' },
+        { key: 'writeMode', validator: (val: any) => ['append', 'new', 'overwrite', 'prepend'].includes(val) },
+      ]),
+
+      loggingValidators: ([] = [
+        { key: 'level', validator: (val: any) => [0, 1, 2, 3, 4, 5].includes(val) },
+        { key: 'toConsole', validator: (val: any) => typeof val === 'boolean' },
+        { key: 'toFile', validator: (val: any) => typeof val === 'boolean' },
+        { key: 'fileName', validator: (val: any) => typeof val === 'string' },
+        { key: 'filePath', validator: (val: any) => typeof val === 'string' },
+        { key: 'fileFormat', validator: (val: any) => ['json', 'txt'].includes(val) },
+        { key: 'writeMode', validator: (val: any) => ['append', 'new', 'overwrite', 'prepend'].includes(val) },
+      ]),
+
+      outputValidators: ([] = [
+        { key: 'outputPath', validator: (val: any) => typeof val === 'string' },
+        { key: 'outputFolderName', validator: (val: any) => typeof val === 'string' },
+      ]),
+
+      targetValidators: ([] = [
+        { key: 'targetPath', validator: (val: any) => typeof val === 'string' },
+        {
+          key: 'targetPaths',
+          validator: (val: any) => Array.isArray(val) && val.every((v: any) => typeof v === 'string'),
+        },
+        {
+          key: 'ignorePaths',
+          validator: (val: any) => Array.isArray(val) && val.every((v: any) => typeof v === 'string'),
+        },
+        {
+          key: 'ignoreFiles',
+          validator: (val: any) => Array.isArray(val) && val.every((v: any) => typeof v === 'string'),
+        },
+        {
+          key: 'targetFiles',
+          validator: (val: any) => Array.isArray(val) && val.every((v: any) => typeof v === 'string'),
+        },
+        {
+          key: 'targetFileTypes',
+          validator: (val: any) => Array.isArray(val) && val.every((v: any) => typeof v === 'string'),
+        },
+      ]),
+    }
 
     //---------------------------------
     //-- Helper Methods for this class
@@ -160,9 +227,15 @@ class Configure {
         if (this.getLogLevel() >= 3) throw new Error('Config file does not exist.')
       }
 
+      // Load the user config data
       const userConfig = await import(configPath)
+
+      // Validate the user config data
+      const isValidUserConfig = this.isValidUserConfig(userConfig)
+
+      // Set the user config.
       this.UserConfig = userConfig
-      
+
       return {
         success: true,
         message: `SUCCESS: User config loaded successfully.`,
@@ -185,6 +258,45 @@ class Configure {
       }
     }
   }
+
+  /**
+   * Executes validation against all UserConfig definitions to ensure that the UserConfig is valid.
+   *
+   * @param {UserConfig} userConfig - The UserConfig file to be validated
+   * @returns
+   */
+  isValidUserConfig(userConfig: UserConfig): any[] {
+    let result: any[] = []
+
+    // Get the validators for each group.
+    const validatorsByGroup = {
+      DocsToJson: this.UserConfigValidation.DocsToJsonValidators,
+      DocsToUi: this.UserConfigValidation.DocsToUiValidators,
+      Logging: this.UserConfigValidation.loggingValidators,
+      Output: this.UserConfigValidation.outputValidators,
+      Target: this.UserConfigValidation.targetValidators,
+    }
+
+    // Loop through each group and validate each option.
+    for (const [groupName, validators] of Object.entries(validatorsByGroup)) {
+      const group = { group: groupName, data: [] as any[] }
+      const groupKey = groupName as keyof UserConfig // type assertion here
+      const configGroup = userConfig[groupKey]
+      if (configGroup) {
+        for (const { key, validator } of validators) {
+          const value = configGroup[key as keyof typeof configGroup] // type assertion here
+          group.data.push({
+            key: key,
+            value: value,
+            isValid: validator(value),
+          })
+        }
+      }
+      result.push(group)
+    }
+
+    return result
+  } // END of isValidUserConfig()
 
   /**
    * @function getUpdatedConfig

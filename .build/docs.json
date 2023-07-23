@@ -1,6 +1,6 @@
 [
   {
-    "id": "88a1e2e0-5ede-4884-aa2c-bf1406fe0858",
+    "id": "7aaa2fde-1082-40be-978d-373a9b658999",
     "fileName": ".eslintrc.js",
     "filePath": ".eslintrc.js",
     "comments": {
@@ -159,7 +159,7 @@
     "modifiedDate": "2023-07-23T00:36:16.466Z"
   },
   {
-    "id": "5405453f-749c-4447-94bd-b2fb46e0b2da",
+    "id": "9094c8af-5ad7-4b11-8a39-5b200f7de96e",
     "fileName": ".prettierrc.js",
     "filePath": ".prettierrc.js",
     "comments": {
@@ -200,7 +200,7 @@
     "modifiedDate": "2023-07-22T03:21:03.197Z"
   },
   {
-    "id": "2e7e1974-2b24-4678-961c-f17a64e0c2fb",
+    "id": "b10b6dea-090f-4031-82c8-254295b542c2",
     "fileName": ".build-docs-template.ts",
     "filePath": "src/bin/.build-docs-template.ts",
     "comments": {
@@ -429,7 +429,7 @@
     "modifiedDate": "2023-07-23T21:17:31.198Z"
   },
   {
-    "id": "a4fd5324-2e81-47ba-8117-0d2f90c4c9a7",
+    "id": "90bc8d4d-79ce-42ee-b851-fd2576185c64",
     "fileName": "onLoad_manager.js",
     "filePath": "src/bin/_TEST/Events/onLoad_manager.js",
     "comments": {
@@ -487,7 +487,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "6283cbe2-45a8-4674-84d2-d2ce16673b6b",
+    "id": "c68463be-2504-4597-ba29-4b12266a922e",
     "fileName": "onLoad_manager.js",
     "filePath": "src/bin/_TEST/Events/onLoad_manager.js",
     "comments": {
@@ -531,7 +531,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "8d765711-e1d9-4662-895c-4d2db05e2a29",
+    "id": "0be305d4-8dff-46e3-9242-6e1d8c75817c",
     "fileName": "onSave_Manager.js",
     "filePath": "src/bin/_TEST/Events/onSave_Manager.js",
     "comments": {
@@ -589,7 +589,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "6b5d2bee-e7c0-44bf-a1ae-8401f35e4275",
+    "id": "6a6ab310-9e75-4269-b7c5-702afa35a122",
     "fileName": "onSave_Manager.js",
     "filePath": "src/bin/_TEST/Events/onSave_Manager.js",
     "comments": {
@@ -640,7 +640,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "502acfca-eca6-4a7b-a2c5-37c42d15367f",
+    "id": "70dd628e-579a-4704-ba21-b72404043924",
     "fileName": "OnLoad_GetData.js",
     "filePath": "src/bin/_TEST/Functions/OnLoad_GetData.js",
     "comments": {
@@ -675,7 +675,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "43af4f38-4012-417e-835f-41bc98340824",
+    "id": "279f66eb-5fae-4e76-9713-83c4eeae31c4",
     "fileName": "OnLoad_GetData.js",
     "filePath": "src/bin/_TEST/Functions/OnLoad_GetData.js",
     "comments": {
@@ -719,7 +719,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "7e731edf-f0d4-459b-9dbf-3531da21e5f6",
+    "id": "c409c5fc-20ea-4cc6-b214-39927685ce0d",
     "fileName": "index.js",
     "filePath": "src/index.js",
     "comments": {
@@ -874,7 +874,7 @@
     "modifiedDate": "2023-07-23T22:57:54.987Z"
   },
   {
-    "id": "618397cb-253a-4a5f-95ea-7f63156e918d",
+    "id": "1e97be86-21e9-4ce8-a9a6-05a432977944",
     "fileName": "index.js",
     "filePath": "src/index.js",
     "comments": {
@@ -939,7 +939,7 @@
     "modifiedDate": "2023-07-23T22:57:54.987Z"
   },
   {
-    "id": "9d7626ac-25bb-48b7-97a6-21cfdfaf777b",
+    "id": "37cda1b4-3844-4538-a2a4-8fb6057e4d3e",
     "fileName": "index.js",
     "filePath": "src/index.js",
     "comments": {
@@ -1004,7 +1004,7 @@
     "modifiedDate": "2023-07-23T22:57:54.987Z"
   },
   {
-    "id": "6a716f92-b7fa-47ae-b486-387b9f5d771b",
+    "id": "2013e7bf-a08f-44cb-ba70-3156e67b70b2",
     "fileName": "default.ts",
     "filePath": "src/lib/Config/default.ts",
     "comments": {
@@ -1105,7 +1105,7 @@
     "modifiedDate": "2023-07-23T22:04:12.891Z"
   },
   {
-    "id": "444c6a35-f1ff-4e9f-9a28-51734d8d5194",
+    "id": "ed29fd62-e9e5-4aaa-bcbc-168ee8890e1b",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1213,10 +1213,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.199Z",
-    "modifiedDate": "2023-07-23T23:00:52.837Z"
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
   },
   {
-    "id": "95ca25a3-7272-4e01-b5bc-38e61f364212",
+    "id": "18a1131a-535e-4735-99f7-e55ccf9db9c6",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1264,10 +1264,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.199Z",
-    "modifiedDate": "2023-07-23T23:00:52.837Z"
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
   },
   {
-    "id": "bbed80b9-a6aa-4234-a155-875707685b51",
+    "id": "042e32fb-aa2c-496e-9d62-c541125304b0",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1315,10 +1315,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.199Z",
-    "modifiedDate": "2023-07-23T23:00:52.837Z"
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
   },
   {
-    "id": "5b20f764-19e4-41c1-9416-fe611979ab7d",
+    "id": "89cc0d99-06bb-43bd-9f24-37fe389152af",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1373,10 +1373,26 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.199Z",
-    "modifiedDate": "2023-07-23T23:00:52.837Z"
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
   },
   {
-    "id": "ef19b7dd-ebc1-4fcb-aa73-4c5be8f5fdea",
+    "id": "5ea1b6d6-863f-4c0c-b4a1-187a120774a4",
+    "fileName": "index.ts",
+    "filePath": "src/lib/Config/index.ts",
+    "comments": {
+      "param": [
+        {
+          "line": "@param {UserConfig} userConfig - The UserConfig file to be validated",
+          "type": "param",
+          "description": "{UserConfig} userConfig - The UserConfig file to be validated"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
+  },
+  {
+    "id": "82371976-7a1b-423f-b39e-433ef6964bdf",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1446,26 +1462,26 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.199Z",
-    "modifiedDate": "2023-07-23T23:00:52.837Z"
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
   },
   {
-    "id": "651a015d-86d1-4648-aa62-e2702aed8454",
+    "id": "442f5b00-e09a-4f6d-959c-fd116ea78847",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {},
     "createdDate": "2023-07-23T21:17:31.199Z",
-    "modifiedDate": "2023-07-23T23:00:52.837Z"
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
   },
   {
-    "id": "e85d47dd-9e35-499d-b815-5a6a835f4433",
+    "id": "49ff89c9-6f02-4517-ae9f-86fcfaa48fba",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {},
     "createdDate": "2023-07-23T21:17:31.199Z",
-    "modifiedDate": "2023-07-23T23:00:52.837Z"
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
   },
   {
-    "id": "4086a2ba-791d-42d2-8dac-784cb3979173",
+    "id": "dd9e1f34-3088-4b4c-a4fd-f7b1d7ceb553",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1527,10 +1543,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.199Z",
-    "modifiedDate": "2023-07-23T23:00:52.837Z"
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
   },
   {
-    "id": "58b0f5c0-c194-489e-a53f-a35e6041ea4c",
+    "id": "411bad92-7dbb-48ca-af4a-74c28712ef8c",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1585,10 +1601,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.199Z",
-    "modifiedDate": "2023-07-23T23:00:52.837Z"
+    "modifiedDate": "2023-07-23T23:46:12.245Z"
   },
   {
-    "id": "e9a2fe8a-b9e0-45ec-8aaf-b326ef179c43",
+    "id": "4ed8c447-87be-4b96-9462-970fe977ef1d",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -1715,7 +1731,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "d23d4188-50fb-42b2-a71e-552483e25a36",
+    "id": "3ad0c60b-7b38-4b62-a04c-cdad3bfe10e9",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -1759,7 +1775,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "a723b79b-2fe2-4374-b5c9-edbb8a4ffd65",
+    "id": "9f7a562d-97d9-4f9b-a4de-acce4727d0c2",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -1852,7 +1868,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "d88e3546-79f7-4e90-9b42-144e7ae1c06b",
+    "id": "93534ba7-7bf3-4035-831a-7764fe950558",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -1934,7 +1950,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "0d63f0ac-2034-442e-a0ed-491885b9148f",
+    "id": "91920922-e9ee-4fbe-8286-979d60d7d914",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -1992,7 +2008,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "0263923e-07a5-4b15-8c9b-a358a200bfaf",
+    "id": "b0c62db8-07a3-48ec-a63c-fee5cec901c4",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2064,7 +2080,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "5e59ae8f-b164-400a-9c9b-c7d6524838e2",
+    "id": "61e9db28-4ebf-4fe2-ab2d-f71c9a6492c7",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2141,7 +2157,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "9bfc72bc-9418-4a40-9341-ffe1cfb753c6",
+    "id": "f7e41bc2-f7d5-4006-82f4-1e5be6c35da0",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2216,7 +2232,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "fa095e59-35a9-4f3c-9a76-bafeea8ee5a4",
+    "id": "8536552c-5953-4678-a679-f9a0b2165d1b",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2281,7 +2297,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "1f5214d8-0fd1-4fc0-9e88-c4f8298bfd53",
+    "id": "72239916-74f2-42b5-a6d9-8a49353e939b",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2351,7 +2367,7 @@
     "modifiedDate": "2023-07-23T21:59:10.246Z"
   },
   {
-    "id": "f1368ce2-8d57-41d6-bc6b-1133154608a2",
+    "id": "ba50920b-ad2c-45f3-b6f9-043c7fb077a3",
     "fileName": "DocsToUi.test.ts",
     "filePath": "src/lib/DocsToUi/DocsToUi.test.ts",
     "comments": {
@@ -2412,7 +2428,7 @@
     "modifiedDate": "2023-07-23T21:17:31.200Z"
   },
   {
-    "id": "8efb930b-5292-413e-b8eb-76af29e3c91a",
+    "id": "0a2c1bcd-5078-4217-8e2a-5f261cc396a9",
     "fileName": "DocsToUi.test.ts",
     "filePath": "src/lib/DocsToUi/DocsToUi.test.ts",
     "comments": {
@@ -2463,7 +2479,7 @@
     "modifiedDate": "2023-07-23T21:17:31.200Z"
   },
   {
-    "id": "044308c2-9535-4cf8-90b5-cb2588bfb36f",
+    "id": "0787196c-ccb4-46d0-b323-0604284c09da",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2577,7 +2593,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "9ef4d403-52b3-4782-b414-97770f4f7aeb",
+    "id": "32c46a7a-4869-4368-8f66-82bb5f32bdd0",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2633,7 +2649,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "20996beb-0821-4ae3-babb-e6618c9b3e6d",
+    "id": "d89321f4-9a88-4e75-8741-34f2852b134e",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2680,7 +2696,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "d415fb98-b255-47b5-bf19-21ce467bf5c9",
+    "id": "9b0614ba-e987-47c0-acb1-e9825048e3e9",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {},
@@ -2688,7 +2704,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "dd63b5f1-c33f-49c6-ad0c-5a286c0a4b85",
+    "id": "92bd6eca-0828-4cb9-a7a5-6c388e9c28b1",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2718,7 +2734,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "f5c4d211-43e9-4d3f-bc5a-eb4627526f62",
+    "id": "458575bc-88fd-45bc-8af5-dcb700ee7ace",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2802,7 +2818,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "5c8a3281-85e1-404b-9602-08bd46a02247",
+    "id": "bfbaf278-4624-43d8-9b33-7878e2121881",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2867,7 +2883,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "13607a45-62f9-4c22-9d58-f44f366d2035",
+    "id": "9545c7f7-bb22-45f1-860f-2c17ce552365",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2944,7 +2960,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "7ee17fad-f4f3-4cb1-bfd2-ce2082ef291a",
+    "id": "d0d863dc-17fb-4d0d-b635-5f91748fbd15",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2972,7 +2988,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "a8cc9a89-3203-4433-8ae2-90999d5fbbac",
+    "id": "0d8b842f-3d37-4855-9b22-1f6879a20725",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3000,7 +3016,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "9eaed58b-f0cb-4fb4-9aa8-66cba19cf3da",
+    "id": "b4af0bba-83ec-4682-8be6-7c93ff71aa16",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3051,7 +3067,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "da978230-76dd-4eb0-98ce-4e25b724080e",
+    "id": "222fcde8-44ed-4f07-93c0-68419f773573",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3109,7 +3125,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "ef9d1de4-f770-4c01-b999-d7dea45dc3d1",
+    "id": "fdb097cc-7fb4-4e32-abc1-7c3c686cfe8b",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3125,7 +3141,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "80668be1-6089-4e3a-9188-494c7bf623c1",
+    "id": "c4ebe691-a9d4-456b-b672-4d7cb4000c5f",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3148,7 +3164,7 @@
     "modifiedDate": "2023-07-23T22:36:27.445Z"
   },
   {
-    "id": "38c5f880-6435-4ede-ad3c-868d91202a6d",
+    "id": "b4250ba6-18f6-4553-916a-7a9f25552734",
     "fileName": "BuildHtml.ts",
     "filePath": "src/lib/DocsToUi/utils/BuildHtml.ts",
     "comments": {
@@ -3288,7 +3304,7 @@
     "modifiedDate": "2023-07-23T21:20:40.942Z"
   },
   {
-    "id": "b8407672-2400-4f01-a34e-fe71de8d3493",
+    "id": "cddab83a-d338-43ac-91d0-7c2c703b6af1",
     "fileName": "BuildHtml.ts",
     "filePath": "src/lib/DocsToUi/utils/BuildHtml.ts",
     "comments": {
@@ -3372,7 +3388,7 @@
     "modifiedDate": "2023-07-23T21:20:40.942Z"
   },
   {
-    "id": "d6b1a3c6-8d2a-4289-be90-81aec2ae4c2d",
+    "id": "2d92b69c-23ea-4d2d-85ca-c70e1560dd00",
     "fileName": "ManageHtmlContent.ts",
     "filePath": "src/lib/DocsToUi/utils/ManageHtmlContent.ts",
     "comments": {},
@@ -3380,7 +3396,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "160afdae-3eba-4272-8541-4cf62511eed5",
+    "id": "e240be25-8c2d-49d2-8740-588049ed2385",
     "fileName": "ManageHtmlContent.ts",
     "filePath": "src/lib/DocsToUi/utils/ManageHtmlContent.ts",
     "comments": {},
@@ -3388,7 +3404,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "6e669699-3e58-4bf3-b62f-c96e9ed6dfd6",
+    "id": "641efffe-572a-420e-a8c8-7c02fd49a662",
     "fileName": "ManageHtmlContent.ts",
     "filePath": "src/lib/DocsToUi/utils/ManageHtmlContent.ts",
     "comments": {},
@@ -3396,7 +3412,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "acca0d75-b9f5-4846-a9f6-2bae1c24ced5",
+    "id": "4a593dc9-5adc-4cef-963f-87cc8f7905ef",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3506,7 +3522,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "8e7cb97d-658f-4377-9510-406ad55b1d6c",
+    "id": "b709407c-46ee-4b45-9a53-664f9be72387",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3536,7 +3552,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "4749a3a8-b9ae-4240-86e2-78f6244cc7f1",
+    "id": "66a90b84-1d4a-4679-860b-288d8b858998",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3587,7 +3603,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "5b9fea49-1665-4886-9ca6-3d56ffa96a8e",
+    "id": "0f2d254e-2220-4f28-9022-7eefd0ba9e03",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3659,7 +3675,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "7ba8f1fe-4bd4-4f51-a71b-305439374eb7",
+    "id": "8604e5dd-9380-40f1-8c23-ea7c35459fcd",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3717,7 +3733,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "edd2d8bd-33d9-464d-a7f2-81a7a2ff091f",
+    "id": "fd51afa5-9e1c-45d5-9617-38aa5612611e",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3775,7 +3791,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "0b4cddff-fa43-4985-a186-0a44b479b743",
+    "id": "e4867555-809f-4065-ae50-abbd9984e326",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3833,7 +3849,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "757846b9-2e4d-4a7e-8e6b-303a310b44fe",
+    "id": "ea8545fc-beb1-4bc2-8d25-3af889e9938e",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -3870,7 +3886,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "ca12fcb7-795e-4cb2-bb16-50493e7e92b1",
+    "id": "4d44cacb-01fe-4acc-9cfd-cc1b5777a20c",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -3941,7 +3957,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "ca9142f9-6550-46bc-87fe-4ad26585f1b8",
+    "id": "39ab47c0-593a-4570-9ef9-c2d175583600",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -3997,7 +4013,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "c26b99e9-f313-45bc-a2ce-e1d85fa9ef7f",
+    "id": "e769027e-d27a-4826-8de6-28d23e1c0655",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -4046,7 +4062,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "dc8ecb94-b6dd-4568-a4c8-8e8bcd324712",
+    "id": "8e9be657-5a0f-4561-8115-778c596b61a2",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -4126,7 +4142,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "5952fc03-1e25-4d0c-90d0-7c37e4775256",
+    "id": "178187bb-cada-43e6-8715-e1fd7fa415cc",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4219,10 +4235,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T22:12:41.416Z"
+    "modifiedDate": "2023-07-23T23:41:43.918Z"
   },
   {
-    "id": "f4cc04eb-c46d-4550-a4b0-6c1e75d4513b",
+    "id": "e5e2356c-7237-4696-9165-3e7ca3e4f85b",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4315,10 +4331,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T22:12:41.416Z"
+    "modifiedDate": "2023-07-23T23:41:43.918Z"
   },
   {
-    "id": "407734de-f159-4bae-99dd-3adbcba9b745",
+    "id": "d5b54cd1-f752-4a80-b2a0-29f88d7f913a",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4416,10 +4432,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T22:12:41.416Z"
+    "modifiedDate": "2023-07-23T23:41:43.918Z"
   },
   {
-    "id": "7ca7cdd7-7e5a-46a2-ab6e-9650de03ee5f",
+    "id": "35d80df2-8204-4a73-b267-36cc3f860e3a",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4492,10 +4508,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T22:12:41.416Z"
+    "modifiedDate": "2023-07-23T23:41:43.918Z"
   },
   {
-    "id": "197f4812-3472-4b63-9a45-17b873c3ec04",
+    "id": "dffb08ac-f15f-43ea-bbc7-d160356cc3aa",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4508,10 +4524,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T22:12:41.416Z"
+    "modifiedDate": "2023-07-23T23:41:43.918Z"
   },
   {
-    "id": "5a978d65-a3e1-40bb-b88a-4dfa314d5ea9",
+    "id": "484aa2ec-1c58-4727-8ed5-2b2ca5213718",
     "fileName": "Elements.ts",
     "filePath": "src/lib/types/Elements.ts",
     "comments": {
@@ -4541,7 +4557,7 @@
     "modifiedDate": "2023-07-23T15:50:03.549Z"
   },
   {
-    "id": "2068d5a1-662d-42fd-8adf-57a73df50fe0",
+    "id": "57b68518-e627-4c97-a427-a3281c0ad6be",
     "fileName": "Elements.ts",
     "filePath": "src/lib/types/Elements.ts",
     "comments": {
@@ -4599,7 +4615,7 @@
     "modifiedDate": "2023-07-23T15:50:03.549Z"
   },
   {
-    "id": "203d33f7-374c-4e58-915f-cac4f8fcd05c",
+    "id": "ab568369-6876-469b-b698-760ff65e3d10",
     "fileName": "Elements.ts",
     "filePath": "src/lib/types/Elements.ts",
     "comments": {
@@ -4615,7 +4631,7 @@
     "modifiedDate": "2023-07-23T15:50:03.549Z"
   },
   {
-    "id": "3aff989f-c07b-450b-b30b-b2ae977ac0a7",
+    "id": "82ded273-13e7-4230-9abc-baf4ae8efbb0",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4687,7 +4703,7 @@
     "modifiedDate": "2023-07-23T21:17:31.203Z"
   },
   {
-    "id": "921d3219-5614-4f25-9dd0-f20e2426b8ae",
+    "id": "0c747fff-8e85-4068-b7fd-ad2317bf8dc7",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4717,7 +4733,7 @@
     "modifiedDate": "2023-07-23T21:17:31.203Z"
   },
   {
-    "id": "1106d08b-0369-4bd3-b1f4-8744712cf67c",
+    "id": "af730374-44a6-4064-a430-07302d4d230a",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4747,7 +4763,7 @@
     "modifiedDate": "2023-07-23T21:17:31.203Z"
   },
   {
-    "id": "5fdc7c9c-2592-45ff-9186-a3802abec605",
+    "id": "3bfd23a3-7a18-4d9b-b5f0-14a951eec36e",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4777,7 +4793,7 @@
     "modifiedDate": "2023-07-23T21:17:31.203Z"
   },
   {
-    "id": "a05153c9-46a4-4b43-ac88-fb6bf1c3472a",
+    "id": "b0f2e7aa-5f01-43fb-aef0-afa494eb5b55",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4800,7 +4816,7 @@
     "modifiedDate": "2023-07-23T21:17:31.203Z"
   },
   {
-    "id": "1e945976-7192-42ad-a9bb-2e17cbee14de",
+    "id": "dc820503-3db7-47f5-aff4-f6aca6c8b5fc",
     "fileName": "DataManager.ts",
     "filePath": "src/utils/DataManager.ts",
     "comments": {
@@ -4859,7 +4875,7 @@
     "modifiedDate": "2023-07-23T20:15:52.313Z"
   },
   {
-    "id": "89611d57-1b17-4114-bd77-5ef3e1e7aa05",
+    "id": "c2d0ca5e-f0fc-431b-92ad-cf892ea882be",
     "fileName": "DataManager.ts",
     "filePath": "src/utils/DataManager.ts",
     "comments": {
@@ -4936,7 +4952,7 @@
     "modifiedDate": "2023-07-23T20:15:52.313Z"
   },
   {
-    "id": "cdd44682-bec8-4163-a8b8-ec5b0ecba58b",
+    "id": "1790c823-48c9-44c1-8242-4774f6704062",
     "fileName": "DataManager.ts",
     "filePath": "src/utils/DataManager.ts",
     "comments": {
@@ -4966,7 +4982,7 @@
     "modifiedDate": "2023-07-23T20:15:52.313Z"
   },
   {
-    "id": "6844f37f-79f3-4bd1-a146-ff92ef05ced4",
+    "id": "03e648ce-179e-4b61-9871-6acc494289dc",
     "fileName": "tsconfig.js",
     "filePath": "tsconfig.js",
     "comments": {
