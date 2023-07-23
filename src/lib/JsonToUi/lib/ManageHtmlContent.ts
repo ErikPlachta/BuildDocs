@@ -76,7 +76,13 @@ function ManageHtmlContent() {
       })
     })
   }
-  addEventListeners()
+  
+  // When the DOM is loaded, add event listeners.
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded')
+    addEventListeners()
+    console.log('ManageHtmlContent')
+  })
 }
 
 export default ManageHtmlContent

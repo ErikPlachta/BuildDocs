@@ -88,6 +88,7 @@ type Parents = {
 type htmlConfig = {
   html: {
     lang: string
+    classList: string[]
   }
   head: {
     scripts: htmlScript[]

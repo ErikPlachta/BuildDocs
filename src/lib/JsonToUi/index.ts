@@ -94,6 +94,7 @@ class JsonToUi {
     this.htmlConfig = {
       html: {
         lang: 'en',
+        classList: ['h-[100vh]']
       },
       head: {
         meta: [
@@ -112,13 +113,14 @@ class JsonToUi {
           },
           {
             defer: true,
-            value: ManageHtmlContent.toString(),
+            value: `${ManageHtmlContent.toString()}\nManageHtmlContent()`,
           },
         ],
         styles: [],
       },
+      
       body: {
-        classList: ['bg-gray-100', 'flex', 'flex-col', 'gap-8'],
+        classList: ['bg-gray-100', 'flex', 'flex-col', 'gap-8', 'h-[100vh]'],
         styles: [],
       },
     }
@@ -535,28 +537,7 @@ class JsonToUi {
           title: 'body',
           description: 'The body wrapping all content.',
           parents: { ...parentIds },
-          Elements: [
-            {
-              id: parentIds.footer,
-              orderId: 99,
-              parent: null,
-              //TODO: Add footer content
-              description: 'Footer within the rendered content.',
-              elementType: 'footer',
-              classList: [],
-              dataAttributes: {
-                value: 'Footer Placeholder Text',
-                type: null,
-                path: null,
-                role: 'footer',
-                group: null,
-                subGroup: null,
-                id: null,
-              },
-              children: [],
-              helpers: { getChildren: () => [] },
-            },
-          ],
+          Elements: [],
         },
       ],
       helpers: {
@@ -574,10 +555,30 @@ class JsonToUi {
 
     // 3. Build the Main navigation, one link for each namespace.
     ElementsProcessed = this.buildHeader(ElementsProcessed)
-    // ElementsProcessed.HtmlElements.push(...header.HtmlElements)
+
     // 4. Build Content Wrapper, Tab-Strip-Nav, and Content for each namespace.
     ElementsProcessed = this.buildGroupContentWrapper(ElementsProcessed)
-    // ElementsProcessed.HtmlElements.push(...contentWrapper.HtmlElements)
+
+    // 5. Build the Footer at bottom of dom.
+    ElementsProcessed.HtmlElements[ElementsProcessed.HtmlElements.length-1].Elements.push({
+      id: parentIds.footer,
+      parent: null,
+      //TODO: Add footer content
+      description: 'Footer within the rendered content.',
+      elementType: 'footer',
+      classList: ['w-full bottom-0 p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto'],
+      dataAttributes: {
+        value: 'Footer Placeholder Text',
+        type: null,
+        path: null,
+        role: 'footer',
+        group: null,
+        subGroup: null,
+        id: null,
+      },
+      children: [],
+      helpers: { getChildren: () => [] },
+    })
 
     // console.log('ElementsProcessed: ', ElementsProcessed)
 
