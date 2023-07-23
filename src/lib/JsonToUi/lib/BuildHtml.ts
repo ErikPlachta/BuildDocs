@@ -14,7 +14,7 @@ import { JSDOM } from 'jsdom'
  * @requires module:JsonToUi~ElementsProcessed
  * @summary Called by `JsonToUi.` to generate HTML from the JSON data.
  * @description a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element.
- * @version 0.0.3
+ * @version 0.0.4
  * @author Erik Plachta
  * @since 0.0.1
  * @changelog 0.0.1 | 2023-07-22 | Generated concept within JsonToUi
@@ -109,7 +109,11 @@ class BuildHtml {
       head.scripts.forEach(script => {
         this.document.head.innerHTML =
           this.document.head.innerHTML +
-          `\n\t<script src="${script.src} ${script?.defer ? ` ${script.defer}` : ''}"></script>`
+          `\n\t<script ` +
+          `${script?.src && script.src.length > 0 ? `src="${script.src}"` : ''}` +
+          `${script?.defer && script.defer == true ? ' defer="true"' : ''}` +
+          `${script?.module ? ' module' : ''}>` +
+          `${script?.value ? `\n\t\t ${script.value}\n\t</script>` : '</script>'}`
       })
       head.styles.forEach(style => {
         //TODO: onboard styles
@@ -246,7 +250,7 @@ class BuildHtml {
       if (element.value) {
         el.setAttribute('data-value', element.value)
       }
-      
+
       parent.appendChild(el)
 
       // If more to render, do so.
@@ -256,8 +260,7 @@ class BuildHtml {
         }
       }
       return el
-    } 
-    catch (error) {
+    } catch (error) {
       // end of generateHtml function.
       if (this.LogLevel > 1) {
         console.log(error)

@@ -63,7 +63,7 @@ type Element = {
     role: null | string | 'nav-header' | 'nav-header-link' | 'container' | 'content' | 'tab-strip' | 'tab-strip-nav' | 'tab-strip-nav-link'
     group: null | string | 'overview' | 'changelog' | 'about'
     subGroup: null | string
-    active :  null | boolean
+    active ?:  boolean
     id: null | string
   }
   classList: string[]
@@ -101,10 +101,11 @@ type htmlConfig = {
 }
 
 type htmlScript = {
-  src: string
-  type?: string
+  src?: string
   async?: boolean
   defer?: boolean
+  module?: boolean
+  value?: string
 }
 
 type htmlStyle = {
