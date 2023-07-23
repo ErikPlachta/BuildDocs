@@ -37,9 +37,9 @@ const { resolve } = require('path'); // used for building results
 const { readFileSync, writeFileSync } = require('fs'); // used for reading config file
 
 // Custom Libraries
-const Config = require('./lib/Config/index.ts');
-const DocsToJson = require('./lib/DocsToJson/index.ts');
-const DocsToUi = require('./lib/DocsToUi/index.ts');
+const Config_Class = require('./lib/Config/index.ts');
+const DocsToJson_Class = require('./lib/DocsToJson/index.ts');
+const DocsToUi_Class = require('./lib/DocsToUi/index.ts');
 
 
 //-- Custom Utilities
@@ -61,7 +61,7 @@ const { DataManager } = require('./utils/DataManager.ts');
  * @param {object} [settings] - DocsToJson Configuration object with possible updates from cli args. Contains `init` and `out` objects.
  * @returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.
  */
-async function run(settings) {
+async function run(config) {
   //  Using `dm` for converting k/v pair object to array of values.
   const dm = new DataManager();
 
@@ -74,13 +74,12 @@ async function run(settings) {
 
   try {
     // 1. Deconstruct for readability. 
-    const [Logging, Output, Target, DocsToJson, DocsToUi] = settings;
+    const { DocsToJson, DocsToUi, Logging, Target, Output } = config;
 
     //TODO: Use logging options to manage behavior once concept is built.
     const loggingLevel = Logging.options.filter((option) => option.title.toLowerCase() == 'level')?.[0]?.value || 3;
     const [targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths] = Target.options;
-    //TODO: update to extract the rest of the output options once needed.
-    const outputPath = Output.options.filter((option) => option.title == 'outputPath')[0];
+    const [outputPath, outputName ] = Output.options;
 
     // 2. Build config object for DocsToJson.
     const config_DocsToJson = {
@@ -98,20 +97,20 @@ async function run(settings) {
 
 
     // 2. Create instance of DocsToJson class with configuration options.
-    const buildJson = new DocsToJson(...dm.getObjectValuesAsArray(config_DocsToJson))
+    const d2json = new DocsToJson_Class(...dm.getObjectValuesAsArray(config_DocsToJson))
 
 
     // 3. Run the DocsToJson utility to generate docs for the rootPath, then save them to the outputPath.
-    const docs = buildJson.generateDocs(targetPath.value);
-    const saveDocsJson = buildJson.saveDocs(outputPath.value, docs);
+    const docs = d2json.generateDocs(targetPath.value);
+    const saveDocsJson = d2json.saveDocs(outputPath.value, docs);
 
 
 
     //-----------------------------------
     // DocsToUi
 
-    
-    
+
+
     // 4. Generate UI from generated docs
     //TODO: Update to extract from updatedConfig once added to it and verified built in DocsToUi properly.
     // const DocsToUiOptions = Output.options.filter((option) => option.memberOf != 'module:build-docs.DocsToUi');
@@ -119,14 +118,15 @@ async function run(settings) {
       convertToMarkdown: true,
       convertToHtml: true,
     }
-    const docsToUi = new DocsToUi(loggingLevel, docs, config_DocsToUi);
+    const d2ui = new DocsToUi_Class(loggingLevel, docs, config_DocsToUi);
     // console.log('DocsToUi: ', DocsToUi)
-    const jsonToHtml = await docsToUi.getHtml();
-    // console.log('jsonToHtml: ', jsonToHtml)
-    // const markdownDocument = DocsToUi.getMarkdown();
-
-    writeFileSync(resolve(outputPath.value, 'index.html'), jsonToHtml);
+    const d2Html = await d2ui.getHtml();
+    const d2md = d2ui.getMarkdown();
     
+    //5. Write the files to the output path.
+    writeFileSync(resolve(outputPath.value, `${outputName.value}.html`), d2Html);
+
+
 
     // console.log('DocsToUi: ', DocsToUi)
 
@@ -136,13 +136,14 @@ async function run(settings) {
       results: {
         DocsToJson: {
           config: config_DocsToJson,
-          buildJson: buildJson,
-          saveDocsToJson: saveDocsJson,
+          json: d2json,
+          saveResponse: saveDocsJson,
         },
         DocsToUi: {
           config: config_DocsToUi,
-          DocsToUi,
-          jsonToHtml
+          buildResponse: d2ui,
+          htmlResponse: d2Html,
+          markdownResponse : d2md
         }
       }
     };
@@ -173,11 +174,11 @@ async function main() {
   try {
 
     // 1. Handle the configuration options.
-    const getConfig = await new Config().run();
-    const { success, message, data } = getConfig;
-    if (!success) throw new Error(Config);
+    const config = await new Config_Class().run();
+    const { success, message, data } = config;
+    if (!success) throw new Error(config);
 
-    console.log(data.config)
+    // console.log(data.config)
 
 
     //  2. Run the build-docs utility with settings.

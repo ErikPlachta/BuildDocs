@@ -476,7 +476,7 @@ export const config: Config = {
     description:
       'Manage the location(s) to search within, location(s) to ignore, file types to look for, and file types to ignore.',
     options: [
-      {
+      { // targetPath
         title: 'targetPath',
         description: 'The root directory to search for documentation within by build-docs.',
         type: 'string',
@@ -492,7 +492,7 @@ export const config: Config = {
         ],
         memberOf: 'build-docs.generateDocs',
       },
-      {
+      { // targetPaths
         title: 'targetPaths',
         description: 'Optional Paths to be used for build-docs. (not yet built out)',
         type: 'string[]',
@@ -501,7 +501,7 @@ export const config: Config = {
         value: null,
         default: [],
       },
-      {
+      { // targetFileTypes
         title: 'targetFileTypes',
         description: 'The file types to extract build documentation from.',
         type: 'string[]',
@@ -533,7 +533,7 @@ export const config: Config = {
           },
         ],
       },
-      {
+      { // ignoreFiles
         title: 'ignoreFiles',
         description: 'Files to ignore when building documentation.',
         type: 'string[]',
@@ -542,7 +542,7 @@ export const config: Config = {
         value: null,
         default: [],
       },
-      {
+      { // targetFiles
         title: 'targetFiles',
         description: 'Array of specific files to target',
         type: 'string[]',
@@ -551,7 +551,7 @@ export const config: Config = {
         value: null,
         default: [],
       },
-      {
+      { // ignorePaths
         title: 'ignorePaths',
         description: 'Paths to ignore when building documentation.',
         type: 'string[]',

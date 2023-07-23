@@ -1199,9 +1199,9 @@ class DocsToUi {
    * @return {string} The Markdown string
    * @todo Implement the method
    */
-  toMarkdown(): string {
+  getMarkdown(): string {
     // Implement the method as before...
-    return ''
+    return 'NOT_IMPLEMENTED'
   }
 }
 

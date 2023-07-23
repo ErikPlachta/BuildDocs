@@ -19,6 +19,7 @@
  */
 
 interface Config {
+  [key: string]: ConfigGroupDefaults
   DocsToJson: ConfigGroupDefaults
   DocsToUi: ConfigGroupDefaults
   Logging: ConfigGroupDefaults

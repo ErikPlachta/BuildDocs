@@ -1,0 +1,5090 @@
+[
+  {
+    "id": "fdfa01e6-13d3-473d-b555-7529fd7afc1b",
+    "fileName": ".eslintrc.js",
+    "filePath": ".eslintrc.js",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {import(\"eslint\").Linter.Config}",
+          "type": "type",
+          "description": "{import(\"eslint\").Linter.Config}"
+        }
+      ],
+      "see": [
+        {
+          "line": "@see https://eslint.org/docs/user-guide/configuring",
+          "type": "see",
+          "description": "https://eslint.org/docs/user-guide/configuring"
+        },
+        {
+          "line": "@see https://eslint.org/docs/user-guide/configuring",
+          "type": "see",
+          "description": "https://eslint.org/docs/user-guide/configuring"
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {import(\"eslint\").Linter.Config} config",
+          "type": "param",
+          "description": "{import(\"eslint\").Linter.Config} config"
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {import(\"eslint\").Linter.Config}",
+          "type": "returns",
+          "description": "{import(\"eslint\").Linter.Config}"
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {object} config - ESLint configuration object",
+          "type": "prop",
+          "description": "{object} config - ESLint configuration object"
+        },
+        {
+          "line": "@prop {object} config.env - environment settings. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments.",
+          "type": "prop",
+          "description": "{object} config.env - environment settings. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments."
+        },
+        {
+          "line": "@prop {string} config.env.browser - Use browser globals. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments.",
+          "type": "prop",
+          "description": "{string} config.env.browser - Use browser globals. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments."
+        },
+        {
+          "line": "@prop {string} config.env.commonjs - Use CommonJS globals and CommonJS scoping. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments.",
+          "type": "prop",
+          "description": "{string} config.env.commonjs - Use CommonJS globals and CommonJS scoping. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments."
+        },
+        {
+          "line": "@prop {string} config.env.es2021 - Use ECMAScript 2021 globals. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments.    ",
+          "type": "prop",
+          "description": "{string} config.env.es2021 - Use ECMAScript 2021 globals. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments."
+        },
+        {
+          "line": "@prop {object} config.extends - configuration sets. See https://eslint.org/docs/user-guide/configuring/language-options#extending-configuration-files.",
+          "type": "prop",
+          "description": "{object} config.extends - configuration sets. See https://eslint.org/docs/user-guide/configuring/language-options#extending-configuration-files."
+        },
+        {
+          "line": "@prop {string} config.extends.eslint:recommended - Use the recommended rules from eslint. See https://eslint.org/docs/user-guide/configuring/language-options#extending-configuration-files.    ",
+          "type": "prop",
+          "description": "{string} config.extends.eslint:recommended - Use the recommended rules from eslint. See https://eslint.org/docs/user-guide/configuring/language-options#extending-configuration-files."
+        },
+        {
+          "line": "@prop {string} config.extends.plugin:@typescript-eslint/recommended - Use the recommended rules from @typescript-eslint/eslint-plugin. See https://eslint.org/docs/user-guide/configuring/language-options#extending-configuration-files.",
+          "type": "prop",
+          "description": "{string} config.extends.plugin:@typescript-eslint/recommended - Use the recommended rules from @typescript-eslint/eslint-plugin. See https://eslint.org/docs/user-guide/configuring/language-options#extending-configuration-files."
+        },
+        {
+          "line": "@prop {object} config.globals - global variables. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals.",
+          "type": "prop",
+          "description": "{object} config.globals - global variables. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals."
+        },
+        {
+          "line": "@prop {object} config.plugins - Plugins used by eslint. See https://eslint.org/docs/user-guide/configuring/language-options#configuring-plugins.",
+          "type": "prop",
+          "description": "{object} config.plugins - Plugins used by eslint. See https://eslint.org/docs/user-guide/configuring/language-options#configuring-plugins."
+        },
+        {
+          "line": "@prop {object} config.overrides - Override configuration options. See https://eslint.org/docs/user-guide/configuring/language-options#configuring-overrides.",
+          "type": "prop",
+          "description": "{object} config.overrides - Override configuration options. See https://eslint.org/docs/user-guide/configuring/language-options#configuring-overrides."
+        },
+        {
+          "line": "@prop {object} config.overrides.env - environment settings. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments.    ",
+          "type": "prop",
+          "description": "{object} config.overrides.env - environment settings. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments."
+        },
+        {
+          "line": "@prop {string} config.overrides.env.node - Use Node.js globals. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments.",
+          "type": "prop",
+          "description": "{string} config.overrides.env.node - Use Node.js globals. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments."
+        },
+        {
+          "line": "@prop {object} config.overrides.files - Specify which files to apply the configuration to. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals.",
+          "type": "prop",
+          "description": "{object} config.overrides.files - Specify which files to apply the configuration to. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals."
+        },
+        {
+          "line": "@prop {string} config.overrides.files.eslintrc.{js,cjs} - Use the configuration for .eslintrc.js and .eslintrc.cjs files. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals.",
+          "type": "prop",
+          "description": "{string} config.overrides.files.eslintrc.{js,cjs} - Use the configuration for .eslintrc.js and .eslintrc.cjs files. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals."
+        },
+        {
+          "line": "@prop {string} config.parser @typescript-eslint/parser - Use the parser from @typescript-eslint/parser. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser.",
+          "type": "prop",
+          "description": "{string} config.parser @typescript-eslint/parser - Use the parser from @typescript-eslint/parser. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser."
+        },
+        {
+          "line": "@prop {object} config.parserOptions - parser settings. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options.",
+          "type": "prop",
+          "description": "{object} config.parserOptions - parser settings. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options."
+        },
+        {
+          "line": "@prop {string} config.parserOptions.ecmaVersion - Define the ecmaVersion to use. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options. ",
+          "type": "prop",
+          "description": "{string} config.parserOptions.ecmaVersion - Define the ecmaVersion to use. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options."
+        },
+        {
+          "line": "@prop {object} config.parserOptions - parser settings. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options.",
+          "type": "prop",
+          "description": "{object} config.parserOptions - parser settings. See https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options."
+        },
+        {
+          "line": "@prop {object} config.rules - rules. See https://eslint.org/docs/user-guide/configuring/rules.",
+          "type": "prop",
+          "description": "{object} config.rules - rules. See https://eslint.org/docs/user-guide/configuring/rules."
+        },
+        {
+          "line": "@prop {string} config.rules.no-unused-vars - disallow unused variables. See https://eslint.org/docs/user-guide/configuring/rules#disallow-unused-variables-no-unused-vars.",
+          "type": "prop",
+          "description": "{string} config.rules.no-unused-vars - disallow unused variables. See https://eslint.org/docs/user-guide/configuring/rules#disallow-unused-variables-no-unused-vars."
+        },
+        {
+          "line": "@prop {string} config.rules.@typescript-eslint/no-unused-vars - disallow unused variables. See https://eslint.org/docs/user-guide/configuring/rules#disallow-unused-variables-no-unused-vars.   ",
+          "type": "prop",
+          "description": "{string} config.rules.@typescript-eslint/no-unused-vars - disallow unused variables. See https://eslint.org/docs/user-guide/configuring/rules#disallow-unused-variables-no-unused-vars."
+        },
+        {
+          "line": "@prop {string} config.rules.@typescript-eslint/consistent-type-definitions - enforce using type for object type definitions. See ??,",
+          "type": "prop",
+          "description": "{string} config.rules.@typescript-eslint/consistent-type-definitions - enforce using type for object type definitions. See ??,"
+        }
+      ]
+    },
+    "createdDate": "2023-07-18T17:26:49.625Z",
+    "modifiedDate": "2023-07-23T00:36:16.466Z"
+  },
+  {
+    "id": "4700eb64-9f72-4e50-9f0c-b5b9299029cd",
+    "fileName": ".prettierrc.js",
+    "filePath": ".prettierrc.js",
+    "comments": {
+      "prop": [
+        {
+          "line": "@prop {string} arrowParens Include parenthesis around a sole arrow function parameter",
+          "type": "prop",
+          "description": "{string} arrowParens Include parenthesis around a sole arrow function parameter"
+        },
+        {
+          "line": "@prop {number} printWidth Specify the length of line that the printer will wrap on",
+          "type": "prop",
+          "description": "{number} printWidth Specify the length of line that the printer will wrap on"
+        },
+        {
+          "line": "@prop {boolean} semi Specify if you want to print semicolons at the end of statements",
+          "type": "prop",
+          "description": "{boolean} semi Specify if you want to print semicolons at the end of statements"
+        },
+        {
+          "line": "@prop {boolean} singleQuote If you want to use single quotes",
+          "type": "prop",
+          "description": "{boolean} singleQuote If you want to use single quotes"
+        },
+        {
+          "line": "@prop {number} tabWidth Specify the number of spaces per indentation-level",
+          "type": "prop",
+          "description": "{number} tabWidth Specify the number of spaces per indentation-level"
+        },
+        {
+          "line": "@prop {string} trailingComma Trailing commas where valid in ES5 (objects, arrays, etc.)",
+          "type": "prop",
+          "description": "{string} trailingComma Trailing commas where valid in ES5 (objects, arrays, etc.)"
+        }
+      ]
+    },
+    "createdDate": "2023-07-18T18:35:29.014Z",
+    "modifiedDate": "2023-07-22T03:21:03.197Z"
+  },
+  {
+    "id": "3ee8bf64-722d-4c6c-be3d-31a9d1cae107",
+    "fileName": ".build-docs-template.ts",
+    "filePath": "src/bin/.build-docs-template.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {Config} config - Options used by `build-docs` to determine run behavior.",
+          "type": "type",
+          "description": "{Config} config - Options used by `build-docs` to determine run behavior."
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Options used by `build-docs` to determine run behavior.",
+          "type": "summary",
+          "description": "Options used by `build-docs` to determine run behavior."
+        },
+        {
+          "line": "@summary Options used by `build-docs` to determine run behavior.",
+          "type": "summary",
+          "description": "Options used by `build-docs` to determine run behavior."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values.",
+          "type": "description",
+          "description": "Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values."
+        },
+        {
+          "line": "@description Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values.",
+          "type": "description",
+          "description": "Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values."
+        }
+      ],
+      "typedef": [
+        {
+          "line": "@typedef {Object} Config",
+          "type": "typedef",
+          "description": "{Object} Config"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.0.1",
+          "type": "version",
+          "description": "0.0.1"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.0.1",
+          "type": "since",
+          "description": "0.0.1"
+        }
+      ],
+      "property": [
+        {
+          "line": "@property {DocsToJson} DocsToJson - Options for the DocsToJson sub-module.",
+          "type": "property",
+          "description": "{DocsToJson} DocsToJson - Options for the DocsToJson sub-module."
+        },
+        {
+          "line": "@property {DocsToJson.outputName} DocsToJson.outputName - Name of the file to output the generated docs raw JSON data.",
+          "type": "property",
+          "description": "{DocsToJson.outputName} DocsToJson.outputName - Name of the file to output the generated docs raw JSON data."
+        },
+        {
+          "line": "@property {DocsToJson.outputFormat} DocsToJson.outputFormat - Format of the generated docs raw JSON data.",
+          "type": "property",
+          "description": "{DocsToJson.outputFormat} DocsToJson.outputFormat - Format of the generated docs raw JSON data."
+        },
+        {
+          "line": "@property {DocsToJson.writeMode} DocsToJson.writeMode - Write mode to use when saving the raw generate doc values.",
+          "type": "property",
+          "description": "{DocsToJson.writeMode} DocsToJson.writeMode - Write mode to use when saving the raw generate doc values."
+        },
+        {
+          "line": "@property {DocsToUi} DocsToUi - Options for the DocsToUi sub-module.",
+          "type": "property",
+          "description": "{DocsToUi} DocsToUi - Options for the DocsToUi sub-module."
+        },
+        {
+          "line": "@property {DocsToUi.customOutputPath} DocsToUi.customOutputPath - Where to output the generated docs raw JSON data.",
+          "type": "property",
+          "description": "{DocsToUi.customOutputPath} DocsToUi.customOutputPath - Where to output the generated docs raw JSON data."
+        },
+        {
+          "line": "@property {DocsToUi.outputName} DocsToUi.outputName - Name of the file to output the generated docs raw JSON data.",
+          "type": "property",
+          "description": "{DocsToUi.outputName} DocsToUi.outputName - Name of the file to output the generated docs raw JSON data."
+        },
+        {
+          "line": "@property {DocsToUi.buildHtml} DocsToUi.buildHtml - Build HTML from the generated docs raw JSON data.",
+          "type": "property",
+          "description": "{DocsToUi.buildHtml} DocsToUi.buildHtml - Build HTML from the generated docs raw JSON data."
+        },
+        {
+          "line": "@property {DocsToUi.buildMarkdown} DocsToUi.buildMarkdown - Build Markdown from the generated docs raw JSON data.",
+          "type": "property",
+          "description": "{DocsToUi.buildMarkdown} DocsToUi.buildMarkdown - Build Markdown from the generated docs raw JSON data."
+        },
+        {
+          "line": "@property {DocsToUi.writeMode} DocsToUi.writeMode - Write mode to use when saving the generated docs.",
+          "type": "property",
+          "description": "{DocsToUi.writeMode} DocsToUi.writeMode - Write mode to use when saving the generated docs."
+        },
+        {
+          "line": "@property {Logging} Logging - Options for build-docs logging.",
+          "type": "property",
+          "description": "{Logging} Logging - Options for build-docs logging."
+        },
+        {
+          "line": "@property {Logging.level} Logging.level - Default `3`. 0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info.",
+          "type": "property",
+          "description": "{Logging.level} Logging.level - Default `3`. 0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info."
+        },
+        {
+          "line": "@property {Logging.toConsole} Logging.toConsole - Default `true`, should build-docs log to console. true | false.",
+          "type": "property",
+          "description": "{Logging.toConsole} Logging.toConsole - Default `true`, should build-docs log to console. true | false."
+        },
+        {
+          "line": "@property {Logging.toFile} Logging.toFile - Default `true`, should build docs log to file. true | false.",
+          "type": "property",
+          "description": "{Logging.toFile} Logging.toFile - Default `true`, should build docs log to file. true | false."
+        },
+        {
+          "line": "@property {Logging.filePath} Logging.filePath - Default `./build/docs/logs`, where to save the log file.",
+          "type": "property",
+          "description": "{Logging.filePath} Logging.filePath - Default `./build/docs/logs`, where to save the log file."
+        },
+        {
+          "line": "@property {Logging.fileNameCustom} Logging.fileNameCustom - Default `undefined`, custom file name for the log file.",
+          "type": "property",
+          "description": "{Logging.fileNameCustom} Logging.fileNameCustom - Default `undefined`, custom file name for the log file."
+        },
+        {
+          "line": "@property {Logging.fileNameIncludeDate} Logging.fileNameIncludeDate - Default `true`, should the log file name include the date. true | false.",
+          "type": "property",
+          "description": "{Logging.fileNameIncludeDate} Logging.fileNameIncludeDate - Default `true`, should the log file name include the date. true | false."
+        },
+        {
+          "line": "@property {Logging.fileNameIncludeTime} Logging.fileNameIncludeTime - Default `true`, should the log file name include the time. true | false.",
+          "type": "property",
+          "description": "{Logging.fileNameIncludeTime} Logging.fileNameIncludeTime - Default `true`, should the log file name include the time. true | false."
+        },
+        {
+          "line": "@property {Logging.fileNameIncludeRoot} Logging.fileNameIncludeRoot - Default `true`, should the log file name include the root. true | false.",
+          "type": "property",
+          "description": "{Logging.fileNameIncludeRoot} Logging.fileNameIncludeRoot - Default `true`, should the log file name include the root. true | false."
+        },
+        {
+          "line": "@property {Logging.fileFormat} Logging.fileFormat - Default `json`, format of the log file. 'json' | 'txt'.",
+          "type": "property",
+          "description": "{Logging.fileFormat} Logging.fileFormat - Default `json`, format of the log file. 'json' | 'txt'."
+        },
+        {
+          "line": "@property {Logging.writeMode} Logging.writeMode - Default `new`, write mode to use when saving the log file. 'append' | 'new' | 'overwrite' | 'prepend'.",
+          "type": "property",
+          "description": "{Logging.writeMode} Logging.writeMode - Default `new`, write mode to use when saving the log file. 'append' | 'new' | 'overwrite' | 'prepend'."
+        },
+        {
+          "line": "@property {Output} Output - Options for build-docs output.",
+          "type": "property",
+          "description": "{Output} Output - Options for build-docs output."
+        },
+        {
+          "line": "@property {Output.outputPath} Output.outputPath - Default `./build/`, where to output the generated docs raw JSON data.",
+          "type": "property",
+          "description": "{Output.outputPath} Output.outputPath - Default `./build/`, where to output the generated docs raw JSON data."
+        },
+        {
+          "line": "@property {Output.outputFolderName} Output.outputFolderName - Default `docs`, folder within path all build-docs content will be generated.",
+          "type": "property",
+          "description": "{Output.outputFolderName} Output.outputFolderName - Default `docs`, folder within path all build-docs content will be generated."
+        },
+        {
+          "line": "@property {Target} Target - Options for what/where `build-docs` will/will not target when looking for comments.",
+          "type": "property",
+          "description": "{Target} Target - Options for what/where `build-docs` will/will not target when looking for comments."
+        },
+        {
+          "line": "@property {Target.targetPath} Target.targetPath - Default `./src`, where to look for docs.",
+          "type": "property",
+          "description": "{Target.targetPath} Target.targetPath - Default `./src`, where to look for docs."
+        },
+        {
+          "line": "@property {Target.targetPaths} Target.targetPaths - Default `[]`, where to look for docs.",
+          "type": "property",
+          "description": "{Target.targetPaths} Target.targetPaths - Default `[]`, where to look for docs."
+        },
+        {
+          "line": "@property {Target.ignorePaths} Target.ignorePaths - Default see below, paths to ignore when generating docs.",
+          "type": "property",
+          "description": "{Target.ignorePaths} Target.ignorePaths - Default see below, paths to ignore when generating docs."
+        },
+        {
+          "line": "@property {Target.ignoreFiles} Target.ignoreFiles - Default `[]`, files to ignore when generating docs.",
+          "type": "property",
+          "description": "{Target.ignoreFiles} Target.ignoreFiles - Default `[]`, files to ignore when generating docs."
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 0.0.1 | 2023-07-23 | Erik Plachta | docs: Build out user config file concept.",
+          "type": "changelog",
+          "description": "0.0.1 | 2023-07-23 | Erik Plachta | docs: Build out user config file concept."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.198Z",
+    "modifiedDate": "2023-07-23T21:17:31.198Z"
+  },
+  {
+    "id": "1e8bfbfc-a307-4b3b-924c-4e737cb059ae",
+    "fileName": "onLoad_manager.js",
+    "filePath": "src/bin/_TEST/Events/onLoad_manager.js",
+    "comments": {
+      "file": [
+        {
+          "line": "@file OnLoad_Manager.js",
+          "type": "file",
+          "description": "OnLoad_Manager.js"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {file} onLoad_Manager.js",
+          "type": "type",
+          "description": "{file} onLoad_Manager.js"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace onLoad",
+          "type": "namespace",
+          "description": "onLoad"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module onLoad.Manager",
+          "type": "module",
+          "description": "onLoad.Manager"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:onLoad.GetData",
+          "type": "requires",
+          "description": "module:onLoad.GetData"
+        }
+      ],
+      "description": [
+        {
+          "line": "@description This module is the entry point for the OnLoad event. It calls the OnLoad_GetData module and returns the response.",
+          "type": "description",
+          "description": "This module is the entry point for the OnLoad event. It calls the OnLoad_GetData module and returns the response."
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires onLoad_GetData",
+          "type": "fires",
+          "description": "onLoad_GetData"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.198Z",
+    "modifiedDate": "2023-07-23T21:17:31.199Z"
+  },
+  {
+    "id": "403e4036-8b95-47eb-80d8-3e0391b70395",
+    "fileName": "onLoad_manager.js",
+    "filePath": "src/bin/_TEST/Events/onLoad_manager.js",
+    "comments": {
+      "function": [
+        {
+          "line": "@function main",
+          "type": "function",
+          "description": "main"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} main",
+          "type": "type",
+          "description": "{function} main"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:onLoad.Manager",
+          "type": "memberof",
+          "description": "module:onLoad.Manager"
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - OnLoad_GetData response.",
+          "type": "returns",
+          "description": "{object} - OnLoad_GetData response."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description This module is the entry point for the OnLoad event. It calls the OnLoad_GetData module and returns the response.",
+          "type": "description",
+          "description": "This module is the entry point for the OnLoad event. It calls the OnLoad_GetData module and returns the response."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.198Z",
+    "modifiedDate": "2023-07-23T21:17:31.199Z"
+  },
+  {
+    "id": "9a08058b-7398-4449-8c18-8077f504b0aa",
+    "fileName": "onSave_Manager.js",
+    "filePath": "src/bin/_TEST/Events/onSave_Manager.js",
+    "comments": {
+      "file": [
+        {
+          "line": "@file onSave_Manager.js",
+          "type": "file",
+          "description": "onSave_Manager.js"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {module:onSave.Manager}",
+          "type": "type",
+          "description": "{module:onSave.Manager}"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace onSave",
+          "type": "namespace",
+          "description": "onSave"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module onSave.Manager",
+          "type": "module",
+          "description": "onSave.Manager"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:onSave.GetData",
+          "type": "requires",
+          "description": "module:onSave.GetData"
+        }
+      ],
+      "description": [
+        {
+          "line": "@description This module is the entry point for the onSave event. It calls the onSave_SetData module and returns the response.",
+          "type": "description",
+          "description": "This module is the entry point for the onSave event. It calls the onSave_SetData module and returns the response."
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires onSave_SetData",
+          "type": "fires",
+          "description": "onSave_SetData"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T21:17:31.199Z"
+  },
+  {
+    "id": "ad5197d0-7fcb-4eb0-97bb-2a58a339fa99",
+    "fileName": "onSave_Manager.js",
+    "filePath": "src/bin/_TEST/Events/onSave_Manager.js",
+    "comments": {
+      "function": [
+        {
+          "line": "@function main",
+          "type": "function",
+          "description": "main"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} main",
+          "type": "type",
+          "description": "{function} main"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:onSave.Manager",
+          "type": "memberof",
+          "description": "module:onSave.Manager"
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - onSave_GetData response.",
+          "type": "returns",
+          "description": "{object} - onSave_GetData response."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description This module is the entry point for the onSave event. It calls the onSave_SetData module and returns the response.",
+          "type": "description",
+          "description": "This module is the entry point for the onSave event. It calls the onSave_SetData module and returns the response."
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires onSave_SetData",
+          "type": "fires",
+          "description": "onSave_SetData"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T21:17:31.199Z"
+  },
+  {
+    "id": "26e3086f-9052-4d9d-afc3-c0a840fb5261",
+    "fileName": "OnLoad_GetData.js",
+    "filePath": "src/bin/_TEST/Functions/OnLoad_GetData.js",
+    "comments": {
+      "file": [
+        {
+          "line": "@file OnLoad_GetData.js",
+          "type": "file",
+          "description": "OnLoad_GetData.js"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module OnLoad.GetData",
+          "type": "module",
+          "description": "OnLoad.GetData"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof namespace:OnLoad",
+          "type": "memberof",
+          "description": "namespace:OnLoad"
+        },
+        {
+          "line": "@memberof module:OnLoad.Manager",
+          "type": "memberof",
+          "description": "module:OnLoad.Manager"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T21:17:31.199Z"
+  },
+  {
+    "id": "7adf6bbb-5946-4f56-ada3-985d52122f52",
+    "fileName": "OnLoad_GetData.js",
+    "filePath": "src/bin/_TEST/Functions/OnLoad_GetData.js",
+    "comments": {
+      "function": [
+        {
+          "line": "@function main ",
+          "type": "function",
+          "description": "main"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} main",
+          "type": "type",
+          "description": "{function} main"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:OnLoad.GetData",
+          "type": "memberof",
+          "description": "module:OnLoad.GetData"
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Get all onload data",
+          "type": "description",
+          "description": "Get all onload data"
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - Placeholder object response.",
+          "type": "returns",
+          "description": "{object} - Placeholder object response."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T21:17:31.199Z"
+  },
+  {
+    "id": "a90e049e-ab08-4ec8-b3f0-3c18455feab0",
+    "fileName": "index.js",
+    "filePath": "src/index.js",
+    "comments": {
+      "file": [
+        {
+          "line": "@file build-docs\\index.js",
+          "type": "file",
+          "description": "build-docs\\index.js"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace {build-docs}",
+          "type": "namespace",
+          "description": "{build-docs}"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module build-docs",
+          "type": "module",
+          "description": "build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Entry point for the build-docs utility.",
+          "type": "summary",
+          "description": "Entry point for the build-docs utility."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Executes the build-docs utility for target files types within a target path. The DocsToJson utility generates documentation for the target files and paths and saves the documentation to the target path.",
+          "type": "description",
+          "description": "Executes the build-docs utility for target files types within a target path. The DocsToJson utility generates documentation for the target files and paths and saves the documentation to the target path."
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.1.2",
+          "type": "version",
+          "description": "0.1.2"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.1.0",
+          "type": "since",
+          "description": "0.1.0"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "license": [
+        {
+          "line": "@license MIT {@link https://opensource.org/licenses/MIT | License}",
+          "type": "license",
+          "description": "MIT {@link https://opensource.org/licenses/MIT | License}"
+        }
+      ],
+      "argument": [
+        {
+          "line": "@argument {string} [rootDirectory] - `Required` Path to be parsed.",
+          "type": "argument",
+          "description": "{string} [rootDirectory] - `Required` Path to be parsed."
+        },
+        {
+          "line": "@argument {string} [targetFileTypes] - `Optional` File types to be parsed.",
+          "type": "argument",
+          "description": "{string} [targetFileTypes] - `Optional` File types to be parsed."
+        },
+        {
+          "line": "@argument {string[]} [targetPaths] -  `Optional` Paths within the targetPath to be parsed.",
+          "type": "argument",
+          "description": "{string[]} [targetPaths] -  `Optional` Paths within the targetPath to be parsed."
+        },
+        {
+          "line": "@argument {string[]} [ignoreFiles] - `Optional` Files to be ignored.",
+          "type": "argument",
+          "description": "{string[]} [ignoreFiles] - `Optional` Files to be ignored."
+        },
+        {
+          "line": "@argument {string[]} [targetFiles] - `Optional` Files to be parsed.",
+          "type": "argument",
+          "description": "{string[]} [targetFiles] - `Optional` Files to be parsed."
+        },
+        {
+          "line": "@argument {string[]} [ignorePaths] - `Optional` Paths to be ignored.",
+          "type": "argument",
+          "description": "{string[]} [ignorePaths] - `Optional` Paths to be ignored."
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:DocsToJson - {@link module:DocsToJson | ./lib/DocsToJson.ts}",
+          "type": "requires",
+          "description": "module:DocsToJson - {@link module:DocsToJson | ./lib/DocsToJson.ts}"
+        },
+        {
+          "line": "@requires module:DocsToUi - {@link module:DocsToUi | ./lib/DocsToUi.ts}",
+          "type": "requires",
+          "description": "module:DocsToUi - {@link module:DocsToUi | ./lib/DocsToUi.ts}"
+        },
+        {
+          "line": "@requires {@link https://nodejs.org/api/fs.html#fs_file_system | fs}",
+          "type": "requires",
+          "description": "{@link https://nodejs.org/api/fs.html#fs_file_system | fs}"
+        },
+        {
+          "line": "@requires {@link https://nodejs.org/api/path.html#path_path | path}",
+          "type": "requires",
+          "description": "{@link https://nodejs.org/api/path.html#path_path | path}"
+        },
+        {
+          "line": "@requires {@link https://nodejs.org/api/child_process.html#child_process_child_process | child_process}",
+          "type": "requires",
+          "description": "{@link https://nodejs.org/api/child_process.html#child_process_child_process | child_process}"
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 0.1.0 | 2023-07-01 | Erik Plachta | Built concept",
+          "type": "changelog",
+          "description": "0.1.0 | 2023-07-01 | Erik Plachta | Built concept"
+        },
+        {
+          "line": "@changelog 0.1.1 | 2023-07-14 | Erik Plachta | Updated data-extraction to include more complete data.",
+          "type": "changelog",
+          "description": "0.1.1 | 2023-07-14 | Erik Plachta | Updated data-extraction to include more complete data."
+        },
+        {
+          "line": "@changelog 0.1.2 | 2023-07-15 | Erik Plachta | Onboard to generate docs.json and then build the UI content.",
+          "type": "changelog",
+          "description": "0.1.2 | 2023-07-15 | Erik Plachta | Onboard to generate docs.json and then build the UI content."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:37:45.561Z"
+  },
+  {
+    "id": "025bc102-d5ac-4868-89e0-52f338166164",
+    "fileName": "index.js",
+    "filePath": "src/index.js",
+    "comments": {
+      "function": [
+        {
+          "line": "@function run",
+          "type": "function",
+          "description": "run"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} run",
+          "type": "type",
+          "description": "{function} run"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Run the DocsToJson utility and then DocsToUi libs.",
+          "type": "summary",
+          "description": "Run the DocsToJson utility and then DocsToUi libs."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Executes libraries to generate docs and then generate UI from docs using values within `updatedConfig` as reference for behaviors.",
+          "type": "description",
+          "description": "Executes libraries to generate docs and then generate UI from docs using values within `updatedConfig` as reference for behaviors."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {object} [settings] - DocsToJson Configuration object with possible updates from cli args. Contains `init` and `out` objects.",
+          "type": "param",
+          "description": "{object} [settings] - DocsToJson Configuration object with possible updates from cli args. Contains `init` and `out` objects."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.",
+          "type": "returns",
+          "description": "{object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:37:45.561Z"
+  },
+  {
+    "id": "62dae918-cdf4-43d8-94c6-c09f4919231a",
+    "fileName": "index.js",
+    "filePath": "src/index.js",
+    "comments": {
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} main - Entry point for the build-docs utility.",
+          "type": "type",
+          "description": "{function} main - Entry point for the build-docs utility."
+        }
+      ],
+      "function": [
+        {
+          "line": "@function main",
+          "type": "function",
+          "description": "main"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Entry point for the build-docs utility.",
+          "type": "summary",
+          "description": "Entry point for the build-docs utility."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Executes the build-docs utility. Takes a config to target specific path(s) and file(s). Extracts comment blocks and generates a JSON file with the extracted data. Then generates an HTML or Markdown file with the extracted data.",
+          "type": "description",
+          "description": "Executes the build-docs utility. Takes a config to target specific path(s) and file(s). Extracts comment blocks and generates a JSON file with the extracted data. Then generates an HTML or Markdown file with the extracted data."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.",
+          "type": "returns",
+          "description": "{object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`."
+        }
+      ],
+      "throws": [
+        {
+          "line": "@throws {error} - Error if build-docs fails.",
+          "type": "throws",
+          "description": "{error} - Error if build-docs fails."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:37:45.561Z"
+  },
+  {
+    "id": "d6f119c4-e4af-4b13-8eed-1d5402a4600f",
+    "fileName": "default.ts",
+    "filePath": "src/lib/Config/default.ts",
+    "comments": {
+      "file": [
+        {
+          "line": "@file default.ts",
+          "type": "file",
+          "description": "default.ts"
+        }
+      ],
+      "path": [
+        {
+          "line": "@path build-docs\\lib\\Config\\default.ts",
+          "type": "path",
+          "description": "build-docs\\lib\\Config\\default.ts"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Default configuration options for build-docs.",
+          "type": "summary",
+          "description": "Default configuration options for build-docs."
+        },
+        {
+          "line": "@summary Default configuration options for build-docs.",
+          "type": "summary",
+          "description": "Default configuration options for build-docs."
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.1.6",
+          "type": "version",
+          "description": "0.1.6"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 2021-07-14",
+          "type": "since",
+          "description": "2021-07-14"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "typedef": [
+        {
+          "line": "@typedef {Type} Config",
+          "type": "typedef",
+          "description": "{Type} Config"
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {Type} logging - Logging configuration options.",
+          "type": "prop",
+          "description": "{Type} logging - Logging configuration options."
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.Config",
+          "type": "memberof",
+          "description": "module:build-docs.Config"
+        }
+      ],
+      "description": [
+        {
+          "line": "@description These defaults are used to populate the `build-docs.config`",
+          "type": "description",
+          "description": "These defaults are used to populate the `build-docs.config`"
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 2021-07-14 | Erik Plachta | docs: Create concept as json.",
+          "type": "changelog",
+          "description": "2021-07-14 | Erik Plachta | docs: Create concept as json."
+        },
+        {
+          "line": "@changelog 2021-07-22 | Erik Plachta | docs: Converted to TS, defined types, and integrated into sub-module `Config`.",
+          "type": "changelog",
+          "description": "2021-07-22 | Erik Plachta | docs: Converted to TS, defined types, and integrated into sub-module `Config`."
+        },
+        {
+          "line": "@changelog 2021-07-23 | Erik Plachta | docs: Add Comments. Simplified design.",
+          "type": "changelog",
+          "description": "2021-07-23 | Erik Plachta | docs: Add Comments. Simplified design."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:04:12.891Z"
+  },
+  {
+    "id": "7491398b-4a55-44fb-a18d-27aa7c24e673",
+    "fileName": "index.ts",
+    "filePath": "src/lib/Config/index.ts",
+    "comments": {
+      "module": [
+        {
+          "line": "@module HandleConfig",
+          "type": "module",
+          "description": "HandleConfig"
+        }
+      ],
+      "class": [
+        {
+          "line": "@class HandleConfig",
+          "type": "class",
+          "description": "HandleConfig"
+        }
+      ],
+      "description": [
+        {
+          "line": "@description HandleConfig is a class that handles the configuration options for the DocsToJson utility.",
+          "type": "description",
+          "description": "HandleConfig is a class that handles the configuration options for the DocsToJson utility."
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Handles the configuration options for the build-docs utility.",
+          "type": "summary",
+          "description": "Handles the configuration options for the build-docs utility."
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.0.3",
+          "type": "version",
+          "description": "0.0.3"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 2021-07-22",
+          "type": "since",
+          "description": "2021-07-22"
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog  0.0.1 | 2023-07-22 | Erik Plachta | docs: Built sub-module by extracting from root index.js. (Segmenting code to build into class and add additional features.)",
+          "type": "changelog",
+          "description": "0.0.1 | 2023-07-22 | Erik Plachta | docs: Built sub-module by extracting from root index.js. (Segmenting code to build into class and add additional features.)"
+        },
+        {
+          "line": "@changelog  0.0.2 | 2023-07-22 | Erik Plachta | docs: Rebuilt into a class that is managing the Config.",
+          "type": "changelog",
+          "description": "0.0.2 | 2023-07-22 | Erik Plachta | docs: Rebuilt into a class that is managing the Config."
+        },
+        {
+          "line": "@changelog  0.0.3 | 2023-07-23 | Erik Plachta | Add more comments and cleanup.",
+          "type": "changelog",
+          "description": "0.0.3 | 2023-07-23 | Erik Plachta | Add more comments and cleanup."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo  2023-07-23 | Erik Plachta | Add complete data-integrity checking,",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Add complete data-integrity checking,"
+        },
+        {
+          "line": "@todo  2023-07-23 | Erik Plachta | Add validation of config defaults.",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Add validation of config defaults."
+        },
+        {
+          "line": "@todo  2023-07-23 | Erik Plachta | Add feature to get `.build-docs` from root.",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Add feature to get `.build-docs` from root."
+        },
+        {
+          "line": "@todo  2023-07-23 | Erik Plachta | Add validation of args through CLI and `.build-docs` in root.",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Add validation of args through CLI and `.build-docs` in root."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:35:43.611Z"
+  },
+  {
+    "id": "f1ea74ce-b721-4143-8fd5-b30359afd3a0",
+    "fileName": "index.ts",
+    "filePath": "src/lib/Config/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function run",
+          "type": "function",
+          "description": "run"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} run",
+          "type": "type",
+          "description": "{function} run"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Runs the configuration process for the DocsToJson utility.",
+          "type": "summary",
+          "description": "Runs the configuration process for the DocsToJson utility."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Runs the configuration process for the DocsToJson utility. This includes getting the config, getting the args, and updating the config with the args.",
+          "type": "description",
+          "description": "Runs the configuration process for the DocsToJson utility. This includes getting the config, getting the args, and updating the config with the args."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:35:43.611Z"
+  },
+  {
+    "id": "af91a96c-8605-4afb-8882-a1a211078589",
+    "fileName": "index.ts",
+    "filePath": "src/lib/Config/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function getLogLevel",
+          "type": "function",
+          "description": "getLogLevel"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} getLogLevel",
+          "type": "type",
+          "description": "{function} getLogLevel"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.Config",
+          "type": "memberof",
+          "description": "module:build-docs.Config"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Gets the logging level for the DocsToJson utility.",
+          "type": "summary",
+          "description": "Gets the logging level for the DocsToJson utility."
+        }
+      ],
+      "return": [
+        {
+          "line": "@return {number} none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info",
+          "type": "return",
+          "description": "{number} none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:35:43.611Z"
+  },
+  {
+    "id": "123d1677-eccf-4ea4-a4be-091d4416babf",
+    "fileName": "index.ts",
+    "filePath": "src/lib/Config/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function getUserConfig - Get the user config from the root `.build-docs` file.",
+          "type": "function",
+          "description": "getUserConfig - Get the user config from the root `.build-docs` file."
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} getUserConfig",
+          "type": "type",
+          "description": "{function} getUserConfig"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.Config",
+          "type": "memberof",
+          "description": "module:build-docs.Config"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get the user config from the root `.build-docs` file.",
+          "type": "summary",
+          "description": "Get the user config from the root `.build-docs` file."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Looks for a `.build-docs` file in the root of the project and returns the config if found. Otherwise, returns undefined.",
+          "type": "description",
+          "description": "Looks for a `.build-docs` file in the root of the project and returns the config if found. Otherwise, returns undefined."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {{Promise<results>}} - success (boolean), message (string), and data (object) containing the user config or error.",
+          "type": "returns",
+          "description": "{{Promise<results>}} - success (boolean), message (string), and data (object) containing the user config or error."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:35:43.611Z"
+  },
+  {
+    "id": "9c292fe3-db2e-490e-a378-0b40a7dd3516",
+    "fileName": "index.ts",
+    "filePath": "src/lib/Config/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function getUpdatedConfig",
+          "type": "function",
+          "description": "getUpdatedConfig"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} getUpdatedConfig",
+          "type": "type",
+          "description": "{function} getUpdatedConfig"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.",
+          "type": "param",
+          "description": "{object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config."
+        },
+        {
+          "line": "@param {object} config - Config is the default configuration for the DocsToJson utility.",
+          "type": "param",
+          "description": "{object} config - Config is the default configuration for the DocsToJson utility."
+        },
+        {
+          "line": "@param {object | undefined} userConfig - `userConfig` is defined if user has a `.build-docs` file in root. If defined, evaluated to update config accordingly.",
+          "type": "param",
+          "description": "{object | undefined} userConfig - `userConfig` is defined if user has a `.build-docs` file in root. If defined, evaluated to update config accordingly."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - success (boolean), message (string), and data (object) containing the updated config.",
+          "type": "returns",
+          "description": "{object} - success (boolean), message (string), and data (object) containing the updated config."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo Add validation of args to make sure they are valid.",
+          "type": "todo",
+          "description": "Add validation of args to make sure they are valid."
+        },
+        {
+          "line": "@todo Onboard userConfig",
+          "type": "todo",
+          "description": "Onboard userConfig"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:35:43.611Z"
+  },
+  {
+    "id": "978eafe8-5d54-484d-a56c-c6cdb135af7d",
+    "fileName": "index.ts",
+    "filePath": "src/lib/Config/index.ts",
+    "comments": {},
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:35:43.611Z"
+  },
+  {
+    "id": "3bb53290-abd9-45cf-8464-87ca0eb2f88b",
+    "fileName": "index.ts",
+    "filePath": "src/lib/Config/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} validateConfig",
+          "type": "type",
+          "description": "{function} validateConfig"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function validateConfig",
+          "type": "function",
+          "description": "validateConfig"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Gets and validates the default configuration for the DocsToJson utility.",
+          "type": "summary",
+          "description": "Gets and validates the default configuration for the DocsToJson utility."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Used by the DocsToJson utility to get and then validate the integrity of the default config options. If the config is valid, returns the config object. Otherwise, throws an error.",
+          "type": "description",
+          "description": "Used by the DocsToJson utility to get and then validate the integrity of the default config options. If the config is valid, returns the config object. Otherwise, throws an error."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - Verified Config object.",
+          "type": "returns",
+          "description": "{object} - Verified Config object."
+        }
+      ],
+      "throws": [
+        {
+          "line": "@throws {error} - Error if config cannot be parsed.",
+          "type": "throws",
+          "description": "{error} - Error if config cannot be parsed."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:35:43.611Z"
+  },
+  {
+    "id": "bdbab324-1771-4295-954d-8d932c6be585",
+    "fileName": "index.ts",
+    "filePath": "src/lib/Config/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} getArgs",
+          "type": "type",
+          "description": "{function} getArgs"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getArgs",
+          "type": "function",
+          "description": "getArgs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get cli args passed to the DocsToJson utility.",
+          "type": "summary",
+          "description": "Get cli args passed to the DocsToJson utility."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Used by the DocsToJson utility to parse args passed to the DocsToJson utility to customize run configuration via cli.",
+          "type": "description",
+          "description": "Used by the DocsToJson utility to parse args passed to the DocsToJson utility to customize run configuration via cli."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - success (boolean), message (string), and data (object) containing the args passed in or error.",
+          "type": "returns",
+          "description": "{object} - success (boolean), message (string), and data (object) containing the args passed in or error."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.199Z",
+    "modifiedDate": "2023-07-23T22:35:43.611Z"
+  },
+  {
+    "id": "e4936f88-3f7b-427a-ac8e-9903c508d12a",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "module": [
+        {
+          "line": "@module DocsToJson",
+          "type": "module",
+          "description": "DocsToJson"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Extract Documentation for target files types in target directory.",
+          "type": "summary",
+          "description": "Extract Documentation for target files types in target directory."
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {file} DocsToJson\\index.ts",
+          "type": "type",
+          "description": "{file} DocsToJson\\index.ts"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace {build-docs.DocsToJson}",
+          "type": "namespace",
+          "description": "{build-docs.DocsToJson}"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "file": [
+        {
+          "line": "@file BuildDocs\\index.ts",
+          "type": "file",
+          "description": "BuildDocs\\index.ts"
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.1.51",
+          "type": "version",
+          "description": "0.1.51"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.0.1",
+          "type": "since",
+          "description": "0.0.1"
+        }
+      ],
+      "license": [
+        {
+          "line": "@license MIT",
+          "type": "license",
+          "description": "MIT"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "created": [
+        {
+          "line": "@created 2023-07-12",
+          "type": "created",
+          "description": "2023-07-12"
+        }
+      ],
+      "updated": [
+        {
+          "line": "@updated 2023-07-13",
+          "type": "updated",
+          "description": "2023-07-13"
+        }
+      ],
+      "import": [
+        {
+          "line": "@import { randomUUID } from 'crypto'",
+          "type": "import",
+          "description": "{ randomUUID } from 'crypto'"
+        },
+        {
+          "line": "@import path from 'path'",
+          "type": "import",
+          "description": "path from 'path'"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires fs",
+          "type": "requires",
+          "description": "fs"
+        },
+        {
+          "line": "@requires path",
+          "type": "requires",
+          "description": "path"
+        },
+        {
+          "line": "@requires crypto",
+          "type": "requires",
+          "description": "crypto"
+        },
+        {
+          "line": "@requires module:GetDocs",
+          "type": "requires",
+          "description": "module:GetDocs"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "566b171d-caeb-447a-ad01-c5cba1ae80d3",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {class} BuildDocs",
+          "type": "type",
+          "description": "{class} BuildDocs"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "class": [
+        {
+          "line": "@class BuildDocs",
+          "type": "class",
+          "description": "BuildDocs"
+        }
+      ],
+      "classdesc": [
+        {
+          "line": "@classdesc Extract Documentation for target files types in target directory.",
+          "type": "classdesc",
+          "description": "Extract Documentation for target files types in target directory."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "c9d6f274-b242-401e-9fe8-652615c1f854",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Constructor for the BuildDocs class.",
+          "type": "summary",
+          "description": "Constructor for the BuildDocs class."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Initializes a new instance of the BuildDocs class.",
+          "type": "description",
+          "description": "Initializes a new instance of the BuildDocs class."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The location to search within.",
+          "type": "param",
+          "description": "{string} targetPath - The location to search within."
+        },
+        {
+          "line": "@param {string[]} targetPaths - The paths to generate documentation for.",
+          "type": "param",
+          "description": "{string[]} targetPaths - The paths to generate documentation for."
+        },
+        {
+          "line": "@param {string[]} ignorePaths - The paths to ignore while searching for files.",
+          "type": "param",
+          "description": "{string[]} ignorePaths - The paths to ignore while searching for files."
+        },
+        {
+          "line": "@param {string[]} targetFiles - The files to generate documentation for.",
+          "type": "param",
+          "description": "{string[]} targetFiles - The files to generate documentation for."
+        },
+        {
+          "line": "@param {string[]} ignoreFiles - The files to ignore while searching for files.",
+          "type": "param",
+          "description": "{string[]} ignoreFiles - The files to ignore while searching for files."
+        },
+        {
+          "line": "@param {string[]} targetFileTypes - The file types to generate documentation for.",
+          "type": "param",
+          "description": "{string[]} targetFileTypes - The file types to generate documentation for."
+        },
+        {
+          "line": "@param {string} outputPath - The location to output the documentation to.",
+          "type": "param",
+          "description": "{string} outputPath - The location to output the documentation to."
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {array} results - The results of the documentation generation.",
+          "type": "prop",
+          "description": "{array} results - The results of the documentation generation."
+        },
+        {
+          "line": "@prop {object} patterns - The patterns to look for in comments used to extract documentation.",
+          "type": "prop",
+          "description": "{object} patterns - The patterns to look for in comments used to extract documentation."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {BuildDocs} - A new instance of the BuildDocs class.",
+          "type": "returns",
+          "description": "{BuildDocs} - A new instance of the BuildDocs class."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "69013233-83a7-418f-b105-21390bf89a0f",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} build",
+          "type": "type",
+          "description": "{function} build"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof namespace:build-docs",
+          "type": "memberof",
+          "description": "namespace:build-docs"
+        },
+        {
+          "line": "@memberof module:build-docs",
+          "type": "memberof",
+          "description": "module:build-docs"
+        },
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:GetDocs",
+          "type": "requires",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function shouldIgnore",
+          "type": "function",
+          "description": "shouldIgnore"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Check if a file path should be ignored.",
+          "type": "summary",
+          "description": "Check if a file path should be ignored."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Checks if a file path should be ignored based on the ignorePaths property.",
+          "type": "description",
+          "description": "Checks if a file path should be ignored based on the ignorePaths property."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} filePath - The file path to check.",
+          "type": "param",
+          "description": "{string} filePath - The file path to check."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Whether the file path should be ignored.",
+          "type": "returns",
+          "description": "{boolean} - Whether the file path should be ignored."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "6db5e4ef-7886-4784-8d37-0447e641c366",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function isFileType",
+          "type": "function",
+          "description": "isFileType"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Check if a file is of one of the specified file types.",
+          "type": "summary",
+          "description": "Check if a file is of one of the specified file types."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Checks if a file is of one of the specified file types based on the targetFileTypes property.",
+          "type": "description",
+          "description": "Checks if a file is of one of the specified file types based on the targetFileTypes property."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} filePath - The file path to check.",
+          "type": "param",
+          "description": "{string} filePath - The file path to check."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Whether the file is of one of the specified file types.",
+          "type": "returns",
+          "description": "{boolean} - Whether the file is of one of the specified file types."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "c28f4e9c-6429-405c-85a9-7cff77fcaf91",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function setTargetPath",
+          "type": "function",
+          "description": "setTargetPath"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} setTargetPath",
+          "type": "type",
+          "description": "{function} setTargetPath"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Utility for updating the targetPath property of BuildDocs.",
+          "type": "summary",
+          "description": "Utility for updating the targetPath property of BuildDocs."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The directory to search within.",
+          "type": "param",
+          "description": "{string} targetPath - The directory to search within."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Whether the targetPath was successfully updated",
+          "type": "returns",
+          "description": "{boolean} - Whether the targetPath was successfully updated"
+        }
+      ],
+      "throws": [
+        {
+          "line": "@throws {Error} - If the targetPath does not exist.",
+          "type": "throws",
+          "description": "{Error} - If the targetPath does not exist."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo onboard this.",
+          "type": "todo",
+          "description": "onboard this."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "579f4b3e-8279-493b-be9f-892cf5f64b4d",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} build",
+          "type": "type",
+          "description": "{function} build"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function handleGetDocs",
+          "type": "function",
+          "description": "handleGetDocs"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:GetDocs",
+          "type": "requires",
+          "description": "module:GetDocs"
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires GetDocs.constructor(comment)",
+          "type": "fires",
+          "description": "GetDocs.constructor(comment)"
+        },
+        {
+          "line": "@fires GetDocs.getCommentsRaw",
+          "type": "fires",
+          "description": "GetDocs.getCommentsRaw"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Extract comments from a file and add them to the results.",
+          "type": "summary",
+          "description": "Extract comments from a file and add them to the results."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Looks for comment blocks. If found instantiates a new `GetDocs` instance and adds the results to the results property.",
+          "type": "description",
+          "description": "Looks for comment blocks. If found instantiates a new `GetDocs` instance and adds the results to the results property."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} filePath - The path of the file to extract comments from.",
+          "type": "param",
+          "description": "{string} filePath - The path of the file to extract comments from."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - True if the comments were successfully extracted. False if no comments or issue.",
+          "type": "returns",
+          "description": "{boolean} - True if the comments were successfully extracted. False if no comments or issue."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "76ea4043-8ce4-46e7-9e93-7c4aaee1f435",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} build",
+          "type": "type",
+          "description": "{function} build"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires BuildDocs.handleGetDocs",
+          "type": "fires",
+          "description": "BuildDocs.handleGetDocs"
+        },
+        {
+          "line": "@fires BuildDocs.isFileType",
+          "type": "fires",
+          "description": "BuildDocs.isFileType"
+        },
+        {
+          "line": "@fires BuildDocs.shouldIgnore",
+          "type": "fires",
+          "description": "BuildDocs.shouldIgnore"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function searchDir",
+          "type": "function",
+          "description": "searchDir"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Search a directory for files of the specified types and extract their comments.",
+          "type": "summary",
+          "description": "Search a directory for files of the specified types and extract their comments."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Searches a directory for files of the specified types and extracts their comments.",
+          "type": "description",
+          "description": "Searches a directory for files of the specified types and extracts their comments."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The path of the directory to search.",
+          "type": "param",
+          "description": "{string} targetPath - The path of the directory to search."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "7ab66838-5ed0-4a4e-9ece-e2728cb15757",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function generateDocs",
+          "type": "function",
+          "description": "generateDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} generateDocs",
+          "type": "type",
+          "description": "{function} generateDocs"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Generate documentation for files in a directory.",
+          "type": "summary",
+          "description": "Generate documentation for files in a directory."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Generates documentation for files in a directory and stores the results in the results property.",
+          "type": "description",
+          "description": "Generates documentation for files in a directory and stores the results in the results property."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The path of the directory to generate documentation for.",
+          "type": "param",
+          "description": "{string} targetPath - The path of the directory to generate documentation for."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {DocResult[]} - The generated documentation.",
+          "type": "returns",
+          "description": "{DocResult[]} - The generated documentation."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "8be62d67-3d34-4aa1-b37c-c7a1cdea3060",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToJson/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function saveDocs",
+          "type": "function",
+          "description": "saveDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Save the generated documentation to a file.",
+          "type": "summary",
+          "description": "Save the generated documentation to a file."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Saves the generated documentation to a file in a specified directory.",
+          "type": "description",
+          "description": "Saves the generated documentation to a file in a specified directory."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} targetPath - The path of the directory to save the documentation to.",
+          "type": "param",
+          "description": "{string} targetPath - The path of the directory to save the documentation to."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {SaveResult} - The result of the save operation.",
+          "type": "returns",
+          "description": "{SaveResult} - The result of the save operation."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo add param for docs name",
+          "type": "todo",
+          "description": "add param for docs name"
+        },
+        {
+          "line": "@todo add param for file type(s)",
+          "type": "todo",
+          "description": "add param for file type(s)"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:59:10.246Z"
+  },
+  {
+    "id": "15fcbf47-6677-433d-a4dd-04e9b67812a0",
+    "fileName": "DocsToUi.test.ts",
+    "filePath": "src/lib/DocsToUi/DocsToUi.test.ts",
+    "comments": {
+      "file": [
+        {
+          "line": "@file DocsToUi\\DocsToUi.test.ts",
+          "type": "file",
+          "description": "DocsToUi\\DocsToUi.test.ts"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace {build-docs.DocsToUi.Test}",
+          "type": "namespace",
+          "description": "{build-docs.DocsToUi.Test}"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof namespace:build-docs.DocsToUi",
+          "type": "memberof",
+          "description": "namespace:build-docs.DocsToUi"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module DocsToUi.Test",
+          "type": "module",
+          "description": "DocsToUi.Test"
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Executes a test of the DocsToUi class.",
+          "type": "description",
+          "description": "Executes a test of the DocsToUi class."
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:build-docs.DocsToUi",
+          "type": "requires",
+          "description": "module:build-docs.DocsToUi"
+        },
+        {
+          "line": "@requires module:build-docs.types",
+          "type": "requires",
+          "description": "module:build-docs.types"
+        },
+        {
+          "line": "@requires module:fs",
+          "type": "requires",
+          "description": "module:fs"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:17:31.200Z"
+  },
+  {
+    "id": "83eb3a84-abfb-4670-9b4f-0692501ac83f",
+    "fileName": "DocsToUi.test.ts",
+    "filePath": "src/lib/DocsToUi/DocsToUi.test.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} main",
+          "type": "type",
+          "description": "{function} main"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function main",
+          "type": "function",
+          "description": "main"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:DocsToUi.Test",
+          "type": "memberof",
+          "description": "module:DocsToUi.Test"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Executed on run. Engages testing on DocsToUi class with some hard-coded params.",
+          "type": "summary",
+          "description": "Executed on run. Engages testing on DocsToUi class with some hard-coded params."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {Comments[]} comments - Array of comment blocks converted to object.",
+          "type": "param",
+          "description": "{Comments[]} comments - Array of comment blocks converted to object."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Returns true if successful, otherwise false.",
+          "type": "returns",
+          "description": "{boolean} - Returns true if successful, otherwise false."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.200Z",
+    "modifiedDate": "2023-07-23T21:17:31.200Z"
+  },
+  {
+    "id": "656f45a4-ab53-466e-b550-4c3a6fcb6378",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "file": [
+        {
+          "line": "@file DocsToUi\\index.ts",
+          "type": "file",
+          "description": "DocsToUi\\index.ts"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Converting JSON data generated by BuildDocs module into markdown and/or HTML.",
+          "type": "summary",
+          "description": "Converting JSON data generated by BuildDocs module into markdown and/or HTML."
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace {build-docs.DocsToUi}",
+          "type": "namespace",
+          "description": "{build-docs.DocsToUi}"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module DocsToUi",
+          "type": "module",
+          "description": "DocsToUi"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof namespace:build-docs",
+          "type": "memberof",
+          "description": "namespace:build-docs"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:BuildHtml",
+          "type": "requires",
+          "description": "module:BuildHtml"
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires module:BuildHtml",
+          "type": "fires",
+          "description": "module:BuildHtml"
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 0.0.1 | 2023-07-13 | Erik Plachta | docs: Initial version released as basic concept.",
+          "type": "changelog",
+          "description": "0.0.1 | 2023-07-13 | Erik Plachta | docs: Initial version released as basic concept."
+        },
+        {
+          "line": "@changelog 0.0.2 | 2023-07-14 | Erik Plachta | docs: Built out more complete data extraction",
+          "type": "changelog",
+          "description": "0.0.2 | 2023-07-14 | Erik Plachta | docs: Built out more complete data extraction"
+        },
+        {
+          "line": "@changelog 0.0.3 | 2023-07-15 | Erik Plachta | docs: Finalized data extraction for building HTML. Add files,",
+          "type": "changelog",
+          "description": "0.0.3 | 2023-07-15 | Erik Plachta | docs: Finalized data extraction for building HTML. Add files,"
+        },
+        {
+          "line": "@changelog 0.0.4 | 2023-07-21 | Erik Plachta | docs: Finalized concept for ElementsProcessed.",
+          "type": "changelog",
+          "description": "0.0.4 | 2023-07-21 | Erik Plachta | docs: Finalized concept for ElementsProcessed."
+        },
+        {
+          "line": "@changelog 0.0.5 | 2023-07-22 | Erik Plachta | docs: Created module BuildHtml and verified finalized concept html generation.",
+          "type": "changelog",
+          "description": "0.0.5 | 2023-07-22 | Erik Plachta | docs: Created module BuildHtml and verified finalized concept html generation."
+        },
+        {
+          "line": "@changelog 0.0.6 | 2023-07-23 | Erik Plachta | docs: Cleanup. Organizing, documenting, adding TODOs, verified integrity.",
+          "type": "changelog",
+          "description": "0.0.6 | 2023-07-23 | Erik Plachta | docs: Cleanup. Organizing, documenting, adding TODOs, verified integrity."
+        },
+        {
+          "line": "@changelog 0.0.61| 2023-07-23 | Erik Plachta | docs: Simplified how content is being rendered. Created helper functions. Add more complete class properties.",
+          "type": "changelog",
+          "description": "0.0.61| 2023-07-23 | Erik Plachta | docs: Simplified how content is being rendered. Created helper functions. Add more complete class properties."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo 2023-07-15 | Erik Plachta | Add more complete config options",
+          "type": "todo",
+          "description": "2023-07-15 | Erik Plachta | Add more complete config options"
+        },
+        {
+          "line": "@todo 2023-07-15 | Erik Plachta | Add markdown generation",
+          "type": "todo",
+          "description": "2023-07-15 | Erik Plachta | Add markdown generation"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "767e7cec-d38b-462b-a095-add2b32b2043",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:DocsToUi",
+          "type": "memberof",
+          "description": "module:DocsToUi"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Converting JSON data generated by BuildDocs module into markdown and/or HTML.",
+          "type": "summary",
+          "description": "Converting JSON data generated by BuildDocs module into markdown and/or HTML."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {DataItem[]} data - The JSON data to convert",
+          "type": "param",
+          "description": "{DataItem[]} data - The JSON data to convert"
+        },
+        {
+          "line": "@param {Config} config - The configuration for the conversion",
+          "type": "param",
+          "description": "{Config} config - The configuration for the conversion"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires module:BuildHtml",
+          "type": "requires",
+          "description": "module:BuildHtml"
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires module:BuildHtml",
+          "type": "fires",
+          "description": "module:BuildHtml"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "34bb50fb-6bf9-44d0-ae9d-a8651d9e6154",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:DocsToUi",
+          "type": "memberof",
+          "description": "module:DocsToUi"
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {Logging['option']['level']['value']} LogLevel - The log level to use.",
+          "type": "param",
+          "description": "{Logging['option']['level']['value']} LogLevel - The log level to use."
+        },
+        {
+          "line": "@param {Comments[]} comments - The JSON data object containing all comment info to converted.",
+          "type": "param",
+          "description": "{Comments[]} comments - The JSON data object containing all comment info to converted."
+        },
+        {
+          "line": "@param {Config} config - The configuration for the conversion.",
+          "type": "param",
+          "description": "{Config} config - The configuration for the conversion."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo 2023-07-23 | Erik Plachta | Cleanup properties. Move things into config, organize as needed, verify integrity.",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Cleanup properties. Move things into config, organize as needed, verify integrity."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "ed0a911c-d528-436d-9724-05172acc2aec",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {},
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "51001c5f-a668-4e91-9024-e0159f49d261",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "param": [
+        {
+          "line": "@param {Comments[]} comments - The data to process",
+          "type": "param",
+          "description": "{Comments[]} comments - The data to process"
+        }
+      ],
+      "return": [
+        {
+          "line": "@return {CommentsProcessed[]} The processed data",
+          "type": "return",
+          "description": "{CommentsProcessed[]} The processed data"
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo 2013-07-18 | Erik Plachta | Move into DocsToJson module from here.",
+          "type": "todo",
+          "description": "2013-07-18 | Erik Plachta | Move into DocsToJson module from here."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "a808bd9d-1ea4-4c2a-a450-232f43b4cba9",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} buildElements",
+          "type": "type",
+          "description": "{function} buildElements"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function buildElements",
+          "type": "function",
+          "description": "buildElements"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:DocsToUi",
+          "type": "memberof",
+          "description": "module:DocsToUi"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Manages parsing Processed Data and builds `this.elements`.",
+          "type": "summary",
+          "description": "Manages parsing Processed Data and builds `this.elements`."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description This function is the main function that generates the `this.elements` object.",
+          "type": "description",
+          "description": "This function is the main function that generates the `this.elements` object."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} True if successful, false if not.",
+          "type": "returns",
+          "description": "{boolean} True if successful, false if not."
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires buildHeader",
+          "type": "fires",
+          "description": "buildHeader"
+        },
+        {
+          "line": "@fires buildGroupContentWrapper",
+          "type": "fires",
+          "description": "buildGroupContentWrapper"
+        }
+      ],
+      "return": [
+        {
+          "line": "@return {array[object]} - An array of objects, each containing the id of the element, the id of the processed item it relates to, and the data to render.",
+          "type": "return",
+          "description": "{array[object]} - An array of objects, each containing the id of the element, the id of the processed item it relates to, and the data to render."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo  2023-07-20 | Erik Plachta | Onboard helper functions",
+          "type": "todo",
+          "description": "2023-07-20 | Erik Plachta | Onboard helper functions"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "50a61240-67d2-4acd-8c4d-b4c9ea5010f2",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function buildHeader",
+          "type": "function",
+          "description": "buildHeader"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:DocsToUi",
+          "type": "memberof",
+          "description": "module:DocsToUi"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Generate Header, Nav, and Nav-Links for each Content-Group (namespace).",
+          "type": "summary",
+          "description": "Generate Header, Nav, and Nav-Links for each Content-Group (namespace)."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Builds the header and nav elements. The builds a link within nav based on each Content-Group (namespace).",
+          "type": "description",
+          "description": "Builds the header and nav elements. The builds a link within nav based on each Content-Group (namespace)."
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} buildHeader",
+          "type": "type",
+          "description": "{function} buildHeader"
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {object} ElementsProcessed - The object containing all elements to be rendered.",
+          "type": "param",
+          "description": "{object} ElementsProcessed - The object containing all elements to be rendered."
+        }
+      ],
+      "return": [
+        {
+          "line": "@return {object} ElementsProcessed - The object containing all elements to be rendered.",
+          "type": "return",
+          "description": "{object} ElementsProcessed - The object containing all elements to be rendered."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "18112a44-b2e3-4c0e-8ec1-b563c2366fdd",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} buildGroupContentWrapper",
+          "type": "type",
+          "description": "{function} buildGroupContentWrapper"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function buildGroupContentWrapper",
+          "type": "function",
+          "description": "buildGroupContentWrapper"
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {object} ElementsProcessed - The object containing all elements to be rendered.",
+          "type": "param",
+          "description": "{object} ElementsProcessed - The object containing all elements to be rendered."
+        }
+      ],
+      "return": [
+        {
+          "line": "@return {object} ElementsProcessed - The object containing all elements to be rendered.",
+          "type": "return",
+          "description": "{object} ElementsProcessed - The object containing all elements to be rendered."
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Evaluates namespaces and creates content to be built into main.",
+          "type": "summary",
+          "description": "Evaluates namespaces and creates content to be built into main."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description For each namespace, creates a content wrapper, tab-strip-nav, and content.",
+          "type": "description",
+          "description": "For each namespace, creates a content wrapper, tab-strip-nav, and content."
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires buildTabStripNav",
+          "type": "fires",
+          "description": "buildTabStripNav"
+        },
+        {
+          "line": "@fires buildContent",
+          "type": "fires",
+          "description": "buildContent"
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo 2023-07-20 | Erik Plachta | Add logic to build default tab for overview",
+          "type": "todo",
+          "description": "2023-07-20 | Erik Plachta | Add logic to build default tab for overview"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "d9490768-fc8a-49cc-b604-6bab1c2bd57d",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "returns": [
+        {
+          "line": "@returns {Element} TabStripNav - The tab strip nav element.",
+          "type": "returns",
+          "description": "{Element} TabStripNav - The tab strip nav element."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo build this out to render content properly.",
+          "type": "todo",
+          "description": "build this out to render content properly."
+        },
+        {
+          "line": "@todo determine if any defaults should exist.",
+          "type": "todo",
+          "description": "determine if any defaults should exist."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "74cf4703-aeb8-45e9-9d73-f348dad98e82",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "param": [
+        {
+          "line": "@param parentId - The ID of the parent element to be used to get data to render content for.",
+          "type": "param",
+          "description": "parentId - The ID of the parent element to be used to get data to render content for."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo build this out to render content properly.",
+          "type": "todo",
+          "description": "build this out to render content properly."
+        },
+        {
+          "line": "@todo determine if any defaults should exist.",
+          "type": "todo",
+          "description": "determine if any defaults should exist."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "5bbcf829-1390-4723-ba2d-a88337a0238a",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} setContentGroups",
+          "type": "type",
+          "description": "{function} setContentGroups"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function setContentGroups",
+          "type": "function",
+          "description": "setContentGroups"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:DocsToUi",
+          "type": "memberof",
+          "description": "module:DocsToUi"
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Returns all comments processed for root-items within comments,",
+          "type": "description",
+          "description": "Returns all comments processed for root-items within comments,"
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} True if successful, false if not.",
+          "type": "returns",
+          "description": "{boolean} True if successful, false if not."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "1dd885f8-d76a-4340-92f0-bc01afdd40ca",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function getContentGroupMembers",
+          "type": "function",
+          "description": "getContentGroupMembers"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} getContentGroupMembers",
+          "type": "type",
+          "description": "{function} getContentGroupMembers"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:DocsToUi",
+          "type": "memberof",
+          "description": "module:DocsToUi"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get `CommentsProcessed[]`for members of the Content-Group.",
+          "type": "summary",
+          "description": "Get `CommentsProcessed[]`for members of the Content-Group."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Define a valid content group id to get all processed comments",
+          "type": "description",
+          "description": "Define a valid content group id to get all processed comments"
+        }
+      ],
+      "return": [
+        {
+          "line": "@return {CommentsProcessed[] | []} - An array CommentsProcessed from `this.contentGroups` objects if any defined.",
+          "type": "return",
+          "description": "{CommentsProcessed[] | []} - An array CommentsProcessed from `this.contentGroups` objects if any defined."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "540fff10-66f1-4d9e-afb5-30d4ed68fbe9",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "param": [
+        {
+          "line": "@param {string} parentId - The `id` of the processed comment.",
+          "type": "param",
+          "description": "{string} parentId - The `id` of the processed comment."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "f22aa5a6-c4b1-4d7e-b6b1-0707353858a4",
+    "fileName": "index.ts",
+    "filePath": "src/lib/DocsToUi/index.ts",
+    "comments": {
+      "return": [
+        {
+          "line": "@return {string} The Markdown string",
+          "type": "return",
+          "description": "{string} The Markdown string"
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo Implement the method",
+          "type": "todo",
+          "description": "Implement the method"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.201Z",
+    "modifiedDate": "2023-07-23T22:36:27.445Z"
+  },
+  {
+    "id": "e404c8f9-4d53-4df9-86d0-f9cf422cf0dc",
+    "fileName": "BuildHtml.ts",
+    "filePath": "src/lib/DocsToUi/utils/BuildHtml.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "class": [
+        {
+          "line": "@class BuildHtml",
+          "type": "class",
+          "description": "BuildHtml"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:DocsToUi",
+          "type": "memberof",
+          "description": "module:DocsToUi"
+        },
+        {
+          "line": "@memberof namespace:build-docs.DocsToUi",
+          "type": "memberof",
+          "description": "namespace:build-docs.DocsToUi"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module BuildHtml",
+          "type": "module",
+          "description": "BuildHtml"
+        }
+      ],
+      "requires": [
+        {
+          "line": "@requires JSDOM",
+          "type": "requires",
+          "description": "JSDOM"
+        },
+        {
+          "line": "@requires module:DocsToUi~htmlConfig",
+          "type": "requires",
+          "description": "module:DocsToUi~htmlConfig"
+        },
+        {
+          "line": "@requires module:DocsToUi~ElementsProcessed",
+          "type": "requires",
+          "description": "module:DocsToUi~ElementsProcessed"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Called by `DocsToUi.` to generate HTML from the JSON data.",
+          "type": "summary",
+          "description": "Called by `DocsToUi.` to generate HTML from the JSON data."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element.",
+          "type": "description",
+          "description": "a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element."
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.0.4",
+          "type": "version",
+          "description": "0.0.4"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.0.1",
+          "type": "since",
+          "description": "0.0.1"
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 0.0.1 | 2023-07-22 | Generated concept within DocsToUi",
+          "type": "changelog",
+          "description": "0.0.1 | 2023-07-22 | Generated concept within DocsToUi"
+        },
+        {
+          "line": "@changelog 0.0.2 | 2023-07-22 | Converted to module due to size and complexity.",
+          "type": "changelog",
+          "description": "0.0.2 | 2023-07-22 | Converted to module due to size and complexity."
+        },
+        {
+          "line": "@changelog 0.0.3 | 2023-07-22 | Updated to a Class object and refined.",
+          "type": "changelog",
+          "description": "0.0.3 | 2023-07-22 | Updated to a Class object and refined."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {ElementsProcessed} elements - The elements to be rendered.",
+          "type": "param",
+          "description": "{ElementsProcessed} elements - The elements to be rendered."
+        },
+        {
+          "line": "@param {string} title - The title of the document.",
+          "type": "param",
+          "description": "{string} title - The title of the document."
+        },
+        {
+          "line": "@param {HtmlConfig} htmlConfig - The configuration object for the each section within the HTML document.",
+          "type": "param",
+          "description": "{HtmlConfig} htmlConfig - The configuration object for the each section within the HTML document."
+        },
+        {
+          "line": "@param {boolean} DEBUG - Optional param to enable debugging. If true, will output debug information to the console.",
+          "type": "param",
+          "description": "{boolean} DEBUG - Optional param to enable debugging. If true, will output debug information to the console."
+        }
+      ],
+      "return": [
+        {
+          "line": "@return {string} - The complete HTML document.",
+          "type": "return",
+          "description": "{string} - The complete HTML document."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:20:40.942Z"
+  },
+  {
+    "id": "9ef1714c-4c6a-49f5-bd6a-9d811c627e4c",
+    "fileName": "BuildHtml.ts",
+    "filePath": "src/lib/DocsToUi/utils/BuildHtml.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} generateHtml",
+          "type": "type",
+          "description": "{function} generateHtml"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function generateHtml",
+          "type": "function",
+          "description": "generateHtml"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:DocsToUi",
+          "type": "memberof",
+          "description": "module:DocsToUi"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Generates HTML from the provided element.",
+          "type": "summary",
+          "description": "Generates HTML from the provided element."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element.",
+          "type": "description",
+          "description": "a recursive function that takes an element and its parent as parameters. It creates an HTML element based on the elementType property of the input element, sets its attributes and classes, and appends it to the parent element."
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {object} element - The element to be rendered.",
+          "type": "param",
+          "description": "{object} element - The element to be rendered."
+        },
+        {
+          "line": "@param {object} parent - The parent element to append the rendered element. Default is body.",
+          "type": "param",
+          "description": "{object} parent - The parent element to append the rendered element. Default is body."
+        }
+      ],
+      "return": [
+        {
+          "line": "@return {object} The rendered element.",
+          "type": "return",
+          "description": "{object} The rendered element."
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires setAttributes",
+          "type": "fires",
+          "description": "setAttributes"
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 2021-07-22 | Erik Plachta | Created private function to map through all elements and generate HTML.",
+          "type": "changelog",
+          "description": "2021-07-22 | Erik Plachta | Created private function to map through all elements and generate HTML."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:20:40.942Z"
+  },
+  {
+    "id": "6afb699c-44bf-4102-a22d-49237c67600d",
+    "fileName": "ManageHtmlContent.ts",
+    "filePath": "src/lib/DocsToUi/utils/ManageHtmlContent.ts",
+    "comments": {},
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:17:31.202Z"
+  },
+  {
+    "id": "9698ea9f-477c-4d0c-8c73-bb5ec80dde9b",
+    "fileName": "ManageHtmlContent.ts",
+    "filePath": "src/lib/DocsToUi/utils/ManageHtmlContent.ts",
+    "comments": {},
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:17:31.202Z"
+  },
+  {
+    "id": "bdaf3dbf-41fd-4ade-984e-33e1ead980b7",
+    "fileName": "ManageHtmlContent.ts",
+    "filePath": "src/lib/DocsToUi/utils/ManageHtmlContent.ts",
+    "comments": {},
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:17:31.202Z"
+  },
+  {
+    "id": "1b84d4cb-0dd4-489b-8f0b-db1392f3dcf0",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {file} GetDocs\\index.ts",
+          "type": "type",
+          "description": "{file} GetDocs\\index.ts"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace {build-docs.GetDocs}",
+          "type": "namespace",
+          "description": "{build-docs.GetDocs}"
+        }
+      ],
+      "module": [
+        {
+          "line": "@module GetDocs",
+          "type": "module",
+          "description": "GetDocs"
+        }
+      ],
+      "file": [
+        {
+          "line": "@file GetDocs\\index.ts",
+          "type": "file",
+          "description": "GetDocs\\index.ts"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary This Utility is used by BuildDocs to extract JSDoc data from file.",
+          "type": "summary",
+          "description": "This Utility is used by BuildDocs to extract JSDoc data from file."
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.2.2",
+          "type": "version",
+          "description": "0.2.2"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.0.1",
+          "type": "since",
+          "description": "0.0.1"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "license": [
+        {
+          "line": "@license MIT",
+          "type": "license",
+          "description": "MIT"
+        }
+      ],
+      "created": [
+        {
+          "line": "@created 2023-07-12",
+          "type": "created",
+          "description": "2023-07-12"
+        }
+      ],
+      "updated": [
+        {
+          "line": "@updated 2023-07-13",
+          "type": "updated",
+          "description": "2023-07-13"
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 0.1.x - MVP Concept of building comments properly. 100% verified getting tags and descriptions.",
+          "type": "changelog",
+          "description": "0.1.x - MVP Concept of building comments properly. 100% verified getting tags and descriptions."
+        },
+        {
+          "line": "@changelog 0.2.1 - Add more complex comment and tag extraction.",
+          "type": "changelog",
+          "description": "0.2.1 - Add more complex comment and tag extraction."
+        },
+        {
+          "line": "@changelog 0.2.2 - Add showing tag connectivity via `@memberof`, `@augments`, `@namespace`, `@fires`, and `@requires`.",
+          "type": "changelog",
+          "description": "0.2.2 - Add showing tag connectivity via `@memberof`, `@augments`, `@namespace`, `@fires`, and `@requires`."
+        }
+      ]
+    },
+    "createdDate": "2023-07-17T17:26:30.000Z",
+    "modifiedDate": "2023-07-18T20:52:52.389Z"
+  },
+  {
+    "id": "d718e65c-68eb-4bdd-9890-1fc7c5f43ff3",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "comments": {
+      "class": [
+        {
+          "line": "@class GetDocs",
+          "type": "class",
+          "description": "GetDocs"
+        }
+      ],
+      "classdesc": [
+        {
+          "line": "@classdesc A class for extracting JSDoc comments from a string.",
+          "type": "classdesc",
+          "description": "A class for extracting JSDoc comments from a string."
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ]
+    },
+    "createdDate": "2023-07-17T17:26:30.000Z",
+    "modifiedDate": "2023-07-18T20:52:52.389Z"
+  },
+  {
+    "id": "9c8c6807-3892-4cc1-a569-0084a404c091",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "comments": {
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Constructor for the GetDocs class.",
+          "type": "summary",
+          "description": "Constructor for the GetDocs class."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Initializes a new instance of the GetDocs class.",
+          "type": "description",
+          "description": "Initializes a new instance of the GetDocs class."
+        }
+      ],
+      "fires": [
+        {
+          "line": "@fires GetDocs#parseComment",
+          "type": "fires",
+          "description": "GetDocs#parseComment"
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string} comment - The comment string to extract JSDoc comments from.",
+          "type": "param",
+          "description": "{string} comment - The comment string to extract JSDoc comments from."
+        }
+      ]
+    },
+    "createdDate": "2023-07-17T17:26:30.000Z",
+    "modifiedDate": "2023-07-18T20:52:52.389Z"
+  },
+  {
+    "id": "5f63510b-7f7d-4f96-8813-c0445e861e03",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function parseComment",
+          "type": "function",
+          "description": "parseComment"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {function} parseComment",
+          "type": "type",
+          "description": "{function} parseComment"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Parse the comment string and extract JSDoc comments.",
+          "type": "summary",
+          "description": "Parse the comment string and extract JSDoc comments."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Parses the comment string and extracts JSDoc comments.",
+          "type": "description",
+          "description": "Parses the comment string and extracts JSDoc comments."
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.2.0 - Added support for multiple lines of description.",
+          "type": "version",
+          "description": "0.2.0 - Added support for multiple lines of description."
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.0.1",
+          "type": "since",
+          "description": "0.0.1"
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {boolean} - Returns true if successful, otherwise false.",
+          "type": "returns",
+          "description": "{boolean} - Returns true if successful, otherwise false."
+        }
+      ]
+    },
+    "createdDate": "2023-07-17T17:26:30.000Z",
+    "modifiedDate": "2023-07-18T20:52:52.389Z"
+  },
+  {
+    "id": "aee82b17-bb37-4179-996a-ebefc66bf34a",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} getCommentsRaw",
+          "type": "type",
+          "description": "{function} getCommentsRaw"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getCommentsRaw",
+          "type": "function",
+          "description": "getCommentsRaw"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get all JSDoc tags and their descriptions.",
+          "type": "summary",
+          "description": "Get all JSDoc tags and their descriptions."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Gets all JSDoc tags and their descriptions.",
+          "type": "description",
+          "description": "Gets all JSDoc tags and their descriptions."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {CommentsRaw} - An object where the keys are JSDoc tags and the values are arrays of descriptions for each tag.",
+          "type": "returns",
+          "description": "{CommentsRaw} - An object where the keys are JSDoc tags and the values are arrays of descriptions for each tag."
+        }
+      ]
+    },
+    "createdDate": "2023-07-17T17:26:30.000Z",
+    "modifiedDate": "2023-07-18T20:52:52.389Z"
+  },
+  {
+    "id": "af8bf624-0309-4cb4-8c00-6a62015a6fb4",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} getDescription",
+          "type": "type",
+          "description": "{function} getDescription"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getDescription",
+          "type": "function",
+          "description": "getDescription"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get the top line description and any other lines that are not part of a JSDoc tag.",
+          "type": "summary",
+          "description": "Get the top line description and any other lines that are not part of a JSDoc tag."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Gets the top line description and any other lines that are not part of a JSDoc tag.",
+          "type": "description",
+          "description": "Gets the top line description and any other lines that are not part of a JSDoc tag."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {string} - The description.",
+          "type": "returns",
+          "description": "{string} - The description."
+        }
+      ]
+    },
+    "createdDate": "2023-07-17T17:26:30.000Z",
+    "modifiedDate": "2023-07-18T20:52:52.389Z"
+  },
+  {
+    "id": "667e808c-f820-493d-a225-449128c7d615",
+    "fileName": "index.ts",
+    "filePath": "src/lib/GetDocs/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {function} getComment",
+          "type": "type",
+          "description": "{function} getComment"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "function": [
+        {
+          "line": "@function getComment",
+          "type": "function",
+          "description": "getComment"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Get the comment string.",
+          "type": "summary",
+          "description": "Get the comment string."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Gets the comment string.",
+          "type": "description",
+          "description": "Gets the comment string."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {string} - The comment string.",
+          "type": "returns",
+          "description": "{string} - The comment string."
+        }
+      ]
+    },
+    "createdDate": "2023-07-17T17:26:30.000Z",
+    "modifiedDate": "2023-07-18T20:52:52.389Z"
+  },
+  {
+    "id": "396c9545-9bca-4ca9-99d5-98a066311281",
+    "fileName": "Comments.ts",
+    "filePath": "src/lib/types/Comments.ts",
+    "comments": {
+      "module": [
+        {
+          "line": "@module Types.Comments",
+          "type": "module",
+          "description": "Types.Comments"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:Types",
+          "type": "memberof",
+          "description": "module:Types"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Type Definitions for all Comments extracted and parsed.",
+          "type": "summary",
+          "description": "Type Definitions for all Comments extracted and parsed."
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 2023-07-18 | Erik Plachta | chore: Update JSDocs, and extracted from index now that role is clear.",
+          "type": "changelog",
+          "description": "2023-07-18 | Erik Plachta | chore: Update JSDocs, and extracted from index now that role is clear."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:17:31.202Z"
+  },
+  {
+    "id": "4a637da0-cabe-4ed7-92e5-30bc341f972e",
+    "fileName": "Comments.ts",
+    "filePath": "src/lib/types/Comments.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {interface} CommentRaw",
+          "type": "type",
+          "description": "{interface} CommentRaw"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Type definitions for the Tag object.",
+          "type": "summary",
+          "description": "Type definitions for the Tag object."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description An object for each tag within a comment block.",
+          "type": "description",
+          "description": "An object for each tag within a comment block."
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {string} line - The entire line of the tag.",
+          "type": "prop",
+          "description": "{string} line - The entire line of the tag."
+        },
+        {
+          "line": "@prop {string} type - The type of the tag.",
+          "type": "prop",
+          "description": "{string} type - The type of the tag."
+        },
+        {
+          "line": "@prop {string} description - The description of the tag.",
+          "type": "prop",
+          "description": "{string} description - The description of the tag."
+        },
+        {
+          "line": "@prop {string} index - The index of the tag.",
+          "type": "prop",
+          "description": "{string} index - The index of the tag."
+        },
+        {
+          "line": "@prop {string} raw - The raw input of the tag.",
+          "type": "prop",
+          "description": "{string} raw - The raw input of the tag."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:17:31.202Z"
+  },
+  {
+    "id": "8735d3be-9e1c-4628-9f6c-9793fb8593fd",
+    "fileName": "Comments.ts",
+    "filePath": "src/lib/types/Comments.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {interface} CommentsRaw",
+          "type": "type",
+          "description": "{interface} CommentsRaw"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:GetDocs",
+          "type": "memberof",
+          "description": "module:GetDocs"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Type definitions for the Tags object.",
+          "type": "summary",
+          "description": "Type definitions for the Tags object."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description An array of tag objects for each comment block, which is used to populate the 'doc' object within results.",
+          "type": "description",
+          "description": "An array of tag objects for each comment block, which is used to populate the 'doc' object within results."
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {string} key - The key of the tag.",
+          "type": "prop",
+          "description": "{string} key - The key of the tag."
+        },
+        {
+          "line": "@prop {Array<Tag>} value - The value of the tag.",
+          "type": "prop",
+          "description": "{Array<Tag>} value - The value of the tag."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:17:31.202Z"
+  },
+  {
+    "id": "5ec30d44-38bb-4253-9be1-471066e96b14",
+    "fileName": "Comments.ts",
+    "filePath": "src/lib/types/Comments.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {Type} Comments",
+          "type": "type",
+          "description": "{Type} Comments"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.types.comments",
+          "type": "memberof",
+          "description": "module:build-docs.types.comments"
+        },
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "typedef": [
+        {
+          "line": "@typedef Comments",
+          "type": "typedef",
+          "description": "Comments"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary The result of extracting documentation from a file.",
+          "type": "summary",
+          "description": "The result of extracting documentation from a file."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Used by module `DocsToJson` to store comments and related info within `DocsToJson.results`. Comments are used for each comment block within the filepath. All comments within a file will have different `comments`, but the same `fileName`, `filePath`, `createdDate`, and `modifiedDate` values. ",
+          "type": "description",
+          "description": "Used by module `DocsToJson` to store comments and related info within `DocsToJson.results`. Comments are used for each comment block within the filepath. All comments within a file will have different `comments`, but the same `fileName`, `filePath`, `createdDate`, and `modifiedDate` values."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:17:31.202Z"
+  },
+  {
+    "id": "9b3482c3-3ed6-489a-9d08-d3121b4066ee",
+    "fileName": "Comments.ts",
+    "filePath": "src/lib/types/Comments.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {Type} CommentsProcessed",
+          "type": "type",
+          "description": "{Type} CommentsProcessed"
+        }
+      ],
+      "typedef": [
+        {
+          "line": "@typedef CommentsProcessed",
+          "type": "typedef",
+          "description": "CommentsProcessed"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.types.comments",
+          "type": "memberof",
+          "description": "module:build-docs.types.comments"
+        },
+        {
+          "line": "@memberof module:build-docs.DocsToJson",
+          "type": "memberof",
+          "description": "module:build-docs.DocsToJson"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Used by DocsToUi to render the documentation.",
+          "type": "summary",
+          "description": "Used by DocsToUi to render the documentation."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Takes data using typedef `CommentsRaw`, and processes it into a more usable format.",
+          "type": "description",
+          "description": "Takes data using typedef `CommentsRaw`, and processes it into a more usable format."
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {string} id - The unique identifier for the file. Generated by crypto.randomUUID()",
+          "type": "prop",
+          "description": "{string} id - The unique identifier for the file. Generated by crypto.randomUUID()"
+        },
+        {
+          "line": "@prop { 'public' | 'private' | 'protected' | null } access - The access level of the item. Can be null, public, private, or protected.",
+          "type": "prop",
+          "description": "{ 'public' | 'private' | 'protected' | null } access - The access level of the item. Can be null, public, private, or protected."
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 2023-07-17 | Erik Plachta | Add more complete content.",
+          "type": "changelog",
+          "description": "2023-07-17 | Erik Plachta | Add more complete content."
+        },
+        {
+          "line": "@changelog 2023-07-18 | Erik Plachta | Finalize concept.",
+          "type": "changelog",
+          "description": "2023-07-18 | Erik Plachta | Finalize concept."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo  2023-07-18 | Erik Plachta | Add Summary, Description, and params.",
+          "type": "todo",
+          "description": "2023-07-18 | Erik Plachta | Add Summary, Description, and params."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T21:17:31.202Z"
+  },
+  {
+    "id": "79d64452-6f9d-4027-a091-68f3537c402d",
+    "fileName": "Config.ts",
+    "filePath": "src/lib/types/Config.ts",
+    "comments": {
+      "file": [
+        {
+          "line": "@file Config.ts",
+          "type": "file",
+          "description": "Config.ts"
+        }
+      ],
+      "path": [
+        {
+          "line": "@path build-docs\\types\\Config.ts",
+          "type": "path",
+          "description": "build-docs\\types\\Config.ts"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Type definitions for build-docs config.json file.",
+          "type": "summary",
+          "description": "Type definitions for build-docs config.json file."
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {Type} Config",
+          "type": "type",
+          "description": "{Type} Config"
+        }
+      ],
+      "created": [
+        {
+          "line": "@created 2021-07-22",
+          "type": "created",
+          "description": "2021-07-22"
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.0.2",
+          "type": "version",
+          "description": "0.0.2"
+        }
+      ],
+      "author": [
+        {
+          "line": "@author Erik Plachta",
+          "type": "author",
+          "description": "Erik Plachta"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 0.0.1",
+          "type": "since",
+          "description": "0.0.1"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof Types",
+          "type": "memberof",
+          "description": "Types"
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog   0.0.1 | 2023-07-23 | Erik Plachta | docs: Finalize concept.",
+          "type": "changelog",
+          "description": "0.0.1 | 2023-07-23 | Erik Plachta | docs: Finalize concept."
+        },
+        {
+          "line": "@changelog   0.0.2 | 2023-07-23 | Erik Plachta | docs: Cleanup, add TODOs, add UserConfig.",
+          "type": "changelog",
+          "description": "0.0.2 | 2023-07-23 | Erik Plachta | docs: Cleanup, add TODOs, add UserConfig."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo 2023-07-23 | Erik Plachta | Determine if I should make ConfigGroups modules.",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Determine if I should make ConfigGroups modules."
+        },
+        {
+          "line": "@todo 2023-07-23 | Erik Plachta | Add final comments and finish concept.",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Add final comments and finish concept."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T22:12:41.416Z"
+  },
+  {
+    "id": "380880bc-2dc4-40e0-b2b5-44ba461959a4",
+    "fileName": "Config.ts",
+    "filePath": "src/lib/types/Config.ts",
+    "comments": {
+      "typedef": [
+        {
+          "line": "@typedef Logging",
+          "type": "typedef",
+          "description": "Logging"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {Type} Logging",
+          "type": "type",
+          "description": "{Type} Logging"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.types.config",
+          "type": "memberof",
+          "description": "module:build-docs.types.config"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Logging configuration options.",
+          "type": "summary",
+          "description": "Logging configuration options."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Definition of all available options and their defaults for the logging configuration.",
+          "type": "description",
+          "description": "Definition of all available options and their defaults for the logging configuration."
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {Option[]} options - An array of all available options.",
+          "type": "prop",
+          "description": "{Option[]} options - An array of all available options."
+        },
+        {
+          "line": "@prop {Option} options.level - The level of logging to use.",
+          "type": "prop",
+          "description": "{Option} options.level - The level of logging to use."
+        },
+        {
+          "line": "@prop {Option} options.toConsole - Whether or not to log to the console.",
+          "type": "prop",
+          "description": "{Option} options.toConsole - Whether or not to log to the console."
+        },
+        {
+          "line": "@prop {Option} options.toFile - Whether or not to log to a file.",
+          "type": "prop",
+          "description": "{Option} options.toFile - Whether or not to log to a file."
+        },
+        {
+          "line": "@prop {Option} options.filePath - The path to the file to log to.",
+          "type": "prop",
+          "description": "{Option} options.filePath - The path to the file to log to."
+        },
+        {
+          "line": "@prop {Option} options.fileNameIncludeDate - Whether or not to include the date in the log.",
+          "type": "prop",
+          "description": "{Option} options.fileNameIncludeDate - Whether or not to include the date in the log."
+        },
+        {
+          "line": "@prop {Option} options.fileNameIncludeTime - Whether or not to include the time in the log.",
+          "type": "prop",
+          "description": "{Option} options.fileNameIncludeTime - Whether or not to include the time in the log."
+        },
+        {
+          "line": "@prop {Option} options.fileNameIncludeRoot - Whether or not to include the root path in the log.",
+          "type": "prop",
+          "description": "{Option} options.fileNameIncludeRoot - Whether or not to include the root path in the log."
+        },
+        {
+          "line": "@prop {Option} options.fileFormat - The format to use for the log.",
+          "type": "prop",
+          "description": "{Option} options.fileFormat - The format to use for the log."
+        },
+        {
+          "line": "@prop {Option} options.fileWriteMode - The write mode to use for the log.",
+          "type": "prop",
+          "description": "{Option} options.fileWriteMode - The write mode to use for the log."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T22:12:41.416Z"
+  },
+  {
+    "id": "3242cb93-23ec-486b-87b7-9605eb3e83e8",
+    "fileName": "Config.ts",
+    "filePath": "src/lib/types/Config.ts",
+    "comments": {
+      "typedef": [
+        {
+          "line": "@typedef Target_Config",
+          "type": "typedef",
+          "description": "Target_Config"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {Type} Target_config",
+          "type": "type",
+          "description": "{Type} Target_config"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.types.config",
+          "type": "memberof",
+          "description": "module:build-docs.types.config"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Target configuration options.",
+          "type": "summary",
+          "description": "Target configuration options."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Definition of all available options and their defaults for the Target configuration.",
+          "type": "description",
+          "description": "Definition of all available options and their defaults for the Target configuration."
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {Option[]} options - An array of all available options.",
+          "type": "prop",
+          "description": "{Option[]} options - An array of all available options."
+        },
+        {
+          "line": "@prop {Option} options.outputPath - The path to the output file.",
+          "type": "prop",
+          "description": "{Option} options.outputPath - The path to the output file."
+        },
+        {
+          "line": "@prop {Option} options.outputName - The name of the output file.",
+          "type": "prop",
+          "description": "{Option} options.outputName - The name of the output file."
+        },
+        {
+          "line": "@prop {Option} options.outputFormat - The format of the output file.",
+          "type": "prop",
+          "description": "{Option} options.outputFormat - The format of the output file."
+        },
+        {
+          "line": "@prop {Option} options.targetPath - The path to the target file.",
+          "type": "prop",
+          "description": "{Option} options.targetPath - The path to the target file."
+        },
+        {
+          "line": "@prop {Option} options.targetPaths - The paths to the target files.",
+          "type": "prop",
+          "description": "{Option} options.targetPaths - The paths to the target files."
+        },
+        {
+          "line": "@prop {Option} options.ignorePaths - The paths to ignore.",
+          "type": "prop",
+          "description": "{Option} options.ignorePaths - The paths to ignore."
+        },
+        {
+          "line": "@prop {Option} options.ignoreFiles - The files to ignore.",
+          "type": "prop",
+          "description": "{Option} options.ignoreFiles - The files to ignore."
+        },
+        {
+          "line": "@prop {Option} options.targetFiles - The files to target.",
+          "type": "prop",
+          "description": "{Option} options.targetFiles - The files to target."
+        },
+        {
+          "line": "@prop {Option} options.targetFileTypes - The file types to target.",
+          "type": "prop",
+          "description": "{Option} options.targetFileTypes - The file types to target."
+        },
+        {
+          "line": "@prop {Option} options.writeMode - The write mode to use for the output file.",
+          "type": "prop",
+          "description": "{Option} options.writeMode - The write mode to use for the output file."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T22:12:41.416Z"
+  },
+  {
+    "id": "ebf74a6b-d341-4807-bc63-6f5222d4c073",
+    "fileName": "Config.ts",
+    "filePath": "src/lib/types/Config.ts",
+    "comments": {
+      "typedef": [
+        {
+          "line": "@typedef DocsToUi",
+          "type": "typedef",
+          "description": "DocsToUi"
+        }
+      ],
+      "type": [
+        {
+          "line": "@type {Type} DocsToUi",
+          "type": "type",
+          "description": "{Type} DocsToUi"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.types.config",
+          "type": "memberof",
+          "description": "module:build-docs.types.config"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary DocsToUi configuration options.",
+          "type": "summary",
+          "description": "DocsToUi configuration options."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Definition of all available options and their defaults for the DocsToUi configuration.",
+          "type": "description",
+          "description": "Definition of all available options and their defaults for the DocsToUi configuration."
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {Option[]} options - An array of all available options.",
+          "type": "prop",
+          "description": "{Option[]} options - An array of all available options."
+        },
+        {
+          "line": "@prop {Option} options.outputPath - The path to the output file.",
+          "type": "prop",
+          "description": "{Option} options.outputPath - The path to the output file."
+        },
+        {
+          "line": "@prop {Option} options.outputName - The name of the output file.",
+          "type": "prop",
+          "description": "{Option} options.outputName - The name of the output file."
+        },
+        {
+          "line": "@prop {Option} options.outputFormat - The format of the output file.",
+          "type": "prop",
+          "description": "{Option} options.outputFormat - The format of the output file."
+        },
+        {
+          "line": "@prop {Option} options.writeMode - The write mode to use for the output file.",
+          "type": "prop",
+          "description": "{Option} options.writeMode - The write mode to use for the output file."
+        },
+        {
+          "line": "@prop {Option} options.buildHtml - Whether or not to build the HTML output.",
+          "type": "prop",
+          "description": "{Option} options.buildHtml - Whether or not to build the HTML output."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T22:12:41.416Z"
+  },
+  {
+    "id": "ab17b5ed-7334-4b44-bd16-194116a8ef15",
+    "fileName": "Config.ts",
+    "filePath": "src/lib/types/Config.ts",
+    "comments": {
+      "description": [
+        {
+          "line": "@description If there is a `.build-docs` | `.build.docs.js` file in the root of the project, it will be used to override the default config.",
+          "type": "description",
+          "description": "If there is a `.build-docs` | `.build.docs.js` file in the root of the project, it will be used to override the default config."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.202Z",
+    "modifiedDate": "2023-07-23T22:12:41.416Z"
+  },
+  {
+    "id": "1a8622c0-2c29-42fe-bfc1-3a56f8f87d79",
+    "fileName": "Elements.ts",
+    "filePath": "src/lib/types/Elements.ts",
+    "comments": {
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.types.elements",
+          "type": "memberof",
+          "description": "module:build-docs.types.elements"
+        }
+      ],
+      "typedef": [
+        {
+          "line": "@typedef Elements",
+          "type": "typedef",
+          "description": "Elements"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Wrapper around extracted comments from file, prepared for rendering to ui.",
+          "type": "summary",
+          "description": "Wrapper around extracted comments from file, prepared for rendering to ui."
+        }
+      ]
+    },
+    "createdDate": "2023-07-18T17:57:05.041Z",
+    "modifiedDate": "2023-07-23T15:50:03.549Z"
+  },
+  {
+    "id": "5cb9a413-0607-47a1-a03b-a227e331b524",
+    "fileName": "Elements.ts",
+    "filePath": "src/lib/types/Elements.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {Type} Helpers",
+          "type": "type",
+          "description": "{Type} Helpers"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Utility functions for withing with processed elements.",
+          "type": "summary",
+          "description": "Utility functions for withing with processed elements."
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:build-docs.types.elements",
+          "type": "memberof",
+          "description": "module:build-docs.types.elements"
+        }
+      ],
+      "typedef": [
+        {
+          "line": "@typedef Helpers",
+          "type": "typedef",
+          "description": "Helpers"
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {function} getElements - Get all elements.",
+          "type": "prop",
+          "description": "{function} getElements - Get all elements."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo 2023-07-23 | Erik Plachta | Onboard these once the concept is more complete.",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Onboard these once the concept is more complete."
+        }
+      ]
+    },
+    "createdDate": "2023-07-18T17:57:05.041Z",
+    "modifiedDate": "2023-07-23T15:50:03.549Z"
+  },
+  {
+    "id": "e756af79-2d61-4964-9046-eacae9e0fcbf",
+    "fileName": "Elements.ts",
+    "filePath": "src/lib/types/Elements.ts",
+    "comments": {
+      "todo": [
+        {
+          "line": "@todo 2023-07-23 | Erik Plachta | Onboard these once the concept is more complete.",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Onboard these once the concept is more complete."
+        }
+      ]
+    },
+    "createdDate": "2023-07-18T17:57:05.041Z",
+    "modifiedDate": "2023-07-23T15:50:03.549Z"
+  },
+  {
+    "id": "5e5efe26-bb60-4997-9861-54dc9f5493f4",
+    "fileName": "index.ts",
+    "filePath": "src/lib/types/index.ts",
+    "comments": {
+      "file": [
+        {
+          "line": "@file types\\index.ts",
+          "type": "file",
+          "description": "types\\index.ts"
+        }
+      ],
+      "path": [
+        {
+          "line": "@path build-docs\\types\\index.ts",
+          "type": "path",
+          "description": "build-docs\\types\\index.ts"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary TypeScript Types used within the build-docs utility.",
+          "type": "summary",
+          "description": "TypeScript Types used within the build-docs utility."
+        }
+      ],
+      "module": [
+        {
+          "line": "@module Types",
+          "type": "module",
+          "description": "Types"
+        }
+      ],
+      "namespace": [
+        {
+          "line": "@namespace {build-docs.Types}",
+          "type": "namespace",
+          "description": "{build-docs.Types}"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access private",
+          "type": "access",
+          "description": "private"
+        }
+      ],
+      "version": [
+        {
+          "line": "@version 0.0.2",
+          "type": "version",
+          "description": "0.0.2"
+        }
+      ],
+      "since": [
+        {
+          "line": "@since 2021-07-14",
+          "type": "since",
+          "description": "2021-07-14"
+        }
+      ],
+      "license": [
+        {
+          "line": "@license MIT",
+          "type": "license",
+          "description": "MIT"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.203Z",
+    "modifiedDate": "2023-07-23T21:17:31.203Z"
+  },
+  {
+    "id": "3372f854-884b-4def-8529-cfff0e719789",
+    "fileName": "index.ts",
+    "filePath": "src/lib/types/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {Type}",
+          "type": "type",
+          "description": "{Type}"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:Types",
+          "type": "memberof",
+          "description": "module:Types"
+        }
+      ],
+      "typedef": [
+        {
+          "line": "@typedef File",
+          "type": "typedef",
+          "description": "File"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.203Z",
+    "modifiedDate": "2023-07-23T21:17:31.203Z"
+  },
+  {
+    "id": "b1dfe9a8-c47f-4958-83da-93f8a25cb3b0",
+    "fileName": "index.ts",
+    "filePath": "src/lib/types/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {Type}",
+          "type": "type",
+          "description": "{Type}"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:Types",
+          "type": "memberof",
+          "description": "module:Types"
+        }
+      ],
+      "typedef": [
+        {
+          "line": "@typedef Namespace",
+          "type": "typedef",
+          "description": "Namespace"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.203Z",
+    "modifiedDate": "2023-07-23T21:17:31.203Z"
+  },
+  {
+    "id": "0b42db48-271c-4cdb-ac6c-249d602348e0",
+    "fileName": "index.ts",
+    "filePath": "src/lib/types/index.ts",
+    "comments": {
+      "type": [
+        {
+          "line": "@type {Type}",
+          "type": "type",
+          "description": "{Type}"
+        }
+      ],
+      "typedef": [
+        {
+          "line": "@typedef Module",
+          "type": "typedef",
+          "description": "Module"
+        }
+      ],
+      "memberof": [
+        {
+          "line": "@memberof module:types",
+          "type": "memberof",
+          "description": "module:types"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.203Z",
+    "modifiedDate": "2023-07-23T21:17:31.203Z"
+  },
+  {
+    "id": "a4d2e35f-3a37-47e4-b612-1854d0d0bbe3",
+    "fileName": "index.ts",
+    "filePath": "src/lib/types/index.ts",
+    "comments": {
+      "summary": [
+        {
+          "line": "@summary Used by DocsToUi to define runtime configuration options.",
+          "type": "summary",
+          "description": "Used by DocsToUi to define runtime configuration options."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Defined by `Config.settings` -> `Output` -> `options` ->",
+          "type": "description",
+          "description": "Defined by `Config.settings` -> `Output` -> `options` ->"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T21:17:31.203Z",
+    "modifiedDate": "2023-07-23T21:17:31.203Z"
+  },
+  {
+    "id": "a4ecb590-f917-4044-a6e8-a3ecb434f998",
+    "fileName": "DataManager.ts",
+    "filePath": "src/utils/DataManager.ts",
+    "comments": {
+      "file": [
+        {
+          "line": "@file DataManager.ts",
+          "type": "file",
+          "description": "DataManager.ts"
+        }
+      ],
+      "path": [
+        {
+          "line": "@path build-docs\\src\\utils\\DataManager.ts",
+          "type": "path",
+          "description": "build-docs\\src\\utils\\DataManager.ts"
+        }
+      ],
+      "class": [
+        {
+          "line": "@class DataManager",
+          "type": "class",
+          "description": "DataManager"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "exports": [
+        {
+          "line": "@exports ManageData",
+          "type": "exports",
+          "description": "ManageData"
+        },
+        {
+          "line": "@exports DataManager() default",
+          "type": "exports",
+          "description": "DataManager() default"
+        },
+        {
+          "line": "@exports DataManager",
+          "type": "exports",
+          "description": "DataManager"
+        },
+        {
+          "line": "@exports MangeDataTest",
+          "type": "exports",
+          "description": "MangeDataTest"
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T20:15:52.313Z",
+    "modifiedDate": "2023-07-23T20:15:52.313Z"
+  },
+  {
+    "id": "692f059c-7294-47f1-b418-4faf5ce0ddfb",
+    "fileName": "DataManager.ts",
+    "filePath": "src/utils/DataManager.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function checkKeys",
+          "type": "function",
+          "description": "checkKeys"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Checks if an object contains all of the keys you expect it to.",
+          "type": "summary",
+          "description": "Checks if an object contains all of the keys you expect it to."
+        }
+      ],
+      "description": [
+        {
+          "line": "@description Checks if an object contains all of the keys you expect it to. Returns an object with two arrays: missingKeys and extraKeys. Note: The key comparison is case-sensitive.",
+          "type": "description",
+          "description": "Checks if an object contains all of the keys you expect it to. Returns an object with two arrays: missingKeys and extraKeys. Note: The key comparison is case-sensitive."
+        }
+      ],
+      "created": [
+        {
+          "line": "@created 2023-07-23 ",
+          "type": "created",
+          "description": "2023-07-23"
+        }
+      ],
+      "param": [
+        {
+          "line": "@param {string[]} keysExpected - An array of strings as the keys you expect to find in the object.",
+          "type": "param",
+          "description": "{string[]} keysExpected - An array of strings as the keys you expect to find in the object."
+        },
+        {
+          "line": "@param {object} objToTest - The object to search for keys within.",
+          "type": "param",
+          "description": "{object} objToTest - The object to search for keys within."
+        }
+      ],
+      "returns": [
+        {
+          "line": "@returns {object} - Returns an object with two arrays: missingKeys and extraKeys.",
+          "type": "returns",
+          "description": "{object} - Returns an object with two arrays: missingKeys and extraKeys."
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog 2023-07-23 | Erik Plachta | feat: Add function to be used by `Config` when validating integrity of the config.",
+          "type": "changelog",
+          "description": "2023-07-23 | Erik Plachta | feat: Add function to be used by `Config` when validating integrity of the config."
+        }
+      ],
+      "todo": [
+        {
+          "line": "@todo 2023-07-23 | Erik Plachta | Add additional layers of depth.",
+          "type": "todo",
+          "description": "2023-07-23 | Erik Plachta | Add additional layers of depth."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T20:15:52.313Z",
+    "modifiedDate": "2023-07-23T20:15:52.313Z"
+  },
+  {
+    "id": "09f681d7-ed18-49c3-b988-cbc37ac68f8d",
+    "fileName": "DataManager.ts",
+    "filePath": "src/utils/DataManager.ts",
+    "comments": {
+      "function": [
+        {
+          "line": "@function MangeDataTest",
+          "type": "function",
+          "description": "MangeDataTest"
+        }
+      ],
+      "access": [
+        {
+          "line": "@access public",
+          "type": "access",
+          "description": "public"
+        }
+      ],
+      "summary": [
+        {
+          "line": "@summary Test function for ManageData class.",
+          "type": "summary",
+          "description": "Test function for ManageData class."
+        }
+      ]
+    },
+    "createdDate": "2023-07-23T20:15:52.313Z",
+    "modifiedDate": "2023-07-23T20:15:52.313Z"
+  },
+  {
+    "id": "991b2628-3415-4ea3-bfa9-23569ebab16d",
+    "fileName": "tsconfig.js",
+    "filePath": "tsconfig.js",
+    "comments": {
+      "module": [
+        {
+          "line": "@module tsconfig",
+          "type": "module",
+          "description": "tsconfig"
+        }
+      ],
+      "see": [
+        {
+          "line": "@see https://www.typescriptlang.org/tsconfig",
+          "type": "see",
+          "description": "https://www.typescriptlang.org/tsconfig"
+        }
+      ],
+      "prop": [
+        {
+          "line": "@prop {boolean} compilerOptions.allowJs - Allow JavaScript files to be compiled. See [typescriptlang.org.org - AllowJs](https://www.typescriptlang.org/tsconfig#allowJs).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.allowJs - Allow JavaScript files to be compiled. See [typescriptlang.org.org - AllowJs](https://www.typescriptlang.org/tsconfig#allowJs)."
+        },
+        {
+          "line": "@prop {object} compilerOptions - Compiler options for TypeScript.",
+          "type": "prop",
+          "description": "{object} compilerOptions - Compiler options for TypeScript."
+        },
+        {
+          "line": "@prop {string} compilerOptions.baseUrl - Specify the base directory to resolve non-relative module names. See [typescriptlang.org.org - BaseUrl](https://www.typescriptlang.org/tsconfig#baseUrl).",
+          "type": "prop",
+          "description": "{string} compilerOptions.baseUrl - Specify the base directory to resolve non-relative module names. See [typescriptlang.org.org - BaseUrl](https://www.typescriptlang.org/tsconfig#baseUrl)."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.composite - Enable constraints that allow a TypeScript project to be used with project references. See [typescriptlang.org.org - Composite](https://www.typescriptlang.org/tsconfig#composite).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.composite - Enable constraints that allow a TypeScript project to be used with project references. See [typescriptlang.org.org - Composite](https://www.typescriptlang.org/tsconfig#composite)."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.esModuleInterop - Emit additional JavaScript to ease support for importing CommonJS modules. See [typescriptlang.org.org - EsModuleInterop](https://www.typescriptlang.org/tsconfig#esModuleInterop).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.esModuleInterop - Emit additional JavaScript to ease support for importing CommonJS modules. See [typescriptlang.org.org - EsModuleInterop](https://www.typescriptlang.org/tsconfig#esModuleInterop)."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.forceConsistentCasingInFileNames - Disallow inconsistently-cased references to the same file. See [typescriptlang.org.org - ForceConsistentCasingInFileNames](https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.forceConsistentCasingInFileNames - Disallow inconsistently-cased references to the same file. See [typescriptlang.org.org - ForceConsistentCasingInFileNames](https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames)."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.incremental - Enable incremental compilation of types. See [typescriptlang.org.org - Incremental](https://www.typescriptlang.org/tsconfig#incremental).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.incremental - Enable incremental compilation of types. See [typescriptlang.org.org - Incremental](https://www.typescriptlang.org/tsconfig#incremental)."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.isolatedModules - Transpile each file as a separate module (similar to 'ts.transpileModule'). See [typescriptlang.org.org - IsolatedModules](https://www.typescriptlang.org/tsconfig#isolatedModules).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.isolatedModules - Transpile each file as a separate module (similar to 'ts.transpileModule'). See [typescriptlang.org.org - IsolatedModules](https://www.typescriptlang.org/tsconfig#isolatedModules)."
+        },
+        {
+          "line": "@prop {string} compilerOptions.jsx - Controls how JSX constructs are emitted in JavaScript files. This only affects output of JS files that started in .tsx files. See [typescriptlang.org.org - Jsx](https://www.typescriptlang.org/tsconfig#jsx).",
+          "type": "prop",
+          "description": "{string} compilerOptions.jsx - Controls how JSX constructs are emitted in JavaScript files. This only affects output of JS files that started in .tsx files. See [typescriptlang.org.org - Jsx](https://www.typescriptlang.org/tsconfig#jsx)."
+        },
+        {
+          "line": "@prop {string[]} compilerOptions.lib - Specify library files to be included in the compilation. See [typescriptlang.org.org - Lib](https://www.typescriptlang.org/tsconfig#lib).",
+          "type": "prop",
+          "description": "{string[]} compilerOptions.lib - Specify library files to be included in the compilation. See [typescriptlang.org.org - Lib](https://www.typescriptlang.org/tsconfig#lib)."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.noEmit - Disable emitting files from a compilation to make from for prettier/eslint. See [typescriptlang.org.org - NoEmit](https://www.typescriptlang.org/tsconfig#noEmit).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.noEmit - Disable emitting files from a compilation to make from for prettier/eslint. See [typescriptlang.org.org - NoEmit](https://www.typescriptlang.org/tsconfig#noEmit)."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.output - Specify an output folder for all emitted files. See [typescriptlang.org.org - OutDir](https://www.typescriptlang.org/tsconfig#outDir). ",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.output - Specify an output folder for all emitted files. See [typescriptlang.org.org - OutDir](https://www.typescriptlang.org/tsconfig#outDir)."
+        },
+        {
+          "line": "@prop {string} compilerOptions.module - Specify module code generation. See [typescriptlang.org.org - Module](https://www.typescriptlang.org/tsconfig#module).",
+          "type": "prop",
+          "description": "{string} compilerOptions.module - Specify module code generation. See [typescriptlang.org.org - Module](https://www.typescriptlang.org/tsconfig#module)."
+        },
+        {
+          "line": "@prop {string} compilerOptions.moduleResolution - Module resolution is the process the compiler uses to figure out what an import refers to. See [typescriptlang.org.org - ModuleResolution](https://www.typescriptlang.org/tsconfig#moduleResolution), and [Module Resolution handbook](https://www.typescriptlang.org/docs/handbook/module-resolution.html) for additional details.",
+          "type": "prop",
+          "description": "{string} compilerOptions.moduleResolution - Module resolution is the process the compiler uses to figure out what an import refers to. See [typescriptlang.org.org - ModuleResolution](https://www.typescriptlang.org/tsconfig#moduleResolution), and [Module Resolution handbook](https://www.typescriptlang.org/docs/handbook/module-resolution.html) for additional details."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.resolveJsonModule - Allows importing modules with a ‘.json’ extension, which is a common practice in node projects. This includes generating a type for the import based on the static JSON shape. See [typescriptlang.org.org - ResolveJsonModule](https://www.typescriptlang.org/tsconfig#resolveJsonModule).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.resolveJsonModule - Allows importing modules with a ‘.json’ extension, which is a common practice in node projects. This includes generating a type for the import based on the static JSON shape. See [typescriptlang.org.org - ResolveJsonModule](https://www.typescriptlang.org/tsconfig#resolveJsonModule)."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.skipLibCheck - Skip type checking of declaration files. See [typescriptlang.org.org - SkipLibCheck](https://www.typescriptlang.org/tsconfig#skipLibCheck).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.skipLibCheck - Skip type checking of declaration files. See [typescriptlang.org.org - SkipLibCheck](https://www.typescriptlang.org/tsconfig#skipLibCheck)."
+        },
+        {
+          "line": "@prop {boolean} compilerOptions.strict - Enable all strict type checking options. See [typescriptlang.org.org - Strict](https://www.typescriptlang.org/tsconfig#strict).",
+          "type": "prop",
+          "description": "{boolean} compilerOptions.strict - Enable all strict type checking options. See [typescriptlang.org.org - Strict](https://www.typescriptlang.org/tsconfig#strict)."
+        },
+        {
+          "line": "@prop {string} compilerOptions.target - Specify ECMAScript target version. Modern browsers support all ES6 features, so ES6 is a good choice. You might choose to set a lower target if your code is deployed to older environments, or a higher target if your code is guaranteed to run in newer environments. See [typescriptlang.org.org - Target](https://www.typescriptlang.org/tsconfig#target).",
+          "type": "prop",
+          "description": "{string} compilerOptions.target - Specify ECMAScript target version. Modern browsers support all ES6 features, so ES6 is a good choice. You might choose to set a lower target if your code is deployed to older environments, or a higher target if your code is guaranteed to run in newer environments. See [typescriptlang.org.org - Target](https://www.typescriptlang.org/tsconfig#target)."
+        },
+        {
+          "line": "@prop {string[]} exclude - Files to exclude from compilation. see [typescriptlang.org.org - Exclude](https://www.typescriptlang.org/tsconfig#exclude).",
+          "type": "prop",
+          "description": "{string[]} exclude - Files to exclude from compilation. see [typescriptlang.org.org - Exclude](https://www.typescriptlang.org/tsconfig#exclude)."
+        },
+        {
+          "line": "@prop {string[]} include - Files to include in compilation. see [typescriptlang.org.org - Include](https://www.typescriptlang.org/tsconfig#include).",
+          "type": "prop",
+          "description": "{string[]} include - Files to include in compilation. see [typescriptlang.org.org - Include](https://www.typescriptlang.org/tsconfig#include)."
+        },
+        {
+          "line": "@prop {string} references - Referenced projects.",
+          "type": "prop",
+          "description": "{string} references - Referenced projects."
+        }
+      ]
+    },
+    "createdDate": "2023-07-17T00:07:11.726Z",
+    "modifiedDate": "2023-07-22T03:28:48.702Z"
+  }
+]
