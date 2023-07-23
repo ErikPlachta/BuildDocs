@@ -7,6 +7,7 @@ const { readFileSync, writeFileSync } = require('fs') // used for reading config
 import { randomUUID } from 'crypto'
 import { Config, Logging, Setting, Option, ErrorRecord } from '../types'
 import { config } from './default'
+import { DataManager } from '../../utils/DataManager'
 
 type results = {
   success: boolean
@@ -43,6 +44,7 @@ class Configure {
   public errors: ErrorRecord[] = []
   public getLoggingLevel: () => number
   public getConfig: () => Config
+  private dm: DataManager = new DataManager()
   // public settings:Config['settings']
 
   constructor() {
@@ -123,16 +125,16 @@ class Configure {
    * @async
    * @param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.
    * @param {object} config - Config is the default configuration for the DocsToJson utility.
+   * @param {object | undefined} userConfig - `userConfig` is defined if user has a `.build-docs` file in root. If defined, evaluated to update config accordingly.
    * @returns {object} - success (boolean), message (string), and data (object) containing the updated config.
    * @todo: Add logic to strip `--` prefaced to args if any just in case.
    * @todo Add validation of args to make sure they are valid.
    */
-  async getUpdatedConfig(args: { [key: string]: string }, config: Config): Promise<results> {
+  async getUpdatedConfig(args: { [key: string]: string }, config: Config, userConfig: UserConfig): Promise<results> {
     try {
       const updatedConfig = {
         ...config,
       }
-      const settings = updatedConfig.settings
 
       // console.log('getUpdatedConfig.settings: ', config)
       // console.log('args: ', args)
@@ -225,7 +227,7 @@ class Configure {
     const config: Config = {
       ...this.defaults,
     } // The configuration option to be returned
-    const requiredSettings: string[] = ['Logging', 'Output', 'Target'] // Config options that are supported.
+    const requiredKeys: string[] = ['Logging', 'Output', 'Target'] // Config options that are supported.
     const unsupportedSettings: [] = [] // holds any config options that are not supported.
 
     try {
@@ -246,44 +248,47 @@ class Configure {
         }
       }
 
-      // TODO: Add // 3. Verify default config has required settings.
-      
-        // this.errors.push({
-        //   id: randomUUID(),
-        //   type: 'fatal',
-        //   message: 'ERROR: getConfig() failed to process config.',
-        //   data: {
-        //     error: 'getConfig() failed to process config. Required config.settings groups are missing.',
-        //     requiredSettings,
-        //     unsupportedSettings,
-        //   },
-        // })
-        // throw new Error(`Error getting config settings. Make sure config is setup with proper 'Logging' configuration.`)
-      // }
+      // 3. Verify Configuration 
+      const { missingKeys, extraKeys } = this.dm.checkKeys(requiredKeys, config)
 
-      // 4. If there are any unsupported config settings, warning, but continues.
-      // TODO: Add more checking here to make sure config is valid.
-      requiredSettings.forEach((requiredSettingTitle: string) => {
-        if(config[requiredSettingTitle] != undefined) {
+      // 4. If there are any missing config settings, throws fatal error. (The whole program to exit with error.)
+      if(extraKeys.length > 0) {
+        this.errors.push({
+          id: randomUUID(),
+          type: 'fatal',
+          message: 'ERROR: getConfig() failed to process config.',
+          data: {
+            error: 'getConfig() failed to process config. Required config groups are missing.',
+            missingKeys,
+            requiredKeys,
+            unsupportedSettings,
+          },
+        })
+        throw new Error(`Error getting config settings. Make sure config is setup with proper 'Logging' configuration.`)
+      }
+
+      // 4. If there are any unsupported config settings, warning, but continues. (These settings will be ignored, but the program will continue to run.)
+      if(extraKeys.length > 0){      
           this.errors.push({
             id: randomUUID(),
             type: 'warning',
             message: `Unsupported config.settings group found: ${}`,
             data: {
-              error: `The following config.settings group(s) are unsupported: ${unsupportedSettings.join(', ')}`,
+              error: `The following config.settings group(s) are unsupported: ${extraKeys.join(', ')}`,
             },
           })
         }
-      })
-
-      //5. Return the config if no fatal errors.
+        
+      //5. No fatal errors, return the config.
       return {
         success: true,
         message: `SUCCESS: Config loaded successfully.`,
         data: config,
       }
-    } catch (error) {
-      // 6. If there are any errors, throws error.
+    }
+    // 6. If there are any errors, throws error.
+    catch (error) {
+      
       if (this.getLoggingLevel() > 0) console.error(error)
 
       this.errors.push({
