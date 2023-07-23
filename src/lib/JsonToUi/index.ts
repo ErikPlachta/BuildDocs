@@ -567,10 +567,10 @@ class JsonToUi {
       description: 'Footer within the rendered content.',
       elementType: 'footer',
       classList: [
-        'w-full bottom-0 p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto max-w-4xl',
+        'w-full text-sm bottom-0 p-0 m-0 p-2 border-solid border-2 bg-white flex flex-col gap-4 text-center mx-auto max-w-4xl',
       ],
       dataAttributes: {
-        value: 'Footer Placeholder Text',
+        value: `BuildDocs | © ${new Date().getFullYear()} - Erik Plachta`,
         type: null,
         path: null,
         role: 'footer',
