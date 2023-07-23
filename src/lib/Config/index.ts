@@ -89,15 +89,17 @@ class Configure {
     const args: results = await this.getArgs()
     this.args = args.data
     // failed, warning but can still continue
-    if (args.success == false && this.getLogLevel() > 1) { console.warn(args)}
+    if (args.success == false && this.getLogLevel() > 1) {
+      console.warn(args)
+    }
     if (this.getLogLevel() >= 5) console.log('config.data: ', config.data)
 
     // 3. Get User Config - The user config from the root `.build-docs` file.
     const userConfig: results = await this.getUserConfig()
     // failed, warning but can still continue
-    if(this.getLogLevel() >= 4) console.log('WARNING: Failed to load user config. Using defaults. Reverting to defaults.')
+    if (this.getLogLevel() >= 4)
+      console.log('WARNING: Failed to load user config. Using defaults. Reverting to defaults.')
     this.UserConfig = userConfig.data
-
 
     // 4. Update Config with Args through CLI or through `.build-docs`.
     const updatedConfig: results = await this.getUpdatedConfig(args.data, config.data, userConfig.data)
@@ -120,22 +122,21 @@ class Configure {
   //---------------------------- Utility Functions ---------------------------//
 
   /**
-     * @function getLogLevel
-     * @type {function} getLogLevel
-     * @memberof module:build-docs.Config
-     * @access public
-     * @summary Gets the logging level for the DocsToJson utility.
-     * @return {number} none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info
-     */
-  getLogLevel = ():number => {
+   * @function getLogLevel
+   * @type {function} getLogLevel
+   * @memberof module:build-docs.Config
+   * @access public
+   * @summary Gets the logging level for the DocsToJson utility.
+   * @return {number} none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info
+   */
+  getLogLevel = (): number => {
     //TODO: Update this to get the true log level
     return 2
   }
-  
 
   /**
    * Get the user config from the root `.build-docs` file.
-   * 
+   *
    * @function getUserConfig - Get the user config from the root `.build-docs` file.
    * @type {function} getUserConfig
    * @memberof module:build-docs.Config
@@ -147,17 +148,18 @@ class Configure {
    */
   async getUserConfig(): Promise<results> {
     try {
-      const userConfig: UserConfig = JSON.parse(
-        readFileSync(
-        resolve('.build-docs')).toString()
-      )
-      return Promise.resolve ({
+      
+      
+      // TODO: Update this to pull config file.
+      // const userConfig: UserConfig = JSON.parse(readFileSync(resolve('.build-docs')).toString())
+      const userConfig: UserConfig =  {} 
+
+      return Promise.resolve({
         success: true,
         message: `SUCCESS: User config loaded successfully.`,
         data: userConfig,
       })
-    }
-    catch (error) {
+    } catch (error) {
       if (this.getLogLevel() > 0) console.error(error)
 
       this.errors.push({
@@ -187,6 +189,7 @@ class Configure {
    * @returns {object} - success (boolean), message (string), and data (object) containing the updated config.
    * @todo: Add logic to strip `--` prefaced to args if any just in case.
    * @todo Add validation of args to make sure they are valid.
+   * @todo Onboard userConfig
    */
   async getUpdatedConfig(args: { [key: string]: string }, config: Config, userConfig: UserConfig): Promise<results> {
     try {
@@ -194,60 +197,54 @@ class Configure {
         ...config,
       }
 
-      // console.log('getUpdatedConfig.settings: ', config)
-      // console.log('args: ', args)
-
       // 1. Loop through args and overwrite  options accordingly.
       Object.keys(args).forEach(argKey => {
-        // TODO: 20230713 #EP || Add validation of args.
-        // console.log('argKey: ', argKey, typeof argKey, '. value: ', args[argKey])
-
+        console.log(argKey, args[argKey])
         // 2. Loop through each setting group to look for the argKey.
-        
         //! TODO: Update to meet new Config changes.
-        updatedConfig.forEach((setting: ConfigGroupDefaults) => {
-          // 3. Loop through each option to look for the argKey.
-          setting.options.forEach((option: Option) => {
-            // 4. If the argKey matches the option title, overwrite the value.
-            if (option.title == argKey) {
-              if (this.getLogLevel() >= 5) {
-                console.log(
-                  `config.init[argKey] being overwritten: argKey: '${argKey}', old-value: '${option.default[0].value}'  new-value: '${args[argKey]}'`,
-                )
-              }
-              // console.log('argKey: ', argKey, typeof argKey, '. value: ', args[argKey])
-              option.value = args[argKey]
-            }
-            // 5. Otherwise use the default value.
-            else {
-              // Extract default values.
-              if (option.type == 'string') {
-                option.value = option?.default
-                  .map((defaultOption: any) => {
-                    return defaultOption.value
-                  })
-                  .join(',')
-              } else if (option.type == 'string[]') {
-                option.value = option?.default.map((defaultOption: any) => {
-                  return defaultOption.value
-                })
-              } else {
-                option.value = option?.default.map((defaultOption: any) => {
-                  return defaultOption.value
-                })
-              }
+        // updatedConfig.forEach((setting: ConfigGroupDefaults) => {
+        //   // 3. Loop through each option to look for the argKey.
+        //   setting.options.forEach((option: Option) => {
+        //     // 4. If the argKey matches the option title, overwrite the value.
+        //     if (option.title == argKey) {
+        //       if (this.getLogLevel() >= 5) {
+        //         console.log(
+        //           `config.init[argKey] being overwritten: argKey: '${argKey}', old-value: '${option.default[0].value}'  new-value: '${args[argKey]}'`,
+        //         )
+        //       }
+        //       // console.log('argKey: ', argKey, typeof argKey, '. value: ', args[argKey])
+        //       option.value = args[argKey]
+        //     }
+        //     // 5. Otherwise use the default value.
+        //     else {
+        //       // Extract default values.
+        //       if (option.type == 'string') {
+        //         option.value = option?.default
+        //           .map((defaultOption: any) => {
+        //             return defaultOption.value
+        //           })
+        //           .join(',')
+        //       } else if (option.type == 'string[]') {
+        //         option.value = option?.default.map((defaultOption: any) => {
+        //           return defaultOption.value
+        //         })
+        //       } else {
+        //         option.value = option?.default.map((defaultOption: any) => {
+        //           return defaultOption.value
+        //         })
+        //       }
 
-              // console.log('option.value: ', option.value)
+        //       // console.log('option.value: ', option.value)
 
-              if (this.getLogLevel() >= 5) {
-                // console.log('option.default', option)
-                console.log(
-                  `config.init[argKey] not found: argKey. '${argKey}'. Using default-values: '${option.value}'`,
-                )
-              }
-            }
-          }) // end of looping through options within each setting group
-        }) // end of looping through setting groups
+        //       if (this.getLogLevel() >= 5) {
+        //         // console.log('option.default', option)
+        //         console.log(
+        //           `config.init[argKey] not found: argKey. '${argKey}'. Using default-values: '${option.value}'`,
+        //         )
+        //       }
+        //     }
+        //   }) // end of looping through options within each setting group
+        // }) // end of looping through setting groups
       }) // end of looping through arg keys
       // 2. Return the updated config.
       return {
@@ -287,11 +284,10 @@ class Configure {
     const config: Config = {
       ...this.defaults,
     } // The configuration option to be returned
-    const requiredKeys: string[] = ['Logging', 'Output', 'Target'] // Config options that are supported.
+    const requiredKeys: string[] = ['Logging', 'Output', 'Target', 'DocsToJson', 'DocsToUi'] // Config options that are supported.
     const unsupportedSettings: [] = [] // holds any config options that are not supported.
 
     try {
-
       // 2. If the required config settings are not present, throws error.
       if (!config) {
         console.error(`Error getting config. Make sure config is setup with proper 'Logging' configuration.`)
@@ -308,11 +304,11 @@ class Configure {
         }
       }
 
-      // 3. Verify Configuration 
+      // 3. Verify Configuration
       const { missingKeys, extraKeys } = this.dm.checkKeys(requiredKeys, config)
 
       // 4. If there are any missing config settings, throws fatal error. (The whole program to exit with error.)
-      if(extraKeys.length > 0) {
+      if (extraKeys.length > 0) {
         this.errors.push({
           id: randomUUID(),
           type: 'fatal',
@@ -324,31 +320,33 @@ class Configure {
             unsupportedSettings,
           },
         })
-        throw new Error(`Error getting config settings. Make sure config is setup with proper 'Logging' configuration.`)
+        console.error(
+          `WARNING: The config file contains unexpected values. Please verify config and try again.\n\t - ${extraKeys.join(
+            ', ',
+          )}\n`,
+        )
       }
 
       // 4. If there are any unsupported config settings, warning, but continues. (These settings will be ignored, but the program will continue to run.)
-      if(extraKeys.length > 0){      
-          this.errors.push({
-            id: randomUUID(),
-            type: 'warning',
-            message: `Unsupported config.settings group found: ${}`,
-            data: {
-              error: `The following config.settings group(s) are unsupported: ${extraKeys.join(', ')}`,
-            },
-          })
-        }
-        
+      if (extraKeys.length > 0) {
+        this.errors.push({
+          id: randomUUID(),
+          type: 'warning',
+          message: `Unsupported config.settings group found.`,
+          data: {
+            error: `The following config.settings group(s) are unsupported: ${extraKeys.join(', ')}`,
+          },
+        })
+      }
+
       //5. No fatal errors, return the config.
       return {
         success: true,
         message: `SUCCESS: Config loaded successfully.`,
         data: config,
       }
-    }
-    // 6. If there are any errors, throws error.
-    catch (error) {
-      
+    } catch (error) {
+      // 6. If there are any errors, throws error.
       if (this.getLogLevel() > 0) console.error(error)
 
       this.errors.push({

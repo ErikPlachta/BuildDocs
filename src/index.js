@@ -39,7 +39,7 @@ const { readFileSync, writeFileSync } = require('fs'); // used for reading confi
 // Custom Libraries
 const Config = require('./lib/Config/index.ts');
 const DocsToJson = require('./lib/DocsToJson/index.ts');
-const DocsToUi = require('./lib/DocsToUi/index.js');
+const DocsToUi = require('./lib/DocsToUi/index.ts');
 
 
 //-- Custom Utilities
@@ -74,28 +74,23 @@ async function run(settings) {
 
   try {
     // 1. Deconstruct for readability. 
-    const [Logging, Output, Target] = settings;
+    const [Logging, Output, Target, DocsToJson, DocsToUi] = settings;
 
     //TODO: Use logging options to manage behavior once concept is built.
     const loggingLevel = Logging.options.filter((option) => option.title.toLowerCase() == 'level')?.[0]?.value || 3;
     const [targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths] = Target.options;
     //TODO: update to extract the rest of the output options once needed.
     const outputPath = Output.options.filter((option) => option.title == 'outputPath')[0];
-    
-    const DocsToUiOptions = Output.options.filter((option) => option.memberOf != 'module:build-docs.DocsToUi')
-    
-
-    // console.log('DocsToUiOptions: ', DocsToUiOptions)
 
     // 2. Build config object for DocsToJson.
     const config_DocsToJson = {
-      targetPath: targetPath.value,
-      targetPaths: targetPaths.value,
-      ignorePaths: ignorePaths.value,
-      ignoreFiles: ignoreFiles.value,
-      targetFiles: targetFiles.value,
-      targetFileTypes: targetFileTypes.value,
-      outputPath: outputPath.value
+      targetPath: targetPath?.value,
+      targetPaths: targetPaths?.value,
+      ignorePaths: ignorePaths?.value,
+      ignoreFiles: ignoreFiles?.value,
+      targetFiles: targetFiles?.value,
+      targetFileTypes: targetFileTypes?.value,
+      outputPath: outputPath?.value
     }
 
     // console.log('config_DocsToJson: ', config_DocsToJson)
@@ -115,15 +110,18 @@ async function run(settings) {
     //-----------------------------------
     // DocsToUi
 
+    
+    
     // 4. Generate UI from generated docs
     //TODO: Update to extract from updatedConfig once added to it and verified built in DocsToUi properly.
+    // const DocsToUiOptions = Output.options.filter((option) => option.memberOf != 'module:build-docs.DocsToUi');
     const config_DocsToUi = {
       convertToMarkdown: true,
       convertToHtml: true,
     }
-    const DocsToUi = new DocsToUi(loggingLevel, docs, config_DocsToUi);
+    const docsToUi = new DocsToUi(loggingLevel, docs, config_DocsToUi);
     // console.log('DocsToUi: ', DocsToUi)
-    const jsonToHtml = await DocsToUi.getHtml();
+    const jsonToHtml = await docsToUi.getHtml();
     // console.log('jsonToHtml: ', jsonToHtml)
     // const markdownDocument = DocsToUi.getMarkdown();
 
@@ -179,8 +177,8 @@ async function main() {
     const { success, message, data } = getConfig;
     if (!success) throw new Error(Config);
 
-    console.log(data.config.settings[1].title)
-    console.log(data.config.settings[1].options)
+    console.log(data.config)
+    
 
     // const config = data.config;
     const settings = data.config.settings;

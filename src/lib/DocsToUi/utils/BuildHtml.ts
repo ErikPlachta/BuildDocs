@@ -1,5 +1,5 @@
 
-import { htmlConfig, ElementsProcessed, Config } from '../../types'
+import { htmlConfig, ElementsProcessed, Logging_config } from '../../types'
 import { JSDOM } from 'jsdom'
 
 /**
@@ -28,7 +28,7 @@ import { JSDOM } from 'jsdom'
  * @return {string} - The complete HTML document.
  */
 class BuildHtml {
-  private LogLevel: Config['Logging']['options']['level']['value']
+  private LogLevel: Logging_config['level']['value']
   private dom: JSDOM = new JSDOM(`<!DOCTYPE html>`) // Create a new JSDOM instance and get the document from it.
   private document: Document = this.dom.window.document
   private elements: ElementsProcessed
@@ -38,7 +38,7 @@ class BuildHtml {
   public results: string | undefined
 
   constructor(
-    LogLevel: Config['Logging']['options']['level']['value'],
+    LogLevel: Logging_config['level']['value'],
     elements: ElementsProcessed,
     title: string,
     htmlConfig: htmlConfig,
