@@ -25,7 +25,7 @@ export const config: Config = {
             {
               title: 'Info',
               description: 'Log all info, debug, warn, error, and fatal messages.',
-              value: 5,
+              value: 3,
             },
           ],
           supported: [

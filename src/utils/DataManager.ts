@@ -13,11 +13,11 @@ class DataManager {
   constructor() {
     // this.data = data
     // this.configPath = configPath
-    this.getObjectValues = this.getObjectValues.bind(this)
+    this.getObjectValuesAsArray = this.getObjectValuesAsArray.bind(this)
   }
 
   // Expects key-value paired object, return all values for all K/V pair at the first level.
-  getObjectValues(obj: { [key: string]: unknown }): unknown[] {
+  getObjectValuesAsArray(obj: { [key: string]: unknown }): unknown[] {
     return Object.values(obj)
   }
 
@@ -28,7 +28,7 @@ class DataManager {
 
   // Expects an array of objects. Returns all values at the first level.
   getObjectArrayValues(arr: { [key: string]: unknown }[]): unknown[] {
-    return arr.flatMap(obj => this.getObjectValues(obj))
+    return arr.flatMap(obj => this.getObjectValuesAsArray(obj))
   }
 
   // Expects an array of objects. Expects a targeted 'key' to search for.
@@ -67,7 +67,7 @@ class DataManager {
 function MangeDataTest(): void {
   const dm = new DataManager()
   const obj = { a: 1, b: 2, c: 3 }
-  console.log(dm.getObjectValues(obj)) // [1, 2, 3]
+  console.log(dm.getObjectValuesAsArray(obj)) // [1, 2, 3]
 
   console.log(dm.getObjectValue(obj, 'b')) // 2
 

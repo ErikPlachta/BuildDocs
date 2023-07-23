@@ -209,44 +209,39 @@ const { DataManager } = require('./utils/DataManager.ts');
  * @async
  * @summary Run the DocsToJson utility and then JsonToUi libs.
  * @description Executes libraries to generate docs and then generate UI from docs using values within `updatedConfig` as reference for behaviors.
- * @param {object} [updatedConfig] - DocsToJson Configuration object with possible updates from cli args. Contains `init` and `out` objects.
+ * @param {object} [settings] - DocsToJson Configuration object with possible updates from cli args. Contains `init` and `out` objects.
  * @returns {object} results - Object containing the results. `success`, `message`, `getDocs`, and `saveDocs`.
  */
-async function run(updatedConfig) {
+async function run(settings) {
+  //  Using `dm` for converting k/v pair object to array of values.
+  const dm = new DataManager();
+  
   try {
-
     // 1. Deconstruct for readability. 
-    const { init, out, logging } = updatedConfig;
-    // const { logLevel, logToConsole, logToFile, logFileWriteMode  } = logging;
-    console.log('logging: ', logging)
-    // console.log( 'logging:'
-    //   `\n\t - logLevel: ${logLevel}`,
-    //   `\n\t - logToConsole: ${logToConsole}`,
-    //   `\n\t - logToFile: ${logToFile}`,
-    //   `\n\t - logFileWriteMode: ${logFileWriteMode}`  
-    // )
-    const { targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths } = init;
-    const { outputPath } = out;
+    const [Logging, Output, Target] = settings;
+    
+    //TODO: Use logging options to manage behavior once concept is built.
+    const loggingLevel  = Logging.options.filter( (option) => option.title == 'loggingLevel')[0];
+    const [ targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths ] = Target.options;
+    //TODO: update to extract the rest of the output options once needed.
+    const outputPath = Output.options.filter((option) => option.title == 'outputPath')[0];
 
-    const config_DocsToJson = {
-      targetPath: targetPath.value,
-      targetPaths: targetPaths.value,
-      ignorePaths: ignorePaths.value,
-      ignoreFiles: ignoreFiles.value,
-      targetFiles: targetFiles.value,
-      targetFileTypes: targetFileTypes.value,
-      outputPath: outputPath.value,
+      // 2. Build config object for DocsToJson.
+      const config_DocsToJson = {
+        targetPath: targetPath.value,
+        targetPaths: targetPaths.value,
+        ignorePaths: ignorePaths.value,
+        ignoreFiles: ignoreFiles.value,
+        targetFiles: targetFiles.value,
+        targetFileTypes: targetFileTypes.value,
+        outputPath: outputPath.value
     }
 
+    console.log('config_DocsToJson: ', config_DocsToJson)
+    
+    
     // 2. Create instance of DocsToJson class with configuration options.
-    //
-    //  Executing `DataManager.getObjectValues` to spread config_DocsToJson
-    //    object into the DocsToJson. Keeping like this because will be getting
-    //    the config info differently in the near future.
-    const dm = new DataManager();
-    const Build = new DocsToJson(
-      ...dm.getObjectValues(config_DocsToJson)
-    )
+    const Build = new DocsToJson( ...dm.getObjectValuesAsArray(config_DocsToJson))
 
 
     // 3. Run the DocsToJson utility to generate docs for the rootPath, then save them to the outputPath.
@@ -309,44 +304,26 @@ async function main() {
   try {
 
     // 1. Handle the configuration options.
-    const config = await new Config();
-    // console.log('config: ', config)
+    const getConfig = await new Config().run();
+    const { success, message, data } = getConfig;
+    if(!success) throw new Error(Config);
+    
+    // const config = data.config;
+    const settings = data.config.settings;
+    
 
+    // settings.forEach((setting) => {
+    //   setting.options.forEach((option) => {
+    //     console.log(`option: \t - ${option.title}: ${option.value}`)
+    //   })
+    // })
 
-    // 1. Get Config - The default config values.
-    // const config = await getConfig();
-    // if (config.success == false && LoggingLevel > 0) {
-    //   console.error(config)
-    //   throw new Error(JSON.stringify(config))
-    // }
-    // console.log('config: ', config)
-
-    // // 2. Set the logging level 
-    // LoggingLevel = config.data.Logging.logLevel.value;
-    // console.log('LoggingLevel: ', LoggingLevel)
-
-
-    // // 3. Get Args - The cli args passed in.
-    // const args = await getArgs();
-    // // failed, warning but can still continue
-    // if (args.success == false && LoggingLevel > 1) {
-    //   console.warn(args)
-    // }
-
-    // // 4. Update Config with Args  - Overwrite the default config values with any matching args passed in.
-    // const updatedConfig = await getUpdatedConfig(args.data, config.data);
-    // if (updatedConfig.success == false) {
-    //   if (LoggingLevel > 0) console.error(updatedConfig)
-    //   throw new Error(updatedConfig)
-    // }
-
-    // 5. Execute build-docs module with updatedConfig .
-    //TODO: Re-enable this once config is moved out
-    // const runResults = await run(config.data);
+    //  2. Run the build-docs utility with settings.
+    const runResults = await run(settings);
 
     // // 6.If failed to run module properly, throw error.
     // if (runResults.success == false) {
-    //   if (this.LoggingLevel > 0) console.error(runResults)
+    //   if (LoggingLevel > 0) console.error(runResults)
     //   throw new Error(runResults.message)
     // };
 

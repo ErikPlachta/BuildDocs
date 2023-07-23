@@ -259,8 +259,10 @@ class DocsToJson {
     filePath?: string
   } {
     try {
+      
       //-- make targetPath if not defined
       if (!fs.existsSync(outputPath)) {
+        
         fs.mkdirSync(outputPath, { recursive: true })
       }
       const filePath = path.join(outputPath, 'docs.json')

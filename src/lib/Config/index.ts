@@ -6,7 +6,7 @@ const { readFileSync, writeFileSync } = require('fs') // used for reading config
 
 import { randomUUID } from 'crypto'
 import { Config, Logging, Setting, Option, ErrorRecord } from '../types'
-import {config} from './default'
+import { config } from './default'
 
 type results = {
   success: boolean
@@ -31,42 +31,33 @@ type results = {
  */
 class Configure {
   public defaults: Config = config // The default configuration options.
-  public LoggingLevel: Logging['option']['level']['value']
   public config: any
   public args: any
   public unsupportedSettings: any
   public errors: ErrorRecord[] = []
+  public getLoggingLevel: () => number
+  public getSettings: () => Config['settings']
+  // public settings:Config['settings']
 
   constructor() {
-    this.defaults = config
-    this.LoggingLevel = 5
+    this.defaults = { ...config }
     this.config = {}
     this.args = {}
     this.unsupportedSettings = []
     this.errors = []
+    // this.settings = []
+    this.getLoggingLevel = () => {
+      return 2
+    }
 
-    //----------------------------
-    // Executes on instantiation.
-    this.__init__()
-      .then((results: results) => {
-        if (results.success == false) {
-          console.error(results)
-          throw new Error(JSON.stringify(results))
-        }
-      })
-      .catch((error: Error) => {
-        if (this.LoggingLevel > 0) console.error(error)
-        return {
-          success: false,
-          message: `ERROR: Failed to process config: ${error.message}`,
-          data: this.config,
-        }
-      })
+    this.getSettings = () => {
+      return this.config.settings
+    }
   }
 
   /**
-   * @function __init__
-   * @type {function} __init__
+   * @function run
+   * @type {function} run
    * @memberof module:build-docs
    * @access public
    * @async
@@ -74,40 +65,45 @@ class Configure {
    * @description Runs the configuration process for the DocsToJson utility. This includes getting the config, getting the args, and updating the config with the args.
    *
    */
-  async __init__(): Promise<results> {
+  async run(): Promise<results> {
     // 1. Validate default config.
     const config: results = await this.getConfig()
-
     // failed, throw error
-    if (config.success == false && this.LoggingLevel > 0) {
-      console.error(config)
-      //TODO: Add error logging / management.
-      throw new Error(JSON.stringify(config))
+    if (config.success == false) {
+      if (this.getLoggingLevel() > 0) console.error(config)
+      throw new Error('ERROR: Config.__init__(): Invalid config.')
     }
+    // Set config as defaults for now.
+    this.config = config.data
 
     // 2. Get Args - The cli args passed in.
     const args: results = await this.getArgs()
-
+    this.args = args.data
     // failed, warning but can still continue
-    if (args.success == false && this.LoggingLevel > 1) {
+    if (args.success == false && this.getLoggingLevel() > 1) {
       console.warn(args)
     }
 
-    console.log('config.data: ', config.data)
+    if (this.getLoggingLevel() >= 5) console.log('config.data: ', config.data)
 
     // 4. Update Config with Args  - Overwrite the default config values with any matching args passed in.
     const updatedConfig: results = await this.getUpdatedConfig(args.data, config.data)
+
     if (updatedConfig.success == false) {
-      if (this.LoggingLevel > 0) console.error(updatedConfig)
+      if (this.getLoggingLevel() > 0) console.error(updatedConfig)
       throw new Error(JSON.stringify(updatedConfig))
     }
+
+    // console.log('updatedConfig: ', updatedConfig)
+    // 5. Otherwise, update class properties.
+    this.config = {...updatedConfig.data}
 
     return {
       success: true,
       message: `SUCCESS: Config processed successfully.`,
-      data: this.config,
+      data: this,
     }
-  } // end of __init__()
+  } // end of run()
 
   //---------------------------- Utility Functions ---------------------------//
 
@@ -124,7 +120,6 @@ class Configure {
    * @todo Add validation of args to make sure they are valid.
    */
   async getUpdatedConfig(args: { [key: string]: string }, config: Config): Promise<results> {
-    const errors: any = []
     try {
       const updatedConfig = {
         ...config,
@@ -137,7 +132,7 @@ class Configure {
       // 1. Loop through args and overwrite  options accordingly.
       Object.keys(args).forEach(argKey => {
         // TODO: 20230713 #EP || Add validation of args.
-        console.log('argKey: ', argKey, typeof argKey, '. value: ', args[argKey])
+        // console.log('argKey: ', argKey, typeof argKey, '. value: ', args[argKey])
 
         // 2. Loop through each setting group to look for the argKey.
         settings.forEach((setting: Setting) => {
@@ -145,26 +140,41 @@ class Configure {
           setting.options.forEach((option: Option) => {
             // 4. If the argKey matches the option title, overwrite the value.
             if (option.title == argKey) {
-              if (this.LoggingLevel >= 5) {
+              if (this.getLoggingLevel() >= 5) {
                 console.log(
                   `config.init[argKey] being overwritten: argKey: '${argKey}', old-value: '${option.default[0].value}'  new-value: '${args[argKey]}'`,
                 )
               }
-              console.log('argKey: ', argKey, typeof argKey, '. value: ', args[argKey])
+              // console.log('argKey: ', argKey, typeof argKey, '. value: ', args[argKey])
               option.value = args[argKey]
             }
             // 5. Otherwise use the default value.
             else {
               // Extract default values.
-              option.value = option?.default.map((defaultOption: any) => { return defaultOption.value })
-              
-              if (this.LoggingLevel >= 5) {
+              if(option.type == 'string'){
+                option.value = option?.default.map((defaultOption: any) => {
+                  return defaultOption.value
+                }).join(',')
+              }
+              else if(option.type == 'string[]'){
+                option.value = option?.default.map((defaultOption: any) => {
+                  return defaultOption.value
+                })
+              }
+              else {
+                option.value = option?.default.map((defaultOption: any) => {
+                  return defaultOption.value
+                })
+              }
+
+              // console.log('option.value: ', option.value)
+
+              if (this.getLoggingLevel() >= 5) {
                 // console.log('option.default', option)
                 console.log(
                   `config.init[argKey] not found: argKey. '${argKey}'. Using default-values: '${option.value}'`,
                 )
               }
-              
             }
           }) // end of looping through options within each setting group
         }) // end of looping through setting groups
@@ -176,9 +186,9 @@ class Configure {
         data: updatedConfig,
       }
     } catch (error) {
-      if (this.LoggingLevel > 0) console.error(error)
+      if (this.getLoggingLevel() > 0) console.error(error)
 
-      errors.push({
+      this.errors.push({
         id: randomUUID(),
         type: 'fatal',
         message: `ERROR: Failed to update config with args`,
@@ -246,21 +256,19 @@ class Configure {
       // 4. If there are any unsupported config settings, warning, but continues.
       // TODO: Add more checking here to make sure config is valid.
       requiredSettings.forEach((requiredSettingTitle: string) => {
-        settings.forEach(({ title }: Setting) => {
-          if (!(title == requiredSettingTitle)) {
-            this.errors.push({
-              id: randomUUID(),
-              type: 'warning',
-              message: 'Unsupported config.settings group(s) found.',
-              data: {
-                error: `The following config.settings group(s) are unsupported: ${unsupportedSettings.join(', ')}`,
-              },
-            })
-          }
-        })
+        if (settings.filter((setting: Setting) => setting.title == requiredSettingTitle).length == 0) {
+          this.errors.push({
+            id: randomUUID(),
+            type: 'warning',
+            message: `Unsupported config.settings group found: ${JSON.stringify(settings.filter((setting: Setting) => setting.title == requiredSettingTitle))}`,
+            data: {
+              error: `The following config.settings group(s) are unsupported: ${unsupportedSettings.join(', ')}`,
+            },
+          })
+        }
       })
-      //5. Return the config if no fatal errors.
 
+      //5. Return the config if no fatal errors.
       return {
         success: true,
         message: `SUCCESS: Config loaded successfully.`,
@@ -268,7 +276,7 @@ class Configure {
       }
     } catch (error) {
       // 6. If there are any errors, throws error.
-      if (this.LoggingLevel > 0) console.error(error)
+      if (this.getLoggingLevel() > 0) console.error(error)
 
       this.errors.push({
         id: randomUUID(),
