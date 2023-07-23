@@ -4,11 +4,9 @@
   "description": "A tool to generate documentation from JSDoc style comments in your codebase.",
   "type": "commonjs",
   "scripts": {
-    "test": "npm run DocsToJsonTest && npm run JsonToUiTest",
-    "testNormal": "npm run DocsToJsonTest",
-    "start": "echo \"No start script specified yet.\" && exit 1",
+    "test": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js targetPath=\"./src/_TEST/\"",
+    "start": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js",
     "setup": "echo \nNo Setup script specified yet.\" && exit 1",
-    "DocsToJsonTest": "ts-node -O '{\"module\": \"commonjs\"}' ./src/index.js targetPath=\"./src/_TEST/\"",
     "JsonToUiTest": "ts-node -O '{\"module\": \"commonjs\"}' './src/lib/JsonToUi/JsonToUi.test.ts'",
     "JsonToUiTestOld": "ts-node './src/lib/JsonToUi/JsonToUi.test.ts'",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts, ."

@@ -10,18 +10,11 @@
  * @requires module:fs
  */
 
-import { resolve } from 'path'
+// import { resolve } from 'path'
 import { Comments } from '../types'
 const JsonToUi = require('./index.ts')
 const { writeFileSync } = require('fs')
-
-
-
 const rootPath  = process.cwd();
-
-console.log('rootPath: ', rootPath)
-const old = resolve(__dirname)
-// const data = require('../../../../.dist/docs.json')
 const data = require(`${rootPath}/.dist/docs.json`)
 const configPath = `${rootPath}/.dist/JsonToUi`
 
@@ -65,8 +58,8 @@ function main(comments: Comments[]) {
             JSON.stringify(run.files, null, 2)
         )
         writeFileSync(
-            `${configPath}/rootItems.json`,
-            JSON.stringify(run.rootItems, null, 2)
+            `${configPath}/contentGroups.json`,
+            JSON.stringify(run.contentGroups, null, 2)
         )
 
         writeFileSync(

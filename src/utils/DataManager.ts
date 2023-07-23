@@ -56,6 +56,42 @@ class DataManager {
     })
     return result
   }
+
+
+  /**
+   * @function checkKeys
+   * @access public
+   * @summary Checks if an object contains all of the keys you expect it to.
+   * @description Checks if an object contains all of the keys you expect it to. Returns an object with two arrays: missingKeys and extraKeys. Note: The key comparison is case-sensitive.
+   * @created 2023-07-23 
+   * @param {string[]} keysExpected - An array of strings as the keys you expect to find in the object.
+   * @param {object} objToTest - The object to search for keys within.
+   * @returns {object} - Returns an object with two arrays: missingKeys and extraKeys.
+   * @example
+   * const keysExpected = ['a', 'b', 'c'];
+   * const objToTest = { a: 1, b: 2, c: 3, d: 4 };
+   * const result = checkKeys(keysExpected, objToTest);
+   * console.log('Missing keys:', result.missingKeys);
+   *  // ^ Should be empty array.
+   * console.log('Extra keys:', result.extraKeys);
+   * // ^ Should be ['d']
+   * 
+   * @changelog 2023-07-23 | Erik Plachta | feat: Add function to be used by `Config` when validating integrity of the config.
+   * @todo 2023-07-23 | Erik Plachta | Add additional layers of depth.
+   */
+  checkKeys(keysExpected: string[], objToTest: {[key: string]: any}):{ missingKeys: string[], extraKeys: string[]} 
+  {
+    const objectKeys = Object.keys(objToTest);
+  
+    // Check if all required keys exist in the object
+    const missingKeys = keysExpected.filter(key => !objectKeys.includes(key));
+  
+    // Check if there are extra keys in the object
+    const extraKeys = objectKeys.filter(key => !keysExpected.includes(key));
+  
+    return {missingKeys, extraKeys};
+  }
+    
 }
 
 

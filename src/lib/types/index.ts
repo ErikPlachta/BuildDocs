@@ -46,9 +46,19 @@ type Module = {
   description: string
 }
 
+/**
+ * Used by JsonToUi to define runtime configuration options.
+ * 
+ * @summary Used by JsonToUi to define runtime configuration options.
+ * @description Defined by `Config.settings` -> `Output` -> `options` ->
+ *  `outputFormat.value`, these options are used to run time behavior.
+ */
 type JsonToUiConfig = {
-  convertToMarkdown: boolean
-  convertToHtml: boolean
+  outputFormat : {
+    markdown : boolean
+    html : boolean
+  }
+ 
 }
 
 type ErrorRecord = {

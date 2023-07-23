@@ -6,20 +6,21 @@
  * @summary Type definitions for build-docs config.json file.
  * @type {Type} Config
  * @created 2021-07-22
- * @version 0.0.1
+ * @version 0.0.2
  * @author Erik Plachta
  * @since 0.0.1
  * @memberof Types
+ * 
+ * @changelog   0.0.1 | 2023-07-23 | Erik Plachta | docs: Finalize concept.
+ * @changelog   0.0.2 | 2023-07-23 | Erik Plachta | docs: Cleanup and add TODOs.
+ * 
+ * @todo 2023-07-23 | Erik Plachta | Add final comments and finish concept.
  */
 
 interface Config {
-  title: string
-  namespace: string
-  summary : string
-  description: string
-  version: string
-  author: string
-  settings: Setting[]
+  logging: Logging
+  output?: Output
+  target?: Target
 }
 
 type Setting = {
@@ -28,6 +29,35 @@ type Setting = {
   description: string
   options: Option[]
 }
+
+
+//TODO: 2023-07-23 | Erik Plachta | Determine if I want to use options/add any additional type defs.
+interface Logging extends Setting {
+  // option: {
+  //   level: {
+  //     title: 'info' | 'debug' | 'warn' | 'error' | 'fatal'
+  //     value: 5 | 4 | 3 | 2 | 1 | 0
+  //   }
+  //   toConsole: boolean
+  //   toFile: boolean
+  //   fileName: string
+  //   filePath: string
+  //   fileFormat: 'json' | 'txt'
+  //   fileWriteMode: WriteMode
+  // }
+}
+
+//TODO: 2023-07-23 | Erik Plachta | Determine if I want to use options/add any additional type defs.
+interface Output extends Setting {
+  // option: 'outPath' | 'outName' | 'outFormat' | 'writeMode '
+}
+
+//TODO: 2023-07-23 | Erik Plachta | Determine if I want to use options/add any additional type defs.
+interface Target extends Setting {
+  // option: 'initPath' | 'initName'
+}
+
+
 
 type Option = {
   title: string
@@ -56,29 +86,6 @@ type WriteMode = {
   title: 'Overwrite' | 'Append' | 'Prepend' | 'New'
   description: string
   value: 'overwrite' | 'append' | 'prepend' | 'new'
-}
-
-interface Output extends Setting {
-  option: 'outPath' | 'outName' | 'outFormat' | 'writeMode '
-}
-
-interface Logging extends Setting {
-  option: {
-    level: {
-      title: 'info' | 'debug' | 'warn' | 'error' | 'fatal'
-      value: 5 | 4 | 3 | 2 | 1 | 0
-    }
-    toConsole: boolean
-    toFile: boolean
-    fileName: string
-    filePath: string
-    fileFormat: 'json' | 'txt'
-    fileWriteMode: WriteMode
-  }
-}
-
-interface Target extends Setting {
-  option: 'initPath' | 'initName'
 }
 
 export { Config, Setting, Logging, Output, Target, Option, Supported, WriteMode }

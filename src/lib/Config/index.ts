@@ -22,12 +22,18 @@ type results = {
  * @summary Handles the configuration options for the build-docs utility.
  * @memberof module:build-docs
  * @access private
- * @version 0.0.2
+ * @version 0.0.3
  * @author Erik Plachta
  * @since 2021-07-22
  *
- * @changelog  0.0.1 | 2023-07-22 | Erik Plachta | Extracted from root index.js.
- * @changelog  0.0.2 | 2023-07-22 | Erik Plachta | Rebuilt into a class that is managing the Config.
+ * @changelog  0.0.1 | 2023-07-22 | Erik Plachta | docs: Built sub-module by extracting from root index.js. (Segmenting code to build into class and add additional features.)
+ * @changelog  0.0.2 | 2023-07-22 | Erik Plachta | docs: Rebuilt into a class that is managing the Config.
+ * @changelog  0.0.3 | 2023-07-23 | Erik Plachta | Add more comments and cleanup.
+ *
+ * @todo  2023-07-23 | Erik Plachta | Add complete data-integrity checking,
+ * @todo  2023-07-23 | Erik Plachta | Add validation of config defaults.
+ * @todo  2023-07-23 | Erik Plachta | Add feature to get `.build-docs` from root.
+ * @todo  2023-07-23 | Erik Plachta | Add validation of args through CLI and `.build-docs` in root.
  */
 class Configure {
   public defaults: Config = config // The default configuration options.
@@ -36,7 +42,7 @@ class Configure {
   public unsupportedSettings: any
   public errors: ErrorRecord[] = []
   public getLoggingLevel: () => number
-  public getSettings: () => Config['settings']
+  public getConfig: () => Config
   // public settings:Config['settings']
 
   constructor() {
@@ -50,8 +56,10 @@ class Configure {
       return 2
     }
 
-    this.getSettings = () => {
-      return this.config.settings
+    //---------------------------------
+    //-- Helper Methods for this class
+    this.getConfig = () => {
+      return this.config
     }
   }
 
@@ -67,7 +75,7 @@ class Configure {
    */
   async run(): Promise<results> {
     // 1. Validate default config.
-    const config: results = await this.getConfig()
+    const config: results = await this.validateConfig()
     // failed, throw error
     if (config.success == false) {
       if (this.getLoggingLevel() > 0) console.error(config)
@@ -96,7 +104,7 @@ class Configure {
 
     // console.log('updatedConfig: ', updatedConfig)
     // 5. Otherwise, update class properties.
-    this.config = {...updatedConfig.data}
+    this.config = { ...updatedConfig.data }
 
     return {
       success: true,
@@ -151,17 +159,17 @@ class Configure {
             // 5. Otherwise use the default value.
             else {
               // Extract default values.
-              if(option.type == 'string'){
-                option.value = option?.default.map((defaultOption: any) => {
-                  return defaultOption.value
-                }).join(',')
-              }
-              else if(option.type == 'string[]'){
+              if (option.type == 'string') {
+                option.value = option?.default
+                  .map((defaultOption: any) => {
+                    return defaultOption.value
+                  })
+                  .join(',')
+              } else if (option.type == 'string[]') {
                 option.value = option?.default.map((defaultOption: any) => {
                   return defaultOption.value
                 })
-              }
-              else {
+              } else {
                 option.value = option?.default.map((defaultOption: any) => {
                   return defaultOption.value
                 })
@@ -204,16 +212,16 @@ class Configure {
   } // end of getUpdatedConfig()
 
   /**
-   * @type {function} getConfig
+   * @type {function} validateConfig
    * @memberof module:build-docs
    * @access private
-   * @function getConfig
+   * @function validateConfig
    * @summary Gets and validates the default configuration for the DocsToJson utility.
    * @description Used by the DocsToJson utility to get and then validate the integrity of the default config options. If the config is valid, returns the config object. Otherwise, throws an error.
    * @returns {object} - Verified Config object.
    * @throws {error} - Error if config cannot be parsed.
    */
-  async getConfig(): Promise<results> {
+  async validateConfig(): Promise<results> {
     const config: Config = {
       ...this.defaults,
     } // The configuration option to be returned
@@ -221,11 +229,10 @@ class Configure {
     const unsupportedSettings: [] = [] // holds any config options that are not supported.
 
     try {
-      const settings = config.settings
 
       // 2. If the required config settings are not present, throws error.
-      if (!settings) {
-        console.error(`Error getting config settings. Make sure config is setup with proper 'Logging' configuration.`)
+      if (!config) {
+        console.error(`Error getting config. Make sure config is setup with proper 'Logging' configuration.`)
         this.errors.push({
           id: randomUUID(),
           type: 'fatal',
@@ -239,28 +246,29 @@ class Configure {
         }
       }
 
-      if (settings.filter((setting: Setting) => requiredSettings.includes(setting.title)).length == 0) {
-        this.errors.push({
-          id: randomUUID(),
-          type: 'fatal',
-          message: 'ERROR: getConfig() failed to process config.',
-          data: {
-            error: 'getConfig() failed to process config. Required config.settings groups are missing.',
-            requiredSettings,
-            unsupportedSettings,
-          },
-        })
+      // TODO: Add // 3. Verify default config has required settings.
+      
+        // this.errors.push({
+        //   id: randomUUID(),
+        //   type: 'fatal',
+        //   message: 'ERROR: getConfig() failed to process config.',
+        //   data: {
+        //     error: 'getConfig() failed to process config. Required config.settings groups are missing.',
+        //     requiredSettings,
+        //     unsupportedSettings,
+        //   },
+        // })
         // throw new Error(`Error getting config settings. Make sure config is setup with proper 'Logging' configuration.`)
-      }
+      // }
 
       // 4. If there are any unsupported config settings, warning, but continues.
       // TODO: Add more checking here to make sure config is valid.
       requiredSettings.forEach((requiredSettingTitle: string) => {
-        if (settings.filter((setting: Setting) => setting.title == requiredSettingTitle).length == 0) {
+        if(config[requiredSettingTitle] != undefined) {
           this.errors.push({
             id: randomUUID(),
             type: 'warning',
-            message: `Unsupported config.settings group found: ${JSON.stringify(settings.filter((setting: Setting) => setting.title == requiredSettingTitle))}`,
+            message: `Unsupported config.settings group found: ${}`,
             data: {
               error: `The following config.settings group(s) are unsupported: ${unsupportedSettings.join(', ')}`,
             },

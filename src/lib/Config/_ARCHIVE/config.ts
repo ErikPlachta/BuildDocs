@@ -1,4 +1,8 @@
-import { Config } from './lib/types'
+/** 
+ * @changelog 2023-07-23 | Erik  Plachta | Archived this because `config` is managing now. (was in root.)
+ */
+
+import { Config } from '../../../lib/types'
 
 export const config: Config = {
   title: 'config.json',

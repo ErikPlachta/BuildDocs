@@ -81,6 +81,11 @@ async function run(settings) {
     const [targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths] = Target.options;
     //TODO: update to extract the rest of the output options once needed.
     const outputPath = Output.options.filter((option) => option.title == 'outputPath')[0];
+    
+    const JsonToUiOptions = Output.options.filter((option) => option.memberOf != 'module:build-docs.JsonToUi')
+    
+
+    // console.log('JsonToUiOptions: ', JsonToUiOptions)
 
     // 2. Build config object for DocsToJson.
     const config_DocsToJson = {
@@ -173,6 +178,9 @@ async function main() {
     const getConfig = await new Config().run();
     const { success, message, data } = getConfig;
     if (!success) throw new Error(Config);
+
+    console.log(data.config.settings[1].title)
+    console.log(data.config.settings[1].options)
 
     // const config = data.config;
     const settings = data.config.settings;
