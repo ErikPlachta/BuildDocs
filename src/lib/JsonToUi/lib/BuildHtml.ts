@@ -50,19 +50,20 @@ class BuildHtml {
     this.resultsIfError = (error: string) =>
       `<!DOCTYPE html><html lang="en"><head><title>ERROR</title></head><body><h1>ERROR</h1><p>${error}</p></body></html>`
 
-    // Run the build function and return it's results.
-    this.build()
-      .then(results => {
-        this.results = results
-        return Promise.resolve(results)
-      })
-      .catch(error => {
-        this.resultsIfError(error)
-        this.results = this.resultsIfError(error)
-        return Promise.reject(this.results)
-      })
   }
 
+  // Run the build function and return it's results.
+  // this.build()
+  // .then(results => {
+  //   this.results = results
+  //   return Promise.resolve(results)
+  // })
+  // .catch(error => {
+  //   this.resultsIfError(error)
+  //   this.results = this.resultsIfError(error)
+  //   return Promise.reject(this.results)
+  // })
+  
   async build(): Promise<string> {
     try {
       // Deconstruct the htmlConfig object.

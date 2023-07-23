@@ -58,12 +58,16 @@ class JsonToUi {
 
   public title: string
   public htmlConfig: htmlConfig
-  public getHtml: () => Promise<string | undefined> 
+  // public getHtml: () => Promise<string | undefined> 
   // public getHtml: () => Promise<string>
 
   //-----------
 
   /**
+   * @constructor
+   * @access public
+   * @memberof module:JsonToUi
+   * @param {Logging['option']['level']['value']} LogLevel - The log level to use.
    * @param {Comments[]} comments - The JSON data object containing all comment info to converted.
    * @param {Config} config - The configuration for the conversion.
    */
@@ -113,13 +117,6 @@ class JsonToUi {
         styles: [],
       },
     }
-    // Takes all elements and builds html data.
-    this.getHtml = async () => {
-      const html = new BuildHtml(this.LogLevel, this.elements, this.title, this.htmlConfig)
-      return html.results
-    }
-
-    console.log('JsonToUi.constructor: this.LogLevel', this.LogLevel)
   }
   //----------------------------------------------------------------------------
   /**
@@ -1044,6 +1041,11 @@ class JsonToUi {
   //----------------------------------------------------------------------------
   //----------------------------------------------------------------------------
   //-- Actually rendering UI content, here.
+
+  async getHtml():Promise<string>{
+    const html = new BuildHtml(this.LogLevel, this.elements, this.title, this.htmlConfig)
+    return await html.build();
+  }
 
   /**
    * Convert the data to Markdown

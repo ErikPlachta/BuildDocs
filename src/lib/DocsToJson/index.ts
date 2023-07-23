@@ -49,7 +49,6 @@ class DocsToJson {
    * @constructor
    * @access public
    * @memberof module:build-docs.DocsToJson
-   * @type {function} constructor
    * @summary Constructor for the BuildDocs class.
    * @description Initializes a new instance of the BuildDocs class.
    * @param {string} targetPath - The location to search within.

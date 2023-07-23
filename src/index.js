@@ -46,160 +46,9 @@ const JsonToUi = require('./lib/JsonToUi/index.ts');
 const { DataManager } = require('./utils/DataManager.ts');
 
 
-//----------------------------- Utility Functions ----------------------------//
+//------------------------------------------------------------------------------
+//-- Functions
 
-// /**
-//  * @type {function} getConfig
-//  * @memberof module:build-docs
-//  * @access private
-//  * @function getConfig
-//  * @summary Gets and validates the default configuration for the DocsToJson utility.
-//  * @description Used by the DocsToJson utility to get and then validate the integrity of the default config options. If the config is valid, returns the config object. Otherwise, throws an error.
-//  * @returns {object} - Verified Config object.
-//  * @throws {error} - Error if config cannot be parsed.
-//  */
-// async function getConfig() {
-//   const verifiedConfig = {}; // The configuration option to be returned
-//   const requiredSetting = ['Logging', 'Output', 'Target'] // Config options that are supported.
-//   const unsupportedSettings = [] // holds any config options that are not supported.
-//   const errors = []; // holds any warnings, errors, etc that occur while processing config.
-//   try {
-
-//     // 1. Get config settings from config file to be validated.
-//     const settings = config.settings;
-
-//     // 2. If the required config settings are not present, throws error.
-//     if (!settings) throw new Error(`Error getting config settings. Make sure config is setup with proper 'settings' configuration.`);
-
-//     if (settings.filter((setting) => requiredSetting.includes(setting.title)).length == 0) {
-//       errors.push({
-//         type: 'fatal',
-//         message: `The following config.settings group(s) are required: ${requiredSetting.join(', ')}. Was provided ${settings.map((setting) => setting.title).join(', ')}.`,
-//         data: {
-//           error: new Error(`The following config.settings group(s) are required: ${requiredSetting.join(', ')}. Was provided ${settings.map((setting) => setting.title).join(', ')}.`),
-//           config,
-//           requiredSetting,
-//           settings
-//         }
-//       })
-
-//       throw new Error(`Error getting config settings. Make sure config is setup with proper 'Logging' configuration.`);
-//     }
-
-//     // 4. If there are any unsupported config settings, warning, but continues.
-//     requiredSetting.forEach((setting) => {
-//       if (!requiredSetting.includes(setting.title)) {
-//         unsupportedSettings.push(setting)
-//         errors.push({
-//           type: 'warning',
-//           message: `The following config.settings group(s) are unsupported: ${unsupportedSettings.join(', ')}`,
-//           data: config
-//         })
-//       }
-//     })
-
-//     // TODO: Add more checking here to make sure config is valid.
-
-//     //4. Return the config if no fatal errors.
-//     return {
-//       success: true,
-//       message: `SUCCESS: Config loaded successfully.`,
-//       data: { verifiedConfig, unsupportedSettings, error: null }
-
-//     }
-//   }
-//   catch (error) {
-//     return {
-//       success: false,
-//       message: `ERROR: Failed to process config: ${error.message}`,
-//       data: { verifiedConfig, unsupportedSettings, error }
-//     }
-//   }
-// }
-
-// /**
-//  * @type {function} getArgs
-//  * @memberof module:build-docs
-//  * @access private
-//  * @async
-//  * @function getArgs
-//  * @summary Get cli args passed to the DocsToJson utility.
-//  * @description Used by the DocsToJson utility to parse args passed to the DocsToJson utility to customize run configuration via cli.
-//  * @returns {object} - success (boolean), message (string), and data (object) containing the args passed in or error.
-//  */
-// async function getArgs() {
-//   let args;
-//   try {
-//     // eslint-disable-next-line no-undef
-//     args = process.argv.slice(2);
-//     const argsMap = {};
-//     args.forEach((arg) => {
-//       const [key, value] = arg.split('=');
-//       argsMap[key] = value;
-//     });
-//     return { success: true, message: `SUCCESS: Args loaded successfully.`, data: argsMap };
-//   }
-//   catch (error) {
-
-//     let err = [{
-//       type: 'warning',
-//       message: `WARNING: Failed to process args: ${error.message}`,
-//       data: { args, error }
-//     }]
-//     return { success: false, message: `ERROR: Failed to process args: ${error.message}`, data: null, error: err }
-//   }
-// }
-
-
-// /**
-//  * @function getUpdatedConfig
-//  * @type {function} getUpdatedConfig
-//  * @memberof module:build-docs
-//  * @access private
-//  * @async
-//  * @param {object} args - Args is an K/V Pair object of cli args passed in and being evaluated to update config.
-//  * @param {object} config - Config is the default configuration for the DocsToJson utility.
-//  * @returns {object} - success (boolean), message (string), and data (object) containing the updated config.
-//  * @todo: Add logic to strip `--` prefaced to args if any just in case.
-//  * @todo Add validation of args to make sure they are valid.
-//  */
-// async function getUpdatedConfig(args, config) {
-//   try {
-//     const updatedConfig = {
-//       ...config
-//     }
-
-//     // 1. Loop through args and overwrite  options accordingly.
-//     Object.keys(args).forEach((key) => {
-//       // TODO: 20230713 #EP || Add validation of args.
-
-//       //-- 1.1. Overwrite if the key exists in config.init.
-//       if (config.init[key]) {
-//         console.log('config.init[key] being overwritten: ', `key: '${key}'`, `old-value: '${config.init[key].value}', new-value: '${args[key]}'`)
-//         updatedConfig.init[key].value = args[key];
-//       }
-
-//       //-- 1.2. Overwrite if the key exists in config.out.
-//       if (config.out[key]) {
-//         console.log('config.out[key] being overwritten: ', `key: ${key}`, `old-value: '${config.out[key].value}', new-value: '${args[key]}'`)
-//         updatedConfig.out[key].value = args[key];
-//       }
-//     })
-//     // 2. Return the updated config.
-//     return {
-//       success: true,
-//       message: `SUCCESS: Updated config with args successfully.`,
-//       data: updatedConfig
-//     };
-//   }
-//   catch (error) {
-//     return {
-//       success: false,
-//       message: `ERROR: Failed to update config with args: ${error.message}`,
-//       data: error
-//     }
-//   }
-// }
 
 /**
  * @function run
@@ -215,13 +64,20 @@ const { DataManager } = require('./utils/DataManager.ts');
 async function run(settings) {
   //  Using `dm` for converting k/v pair object to array of values.
   const dm = new DataManager();
+
+  // TESTING
+  // settings.forEach((setting) => {
+    //   setting.options.forEach((option) => {
+    //     console.log(`option: \t - ${option.title}: ${option.value}`)
+    //   })
+    // })
   
   try {
     // 1. Deconstruct for readability. 
     const [Logging, Output, Target] = settings;
     
     //TODO: Use logging options to manage behavior once concept is built.
-    const loggingLevel  = Logging.options.filter( (option) => option.title == 'loggingLevel')[0];
+    const loggingLevel = Logging.options.filter( (option) => option.title.toLowerCase() == 'level')?.[0]?.value || 3;
     const [ targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths ] = Target.options;
     //TODO: update to extract the rest of the output options once needed.
     const outputPath = Output.options.filter((option) => option.title == 'outputPath')[0];
@@ -237,44 +93,55 @@ async function run(settings) {
         outputPath: outputPath.value
     }
 
-    console.log('config_DocsToJson: ', config_DocsToJson)
+    // console.log('config_DocsToJson: ', config_DocsToJson)
+    console.log('loggingLevel: ', loggingLevel)
     
     
     // 2. Create instance of DocsToJson class with configuration options.
-    const Build = new DocsToJson( ...dm.getObjectValuesAsArray(config_DocsToJson))
+    const buildJson = new DocsToJson( ...dm.getObjectValuesAsArray(config_DocsToJson))
 
 
     // 3. Run the DocsToJson utility to generate docs for the rootPath, then save them to the outputPath.
-    const docs = Build.generateDocs(targetPath.value);
-    const saveDocsToJsonResults = Build.saveDocs(outputPath.value, docs);
+    const docs = buildJson.generateDocs(targetPath.value);
+    const saveDocsJson = buildJson.saveDocs(outputPath.value, docs);
 
+    
+    
+    //-----------------------------------
+    // JsonToUi
+    
+    // 4. Generate UI from generated docs
     //TODO: Update to extract from updatedConfig once added to it and verified built in JsonToUi properly.
     const config_JsonToUi = {
       convertToMarkdown: true,
       convertToHtml: true,
     }
+    const jsonToUi = new JsonToUi(loggingLevel, docs, config_JsonToUi);
+    console.log('jsonToUi: ', jsonToUi)
+    const jsonToHtml = await jsonToUi.getHtml();
+    console.log('jsonToHtml: ', jsonToHtml)
+    // const markdownDocument = jsonToUi.getMarkdown();
 
-    // 4. Generate UI from generated docs
-    const generateUiResults = new JsonToUi(true, docs, config_JsonToUi);
+    const htmlToFile = writeFileSync(resolve(outputPath.value, 'index.html'), jsonToHtml);
+    console.log('htmlToFile: ', htmlToFile)
 
-    const htmlDocument = generateUiResults.getHtml();
-    // const markdownDocument = generateUiResults.getMarkdown();
-
-    writeFileSync(resolve(outputPath.value, 'index.html'), htmlDocument);
-
-    // console.log('generateUiResults: ', generateUiResults)
+    // console.log('jsonToUi: ', jsonToUi)
 
     return {
       success: true,
       message: 'DocsToJson ran successfully.',
-      Build,
-      config: {
-        DocsToJson: '',
-        JsonToUi: config_JsonToUi
-      },
       results: {
-        DocsToJson: saveDocsToJsonResults,
-        JsonToUi: generateUiResults
+        DocsToJson: {
+          config: config_DocsToJson,
+          buildJson : buildJson,
+          saveDocsToJson: saveDocsJson,
+        },
+        JsonToUi: {
+          config: config_JsonToUi,
+          jsonToUi,
+          jsonToHtml,
+          htmlToFile
+        }
       }
     };
   }
@@ -310,22 +177,16 @@ async function main() {
     
     // const config = data.config;
     const settings = data.config.settings;
-    
-
-    // settings.forEach((setting) => {
-    //   setting.options.forEach((option) => {
-    //     console.log(`option: \t - ${option.title}: ${option.value}`)
-    //   })
-    // })
 
     //  2. Run the build-docs utility with settings.
     const runResults = await run(settings);
 
     // // 6.If failed to run module properly, throw error.
-    // if (runResults.success == false) {
-    //   if (LoggingLevel > 0) console.error(runResults)
-    //   throw new Error(runResults.message)
-    // };
+    if (runResults.success == false) {
+      // if (LoggingLevel > 0)  // TODO: get logginglevel from settings.
+      console.error(runResults)
+      throw new Error(runResults.message)
+    };
 
 
 
