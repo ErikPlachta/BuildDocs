@@ -80,7 +80,7 @@ class BuildHtml {
       this.buildBody(body)
       // 3. Build content within body.
       let buildContentResults = await this.buildContent()
-      console.log('buildContentResults', buildContentResults)
+      // console.log('buildContentResults', buildContentResults)
 
       // Add a line break to the end of the body so closing tag on new line.
       this.document.body.innerHTML = this.document.body.innerHTML + `\n`
@@ -252,7 +252,7 @@ class BuildHtml {
               for (const key of Object.keys(content)) {
                 // if has content, render it.
                 if (content[key]?.length != 0 && content[key] != (null && undefined && '')) {
-                  console.log('key: ', key, ' | content[key]: ', content[key])
+                  // console.log('key: ', key, ' | content[key]: ', content[key])
                   const li = this.document.createElement('li')
                   li.textContent = `${key}: ${content[key]}`
                   list.appendChild(li)

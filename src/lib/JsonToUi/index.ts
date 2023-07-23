@@ -674,9 +674,10 @@ class JsonToUi {
       children: [],
     } // end of base UL to hold LIs.
 
-    // 4. Get all Namespaces and create main nav elements for them.
+    // 4. Get all Content-Groups (namespaces), and create link in header nav each. (Mapping through, and if match pushing to NavHeaderList children).
     let firstTab = true //-- Default active tab styling.
     this.rootItems.map((item: CommentsProcessed) => {
+    // let test = this.rootItems.map((item: CommentsProcessed) => {
       if (item.namespaces.length > 0) {
         // 2. Create the main nav elements for each namespace.
         const NavHeaderLink: Element = {
@@ -712,8 +713,10 @@ class JsonToUi {
 
         // 3. Add the nav link to the navHeader object if it's defined.
         NavHeaderList.children.push(NavHeaderLink)
+        // return NavHeaderLink
       }
     }) // -- end of making links for namespaces.
+
 
     // 4. Populate the navHeader object with the navHeaderList.
     NavHeader.children.push(NavHeaderList)
@@ -724,7 +727,7 @@ class JsonToUi {
     // 6. Populated main ElementsProcessed HTML Elements with new content.
     ElementsProcessed.HtmlElements.push(Header)
 
-    // 5. Return updated object with the main nav elements within.
+    // 7. Returns updated ElementsProcessed object with Header and Nav.
     return ElementsProcessed
   }
 
@@ -749,7 +752,7 @@ class JsonToUi {
   buildGroupContentWrapper(ElementsProcessed: ElementsProcessed): ElementsProcessed {
     //TODO: 2023-07-20 | Erik Plachta | Add logic to build default tab for overview, too.
 
-    console.log('buildGroupContentWrapper:')
+    // console.log('buildGroupContentWrapper:')
 
     //-- Create IDs here to use in the Group-Content-Wrapper, so can pass down as parents.
     const tabStripNavId = randomUUID()
@@ -885,129 +888,6 @@ class JsonToUi {
         id: null,
       },
       children: [],
-      helpers: {
-        // getChildren: () => {
-        //   // 3. Build the tab strip nav wrapper. (See step 2 below, which calls this function. )
-        //   const tabStripNavList: Element = {
-        //     id: tabStripNavListId,
-        //     // id: tabStripNavListId,
-        //     parent: tabStripNavId,
-        //     description: `List holding tab-strip-nav-links for namespace with id: '${parentId}'.`,
-        //     elementType: 'ul',
-        //     classList: ['flex w-full flex-row w-full gap-2 w-full'],
-        //     dataAttributes: {
-        //       value: null,
-        //       type: null,
-        //       path: null,
-        //       role: 'tab-strip-nav-list', //-- Role of content when rendered to the UI.
-        //       group: group || parentId,
-        //       subGroup: null,
-        //       id: null,
-        //       active: false,
-        //     },
-        //     children: [],
-        //     helpers: {
-        //       getChildren: () => {
-        //         // 4. Create container to hold tab-strip-nav-link elements. (See step 2 below, which calls this function.)
-        //         const tabStripLinks: Element[] = [
-        //           // Overview Tab for namespace
-        //           {
-        //             id: parentItem.id,
-        //             parent: tabStripNavListId,
-        //             // description: `Link within the tab-strip-nav-list for for module '${item.modules[0]}' within namespace '${item.namespaces[0]}'.`,
-        //             description:
-        //               parentItem.description ||
-        //               parentItem.summary ||
-        //               `Link within the tab-strip-nav-list for for module '${parentItem.modules[0]}' within namespace '${parentItem.namespaces[0]}'.`,
-        //             elementType: 'li',
-        //             classList: [
-        //               'bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid border-b-blue-500 hover:bg-opacity-90 hover:border-b-blue-500/50',
-        //             ],
-        //             dataAttributes: {
-        //               value: 'Overview',
-        //               type: parentItem.type?.type || parentItem.type?.description || null,
-        //               path: parentItem.fileDetails.filePath,
-        //               role: 'tab-strip-nav-link', //-- Role of content when rendered to the UI.
-        //               group:
-        //                 group ||
-        //                 parentItem.namespaces[0] ||
-        //                 parentItem.memberOf?.filter(value => value.type == 'namespace')[0]?.description ||
-        //                 parentItem.parent?.filter(value => value.type == 'namespace')[0]?.description ||
-        //                 parentItem.modules[0] ||
-        //                 parentItem.memberOf?.filter(value => value.type == 'module')[0]?.description ||
-        //                 null,
-        //               //-- Either Module, Type Description ( like file name, function name, etc), or NULL
-        //               subGroup: parentItem.modules[0] || parentItem.type?.description || null,
-        //               id: parentItem.modules[0],
-        //               active: false,
-        //             },
-        //             children: [],
-        //           },
-        //         ]
-        //         // 5. Get all modules within the namespace.
-        //         this.processedData.map((item: CommentsProcessed) => {
-        //           // 6. If item's parent is the namespace, build it.
-        //           if (
-        //             item.parent.filter(
-        //               itemParent => itemParent.id === parentId,
-        //               // && itemParent.type === 'file',
-        //             ).length > 0
-        //           ) {
-        //             // console.log('navStrip.item to build: ', item.id)
-        //             const tabStripLink: Element = {
-        //               id: item.id,
-        //               parent: tabStripNavListId,
-        //               // description: `Link within the tab-strip-nav-list for for module '${item.modules[0]}' within namespace '${item.namespaces[0]}'.`,
-        //               description:
-        //                 item.description ||
-        //                 item.summary ||
-        //                 `Link within the tab-strip-nav-list for for module '${item.modules[0]}' within namespace '${item.namespaces[0]}'.`,
-        //               elementType: 'li',
-        //               classList: [
-        //                 'bg-white h-full py-2 px-4 rounded-t-md border-2 border-solid border-b-transparent-500 hover:bg-opacity-90 hover:border-b-blue-500/50',
-        //               ],
-        //               dataAttributes: {
-        //                 value:
-        //                   item.namespaces[0]?.toUpperCase() ||
-        //                   item.modules[0]?.toUpperCase() ||
-        //                   item.type?.description ||
-        //                   'no-value-set',
-        //                 type: item.type?.type || item.type?.description || null,
-        //                 path: item.fileDetails.filePath,
-        //                 role: 'tab-strip-nav-link', //-- Role of content when rendered to the UI.
-        //                 group:
-        //                   group ||
-        //                   item.namespaces[0] ||
-        //                   item.memberOf?.filter(value => value.type == 'namespace')[0]?.description ||
-        //                   item.parent?.filter(value => value.type == 'namespace')[0]?.description ||
-        //                   item.modules[0] ||
-        //                   item.memberOf?.filter(value => value.type == 'module')[0]?.description ||
-        //                   null,
-        //                 //-- Either Module, Type Description ( like file name, function name, etc), or NULL
-        //                 subGroup: item.modules[0] || item.type?.description || null,
-        //                 id: item.modules[0],
-        //                 active: false,
-        //               },
-        //               children: [],
-        //               helpers: {
-        //                 getChildren: () => [],
-        //               },
-        //             }
-        //             // 6.Populate TabStripLinks array with this link.
-        //             tabStripLinks.push(tabStripLink)
-        //           }
-        //         }) // End of building TabStripNavLink
-        //         // 7. return all children links within tab-strip-nav
-        //         return tabStripLinks
-        //       }, // end of tabStripNavList declaration.
-        //     }, // end of tabStripNavList declaration.
-        //   } // end of tabStripNavList declaration.
-        //   // 8. Get children.
-        //   tabStripNavList.children.push(...tabStripNavList.helpers.getChildren())
-        //   // 9. Return children Elements for tabStripNav.
-        //   return [tabStripNavList]
-        // },
-      },
     } // end of tabStripNav declaration.
 
     // 2. Build the tab strip nav wrapper.
