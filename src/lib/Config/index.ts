@@ -197,7 +197,7 @@ class Configure {
 
       /**
        *  1. Check to see if there are any matches for any args within config options for each config group.
-       * 
+       *
        *  For each arg, search through options to see if there is a match.
        *  -  If there is, return the arg and the option.
        *  - If there is not, return the arg and undefined.
@@ -209,66 +209,61 @@ class Configure {
             if (option.title == argKey) {
               argsMatched.push({
                 title: option.title,
-                value: args[argKey],
+                newValue: args[argKey],
+                oldValue: option.value,
                 type: option.type,
-                config: configKey,
+                configGroup: configKey,
+                updated: false,
               })
             }
           })
         })
       })
 
-      if(this.getLogLevel() >= 4) console.log('argsMatched: ', argsMatched)
+      if (this.getLogLevel() >= 4) console.log('argsMatched: ', argsMatched)
 
-      // // 1. Loop through args, if any, to look for matches.
-      // Array.from(Object.keys(args)).forEach(argKey => {
-      //   // console.log('arg: ', argKey, ' : ', args[argKey])
-      //   // 2. Loop through each setting group to look for the argKey.
+      /**
+       * 2. Loop through updatedConfig options, look for argsMatched, set value accordingly.
+       *
+       * For each arg, loop through each option to look for the argKey.
+       * - If the argKey matches the option title, overwrite the value.
+       * - Otherwise, set value as default.
+       */
       Array.from(Object.keys(updatedConfig)).forEach(configKey => {
-        // 3. Loop through each option to look for the argKey.
         updatedConfig[configKey].options.forEach((option: Option) => {
-          // 4. If the argKey matches the option title, overwrite the value.
-          // if (option.title == argKey) {
-          //   if (this.getLogLevel() >= 5) {
-          //     console.log(
-          //       `config.init[argKey] being overwritten: argKey: '${argKey}', old-value: '${option.default[0].value}'  new-value: '${args[argKey]}'`,
-          //     )
-          //   }
-          //   // console.log('argKey: ', argKey, typeof argKey, '. value: ', args[argKey])
-          //   option.value = args[argKey]
-          // }
-          // 5. Otherwise use the default value.
-          // else {
-          // Extract default values.
-          if (option.type == 'string') {
-            option.value = option?.default
-              .map((defaultOption: any) => {
+          
+          // 3. If the argKey matches the option title, overwrite the value.
+          const argMatch = argsMatched.find((argMatch: any) => option.title == argMatch.title)
+          if (argMatch && argMatch.newValue) {
+            argMatch.updated = true
+            if (this.getLogLevel() >= 4) {
+              console.log('CLI arg matched config option: ', argMatch)
+            }
+            option.value = argMatch.newValue
+          }
+          // 4. Otherwise, set value as default.
+          else {
+            // Extract default values.
+            if (option.type == 'string') {
+              option.value = option?.default
+                .map((defaultOption: any) => {
+                  return defaultOption.value
+                })
+                .join(',')
+            } else if (option.type == 'string[]') {
+              option.value = option?.default.map((defaultOption: any) => {
                 return defaultOption.value
               })
-              .join(',')
-          } else if (option.type == 'string[]') {
-            option.value = option?.default.map((defaultOption: any) => {
-              return defaultOption.value
-            })
-          } else {
-            option.value = option?.default.map((defaultOption: any) => {
-              return defaultOption.value
-            })
+            } else {
+              option.value = option?.default.map((defaultOption: any) => {
+                return defaultOption.value
+              })
+            }
           }
+        }) // END loop on updatedConfig.options
+      }) // END loop on updatedConfig
 
-          // console.log('option.value: ', option.value)
-
-          // if (this.getLogLevel() >= 5) {
-          //   // console.log('option.default', option)
-          //   console.log(
-          //     `config.init[argKey] not found: argKey. '${argKey}'. Using default-values: '${option.value}'`,
-          //   )
-          // }
-          // }
-        }) // end of looping through options within each setting group
-      }) // end of looping through setting groups
-      // }) // end of looping through arg keys
-      // 2. Return the updated config.
+      // 7. Return the updated config.
       return {
         success: true,
         message: `SUCCESS: Updated config with args successfully.`,
