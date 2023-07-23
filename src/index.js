@@ -123,6 +123,8 @@ async function run(config) {
     const d2Html = await d2ui.getHtml();
     const d2md = d2ui.getMarkdown();
     
+    
+
     //5. Write the files to the output path.
     writeFileSync(resolve(outputPath.value, `${outputName.value}.html`), d2Html);
 

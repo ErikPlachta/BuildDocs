@@ -1,8 +1,8 @@
 // Node/Javascript Utilities
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { spawn } = require('child_process') // used for args
-const { resolve } = require('path') // used for building results
-const { readFileSync, writeFileSync } = require('fs') // used for reading config file
+import { spawn } from 'child_process' // used for args
+import { resolve } from 'path' // used for building results
+import { readFileSync, writeFileSync, existsSync } from 'fs' // used for reading config file
 
 import { randomUUID } from 'crypto'
 import { Config, Logging_config, ConfigGroupDefaults, UserConfig, Option, ErrorRecord } from '../types'
@@ -148,15 +148,26 @@ class Configure {
    */
   async getUserConfig(): Promise<results> {
     try {
-      // TODO: Update this to pull config file.
-      // const userConfig: UserConfig = JSON.parse(readFileSync(resolve('.build-docs')).toString())
-      const userConfig: UserConfig = {}
+      const configPath = resolve('./.build-docs')
 
-      return Promise.resolve({
+      if (!existsSync(`${configPath}`)) {
+        this.errors.push({
+          id: randomUUID(),
+          type: 'warning',
+          message: `WARNING: Failed to load user config.`,
+          data: `Config file does not exist.`,
+        })
+        if (this.getLogLevel() >= 3) throw new Error('Config file does not exist.')
+      }
+
+      const userConfig = await import(configPath)
+      this.UserConfig = userConfig
+      
+      return {
         success: true,
         message: `SUCCESS: User config loaded successfully.`,
         data: userConfig,
-      })
+      }
     } catch (error) {
       if (this.getLogLevel() > 0) console.error(error)
 
@@ -167,11 +178,11 @@ class Configure {
         data: error,
       })
 
-      return Promise.reject({
+      return {
         success: false,
         message: `ERROR: Failed to load user config.`,
         data: error,
-      })
+      }
     }
   }
 
@@ -231,7 +242,6 @@ class Configure {
        */
       Array.from(Object.keys(updatedConfig)).forEach(configKey => {
         updatedConfig[configKey].options.forEach((option: Option) => {
-          
           // 3. If the argKey matches the option title, overwrite the value.
           const argMatch = argsMatched.find((argMatch: any) => option.title == argMatch.title)
           if (argMatch && argMatch.newValue) {
