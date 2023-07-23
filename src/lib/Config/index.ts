@@ -5,7 +5,7 @@ const { resolve } = require('path') // used for building results
 const { readFileSync, writeFileSync } = require('fs') // used for reading config file
 
 import { randomUUID } from 'crypto'
-import { Config, Logging, Setting, Option, ErrorRecord } from '../types'
+import { Config, Logging, ConfigGroupDefaults, UserConfig, Option, ErrorRecord } from '../types'
 import { config } from './default'
 import { DataManager } from '../../utils/DataManager'
 
@@ -145,7 +145,9 @@ class Configure {
         // console.log('argKey: ', argKey, typeof argKey, '. value: ', args[argKey])
 
         // 2. Loop through each setting group to look for the argKey.
-        settings.forEach((setting: Setting) => {
+        
+        //! TODO: Update to meet new Config changes.
+        updatedConfig.forEach((setting: ConfigGroupDefaults) => {
           // 3. Loop through each option to look for the argKey.
           setting.options.forEach((option: Option) => {
             // 4. If the argKey matches the option title, overwrite the value.

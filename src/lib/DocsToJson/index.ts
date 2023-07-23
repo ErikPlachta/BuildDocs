@@ -1,7 +1,8 @@
 /**
+ * @module DocsToJson
+ * @summary Extract Documentation for target files types in target directory.
  * @type {file} DocsToJson\index.ts
  * @namespace {build-docs.DocsToJson}
- * @module DocsToJson
  * @access private
  * @file BuildDocs\index.ts
  * @version 0.1.51

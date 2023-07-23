@@ -19,18 +19,20 @@
  */
 
 interface Config {
-  DocsToJson: DocsToJson_config
-  DocsToUi: DocsToUi_config
-  Logging: Logging_config
-  Target: Target_config
-  Output: Output_config
+  DocsToJson: ConfigGroupDefaults
+  DocsToUi: ConfigGroupDefaults
+  Logging: ConfigGroupDefaults
+  Target: ConfigGroupDefaults
+  Output: ConfigGroupDefaults
 }
 
 type ConfigGroupDefaults = {
-  title: 'Logging' | 'DocsToJson' | 'Target'
+  title: ConfigCategories
   summary: string
   description: string
+  options: Option[]
 }
+type ConfigCategories = 'Logging' | 'Output' | 'Target' | 'DocsToJson' | 'DocsToUi'
 
 //-------------------------------------
 //-- Logging
@@ -52,12 +54,9 @@ type ConfigGroupDefaults = {
  * @prop {Option} options.fileFormat - The format to use for the log.
  * @prop {Option} options.fileWriteMode - The write mode to use for the log.
  */
-interface Logging_config extends ConfigGroupDefaults {
-  options: LoggingOptions
-}
-interface LoggingOptions {
-  level: Option & {
-    value: 0 | 1 | 2 | 3 | 4 | 5
+type Logging_config = {
+  level: {
+    value: 0 | 1 | 2 | 3 | 4 | 5 // 0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info
     default: 3
   }
   toConsole: {
@@ -94,10 +93,7 @@ interface LoggingOptions {
 //-------------------------------------
 //-- Output
 
-interface Output_config extends ConfigGroupDefaults {
-  options: Output_config_Options
-}
-interface Output_config_Options extends Option {
+interface Output_config {
   outputPath: {
     value: string
     default: './build'
@@ -129,10 +125,7 @@ interface Output_config_Options extends Option {
  * @prop {Option} options.targetFileTypes - The file types to target.
  * @prop {Option} options.writeMode - The write mode to use for the output file.
  */
-interface Target_config extends ConfigGroupDefaults {
-  options: Target_config_Options
-}
-interface Target_config_Options  {
+type Target_config = {
   outputPath: Option & {
     value: string
     default: './build'
@@ -209,28 +202,24 @@ interface Target_config_Options  {
  * @prop {Option} options.writeMode - The write mode to use for the output file.
  * @prop {Option} options.buildHtml - Whether or not to build the HTML output.
  */
-interface DocsToUi_config extends ConfigGroupDefaults {
-  // option: 'outPath' | 'outName' | 'outFormat' | 'writeMode '
-  options: DocsToUi_config_Options
-}
-interface DocsToUi_config_Options {
-  customOutputPath: Option & {
+type DocsToUi_config = {
+  customOutputPath: {
     value: undefined | string
     default: undefined
   }
-  outputName: Option & {
+  outputName: {
     value: string
     default: 'docs'
   }
-  language: Option & {
+  language: {
     value: 'html' | 'md'
     default: 'html'
   }
-  buildHtml: Option & {
+  buildHtml: {
     value: boolean
     default: true
   }
-  buildMarkdown: Option & {
+  buildMarkdown: {
     value: boolean
     default: false
   }
@@ -240,19 +229,16 @@ interface DocsToUi_config_Options {
 //-------------------------------------
 //-- DocsToJson
 
-interface DocsToJson_config {
-  options: DocsToJson_config_Options
-}
-interface DocsToJson_config_Options {
-  customOutputPath: Option & {
+type DocsToJson_config = {
+  customOutputPath: {
     value: undefined | string
     default: undefined
   }
-  outputName: Option & {
+  outputName: {
     value: string
     default: 'docs'
   }
-  outputFormat: Option & {
+  outputFormat: {
     value: 'json'
     default: 'json'
   }
@@ -268,7 +254,7 @@ interface DocsToJson_config_Options {
  * @description If there is a `.build-docs` | `.build.docs.js` file in the root of the project, it will be used to override the default config.
  */
 type UserConfig = {
-  logging: Option & {
+  Logging: {
     level?: 0 | 1 | 2 | 3 | 4 | 5
     toConsole?: boolean
     toFile?: boolean
@@ -277,8 +263,8 @@ type UserConfig = {
     fileFormat?: 'json' | 'txt'
     writeMode?: WriteMode['value']
   }
-  output: Option & {}
-  target: Option & {}
+  output: {}
+  target: {}
 }
 
 type Option = {
@@ -317,6 +303,7 @@ export {
   DocsToUi_config,
   Target_config,
   Logging_config,
+  Output_config,
   Option,
   Supported,
   WriteMode,

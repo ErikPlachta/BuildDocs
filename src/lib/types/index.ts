@@ -13,7 +13,16 @@
 
 import { Element, Elements, ElementsProcessed, htmlConfig } from './Elements'
 import { CommentRaw, CommentsRaw, CommentsProcessed, Comments } from './Comments'
-import { Config, UserConfig, Logging_config, Target_config, DocsToJson_config, DocsToUi_config, Option  } from './Config'
+import {
+  Config,
+  UserConfig,
+  Logging_config,
+  Target_config,
+  ConfigGroupDefaults,
+  DocsToJson_config,
+  DocsToUi_config,
+  Option,
+} from './Config'
 
 /**
  * @type {Type}
@@ -48,26 +57,24 @@ type Module = {
 
 /**
  * Used by DocsToUi to define runtime configuration options.
- * 
+ *
  * @summary Used by DocsToUi to define runtime configuration options.
  * @description Defined by `Config.settings` -> `Output` -> `options` ->
  *  `outputFormat.value`, these options are used to run time behavior.
  */
 type DocsToUiConfig = {
-  outputFormat : {
-    markdown : boolean
-    html : boolean
+  outputFormat: {
+    markdown: boolean
+    html: boolean
   }
- 
 }
 
 type ErrorRecord = {
-  id : string
+  id: string
   type: 'warning' | 'error' | 'fatal'
   message: string
   data: any
 }
-
 
 //-- Export all types
 export {
@@ -78,8 +85,8 @@ export {
   Target_config,
   DocsToJson_config,
   DocsToUi_config,
+  ConfigGroupDefaults,
   Option,
-  
 
   //TODO: identify where these are being used and note properly..
   File,
@@ -100,5 +107,5 @@ export {
   Element,
   Elements,
   ElementsProcessed,
-  htmlConfig
+  htmlConfig,
 }
