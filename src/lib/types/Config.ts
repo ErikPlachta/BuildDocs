@@ -254,8 +254,8 @@ type DocsToJson_config = {
  * @description If there is a `.build-docs` | `.build.docs.js` file in the root of the project, it will be used to override the default config.
  */
 type UserConfig = {
-  Logging: {
-    level?: 0 | 1 | 2 | 3 | 4 | 5
+  Logging?: {
+    level?: 0 | 1 | 2 | 3 | 4 | 5 // 0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info
     toConsole?: boolean
     toFile?: boolean
     fileName?: string
@@ -263,8 +263,8 @@ type UserConfig = {
     fileFormat?: 'json' | 'txt'
     writeMode?: WriteMode['value']
   }
-  output: {}
-  target: {}
+  output?: {}
+  target?: {}
 }
 
 type Option = {

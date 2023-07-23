@@ -5,7 +5,7 @@ const { resolve } = require('path') // used for building results
 const { readFileSync, writeFileSync } = require('fs') // used for reading config file
 
 import { randomUUID } from 'crypto'
-import { Config, Logging, ConfigGroupDefaults, UserConfig, Option, ErrorRecord } from '../types'
+import { Config, Logging_config, ConfigGroupDefaults, UserConfig, Option, ErrorRecord } from '../types'
 import { config } from './default'
 import { DataManager } from '../../utils/DataManager'
 
@@ -42,9 +42,9 @@ class Configure {
   public args: any
   public unsupportedSettings: any
   public errors: ErrorRecord[] = []
-  public getLoggingLevel: () => number
   public getConfig: () => Config
   private dm: DataManager = new DataManager()
+  public UserConfig: UserConfig = {}
   // public settings:Config['settings']
 
   constructor() {
@@ -54,9 +54,8 @@ class Configure {
     this.unsupportedSettings = []
     this.errors = []
     // this.settings = []
-    this.getLoggingLevel = () => {
-      return 2
-    }
+
+    this.UserConfig = {}
 
     //---------------------------------
     //-- Helper Methods for this class
@@ -80,7 +79,7 @@ class Configure {
     const config: results = await this.validateConfig()
     // failed, throw error
     if (config.success == false) {
-      if (this.getLoggingLevel() > 0) console.error(config)
+      if (this.getLogLevel() > 0) console.error(config)
       throw new Error('ERROR: Config.__init__(): Invalid config.')
     }
     // Set config as defaults for now.
@@ -90,17 +89,20 @@ class Configure {
     const args: results = await this.getArgs()
     this.args = args.data
     // failed, warning but can still continue
-    if (args.success == false && this.getLoggingLevel() > 1) {
-      console.warn(args)
-    }
+    if (args.success == false && this.getLogLevel() > 1) { console.warn(args)}
+    if (this.getLogLevel() >= 5) console.log('config.data: ', config.data)
 
-    if (this.getLoggingLevel() >= 5) console.log('config.data: ', config.data)
+    // 3. Get User Config - The user config from the root `.build-docs` file.
+    const userConfig: results = await this.getUserConfig()
+    // failed, warning but can still continue
+    if(this.getLogLevel() >= 4) console.log('WARNING: Failed to load user config. Using defaults. Reverting to defaults.')
+    this.UserConfig = userConfig.data
+
 
     // 4. Update Config with Args through CLI or through `.build-docs`.
-    const updatedConfig: results = await this.getUpdatedConfig(args.data, config.data, undefined)
-
+    const updatedConfig: results = await this.getUpdatedConfig(args.data, config.data, userConfig.data)
     if (updatedConfig.success == false) {
-      if (this.getLoggingLevel() > 0) console.error(updatedConfig)
+      if (this.getLogLevel() > 0) console.error(updatedConfig)
       throw new Error(JSON.stringify(updatedConfig))
     }
 
@@ -116,6 +118,62 @@ class Configure {
   } // end of run()
 
   //---------------------------- Utility Functions ---------------------------//
+
+  /**
+     * @function getLogLevel
+     * @type {function} getLogLevel
+     * @memberof module:build-docs.Config
+     * @access public
+     * @summary Gets the logging level for the DocsToJson utility.
+     * @return {number} none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info
+     */
+  getLogLevel = ():number => {
+    //TODO: Update this to get the true log level
+    return 2
+  }
+  
+
+  /**
+   * Get the user config from the root `.build-docs` file.
+   * 
+   * @function getUserConfig - Get the user config from the root `.build-docs` file.
+   * @type {function} getUserConfig
+   * @memberof module:build-docs.Config
+   * @access private
+   * @async
+   * @summary Get the user config from the root `.build-docs` file.
+   * @description Looks for a `.build-docs` file in the root of the project and returns the config if found. Otherwise, returns undefined.
+   * @returns {{Promise<results>}} - success (boolean), message (string), and data (object) containing the user config or error.
+   */
+  async getUserConfig(): Promise<results> {
+    try {
+      const userConfig: UserConfig = JSON.parse(
+        readFileSync(
+        resolve('.build-docs')).toString()
+      )
+      return Promise.resolve ({
+        success: true,
+        message: `SUCCESS: User config loaded successfully.`,
+        data: userConfig,
+      })
+    }
+    catch (error) {
+      if (this.getLogLevel() > 0) console.error(error)
+
+      this.errors.push({
+        id: randomUUID(),
+        type: 'warning',
+        message: `WARNING: Failed to load user config.`,
+        data: error,
+      })
+
+      return Promise.reject({
+        success: false,
+        message: `ERROR: Failed to load user config.`,
+        data: error,
+      })
+    }
+  }
 
   /**
    * @function getUpdatedConfig
@@ -152,7 +210,7 @@ class Configure {
           setting.options.forEach((option: Option) => {
             // 4. If the argKey matches the option title, overwrite the value.
             if (option.title == argKey) {
-              if (this.getLoggingLevel() >= 5) {
+              if (this.getLogLevel() >= 5) {
                 console.log(
                   `config.init[argKey] being overwritten: argKey: '${argKey}', old-value: '${option.default[0].value}'  new-value: '${args[argKey]}'`,
                 )
@@ -181,7 +239,7 @@ class Configure {
 
               // console.log('option.value: ', option.value)
 
-              if (this.getLoggingLevel() >= 5) {
+              if (this.getLogLevel() >= 5) {
                 // console.log('option.default', option)
                 console.log(
                   `config.init[argKey] not found: argKey. '${argKey}'. Using default-values: '${option.value}'`,
@@ -198,7 +256,7 @@ class Configure {
         data: updatedConfig,
       }
     } catch (error) {
-      if (this.getLoggingLevel() > 0) console.error(error)
+      if (this.getLogLevel() > 0) console.error(error)
 
       this.errors.push({
         id: randomUUID(),
@@ -291,7 +349,7 @@ class Configure {
     // 6. If there are any errors, throws error.
     catch (error) {
       
-      if (this.getLoggingLevel() > 0) console.error(error)
+      if (this.getLogLevel() > 0) console.error(error)
 
       this.errors.push({
         id: randomUUID(),
