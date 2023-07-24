@@ -51,7 +51,7 @@ type CommentsRaw = {
  * @memberof module:build-docs.DocsToJson
  * @typedef Comments
  * @summary The result of extracting documentation from a file.
- * @description Used by module `DocsToJson` to store comments and related info within `DocsToJson.results`. Comments are used for each comment block within the filepath. All comments within a file will have different `comments`, but the same `fileName`, `filePath`, `createdDate`, and `modifiedDate` values. 
+ * @description Used by module `DocsToJson` to store comments and related info within `DocsToJson.results`. Comments are used for each comment block within the filepath. All comments within a file will have different `comments`, but the same `fileName`, `filePath`, `createdDate`, and `modifiedDate` values.
  */
 type Comments = {
   id: string
@@ -62,9 +62,9 @@ type Comments = {
   createdDate: Date
 }
 
-
 //------------------------------------------------------------------------------
 //-- DocsToUi
+
 
 /**
  * @type {Type} CommentsProcessed
@@ -109,7 +109,7 @@ type CommentsProcessed = {
     description: string // after `-`
   }
   example: void | string[]
-  
+
   see?: string[]
 
   todo?: void | string[]
@@ -128,13 +128,7 @@ type CommentsProcessed = {
   requires:
     | {
         id: string
-        type:
-          | string
-          | 'module'
-          | 'node-module'
-          | 'namespace'
-          | 'function'
-          | null //-- before `:`
+        type: string | 'module' | 'node-module' | 'namespace' | 'function' | null //-- before `:`
         name: string | null // after `:` and before `-`
         description: string | null // after `-`
       }[]
@@ -196,9 +190,4 @@ type CommentsProcessed = {
   comments?: CommentsRaw
 }
 
-export {
-  CommentRaw,
-  CommentsRaw,
-  CommentsProcessed,
-  Comments,
-}
+export { CommentRaw, CommentsRaw, CommentsProcessed, Comments }

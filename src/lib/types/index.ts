@@ -22,6 +22,7 @@ import {
   DocsToJson_config,
   DocsToUi_config,
   Option,
+  WriteMode,
 } from './Config'
 
 /**
@@ -63,11 +64,14 @@ type Module = {
  *  `outputFormat.value`, these options are used to run time behavior.
  */
 type DocsToUiConfig = {
-  outputFormat: {
-    markdown: boolean
-    html: boolean
-  }
+  customOutputPath: string,
+  outputName: string,
+  buildHtml: boolean,
+  buildMarkdown: boolean,
+  writeMode: WriteMode['value']
+  contentGroupParent: string | 'namespaces' | 'modules' | 'files' | 'types' | 'access' | 'author'
 }
+console.log("//! TODO: DocsToUiConfig to be moved from types/index.ts to types/Config.ts")
 
 type ErrorRecord = {
   id: string

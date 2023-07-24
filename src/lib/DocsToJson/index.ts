@@ -1,3 +1,9 @@
+import { randomUUID } from 'crypto'
+import fs from 'fs'
+import path from 'path'
+import GetDocs from '../GetDocs' // Assuming GetDocs class is in the same directory.
+import { Comments } from '../types'
+
 /**
  * @module DocsToJson
  * @summary Extract Documentation for target files types in target directory.
@@ -5,7 +11,7 @@
  * @namespace {build-docs.DocsToJson}
  * @access private
  * @file BuildDocs\index.ts
- * @version 0.1.51
+ * @version 0.1.6
  * @since 0.0.1
  * @license MIT
  * @author Erik Plachta
@@ -16,22 +22,12 @@
  * @import path from 'path'
  * @requires path
  *
- * @requires crypto
- * @requires module:GetDocs
- */
-
-import { randomUUID } from 'crypto'
-import fs from 'fs'
-import path from 'path'
-import GetDocs from '../GetDocs' // Assuming GetDocs class is in the same directory.
-import { Comments, CommentsProcessed } from '../types'
-
-/**
- * @type {class} BuildDocs
- * @memberof module:build-docs.DocsToJson
- * @access private
- * @class BuildDocs
- * @classdesc Extract Documentation for target files types in target directory.
+ * @requires module:crypto.randomUUID
+ * @requires module:fs
+ * @requires module:path
+ * @requires module:build-docs.GetDocs
+ * 
+ * @changelog   0.1.6 | 2023-07-23 | Cleanup and verify.
  */
 class DocsToJson {
   private targetPath: string
@@ -259,10 +255,9 @@ class DocsToJson {
     filePath?: string
   } {
     try {
-      
+      // console.log('DocsToJson.saveDocs(outputPath: string): ', outputPath)
       //-- make targetPath if not defined
       if (!fs.existsSync(outputPath)) {
-        
         fs.mkdirSync(outputPath, { recursive: true })
       }
       const filePath = path.join(outputPath, 'docs.json')

@@ -6,7 +6,7 @@
  * @access public
  * @summary Entry point for the build-docs utility.
  * @description Executes the build-docs utility for target files types within a target path. The DocsToJson utility generates documentation for the target files and paths and saves the documentation to the target path.
- * @version 0.1.2
+ * @version 0.1.3
  * @since 0.1.0
  * @author Erik Plachta
  * @license MIT {@link https://opensource.org/licenses/MIT | License}
@@ -28,6 +28,7 @@
  * @changelog 0.1.0 | 2023-07-01 | Erik Plachta | Built concept
  * @changelog 0.1.1 | 2023-07-14 | Erik Plachta | Updated data-extraction to include more complete data.
  * @changelog 0.1.2 | 2023-07-15 | Erik Plachta | Onboard to generate docs.json and then build the UI content.
+ * @changelog 0.1.3 | 2023-07-23 | Erik Plachta | Updated to use Config lib. cleanup. Verify functionality.
  */
 
 // Node/Javascript Utilities
@@ -78,8 +79,8 @@ async function run(config) {
 
     //TODO: Use logging options to manage behavior once concept is built.
     const loggingLevel = Logging.options.filter((option) => option.title.toLowerCase() == 'level')?.[0]?.value || 3;
-    const [targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths] = Target.options;
-    const [outputPath, outputName ] = Output.options;
+    const [contentGroupParent, contentSubGroupParent, targetPath, targetPaths, targetFileTypes, ignoreFiles, targetFiles, ignorePaths] = Target.options;
+    const [outputPath, outputName] = Output.options;
 
     // 2. Build config object for DocsToJson.
     const config_DocsToJson = {
@@ -92,6 +93,7 @@ async function run(config) {
       outputPath: outputPath?.value
     }
 
+    // console.log('config_DocsToJson: ', config_DocsToJson)
     // console.log('config_DocsToJson: ', config_DocsToJson)
     // console.log('loggingLevel: ', loggingLevel)
 
@@ -112,18 +114,34 @@ async function run(config) {
 
 
     // 4. Generate UI from generated docs
-    //TODO: Update to extract from updatedConfig once added to it and verified built in DocsToUi properly.
-    // const DocsToUiOptions = Output.options.filter((option) => option.memberOf != 'module:build-docs.DocsToUi');
-    const config_DocsToUi = {
-      convertToMarkdown: true,
-      convertToHtml: true,
-    }
+    // Extracting values and managing type-mismatching. // TODO: Fix type mismatching within the Config lib. (use same solution as in UserConfig?)
+    const config_DocsToUi = {}
+
+    DocsToUi.options.map((option) => {
+      if (option.type != typeof option.value) {
+        if (option.type !== typeof option.value
+          && typeof option.value == 'object'
+          && option.type != 'object'
+          && option.value.length == 1
+        ) {
+          // console.log('converted : ', option.title, ' from ', option.value)
+          option.value = (option.value[0]);
+          // console.log('to ', option.value)
+        }
+      }
+      config_DocsToUi[option.title] = option.value
+    });
+
+    config_DocsToUi['contentGroupParent'] = contentGroupParent.value;
+    
+    // console.log('config_DocsToUi: ', config_DocsToUi)
+
     const d2ui = new DocsToUi_Class(loggingLevel, docs, config_DocsToUi);
     // console.log('DocsToUi: ', DocsToUi)
     const d2Html = await d2ui.getHtml();
     const d2md = d2ui.getMarkdown();
-    
-    
+
+
 
     //5. Write the files to the output path.
     writeFileSync(resolve(outputPath.value, `${outputName.value}.html`), d2Html);
@@ -145,7 +163,7 @@ async function run(config) {
           config: config_DocsToUi,
           buildResponse: d2ui,
           htmlResponse: d2Html,
-          markdownResponse : d2md
+          markdownResponse: d2md
         }
       }
     };

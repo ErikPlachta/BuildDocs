@@ -178,8 +178,8 @@ class BuildHtml {
 
       return {
         success: true,
-        message: 'Content built successfully.',
-        data: content,
+        message: 'BuildHtml.buildContent() content built successfully.',
+        data: content
       }
     } catch (error) {
       if (this.LogLevel > 1) {
@@ -259,7 +259,7 @@ class BuildHtml {
             }
             // Otherwise, it's text content so just render text.
             else {
-              el.textContent = content
+              el.textContent = el.textContent + content
             }
           })
         }

@@ -75,6 +75,7 @@ const config = {
     outputFolderName: 'docs', // string - ( Folder within path all build-docs content will be generated.)
   },
   Target: {
+    contentGroupParent : 'namespaces',    // string | 'namespaces' | 'modules' | 'files' | 'types' | 'access' | 'author'
     targetPath: './src', // string - ( Where to look for docs.)
     targetPaths: [], // string[] - ( Where to look for docs. )
     ignorePaths: [

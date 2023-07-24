@@ -1,6 +1,6 @@
 [
   {
-    "id": "45b792c7-03c5-4707-ba2e-98f25ed71191",
+    "id": "ef7e86b6-855e-4210-86a7-f877baecf6fa",
     "fileName": ".eslintrc.js",
     "filePath": ".eslintrc.js",
     "comments": {
@@ -159,7 +159,7 @@
     "modifiedDate": "2023-07-23T00:36:16.466Z"
   },
   {
-    "id": "bd38e77b-463e-44e1-9d46-d9df4c4c86d1",
+    "id": "09fe535d-a432-45cf-b3f6-cb31d970e24c",
     "fileName": ".prettierrc.js",
     "filePath": ".prettierrc.js",
     "comments": {
@@ -200,236 +200,7 @@
     "modifiedDate": "2023-07-22T03:21:03.197Z"
   },
   {
-    "id": "aa14d440-82ed-4705-b007-15b0a2eb3e3d",
-    "fileName": ".build-docs-template.ts",
-    "filePath": "src/bin/.build-docs-template.ts",
-    "comments": {
-      "type": [
-        {
-          "line": "@type {Config} config - Options used by `build-docs` to determine run behavior.",
-          "type": "type",
-          "description": "{Config} config - Options used by `build-docs` to determine run behavior."
-        }
-      ],
-      "summary": [
-        {
-          "line": "@summary Options used by `build-docs` to determine run behavior.",
-          "type": "summary",
-          "description": "Options used by `build-docs` to determine run behavior."
-        },
-        {
-          "line": "@summary Options used by `build-docs` to determine run behavior.",
-          "type": "summary",
-          "description": "Options used by `build-docs` to determine run behavior."
-        }
-      ],
-      "description": [
-        {
-          "line": "@description Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values.",
-          "type": "description",
-          "description": "Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values."
-        },
-        {
-          "line": "@description Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values.",
-          "type": "description",
-          "description": "Config options used by `build-docs` to control the overall operations and behavior of the module. This includes the ability to enable/disable features, and set default values."
-        }
-      ],
-      "typedef": [
-        {
-          "line": "@typedef {Object} Config",
-          "type": "typedef",
-          "description": "{Object} Config"
-        }
-      ],
-      "memberof": [
-        {
-          "line": "@memberof module:build-docs",
-          "type": "memberof",
-          "description": "module:build-docs"
-        }
-      ],
-      "author": [
-        {
-          "line": "@author Erik Plachta",
-          "type": "author",
-          "description": "Erik Plachta"
-        }
-      ],
-      "version": [
-        {
-          "line": "@version 0.0.1",
-          "type": "version",
-          "description": "0.0.1"
-        }
-      ],
-      "since": [
-        {
-          "line": "@since 0.0.1",
-          "type": "since",
-          "description": "0.0.1"
-        }
-      ],
-      "property": [
-        {
-          "line": "@property {DocsToJson} DocsToJson - Options for the DocsToJson sub-module.",
-          "type": "property",
-          "description": "{DocsToJson} DocsToJson - Options for the DocsToJson sub-module."
-        },
-        {
-          "line": "@property {DocsToJson.outputName} DocsToJson.outputName - Name of the file to output the generated docs raw JSON data.",
-          "type": "property",
-          "description": "{DocsToJson.outputName} DocsToJson.outputName - Name of the file to output the generated docs raw JSON data."
-        },
-        {
-          "line": "@property {DocsToJson.outputFormat} DocsToJson.outputFormat - Format of the generated docs raw JSON data.",
-          "type": "property",
-          "description": "{DocsToJson.outputFormat} DocsToJson.outputFormat - Format of the generated docs raw JSON data."
-        },
-        {
-          "line": "@property {DocsToJson.writeMode} DocsToJson.writeMode - Write mode to use when saving the raw generate doc values.",
-          "type": "property",
-          "description": "{DocsToJson.writeMode} DocsToJson.writeMode - Write mode to use when saving the raw generate doc values."
-        },
-        {
-          "line": "@property {DocsToUi} DocsToUi - Options for the DocsToUi sub-module.",
-          "type": "property",
-          "description": "{DocsToUi} DocsToUi - Options for the DocsToUi sub-module."
-        },
-        {
-          "line": "@property {DocsToUi.customOutputPath} DocsToUi.customOutputPath - Where to output the generated docs raw JSON data.",
-          "type": "property",
-          "description": "{DocsToUi.customOutputPath} DocsToUi.customOutputPath - Where to output the generated docs raw JSON data."
-        },
-        {
-          "line": "@property {DocsToUi.outputName} DocsToUi.outputName - Name of the file to output the generated docs raw JSON data.",
-          "type": "property",
-          "description": "{DocsToUi.outputName} DocsToUi.outputName - Name of the file to output the generated docs raw JSON data."
-        },
-        {
-          "line": "@property {DocsToUi.buildHtml} DocsToUi.buildHtml - Build HTML from the generated docs raw JSON data.",
-          "type": "property",
-          "description": "{DocsToUi.buildHtml} DocsToUi.buildHtml - Build HTML from the generated docs raw JSON data."
-        },
-        {
-          "line": "@property {DocsToUi.buildMarkdown} DocsToUi.buildMarkdown - Build Markdown from the generated docs raw JSON data.",
-          "type": "property",
-          "description": "{DocsToUi.buildMarkdown} DocsToUi.buildMarkdown - Build Markdown from the generated docs raw JSON data."
-        },
-        {
-          "line": "@property {DocsToUi.writeMode} DocsToUi.writeMode - Write mode to use when saving the generated docs.",
-          "type": "property",
-          "description": "{DocsToUi.writeMode} DocsToUi.writeMode - Write mode to use when saving the generated docs."
-        },
-        {
-          "line": "@property {Logging} Logging - Options for build-docs logging.",
-          "type": "property",
-          "description": "{Logging} Logging - Options for build-docs logging."
-        },
-        {
-          "line": "@property {Logging.level} Logging.level - Default `3`. 0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info.",
-          "type": "property",
-          "description": "{Logging.level} Logging.level - Default `3`. 0 = none, 1 = fatal, 2 = error, 3 = warn, 4 = debug, 5 = info."
-        },
-        {
-          "line": "@property {Logging.toConsole} Logging.toConsole - Default `true`, should build-docs log to console. true | false.",
-          "type": "property",
-          "description": "{Logging.toConsole} Logging.toConsole - Default `true`, should build-docs log to console. true | false."
-        },
-        {
-          "line": "@property {Logging.toFile} Logging.toFile - Default `true`, should build docs log to file. true | false.",
-          "type": "property",
-          "description": "{Logging.toFile} Logging.toFile - Default `true`, should build docs log to file. true | false."
-        },
-        {
-          "line": "@property {Logging.filePath} Logging.filePath - Default `./build/docs/logs`, where to save the log file.",
-          "type": "property",
-          "description": "{Logging.filePath} Logging.filePath - Default `./build/docs/logs`, where to save the log file."
-        },
-        {
-          "line": "@property {Logging.fileNameCustom} Logging.fileNameCustom - Default `undefined`, custom file name for the log file.",
-          "type": "property",
-          "description": "{Logging.fileNameCustom} Logging.fileNameCustom - Default `undefined`, custom file name for the log file."
-        },
-        {
-          "line": "@property {Logging.fileNameIncludeDate} Logging.fileNameIncludeDate - Default `true`, should the log file name include the date. true | false.",
-          "type": "property",
-          "description": "{Logging.fileNameIncludeDate} Logging.fileNameIncludeDate - Default `true`, should the log file name include the date. true | false."
-        },
-        {
-          "line": "@property {Logging.fileNameIncludeTime} Logging.fileNameIncludeTime - Default `true`, should the log file name include the time. true | false.",
-          "type": "property",
-          "description": "{Logging.fileNameIncludeTime} Logging.fileNameIncludeTime - Default `true`, should the log file name include the time. true | false."
-        },
-        {
-          "line": "@property {Logging.fileNameIncludeRoot} Logging.fileNameIncludeRoot - Default `true`, should the log file name include the root. true | false.",
-          "type": "property",
-          "description": "{Logging.fileNameIncludeRoot} Logging.fileNameIncludeRoot - Default `true`, should the log file name include the root. true | false."
-        },
-        {
-          "line": "@property {Logging.fileFormat} Logging.fileFormat - Default `json`, format of the log file. 'json' | 'txt'.",
-          "type": "property",
-          "description": "{Logging.fileFormat} Logging.fileFormat - Default `json`, format of the log file. 'json' | 'txt'."
-        },
-        {
-          "line": "@property {Logging.writeMode} Logging.writeMode - Default `new`, write mode to use when saving the log file. 'append' | 'new' | 'overwrite' | 'prepend'.",
-          "type": "property",
-          "description": "{Logging.writeMode} Logging.writeMode - Default `new`, write mode to use when saving the log file. 'append' | 'new' | 'overwrite' | 'prepend'."
-        },
-        {
-          "line": "@property {Output} Output - Options for build-docs output.",
-          "type": "property",
-          "description": "{Output} Output - Options for build-docs output."
-        },
-        {
-          "line": "@property {Output.outputPath} Output.outputPath - Default `./build/`, where to output the generated docs raw JSON data.",
-          "type": "property",
-          "description": "{Output.outputPath} Output.outputPath - Default `./build/`, where to output the generated docs raw JSON data."
-        },
-        {
-          "line": "@property {Output.outputFolderName} Output.outputFolderName - Default `docs`, folder within path all build-docs content will be generated.",
-          "type": "property",
-          "description": "{Output.outputFolderName} Output.outputFolderName - Default `docs`, folder within path all build-docs content will be generated."
-        },
-        {
-          "line": "@property {Target} Target - Options for what/where `build-docs` will/will not target when looking for comments.",
-          "type": "property",
-          "description": "{Target} Target - Options for what/where `build-docs` will/will not target when looking for comments."
-        },
-        {
-          "line": "@property {Target.targetPath} Target.targetPath - Default `./src`, where to look for docs.",
-          "type": "property",
-          "description": "{Target.targetPath} Target.targetPath - Default `./src`, where to look for docs."
-        },
-        {
-          "line": "@property {Target.targetPaths} Target.targetPaths - Default `[]`, where to look for docs.",
-          "type": "property",
-          "description": "{Target.targetPaths} Target.targetPaths - Default `[]`, where to look for docs."
-        },
-        {
-          "line": "@property {Target.ignorePaths} Target.ignorePaths - Default see below, paths to ignore when generating docs.",
-          "type": "property",
-          "description": "{Target.ignorePaths} Target.ignorePaths - Default see below, paths to ignore when generating docs."
-        },
-        {
-          "line": "@property {Target.ignoreFiles} Target.ignoreFiles - Default `[]`, files to ignore when generating docs.",
-          "type": "property",
-          "description": "{Target.ignoreFiles} Target.ignoreFiles - Default `[]`, files to ignore when generating docs."
-        }
-      ],
-      "changelog": [
-        {
-          "line": "@changelog 0.0.1 | 2023-07-23 | Erik Plachta | docs: Build out user config file concept.",
-          "type": "changelog",
-          "description": "0.0.1 | 2023-07-23 | Erik Plachta | docs: Build out user config file concept."
-        }
-      ]
-    },
-    "createdDate": "2023-07-23T21:17:31.198Z",
-    "modifiedDate": "2023-07-23T21:17:31.198Z"
-  },
-  {
-    "id": "08a4562a-7772-404e-b871-a8a435fe4eeb",
+    "id": "a19d8dd2-28c8-43c1-b597-d20215c39424",
     "fileName": "onLoad_manager.js",
     "filePath": "src/bin/_TEST/Events/onLoad_manager.js",
     "comments": {
@@ -487,7 +258,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "b1b874b1-238d-4717-be0d-5f67c2c4e080",
+    "id": "b49c86b5-b2c0-4b71-9ba0-c26f9cb87db7",
     "fileName": "onLoad_manager.js",
     "filePath": "src/bin/_TEST/Events/onLoad_manager.js",
     "comments": {
@@ -531,7 +302,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "5f95bb24-c929-499e-a68d-3a8a1c944027",
+    "id": "b0e1220c-ac06-4417-a286-79d5fc9900cc",
     "fileName": "onSave_Manager.js",
     "filePath": "src/bin/_TEST/Events/onSave_Manager.js",
     "comments": {
@@ -589,7 +360,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "cc7b4ffc-422f-423a-9d91-88f563de6431",
+    "id": "ba704dc3-3eda-4183-950f-b83c0c020f9a",
     "fileName": "onSave_Manager.js",
     "filePath": "src/bin/_TEST/Events/onSave_Manager.js",
     "comments": {
@@ -640,7 +411,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "6d15cf0e-d9ca-49cb-a0f8-2916e981ec96",
+    "id": "20164d67-2b7a-400d-b7f8-3ad4f5fba02a",
     "fileName": "OnLoad_GetData.js",
     "filePath": "src/bin/_TEST/Functions/OnLoad_GetData.js",
     "comments": {
@@ -675,7 +446,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "ca278325-a83a-4279-911b-ff3f7cd00477",
+    "id": "5f52bb57-27e5-47d7-a78a-9ab5667954df",
     "fileName": "OnLoad_GetData.js",
     "filePath": "src/bin/_TEST/Functions/OnLoad_GetData.js",
     "comments": {
@@ -719,7 +490,7 @@
     "modifiedDate": "2023-07-23T21:17:31.199Z"
   },
   {
-    "id": "571c6d85-f209-4442-b3c7-daded0495692",
+    "id": "d26de780-7dd4-4aae-a969-69612d2a7f32",
     "fileName": "index.js",
     "filePath": "src/index.js",
     "comments": {
@@ -767,9 +538,9 @@
       ],
       "version": [
         {
-          "line": "@version 0.1.2",
+          "line": "@version 0.1.3",
           "type": "version",
-          "description": "0.1.2"
+          "description": "0.1.3"
         }
       ],
       "since": [
@@ -867,14 +638,19 @@
           "line": "@changelog 0.1.2 | 2023-07-15 | Erik Plachta | Onboard to generate docs.json and then build the UI content.",
           "type": "changelog",
           "description": "0.1.2 | 2023-07-15 | Erik Plachta | Onboard to generate docs.json and then build the UI content."
+        },
+        {
+          "line": "@changelog 0.1.3 | 2023-07-23 | Erik Plachta | Updated to use Config lib. cleanup. Verify functionality.",
+          "type": "changelog",
+          "description": "0.1.3 | 2023-07-23 | Erik Plachta | Updated to use Config lib. cleanup. Verify functionality."
         }
       ]
     },
     "createdDate": "2023-07-24T00:54:44.622Z",
-    "modifiedDate": "2023-07-24T00:54:44.622Z"
+    "modifiedDate": "2023-07-24T02:49:20.487Z"
   },
   {
-    "id": "de407f9b-aa74-4a1a-b415-a602a23ef6e6",
+    "id": "8ab2bc6a-20a7-4062-b8f9-f72e8d64a097",
     "fileName": "index.js",
     "filePath": "src/index.js",
     "comments": {
@@ -936,10 +712,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.622Z",
-    "modifiedDate": "2023-07-24T00:54:44.622Z"
+    "modifiedDate": "2023-07-24T02:49:20.487Z"
   },
   {
-    "id": "5a2388fa-6fe2-467b-92d8-9d836d09cdfe",
+    "id": "c70b52ff-c1c8-4568-b021-157c6d90c8de",
     "fileName": "index.js",
     "filePath": "src/index.js",
     "comments": {
@@ -1001,10 +777,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.622Z",
-    "modifiedDate": "2023-07-24T00:54:44.622Z"
+    "modifiedDate": "2023-07-24T02:49:20.487Z"
   },
   {
-    "id": "367b10bd-5f60-4d22-bda2-6cba207f0b31",
+    "id": "bd2b96d5-79d5-49bc-afb9-4e41c1e86758",
     "fileName": "default.ts",
     "filePath": "src/lib/Config/default.ts",
     "comments": {
@@ -1102,10 +878,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T00:54:44.623Z"
+    "modifiedDate": "2023-07-24T03:20:18.192Z"
   },
   {
-    "id": "8c7ea824-d95a-433f-bd64-f3e13a2bc697",
+    "id": "54883a48-a892-442a-a5b7-0ee2f9cf7bce",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1216,7 +992,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "d071afd2-d469-49db-bd90-a19816d8141d",
+    "id": "026c0168-be26-4a7c-bea2-118d9b627060",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1267,7 +1043,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "a6cb08d9-0069-41ed-aed0-6b817cca9bae",
+    "id": "51e5917d-a8af-49c4-b60f-945e51c56bb9",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1318,7 +1094,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "5a72e8f1-db6b-4027-bd13-a171e57d8458",
+    "id": "8b3a509a-d319-4f19-8f0d-daae1b3f66de",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1376,7 +1152,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "7d55ee7c-b2b5-4882-965c-71b437af1333",
+    "id": "95dcc1cc-a578-4ea0-a960-fe302bcd384c",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1392,7 +1168,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "5344a01e-2d1c-48da-b237-eb94bdd8bc3c",
+    "id": "d72fe45a-aaa3-4131-adf0-57fb74809281",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1465,7 +1241,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "042a84fb-4022-476b-86af-deee184be7f2",
+    "id": "c8b0ee73-0e1e-4b70-a79f-920591d9aa97",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {},
@@ -1473,7 +1249,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "e369ba83-9482-41e3-897b-bdd700937424",
+    "id": "e76f80d6-7432-4fb2-8f17-c608d46933d8",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {},
@@ -1481,7 +1257,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "01921399-cf3b-4cda-9ad1-6c69223ba318",
+    "id": "b1cb25b4-8ae7-4c0d-b078-efa0243b3cb0",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1546,7 +1322,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "1e0533de-af37-4d7f-8ee9-a96267a7b2ea",
+    "id": "bd9d6fc0-b966-40d4-baea-5345bad10a49",
     "fileName": "index.ts",
     "filePath": "src/lib/Config/index.ts",
     "comments": {
@@ -1604,7 +1380,7 @@
     "modifiedDate": "2023-07-24T00:54:44.623Z"
   },
   {
-    "id": "6463c422-3ec0-4bee-9a03-24f4eea48af8",
+    "id": "df1ba242-9014-4f6a-91a5-ed45cd0ef2d6",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -1652,9 +1428,9 @@
       ],
       "version": [
         {
-          "line": "@version 0.1.51",
+          "line": "@version 0.1.6",
           "type": "version",
-          "description": "0.1.51"
+          "description": "0.1.6"
         }
       ],
       "since": [
@@ -1716,66 +1492,39 @@
           "description": "path"
         },
         {
-          "line": "@requires crypto",
+          "line": "@requires module:crypto.randomUUID",
           "type": "requires",
-          "description": "crypto"
+          "description": "module:crypto.randomUUID"
         },
         {
-          "line": "@requires module:GetDocs",
+          "line": "@requires module:fs",
           "type": "requires",
-          "description": "module:GetDocs"
+          "description": "module:fs"
+        },
+        {
+          "line": "@requires module:path",
+          "type": "requires",
+          "description": "module:path"
+        },
+        {
+          "line": "@requires module:build-docs.GetDocs",
+          "type": "requires",
+          "description": "module:build-docs.GetDocs"
+        }
+      ],
+      "changelog": [
+        {
+          "line": "@changelog   0.1.6 | 2023-07-23 | Cleanup and verify.",
+          "type": "changelog",
+          "description": "0.1.6 | 2023-07-23 | Cleanup and verify."
         }
       ]
     },
     "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
+    "modifiedDate": "2023-07-24T02:27:26.869Z"
   },
   {
-    "id": "9fdc82b0-b2ac-4cc7-bc31-2bc359a4faff",
-    "fileName": "index.ts",
-    "filePath": "src/lib/DocsToJson/index.ts",
-    "comments": {
-      "type": [
-        {
-          "line": "@type {class} BuildDocs",
-          "type": "type",
-          "description": "{class} BuildDocs"
-        }
-      ],
-      "memberof": [
-        {
-          "line": "@memberof module:build-docs.DocsToJson",
-          "type": "memberof",
-          "description": "module:build-docs.DocsToJson"
-        }
-      ],
-      "access": [
-        {
-          "line": "@access private",
-          "type": "access",
-          "description": "private"
-        }
-      ],
-      "class": [
-        {
-          "line": "@class BuildDocs",
-          "type": "class",
-          "description": "BuildDocs"
-        }
-      ],
-      "classdesc": [
-        {
-          "line": "@classdesc Extract Documentation for target files types in target directory.",
-          "type": "classdesc",
-          "description": "Extract Documentation for target files types in target directory."
-        }
-      ]
-    },
-    "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
-  },
-  {
-    "id": "fb68eada-2599-46c2-8db3-1208c7215a9f",
+    "id": "384be4eb-fe59-4fe0-9798-aff62200550c",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -1865,10 +1614,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
+    "modifiedDate": "2023-07-24T02:27:26.869Z"
   },
   {
-    "id": "03637987-223b-4306-95cf-6c75641cfcf2",
+    "id": "7c63cd13-ee2b-4134-b19f-b5c53d7dde35",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -1947,10 +1696,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
+    "modifiedDate": "2023-07-24T02:27:26.869Z"
   },
   {
-    "id": "8f56d3d3-2563-4b5b-915e-030bed577fa7",
+    "id": "9cee601b-a397-4735-ae6e-12680d82cc24",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2005,10 +1754,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
+    "modifiedDate": "2023-07-24T02:27:26.869Z"
   },
   {
-    "id": "c22bb815-9a54-4114-adff-2565476dd13f",
+    "id": "65d1fa99-5f2b-4871-83a2-a9a4c6627799",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2077,10 +1826,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
+    "modifiedDate": "2023-07-24T02:27:26.869Z"
   },
   {
-    "id": "2bc75b81-1361-4cc0-8dbe-a9d0793b13f6",
+    "id": "957ead7f-819b-4546-8e73-a1daef12e709",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2154,10 +1903,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
+    "modifiedDate": "2023-07-24T02:27:26.869Z"
   },
   {
-    "id": "a981c86c-96f9-487b-b81d-9ccdd2fd7437",
+    "id": "63d7d128-510e-4c3b-ba78-26f926ebe43a",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2229,10 +1978,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
+    "modifiedDate": "2023-07-24T02:27:26.869Z"
   },
   {
-    "id": "dc582a12-73c2-4bcb-a83b-9f4ecc3b1b4e",
+    "id": "955c657a-a8ba-4c2b-80c3-1e5723b7be10",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2294,10 +2043,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
+    "modifiedDate": "2023-07-24T02:27:26.869Z"
   },
   {
-    "id": "7c679108-87a2-42c3-9f89-fb8f42ddb9b6",
+    "id": "1852e83e-5f77-436c-b649-c6c31b247572",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToJson/index.ts",
     "comments": {
@@ -2364,10 +2113,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.200Z",
-    "modifiedDate": "2023-07-23T21:59:10.246Z"
+    "modifiedDate": "2023-07-24T02:27:26.869Z"
   },
   {
-    "id": "48126bfb-e5ff-425c-b3a3-9f0492988c8c",
+    "id": "e2bbe5fc-7436-496d-9b44-5b25a591249c",
     "fileName": "DocsToUi.test.ts",
     "filePath": "src/lib/DocsToUi/DocsToUi.test.ts",
     "comments": {
@@ -2428,7 +2177,7 @@
     "modifiedDate": "2023-07-23T21:17:31.200Z"
   },
   {
-    "id": "fbde495c-8996-4f8d-bf02-a72553ded130",
+    "id": "906031f7-b8a9-4a37-b653-ee4dff8e5f12",
     "fileName": "DocsToUi.test.ts",
     "filePath": "src/lib/DocsToUi/DocsToUi.test.ts",
     "comments": {
@@ -2479,7 +2228,7 @@
     "modifiedDate": "2023-07-23T21:17:31.200Z"
   },
   {
-    "id": "a17077b9-4e9a-4fc9-9e6e-9b6f9ccf58d2",
+    "id": "1b7aa64b-4460-427e-bb9f-8aeddf82aa7a",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2590,10 +2339,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "b7bcf015-3b02-4a70-9332-21b46a3df1ac",
+    "id": "740393bf-6bcc-4b40-b969-921efb668021",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2625,9 +2374,9 @@
           "description": "{DataItem[]} data - The JSON data to convert"
         },
         {
-          "line": "@param {Config} config - The configuration for the conversion",
+          "line": "@param {DocsToUiConfig} config - The configuration for the conversion",
           "type": "param",
-          "description": "{Config} config - The configuration for the conversion"
+          "description": "{DocsToUiConfig} config - The configuration for the conversion"
         }
       ],
       "requires": [
@@ -2646,10 +2395,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "1200b06b-f0c2-4e6c-bd8d-304171f69fee",
+    "id": "75b825c8-64b4-4350-9887-38e1b0752749",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2693,18 +2442,18 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "d641dae5-9957-4dde-aa3e-d1cedbfcd717",
+    "id": "b73a6b2d-cc18-4efd-8791-395bd051eef7",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {},
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "c3e5cf27-2c32-4997-bc97-96a3074a11e1",
+    "id": "1c0d165d-047f-4f5c-a5b0-b63b48adeeaa",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2731,10 +2480,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "177a0d2d-0979-43ae-95f3-29f577bc6694",
+    "id": "43f183e2-a23f-461d-b824-85560adef8c3",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2815,10 +2564,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "453b70b5-a511-410c-97d6-382b9563f662",
+    "id": "b187df9c-a909-43dd-b552-e5d17d798320",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2845,16 +2594,16 @@
       ],
       "summary": [
         {
-          "line": "@summary Generate Header, Nav, and Nav-Links for each Content-Group (namespace).",
+          "line": "@summary Generate Header, Nav, and Nav-Links for each Content-Group (this.config.contentGroupParent).",
           "type": "summary",
-          "description": "Generate Header, Nav, and Nav-Links for each Content-Group (namespace)."
+          "description": "Generate Header, Nav, and Nav-Links for each Content-Group (this.config.contentGroupParent)."
         }
       ],
       "description": [
         {
-          "line": "@description Builds the header and nav elements. The builds a link within nav based on each Content-Group (namespace).",
+          "line": "@description Builds the header and nav elements. The builds a link within nav based on each Content-Group (this.config.contentGroupParent).",
           "type": "description",
-          "description": "Builds the header and nav elements. The builds a link within nav based on each Content-Group (namespace)."
+          "description": "Builds the header and nav elements. The builds a link within nav based on each Content-Group (this.config.contentGroupParent)."
         }
       ],
       "type": [
@@ -2880,10 +2629,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "816d5120-20f8-4549-bd13-7e08f0de846e",
+    "id": "14b32ed3-a2d2-4e70-a459-bd313c3e3f19",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2957,10 +2706,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "a37fbba1-cf44-4f71-aee7-866a36de950c",
+    "id": "6455dc59-13fd-4bc2-8265-9bd67d7eb27b",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -2985,10 +2734,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "6b14a589-a93f-4e65-9bfe-8e528c75062a",
+    "id": "5915fbae-43cd-4e9b-a272-32e340baf324",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3013,10 +2762,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "500c47eb-3565-4de5-92db-79fd5140d8e4",
+    "id": "90880f3c-fc38-4e61-84fe-7f98a4faf52d",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3064,10 +2813,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "12291701-af5a-4e44-b53f-7d21edc85255",
+    "id": "0818aaaa-4028-4eb3-846a-7d6f718da1b2",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3122,10 +2871,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "3c524fbb-f411-46c3-a800-7350e3bd66fe",
+    "id": "b9b54376-7b79-4ecd-9d68-bae2b0d8c516",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3138,10 +2887,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "1f6e8326-fce8-4f9e-bc52-25e6f2487165",
+    "id": "ef1b05d5-8bb3-446f-bc5f-8f2da9e356f7",
     "fileName": "index.ts",
     "filePath": "src/lib/DocsToUi/index.ts",
     "comments": {
@@ -3161,10 +2910,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.623Z",
-    "modifiedDate": "2023-07-24T01:06:17.278Z"
+    "modifiedDate": "2023-07-24T03:27:38.712Z"
   },
   {
-    "id": "e2b0fc3c-c435-4ae2-bc21-f6f48c0b4a3d",
+    "id": "5222031a-407a-4d8e-b9b4-fc13e4954388",
     "fileName": "BuildHtml.ts",
     "filePath": "src/lib/DocsToUi/utils/BuildHtml.ts",
     "comments": {
@@ -3301,10 +3050,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.624Z",
-    "modifiedDate": "2023-07-24T00:54:44.624Z"
+    "modifiedDate": "2023-07-24T02:52:07.492Z"
   },
   {
-    "id": "e325c29b-1ed7-4399-921d-3fdcb0b24701",
+    "id": "6e4fbbf0-96c1-4064-9dba-6a635fc1caa0",
     "fileName": "BuildHtml.ts",
     "filePath": "src/lib/DocsToUi/utils/BuildHtml.ts",
     "comments": {
@@ -3352,10 +3101,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.624Z",
-    "modifiedDate": "2023-07-24T00:54:44.624Z"
+    "modifiedDate": "2023-07-24T02:52:07.492Z"
   },
   {
-    "id": "21b41b41-2bb2-4540-948d-e82e23303750",
+    "id": "22cee990-a9fa-47b4-8d00-6d1dfa0b2647",
     "fileName": "BuildHtml.ts",
     "filePath": "src/lib/DocsToUi/utils/BuildHtml.ts",
     "comments": {
@@ -3436,10 +3185,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.624Z",
-    "modifiedDate": "2023-07-24T00:54:44.624Z"
+    "modifiedDate": "2023-07-24T02:52:07.492Z"
   },
   {
-    "id": "92e136e8-6fd1-450b-a751-d69e53a79a95",
+    "id": "62b22797-1296-4d07-be8b-500e74d9803f",
     "fileName": "ManageHtmlContent.ts",
     "filePath": "src/lib/DocsToUi/utils/ManageHtmlContent.ts",
     "comments": {},
@@ -3447,7 +3196,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "47d013a6-0b48-4e7b-bf3c-82f18f2a87f3",
+    "id": "7360c910-68b8-47df-9753-211d5ef5ef6a",
     "fileName": "ManageHtmlContent.ts",
     "filePath": "src/lib/DocsToUi/utils/ManageHtmlContent.ts",
     "comments": {},
@@ -3455,7 +3204,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "9c4b1ee9-ffe1-402f-8f8e-d3c62d822509",
+    "id": "6fffffef-9be2-44f5-8214-96828e5925ea",
     "fileName": "ManageHtmlContent.ts",
     "filePath": "src/lib/DocsToUi/utils/ManageHtmlContent.ts",
     "comments": {},
@@ -3463,7 +3212,7 @@
     "modifiedDate": "2023-07-23T21:17:31.202Z"
   },
   {
-    "id": "41d80e90-7e59-43db-a4b8-49910105bf86",
+    "id": "f5e5be00-83dc-4232-88b1-e9c98b4f0f97",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3573,7 +3322,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "188bb1c9-77c8-4281-a73c-234f4ae46f0f",
+    "id": "85bb9853-d302-4d30-bab0-808f969847d3",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3603,7 +3352,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "045058a1-5c64-4c9a-8df5-079b80b34375",
+    "id": "7187a9b3-7347-431d-ae91-22549b674195",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3654,7 +3403,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "b7549c7b-c1fd-495e-a7b8-104b2e5d9561",
+    "id": "84805f5b-55c9-4ed4-aa0f-7c567d0dd656",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3726,7 +3475,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "d3885285-35f0-42ba-8ff2-3071ceb5fabd",
+    "id": "39d13ab9-8dd4-4ba7-a117-e062a3a20dc4",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3784,7 +3533,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "652ce7f6-0c58-42e0-9190-68a2ca08effe",
+    "id": "0e2f39cc-c156-434b-86b2-1c423da1fd33",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3842,7 +3591,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "6d045bef-734a-46ee-ac43-00f162afcc8f",
+    "id": "f3daa834-6eff-4faf-aef5-ff2252e1c696",
     "fileName": "index.ts",
     "filePath": "src/lib/GetDocs/index.ts",
     "comments": {
@@ -3900,7 +3649,7 @@
     "modifiedDate": "2023-07-18T20:52:52.389Z"
   },
   {
-    "id": "7c503d40-1c6e-49fa-8f98-f3106d29a87a",
+    "id": "e808f1af-b1d4-4b86-b878-606385b45b40",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -3934,10 +3683,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T21:17:31.202Z"
+    "modifiedDate": "2023-07-24T03:10:30.069Z"
   },
   {
-    "id": "bbe12cec-21ac-4ef6-b530-d5fc632d68f9",
+    "id": "b8daa401-74fe-4e97-a55d-99aded3019c4",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -4005,10 +3754,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T21:17:31.202Z"
+    "modifiedDate": "2023-07-24T03:10:30.069Z"
   },
   {
-    "id": "94aef4bb-2116-4e44-84e1-a552e359a07f",
+    "id": "1ad91853-7a74-4f8f-8c19-9687b2d7a8ac",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -4061,10 +3810,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T21:17:31.202Z"
+    "modifiedDate": "2023-07-24T03:10:30.069Z"
   },
   {
-    "id": "38e15e25-63fb-43a5-9dd0-fe05f6cb3f50",
+    "id": "5f5c646a-a4e3-4207-a2d7-19765759215b",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -4103,17 +3852,17 @@
       ],
       "description": [
         {
-          "line": "@description Used by module `DocsToJson` to store comments and related info within `DocsToJson.results`. Comments are used for each comment block within the filepath. All comments within a file will have different `comments`, but the same `fileName`, `filePath`, `createdDate`, and `modifiedDate` values. ",
+          "line": "@description Used by module `DocsToJson` to store comments and related info within `DocsToJson.results`. Comments are used for each comment block within the filepath. All comments within a file will have different `comments`, but the same `fileName`, `filePath`, `createdDate`, and `modifiedDate` values.",
           "type": "description",
           "description": "Used by module `DocsToJson` to store comments and related info within `DocsToJson.results`. Comments are used for each comment block within the filepath. All comments within a file will have different `comments`, but the same `fileName`, `filePath`, `createdDate`, and `modifiedDate` values."
         }
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T21:17:31.202Z"
+    "modifiedDate": "2023-07-24T03:10:30.069Z"
   },
   {
-    "id": "1e11dbdc-e0e7-404c-a58b-7d0f653d9357",
+    "id": "0f8a3093-efd7-4423-8264-a3224cda25fc",
     "fileName": "Comments.ts",
     "filePath": "src/lib/types/Comments.ts",
     "comments": {
@@ -4190,10 +3939,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.202Z",
-    "modifiedDate": "2023-07-23T21:17:31.202Z"
+    "modifiedDate": "2023-07-24T03:10:30.069Z"
   },
   {
-    "id": "4637510b-6996-4697-a675-95c1f601ea84",
+    "id": "cf1a5711-ab83-4134-a6fb-19462eb356cb",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4286,10 +4035,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.624Z",
-    "modifiedDate": "2023-07-24T00:54:44.624Z"
+    "modifiedDate": "2023-07-24T02:06:04.132Z"
   },
   {
-    "id": "37f464bf-d7dc-4145-9670-ecc86f0da2a0",
+    "id": "4baa42d3-2f5d-45f1-9d30-b8f997334225",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4382,10 +4131,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.624Z",
-    "modifiedDate": "2023-07-24T00:54:44.624Z"
+    "modifiedDate": "2023-07-24T02:06:04.132Z"
   },
   {
-    "id": "0f87db9e-d9b5-406c-97f5-a2cba6ba9327",
+    "id": "4cac25c6-baf8-4cbc-b372-143bf39588fc",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4483,10 +4232,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.624Z",
-    "modifiedDate": "2023-07-24T00:54:44.624Z"
+    "modifiedDate": "2023-07-24T02:06:04.132Z"
   },
   {
-    "id": "17d138cc-7c61-4046-b4b6-e888d05a8ca0",
+    "id": "ca86e19c-3097-4ece-998a-876c4f8107b2",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4559,10 +4308,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.624Z",
-    "modifiedDate": "2023-07-24T00:54:44.624Z"
+    "modifiedDate": "2023-07-24T02:06:04.132Z"
   },
   {
-    "id": "736d2822-6bfd-44ab-aa74-6215b3118432",
+    "id": "351a5301-c0be-42fa-ae94-fdad987a7274",
     "fileName": "Config.ts",
     "filePath": "src/lib/types/Config.ts",
     "comments": {
@@ -4575,10 +4324,10 @@
       ]
     },
     "createdDate": "2023-07-24T00:54:44.624Z",
-    "modifiedDate": "2023-07-24T00:54:44.624Z"
+    "modifiedDate": "2023-07-24T02:06:04.132Z"
   },
   {
-    "id": "e9bb3814-da97-4573-afc5-d29f91204611",
+    "id": "3c8832e8-ace7-4898-a59e-cd705f88f6fa",
     "fileName": "Elements.ts",
     "filePath": "src/lib/types/Elements.ts",
     "comments": {
@@ -4608,7 +4357,7 @@
     "modifiedDate": "2023-07-23T15:50:03.549Z"
   },
   {
-    "id": "113508c3-ba4f-4fb3-97ce-6627363e86aa",
+    "id": "ea885789-f909-4e18-a328-e8d2b0fef900",
     "fileName": "Elements.ts",
     "filePath": "src/lib/types/Elements.ts",
     "comments": {
@@ -4666,7 +4415,7 @@
     "modifiedDate": "2023-07-23T15:50:03.549Z"
   },
   {
-    "id": "6adc1cb3-fba3-4515-9ddb-74f7772d9593",
+    "id": "f8d052c4-4c39-42d9-ae7d-ffeec7875f55",
     "fileName": "Elements.ts",
     "filePath": "src/lib/types/Elements.ts",
     "comments": {
@@ -4682,7 +4431,7 @@
     "modifiedDate": "2023-07-23T15:50:03.549Z"
   },
   {
-    "id": "352cd967-9736-4c64-a745-ec06d8dcfeda",
+    "id": "61916e8a-cb54-48f9-abd0-9da5536a00a7",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4751,10 +4500,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.203Z",
-    "modifiedDate": "2023-07-23T21:17:31.203Z"
+    "modifiedDate": "2023-07-24T03:10:31.289Z"
   },
   {
-    "id": "013c3bee-83ac-4aa5-a900-dd875ed3e16b",
+    "id": "0c96824a-a4ca-4ad2-90cd-2d1ba5512310",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4781,10 +4530,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.203Z",
-    "modifiedDate": "2023-07-23T21:17:31.203Z"
+    "modifiedDate": "2023-07-24T03:10:31.289Z"
   },
   {
-    "id": "0198437d-8d29-40ce-a2fb-7b34341b1a07",
+    "id": "13033a29-c50d-4397-986e-53cb61bd2e00",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4811,10 +4560,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.203Z",
-    "modifiedDate": "2023-07-23T21:17:31.203Z"
+    "modifiedDate": "2023-07-24T03:10:31.289Z"
   },
   {
-    "id": "2e935708-9fa0-4137-a647-57c4c3c2245c",
+    "id": "ddd69013-0346-40fa-8004-25e30e9db1d5",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4841,10 +4590,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.203Z",
-    "modifiedDate": "2023-07-23T21:17:31.203Z"
+    "modifiedDate": "2023-07-24T03:10:31.289Z"
   },
   {
-    "id": "9f197117-76e3-4072-9733-252969ef8504",
+    "id": "dac114ab-81ac-4b24-a0b5-7328ef0d4eb1",
     "fileName": "index.ts",
     "filePath": "src/lib/types/index.ts",
     "comments": {
@@ -4864,10 +4613,10 @@
       ]
     },
     "createdDate": "2023-07-23T21:17:31.203Z",
-    "modifiedDate": "2023-07-23T21:17:31.203Z"
+    "modifiedDate": "2023-07-24T03:10:31.289Z"
   },
   {
-    "id": "3c3d41d9-9e8d-4c42-aadb-1c03c501d268",
+    "id": "478ca673-3adf-4f5e-ac0e-f9e36e09dec9",
     "fileName": "DataManager.ts",
     "filePath": "src/utils/DataManager.ts",
     "comments": {
@@ -4926,7 +4675,7 @@
     "modifiedDate": "2023-07-23T20:15:52.313Z"
   },
   {
-    "id": "19bacbad-d557-405e-96e7-a98536e7e21b",
+    "id": "0e7d95b6-d9d6-4df1-8513-390947b45ab8",
     "fileName": "DataManager.ts",
     "filePath": "src/utils/DataManager.ts",
     "comments": {
@@ -5003,7 +4752,7 @@
     "modifiedDate": "2023-07-23T20:15:52.313Z"
   },
   {
-    "id": "d286965f-4107-4eff-9e1b-b3bd9f473dda",
+    "id": "1a3b7d6e-087a-4d27-966a-4b34793dd4a2",
     "fileName": "DataManager.ts",
     "filePath": "src/utils/DataManager.ts",
     "comments": {
@@ -5033,7 +4782,7 @@
     "modifiedDate": "2023-07-23T20:15:52.313Z"
   },
   {
-    "id": "502965df-7e92-465f-aab3-1b09687bf92a",
+    "id": "0adc9576-e1e7-404f-90b5-41647fe81fca",
     "fileName": "tsconfig.js",
     "filePath": "tsconfig.js",
     "comments": {

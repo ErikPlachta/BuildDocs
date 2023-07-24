@@ -113,16 +113,16 @@ export const config: Config = {
     options: [
       {
         title: 'customOutputPath',
-        description: 'Output options to be used build-docs. Default is the root of where it was executed from `.dist`.',
+        description: 'Output options to be used build-docs. Default is the root of where it was executed from `.build`.',
         type: 'string | undefined',
         required: false,
         enabled: false,
         value: null,
         default: [
           {
-            title: 'Current Directory `/.dist`',
+            title: 'Current Directory `/.build`',
             description: 'The current directory where build-docs was executed from.',
-            value: './.dist',
+            value: '.build',
           },
         ],
       },
@@ -440,7 +440,7 @@ export const config: Config = {
     options: [
       {
         title: 'outputPath',
-        description: 'Output options to be used build-docs. Default is the root of where it was executed from `.dist`.',
+        description: 'Output options to be used build-docs. Default is the root of where it was executed from `./.build`.',
         type: 'string',
         required: true,
         enabled: true,
@@ -449,7 +449,7 @@ export const config: Config = {
           {
             title: 'Current Directory `./.build`',
             description: 'The current directory where build-docs was executed from.',
-            value: './.build',
+            value: '.build',
           },
         ],
       },
@@ -476,6 +476,102 @@ export const config: Config = {
     description:
       'Manage the location(s) to search within, location(s) to ignore, file types to look for, and file types to ignore.',
     options: [
+      { // contentGroupParent
+        title: 'contentGroupParent',
+        description: 'The root JSDoc tag for all generated docs to be organized under.',
+        type: 'string',
+        required: true,
+        enabled: true,
+        value: null,
+        default: [
+          {
+            title: 'namespaces',
+            description: 'The JSDoc @namespace tag.',
+            value: 'namespace',
+          },
+        ],
+        supported: [
+          {
+            title: 'namespaces',
+            description: 'The JSDoc @namespace tag.',
+            value: 'namespace',
+          },
+          {
+            title: 'modules',
+            description: 'The JSDoc @module tag.',
+            value: 'modules',
+          },
+          {
+            title: 'files',
+            description: 'The JSDoc @file tag.',
+            value: 'files',
+          },
+          {
+            title: 'types',
+            description: 'The JSDoc @typedef tag.',
+            value: 'types',
+          },
+          {
+            title: 'access',
+            description: 'The JSDoc @access tag.',
+            value: 'access',
+          },
+          {
+            title: 'author',
+            description: 'The JSDoc @author tag.',
+            value: 'author',
+          }
+        ],
+        memberOf: 'build-docs',
+      },
+      { // contentGroupParent
+        title: 'contentSubGroupParent',
+        description: 'The secondary JSDoc tag for all generated docs to be organized under.',
+        type: 'string',
+        required: true,
+        enabled: true,
+        value: null,
+        default: [
+          {
+            title: 'module',
+            description: 'The JSDoc @module tag.',
+            value: 'module',
+          },
+        ],
+        supported: [
+          {
+            title: 'namespaces',
+            description: 'The JSDoc @namespace tag.',
+            value: 'namespaces',
+          },
+          {
+            title: 'modules',
+            description: 'The JSDoc @module tag.',
+            value: 'modules',
+          },
+          {
+            title: 'files',
+            description: 'The JSDoc @file tag.',
+            value: 'files',
+          },
+          {
+            title: 'types',
+            description: 'The JSDoc @typedef tag.',
+            value: 'types',
+          },
+          {
+            title: 'access',
+            description: 'The JSDoc @access tag.',
+            value: 'access',
+          },
+          {
+            title: 'author',
+            description: 'The JSDoc @author tag.',
+            value: 'author',
+          }
+        ],
+        memberOf: 'build-docs',
+      },
       { // targetPath
         title: 'targetPath',
         description: 'The root directory to search for documentation within by build-docs.',
@@ -581,9 +677,9 @@ export const config: Config = {
             value: '.vscode',
           },
           {
-            title: 'Build Docs',
-            description: 'Ignore build-docs_v1 directory anywhere within target root path.',
-            value: 'build-docs_v1',
+            title: '.build',
+            description: 'Ignore `.build` directory anywhere within target root path.',
+            value: '.build',
           },
         ],
       },
