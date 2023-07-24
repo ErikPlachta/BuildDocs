@@ -867,7 +867,8 @@ class DocsToUi {
       description: "Nav container holding the nav element and it's children within content-wrapper for group.",
       elementType: 'nav',
       classList: [
-        'w-full flex flex-row gap-2 bg-gray-100 sticky top-0 z-10',
+        'w-full flex flex-row gap-2 bg-gray-100 sticky top-0 z-10 text-sm',
+        'overflow-wrap min-h-[fit-content] h-[fit-content] flex-grow-0 flex-shrink-0 flex-basis-auto pb-0 overflow-scroll',
       ],
       dataAttributes: {
         value: null,
