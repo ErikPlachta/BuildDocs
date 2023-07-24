@@ -795,7 +795,7 @@ class DocsToUi {
           elementType: 'div',
           classList: [
             'border-solid border-2 border-t-0 rounded-b-xl h-full p-x-4 p-b-4',
-            // 'overflow-hidden'
+            'overflow-hidden'
           ],
           dataAttributes: {
             value: null, // container, no value.
@@ -1011,8 +1011,7 @@ class DocsToUi {
         description: `Overview tab for namespace '${parentItem.namespaces[0]}'.`,
         elementType: 'div',
         classList: [
-          'relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full',
-          // 'border-top-0'
+          'relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full py-6 px-4',
         ],
         content: [
           {
@@ -1056,7 +1055,7 @@ class DocsToUi {
           description: `Content for ${item.id} module within namespace ${parentId}.`,
           elementType: 'div',
           classList: [
-            `relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full`,
+            'relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full py-6 px-4',
             `hidden`, // hide content because all rendered in same parent.
           ],
           content: [
