@@ -233,13 +233,22 @@ class Configure {
       // Validate the user config data
       const isValidUserConfig = this.isValidUserConfig(userConfig)
 
-      console.log('isValidUserConfig results: ')
-      isValidUserConfig.forEach((group: any) => {
-        console.log(`\t${group.group}: `)
-        group.data.forEach((option: any) => {
-          console.log(`\t\t${option.key}: ${option.isValid}`)
+      
+      
+      // Log the results of the validation if warning or higher.
+      if (this.getLogLevel() >= 4) {
+        console.log('isValidUserConfig results: ')
+        isValidUserConfig.forEach((group: any) => {
+          console.log(`\t${group.group}: `)
+          group.data.forEach((option: any) => {
+            option.formatted = `${option.key}: ${option.value}\n\t\t- isValid: (${
+              option.isValid
+            })\n\t\t- option: ${JSON.stringify(option)}`
+
+            console.log(`\t\t${option.formatted}`)
+          })
         })
-      })
+      }
 
       // Set the user config.
       this.UserConfig = userConfig
@@ -326,6 +335,8 @@ class Configure {
         ...config,
       }
 
+      console.log('TODO: Add userConfig to updatedConfig.')
+
       /**
        *  1. Check to see if there are any matches for any args within config options for each config group.
        *
@@ -334,6 +345,7 @@ class Configure {
        *  - If there is not, return the arg and undefined.
        */
       let argsMatched: any[] = []
+
       Array.from(Object.keys(args)).forEach(argKey => {
         Array.from(Object.keys(updatedConfig)).forEach(configKey => {
           updatedConfig[configKey].options.forEach((option: Option) => {

@@ -158,7 +158,7 @@ class DocsToUi {
   __init__(LogLevel: Logging_config['level']['value'], comments: Comments[], config:DocsToUiConfig) {
     if(LogLevel > 4) console.log('DocsToUi.__init__')
 
-    console.log('DocsToUi.__init__')
+    console.log('TODO: Onboard DocsToUi.__init__ function.')
   }
 
   //----------------------------------------------------------------------------

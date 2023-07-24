@@ -170,18 +170,21 @@ class BuildHtml {
 
   private async buildContent() {
     try {
-      let content: any = null
+      let content:any[] = []
       // Run through all Processed Elements and generate HTML.
       const htmlElements = this.elements.HtmlElements
       // console.log('htmlElements', htmlElements)
 
       for (const group of htmlElements) {
         for (const element of group.Elements) {
-          console.log(await this.generateHtml(element))
+          content.push({
+            data: await this.generateHtml(element)
+          })
         }
       } // Finished running through building.
 
-      // console.log('htmlElements: ', htmlElements)
+      console.log('htmlElements.length: ', htmlElements.length)
+      console.log('content: ', content)
       return {
         success: true,
         message: 'Content built successfully.',
@@ -237,7 +240,7 @@ class BuildHtml {
         setAttributes(element.dataAttributes, el)
       }
 
-      // Build content if any defined
+      // Build content if any defined, otherwise use the value
       if (element.content) {
         // If content is an array, run through each item and append to the element.
         if (Array.isArray(element.content)) {
@@ -268,14 +271,16 @@ class BuildHtml {
           })
         }
       }
-      // Otherwise use the value
       else if (element.dataAttributes.value) {
         el.textContent = element.dataAttributes.value
       }
 
+      // Set classes if any defined.
       if (element.classList) {
         el.className = element.classList.join(' ')
       }
+
+      // Set attributes if any defined.
       if (element.description) {
         el.setAttribute('data-description', element.description)
       }
@@ -291,7 +296,10 @@ class BuildHtml {
           await this.generateHtml(child, el)
         }
       }
+      
+      // -- return results
       return el
+
     } catch (error) {
       // end of generateHtml function.
       if (this.LogLevel > 1) {
