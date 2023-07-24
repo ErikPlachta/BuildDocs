@@ -1,4 +1,3 @@
-
 import { htmlConfig, ElementsProcessed, Logging_config } from '../../types'
 import { JSDOM } from 'jsdom'
 
@@ -52,25 +51,17 @@ class BuildHtml {
       `<!DOCTYPE html><html lang="en"><head><title>ERROR</title></head><body><h1>ERROR</h1><p>${error}</p></body></html>`
   }
 
-  // Run the build function and return it's results.
-  // this.build()
-  // .then(results => {
-  //   this.results = results
-  //   return Promise.resolve(results)
-  // })
-  // .catch(error => {
-  //   this.resultsIfError(error)
-  //   this.results = this.resultsIfError(error)
-  //   return Promise.reject(this.results)
-  // })
-
+  /**
+   * Builds the HTML document.
+   *
+   * @type {function} build
+   * @function build
+   * @access public
+   * @memberof module:DocsToUi
+   * @summary Called by JsonToUi to generate the HTML document.
+   * @description Primary class method to generate HTML from the JSON data.
+   */
   async build(): Promise<string> {
-    // console.log('BuildHtml.build()',
-    //   '\n\t - this.LogLevel: ', this.LogLevel,
-    //   '\n\t - this.elements: ', this.elements,
-    //   '\n\t - this.title: ', this.title,
-    //   '\n\t - this.htmlConfig: ', this.htmlConfig,
-    // )
     try {
       // Deconstruct the htmlConfig object.
       const { head, body } = this.htmlConfig
@@ -81,7 +72,9 @@ class BuildHtml {
       this.buildBody(body)
       // 3. Build content within body.
       let buildContentResults = await this.buildContent()
-      // console.log('buildContentResults', buildContentResults)
+      
+      // If there was an error, return the error.
+      if(this.LogLevel > 1) console.log('buildContentResults', buildContentResults)
 
       // Add a line break to the end of the body so closing tag on new line.
       this.document.body.innerHTML = this.document.body.innerHTML + `\n`
@@ -170,7 +163,7 @@ class BuildHtml {
 
   private async buildContent() {
     try {
-      let content:any[] = []
+      let content: any[] = []
       // Run through all Processed Elements and generate HTML.
       const htmlElements = this.elements.HtmlElements
       // console.log('htmlElements', htmlElements)
@@ -178,13 +171,11 @@ class BuildHtml {
       for (const group of htmlElements) {
         for (const element of group.Elements) {
           content.push({
-            data: await this.generateHtml(element)
+            data: await this.generateHtml(element),
           })
         }
       } // Finished running through building.
 
-      console.log('htmlElements.length: ', htmlElements.length)
-      console.log('content: ', content)
       return {
         success: true,
         message: 'Content built successfully.',
@@ -220,8 +211,10 @@ class BuildHtml {
   private async generateHtml(element: any, parent: any = this.document.body): Promise<any> {
     // console.log('parent: ', parent)
     // console.log('element: ', element)
+    let el: any
+
     try {
-      const el = this.document.createElement(element.elementType)
+      el = this.document.createElement(element.elementType)
 
       // Utility function to set attributes on an element.
       function setAttributes(obj: any, el: any) {
@@ -270,8 +263,7 @@ class BuildHtml {
             }
           })
         }
-      }
-      else if (element.dataAttributes.value) {
+      } else if (element.dataAttributes.value) {
         el.textContent = element.dataAttributes.value
       }
 
@@ -284,29 +276,47 @@ class BuildHtml {
       if (element.description) {
         el.setAttribute('data-description', element.description)
       }
+
+      // Set attributes if any defined.
       if (element.value) {
         el.setAttribute('data-value', element.value)
       }
 
+      // Set attributes if any defined.
       parent.appendChild(el)
 
-      // If more to render, do so.
+      // If the element has children, run through them and generate HTML.
       if (element.children) {
         for (const child of element.children) {
           await this.generateHtml(child, el)
         }
       }
-      
-      // -- return results
-      return el
 
+      // -- return results
+      return Promise.resolve({
+        success: true,
+        message: 'Element rendered successfully.',
+        data: {
+          el,
+          parent,
+          element,
+        },
+      })
     } catch (error) {
-      // end of generateHtml function.
+      //-- Error Handling
       if (this.LogLevel > 1) {
         console.log(error)
       }
-
       console.log(error)
+      return Promise.reject({
+        success: false,
+        message: error,
+        data: {
+          el,
+          parent,
+          element,
+        },
+      })
     }
   }
 }

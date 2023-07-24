@@ -155,8 +155,8 @@ class DocsToUi {
   /**
    * Take params
    */
-  __init__(LogLevel: Logging_config['level']['value'], comments: Comments[], config:DocsToUiConfig) {
-    if(LogLevel > 4) console.log('DocsToUi.__init__')
+  __init__(LogLevel: Logging_config['level']['value'], comments: Comments[], config: DocsToUiConfig) {
+    if (LogLevel > 4) console.log('DocsToUi.__init__')
 
     console.log('TODO: Onboard DocsToUi.__init__ function.')
   }
@@ -603,7 +603,10 @@ class DocsToUi {
           parent: null,
           description: 'Header element for the page. Contains the main navigation.',
           elementType: 'header',
-          classList: ['w-full p-0 m-0 px-4 pt-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto'],
+          classList: [
+            'w-full p-0 m-0 px-4 border-solid border-2 bg-white flex flex-col gap-4 max-w-8xl mx-auto',
+            'overflow-scroll min-h-[fit-content] h-[fit-content] flex-grow-0 flex-shrink-0 flex-basis-auto p-b-4',
+          ],
           dataAttributes: {
             value: null,
             type: null,
@@ -624,7 +627,7 @@ class DocsToUi {
       parent: ElementsProcessed.parents.navHeader,
       description: "Nav container holding the nav element and it's children within content-wrapper for group.",
       elementType: 'nav',
-      classList: ['max-w-4xl mx-auto w-full px-4 pt-4'],
+      classList: ['max-w-4xl mx-auto w-full px-4 pt-2 text-md'],
       dataAttributes: {
         value: null,
         type: null,
@@ -764,7 +767,8 @@ class DocsToUi {
               description: `Div within 'main' for Group (namespace) '${item.namespaces[0]}'. Holds the tab-strip-nav and all GroupContentWrapper (which holds GroupContent).`,
               elementType: 'div',
               classList: [
-                'relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full',
+                'relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 w-full h-full',
+                // 'overflow-auto'
                 // Default first as active.
                 `${firstContentGroup == true ? '' : 'hidden'}`,
               ],
@@ -789,7 +793,10 @@ class DocsToUi {
           parent: item.id,
           description: `Wrapper to hold content within group-content-wrapper, for group (namespace) '${item.namespaces[0]}'.`,
           elementType: 'div',
-          classList: ['border-solid border-2 rounded-b-xl h-full p-4'],
+          classList: [
+            'border-solid border-2 border-t-0 rounded-b-xl h-full p-x-4 p-b-4',
+            // 'overflow-hidden'
+          ],
           dataAttributes: {
             value: null, // container, no value.
             type: null, // container, no value.
@@ -859,7 +866,9 @@ class DocsToUi {
       parent: parentId,
       description: "Nav container holding the nav element and it's children within content-wrapper for group.",
       elementType: 'nav',
-      classList: ['w-full flex flex-row gap-2 bg-gray-100'],
+      classList: [
+        'w-full flex flex-row gap-2 bg-gray-100 sticky top-0 z-10',
+      ],
       dataAttributes: {
         value: null,
         type: null,
@@ -879,7 +888,7 @@ class DocsToUi {
       parent: tabStripNavId,
       description: `List holding tab-strip-nav-links for namespace with id: '${parentId}'.`,
       elementType: 'ul',
-      classList: ['flex w-full flex-row w-full gap-2 w-full'],
+      classList: ['flex w-full flex-row w-full gap-2 w-full bg-transparent'],
       dataAttributes: {
         value: null,
         type: null,
@@ -1001,7 +1010,10 @@ class DocsToUi {
         parent: ElementsProcessed.parents.contentWrapper,
         description: `Overview tab for namespace '${parentItem.namespaces[0]}'.`,
         elementType: 'div',
-        classList: ['relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full'],
+        classList: [
+          'relative max-w-4xl mx-auto flex flex-col bg-white bg-opacity-60 overflow-auto w-full h-full',
+          // 'border-top-0'
+        ],
         content: [
           {
             type: 'OverviewTab',
@@ -1134,14 +1146,17 @@ class DocsToUi {
       //-- Get all members of the content group.
 
       const contentGroupMembers = this.processedData?.filter((item: CommentsProcessed) => {
-        if ( item && item.memberOf != undefined &&
+        if (
+          item &&
+          item.memberOf != undefined &&
           item.memberOf.filter(
             //TODO: 2023-07-23 | Erik Plachta | Convert from any to proper once verified.
-            (parent:any) => {
+            (parent: any) => {
               if (parent.id === contentGroupId) {
                 return parent
               }
-            }).length > 0
+            },
+          ).length > 0
         ) {
           return item
         }
