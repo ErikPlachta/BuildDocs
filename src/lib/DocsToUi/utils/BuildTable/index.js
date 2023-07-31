@@ -40,10 +40,39 @@ function createTableFromJSON(headerData, jsonData) {
 
                     var tdDetails = document.createElement('td');
                     tdDetails.colSpan = headerData.length; // Make the td span across all columns of the parent table
+                    tdDetails.setAttribute('class', 'details-row');
 
                     var detailCard = document.createElement('div');
                     detailCard.className = 'detail-card';
-                    detailCard.textContent = 'OID: ' + (index + 1) + '.' + (detailIndex + 1) + ', Key: ' + key + ', Value: ' + JSON.stringify(item[key]) + ', Type: ' + typeof item[key];
+                    detailCard.setAttribute('data-role', 'detail-card');
+                    detailCard.setAttribute('data-type', typeof item[key])
+
+                    // detailCard.textContent = 'OID: ' + (index + 1) + '.' + (detailIndex + 1) + ', Key: ' + key + ', Value: ' + JSON.stringify(item[key]) + ', Type: ' + typeof item[key];
+                    var detailCardOid = document.createElement('span');
+                    detailCardOid.className = 'detail-card-value';
+                    detailCardOid.setAttribute('data-role', 'oid');
+                    detailCardOid.innerText = `${index}.${detailIndex + 1}`;
+                    detailCard.appendChild(detailCardOid);
+
+                    var detailCardKey = document.createElement('span');
+                    detailCardKey.className = 'detail-card-value';
+                    detailCardKey.setAttribute('data-role', 'key');
+                    detailCardKey.innerText = key;
+                    detailCard.appendChild(detailCardKey);
+
+                    var detailCardValue = document.createElement('span');
+                    detailCardValue.className = 'detail-card-value';
+                    detailCardValue.setAttribute('data-role', 'value');
+                    detailCardValue.innerText = JSON.stringify(item[key]);
+                    detailCard.appendChild(detailCardValue);
+
+                    var detailCardType = document.createElement('span');
+                    detailCardType.className = 'detail-card-value';
+                    detailCardType.setAttribute('data-role', 'type');
+                    
+
+                    detailCardType.innerText = typeof item[key];
+                    detailCard.appendChild(detailCardType);
 
                     tdDetails.appendChild(detailCard);
                     detailsRow.appendChild(tdDetails);
