@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Build Table from JSON</title>
+    <style>
+      .expandable-table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .expandable-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      .expanded-row {
+        background-color: #dfdfdf;
+        border-spacing: 0 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Build Table from JSON</h1>
+      <div id="table"></div>
+    </div>
+  </body>
+  <script type="module">
+    import createTableFromJSON from './index.js'
+
+    console.log('test building table from json')
+    const fakeElement = document.createElement('div')
+    fakeElement.innerHTML = '<h2>Fake Element 1</h2>'
+    const fakeElement2 = document.createElement('div')
+    fakeElement2.innerHTML = '<h2>Fake Element 2</h2>'
+    const data = [
+      {
+        oid: 0,
+        refId: 'abc-123-456-789-000',
+        eventType: 'onClick',
+        pageObj: {
+          ns: 'kendo-dropdownlist',
+          element: [fakeElement],
+        },
+      },
+      {
+        oid: 1,
+        refId: 'abc-123-456-789-001',
+        eventType: undefined,
+        pageObj: [
+          {
+            fakeElement2,
+            source: 'abc-124',
+          },
+        ],
+      },
+    ]
+
+    const header = [
+      {
+        title: 'OID',
+        key: 'oid',
+        isHidden: false,
+        sortable: true,
+      },
+      {
+        title: 'Ref ID',
+        key: 'refId',
+        isHidden: false,
+        sortable: true,
+      },
+      {
+        title: 'Event Type',
+        key: 'eventType',
+        isHidden: false,
+        sortable: false,
+      },
+      {
+        title: 'Page Object',
+        key: 'pageObj',
+        isHidden: true,
+        sortable: false,
+      },
+    ]
+    createTableFromJSON(header, data)
+  </script>
+</html>
